@@ -16,6 +16,15 @@ public class MazeGenerator : MonoBehaviour
 	public int height = 32;
 	public float cellSize = 1f;
 	public int roomAmount = 10;
+	public ROOM_PLACER_TYPES roomPlacerType;
+
+	[Header("Map Creation Assets")]
+	public GameObject rootNode;
+	public GameObject corridorPrefab;
+	public GameObject wallPrefab;
+	public MazeWallPrefabs wallPrefabs;
+	public GameObject emptyPrefab;
+	public GameObject roomPrefab;
 
 	public Map map;
 
@@ -35,8 +44,51 @@ public class MazeGenerator : MonoBehaviour
 		_delta = new Vector3((width - cellSize) / 2f, 0f, (height - cellSize) / 2f);
 
 		//Rooms
-		NotOverlappingRoomPlacer roomPlacer = new NotOverlappingRoomPlacer();
-		roomPlacer.PlaceRooms(map, roomAmount);
+		if (roomPlacerType == ROOM_PLACER_TYPES.NO_OVERLAPPING_NO_RETRY) {
+			NotOverlappingRoomPlacer roomPlacer = new NotOverlappingRoomPlacer();
+			roomPlacer.PlaceRooms(map, roomAmount);
+		}
+
+		//Corridors
+
+		//Clean Maze
+
+		//Clean map
+		if (rootNode == null) {
+			rootNode = new GameObject("MapRoot");
+		} else {
+			//clear root node
+			for (int i = rootNode.transform.childCount-1; i >= 0; i--) {
+				DestroyImmediate(rootNode.transform.GetChild(i).gameObject);
+			}
+		}
+
+		//Render
+		for (int i = 0; i < map.width; i++) {
+			for (int j = 0; j < map.height; j++) {
+				Vector3 position = this.topLeft + new Vector3(i * cellSize, 0f, j * cellSize);
+				GameObject prefab = null;
+				switch (map.mapGrid[i, j].occupation) {
+					case Constants.TILE_TYPE.EMPTY:
+						prefab = emptyPrefab;
+						break;
+					case Constants.TILE_TYPE.CORRIDOR:
+						prefab = corridorPrefab;
+						break;
+					case Constants.TILE_TYPE.ROOM:
+						prefab = roomPrefab;
+						break;
+					case Constants.TILE_TYPE.WALL:
+						prefab = wallPrefab;
+						break;
+					default:
+
+						break;
+				}
+				if (prefab != null)
+					Instantiate(prefab, position, Quaternion.identity, rootNode.transform);
+			}
+		}
 	}
 
 	public void OnDrawGizmosSelected () {
@@ -56,7 +108,7 @@ public class MazeGenerator : MonoBehaviour
 							Gizmos.color = Color.yellow;
 							break;
 						case Constants.TILE_TYPE.ROOM:
-							Gizmos.color = Color.red;
+							Gizmos.color = Color.HSVToRGB((float) (map.mapGrid[i, j].space.space_id)/roomAmount, 1f,1f);
 							break;
 						case Constants.TILE_TYPE.WALL:
 							Gizmos.color = Color.green;
@@ -69,5 +121,14 @@ public class MazeGenerator : MonoBehaviour
 				}
 			}
 		}
+	}
+
+	[System.Serializable]
+	public class MazeWallPrefabs {
+		public GameObject FullWall;
+		public GameObject WallW;
+		public GameObject WallE;
+		public GameObject WallN;
+		public GameObject WallS;
 	}
 }

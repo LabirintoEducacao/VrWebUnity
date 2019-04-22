@@ -123,6 +123,8 @@ GameObject:
   - component: {fileID: 1085979705}
   - component: {fileID: 1085979704}
   - component: {fileID: 1085979703}
+  - component: {fileID: 1085979706}
+  - component: {fileID: 1085979707}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -176,7 +178,7 @@ Camera:
   m_HDR: 1
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
+  m_ForceIntoRT: 1
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -187,13 +189,90 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085979702}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.28832424, y: -0, z: -0, w: 0.9575329}
+  m_LocalPosition: {x: 0, y: 7.57, z: -13.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 33.515003, y: 0, z: 0}
+--- !u!114 &1085979706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085979702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: d64830cfbccc9b4448386904cd7dd5e3, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
+--- !u!114 &1085979707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085979702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 1085979705}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 1
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!1 &1149959203
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,12 +372,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gizmosOn: 1
-  seed: -801912889
-  randomizeSeed: 1
-  width: 64
-  height: 64
+  seed: -207882319
+  randomizeSeed: 0
+  width: 32
+  height: 32
   cellSize: 1
-  roomAmount: 15
+  roomAmount: 25
+  borderUseless: 1
+  roomPlacerType: 0
+  rootNode: {fileID: 0}
+  corridorPrefab: {fileID: 2238468049341275996, guid: 93a27f41e9b198e43b32f2e52804fcfa,
+    type: 3}
+  wallPrefab: {fileID: 5324575144412590753, guid: 15488a341a3a7884db9de8fb4b1db647,
+    type: 3}
+  wallPrefabs:
+    FullWall: {fileID: 5324575144412590753, guid: 15488a341a3a7884db9de8fb4b1db647,
+      type: 3}
+    WallW: {fileID: 4102693200618247824, guid: a8d706a7dec1f9c4fa97c8305316cde1, type: 3}
+    WallE: {fileID: 2488569269257537738, guid: 299f918a1ae73a14e9efdd632f07fbe1, type: 3}
+    WallN: {fileID: 7357534834976366100, guid: 89ac12db7939dbc458d35ed91e769d02, type: 3}
+    WallS: {fileID: 1795289607360545242, guid: 937f7b724d9f49249b22e4443c26d519, type: 3}
+  emptyPrefab: {fileID: 6004324113148177913, guid: a97a876ae8fd24d4a8b77860d046e4f6,
+    type: 3}
+  roomPrefab: {fileID: 2238468049341275996, guid: 93a27f41e9b198e43b32f2e52804fcfa,
+    type: 3}
 --- !u!4 &1449825307
 Transform:
   m_ObjectHideFlags: 0

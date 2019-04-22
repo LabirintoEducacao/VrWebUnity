@@ -42,8 +42,10 @@ namespace larcom.MazeGenerator.Models {
 			}
 		}
 
-		public Tile randomTile() {
-			return tile(Random.Range(0, width), Random.Range(0, height));
+		public Tile randomTile(bool border = true) {
+			if (border)
+				return tile(Random.Range(1, width-2), Random.Range(1, height-2));
+			return tile(Random.Range(0, width-1), Random.Range(0, height-1));
 		}
 
 		public void addSpace(Space space) {

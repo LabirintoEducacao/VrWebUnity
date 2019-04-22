@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using larcom.MazeGenerator.Generators;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class MazeGeneratorEditor: Editor {
 		DrawDefaultInspector();
 
 		MazeGenerator mazeGenerator = (MazeGenerator) target;
+
 		if (GUILayout.Button("Generate Map")) {
 			mazeGenerator.generate();
 		}

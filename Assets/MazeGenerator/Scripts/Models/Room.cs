@@ -50,6 +50,7 @@ namespace larcom.MazeGenerator.Models {
 		}
 
 		public Room closeRoom() {
+			int corners = 0;
 			foreach (Tile tile in tiles) {
 				int neighbourhood = tile.sameRoomNeighbours();
 				int negativeSpace = ~neighbourhood & Constants.DIRECTION_ALL;
@@ -87,18 +88,20 @@ namespace larcom.MazeGenerator.Models {
 						MapCoord.DOWN + MapCoord.LEFT
 					};
 
+					//corners
 					for (int i = 0; i < CORNERS.Length; i++) {
 						if ((negativeSpace & CORNERS[i]) == CORNERS[i]) {
-							//top right corner
 							Tile neighbour = map.tile(tile.coord + DIFFS[i]);
 							if (neighbour != null) {
 								this.border.Add(neighbour);
 								neighbour.occupation = Constants.TILE_TYPE.WALL;
+								corners++;
 							}
 						}
 					}
 				}
 			}
+			Debug.Log(this.ToString() + " has " + corners + " corners");
 			return this;
 		}
 

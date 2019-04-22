@@ -20,10 +20,10 @@ namespace larcom.MazeGenerator.Generators {
 			roomModels.Add(new RoomGenModel(2, 2, 0.2f));
 		}
 
-		public void PlaceRooms (Map map, int amount) {
+		public void PlaceRooms (Map map, int amount, bool border = true) {
 			int rid = 0;
 			for (int i = 0; i < amount; i++) {
-				Tile tile = map.randomTile();
+				Tile tile = map.randomTile(border);
 				RoomGenModel roomGen = selectModel();
 				if (Models.Space.checkArea(tile.coord, roomGen.width, roomGen.height, map, allowedTilesToOverwrite)) {
 					Room room = new Room(rid, map, tile.coord, roomGen.width, roomGen.height);
@@ -54,9 +54,8 @@ namespace larcom.MazeGenerator.Generators {
 	}
 
 
-
 	public interface IRoomPlacer {
-		void PlaceRooms (Map map, int amount);
+		void PlaceRooms (Map map, int amount, bool border = true);
 	}
 
 	[Serializable]
@@ -70,4 +69,6 @@ namespace larcom.MazeGenerator.Generators {
 			this.odd = odd;
 		}
 	}
+
+	public enum ROOM_PLACER_TYPES { NO_OVERLAPPING_NO_RETRY };
 }

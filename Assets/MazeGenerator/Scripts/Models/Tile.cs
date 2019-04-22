@@ -16,6 +16,8 @@ namespace larcom.MazeGenerator.Models {
 		public Map map;
 		public MapCoord coord;
 		public Space space;
+		public int passages;
+		public int doors;
 		public TILE_TYPE occupation = TILE_TYPE.EMPTY;
 
 		public int x { get { return coord.x; } }
@@ -24,11 +26,27 @@ namespace larcom.MazeGenerator.Models {
 		public Tile (int x, int y, Map map) {
 			occupation = TILE_TYPE.EMPTY;
 			this.coord = new MapCoord(x, y);
+
+			setStartingPassages();
+			this.doors = DIRECTION_NONE;
 			this.map = map;
 		}
 
+		void setStartingPassages() {
+			// start allowing all directions
+			passages = DIRECTION_ALL;
+			// check which passages go outside the game board and block them.
+			if (this.left == null) passages &= ~DIRECTION_LEFT;
+			if (this.right == null) passages &= ~DIRECTION_RIGHT;
+			if (this.down == null) passages &= ~DIRECTION_DOWN;
+			if (this.up == null) passages &= ~DIRECTION_UP;
+		}
+
 		public override string ToString () {
-			return occupation.ToString() + " - space id: " + space.space_id;
+			int space_id = -1;
+			if (space != null)
+				space_id = space.space_id;
+			return string.Format("Tile: {0}, {1}. Passage: {3} - Doors: {4} - Space: {5}", new object[] {coord.x, coord.y, passages, doors, space_id });
 		}
 
 		public int getWallDirection() {
