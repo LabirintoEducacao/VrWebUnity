@@ -21,7 +21,6 @@ public class MazeGenerator : MonoBehaviour
 	[Header("Map Creation Assets")]
 	public GameObject rootNode;
 	public GameObject corridorPrefab;
-	public GameObject wallPrefab;
 	public MazeWallPrefabs wallPrefabs;
 	public GameObject emptyPrefab;
 	public GameObject roomPrefab;
@@ -68,7 +67,8 @@ public class MazeGenerator : MonoBehaviour
 			for (int j = 0; j < map.height; j++) {
 				Vector3 position = this.topLeft + new Vector3(i * cellSize, 0f, j * cellSize);
 				GameObject prefab = null;
-				switch (map.mapGrid[i, j].occupation) {
+				Tile tile = map.tile(i, j);
+				switch (tile.occupation) {
 					case Constants.TILE_TYPE.EMPTY:
 						prefab = emptyPrefab;
 						break;
@@ -79,16 +79,44 @@ public class MazeGenerator : MonoBehaviour
 						prefab = roomPrefab;
 						break;
 					case Constants.TILE_TYPE.WALL:
-						prefab = wallPrefab;
+						prefab = wallPrefabs.FullWall;
 						break;
 					default:
-
 						break;
 				}
-				if (prefab != null)
-					Instantiate(prefab, position, Quaternion.identity, rootNode.transform);
+				if (prefab != null) {
+					GameObject go = Instantiate(prefab, position, Quaternion.identity, rootNode.transform);
+					createTileSpecificWall(tile, position, go);
+				}
+				
 			}
 		}
+	}
+
+	void createTileSpecificWall(Tile tile, Vector3 position, GameObject parent) {
+		if (tile.passages == Constants.DIRECTION_NONE)
+			return;
+		if ((tile.passages&Constants.DIRECTION_UP) == 0) {
+			if (wallPrefabs.WallN) {
+				Instantiate(wallPrefabs.WallN, position, Quaternion.identity, parent.transform);
+			}
+		}
+		if ((tile.passages & Constants.DIRECTION_RIGHT) == 0) {
+			if (wallPrefabs.WallE) {
+				Instantiate(wallPrefabs.WallE, position, Quaternion.identity, parent.transform);
+			}
+		}
+		if ((tile.passages & Constants.DIRECTION_DOWN) == 0) {
+			if (wallPrefabs.WallS) {
+				Instantiate(wallPrefabs.WallS, position, Quaternion.identity, parent.transform);
+			}
+		}
+		if ((tile.passages & Constants.DIRECTION_LEFT) == 0) {
+			if (wallPrefabs.WallW) {
+				Instantiate(wallPrefabs.WallW, position, Quaternion.identity, parent.transform);
+			}
+		}
+
 	}
 
 	public void OnDrawGizmosSelected () {

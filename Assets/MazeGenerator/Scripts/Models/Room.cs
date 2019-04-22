@@ -56,52 +56,20 @@ namespace larcom.MazeGenerator.Models {
 				int negativeSpace = ~neighbourhood & Constants.DIRECTION_ALL;
 				if (negativeSpace > 0) {
 					//some direction has no conection in the room... soo.... it's a border! Yay....
-					//this.border.Add(tile);
+					this.border.Add(tile);
 					//tile.occupation = Constants.TILE_TYPE.WALL;
 					for (int i = 0; i < Constants.DIRECTIONS.Length; i++) {
 						if ((negativeSpace&Constants.DIRECTIONS[i]) > 0) {
 							// this direction has another thing, what is it?
 							Tile neighbour = map.tile(tile.coord + Constants.DELTA[i]);
 							if (neighbour != null) {
-								if (neighbour.space != null) {
-									// It's a fellow space, let add its contact number to our SpaceBook Account.
-									this.neighbours.Add(neighbour.space);
-								} else {
-									//some direction has no conection in the room... soo.... it's a border! Yay....
-									this.border.Add(neighbour);
-									neighbour.occupation = Constants.TILE_TYPE.WALL;
-								}
-							}
-						}
-					}
-					//corners
-					int[] CORNERS = new int[4] {
-						(Constants.DIRECTION_UP | Constants.DIRECTION_RIGHT), 
-						(Constants.DIRECTION_UP | Constants.DIRECTION_LEFT), 
-						(Constants.DIRECTION_DOWN | Constants.DIRECTION_RIGHT), 
-						(Constants.DIRECTION_DOWN | Constants.DIRECTION_LEFT)};
-
-					MapCoord[] DIFFS = new MapCoord[4] {
-						MapCoord.UP + MapCoord.RIGHT,
-						MapCoord.UP + MapCoord.LEFT,
-						MapCoord.DOWN + MapCoord.RIGHT,
-						MapCoord.DOWN + MapCoord.LEFT
-					};
-
-					//corners
-					for (int i = 0; i < CORNERS.Length; i++) {
-						if ((negativeSpace & CORNERS[i]) == CORNERS[i]) {
-							Tile neighbour = map.tile(tile.coord + DIFFS[i]);
-							if (neighbour != null) {
-								this.border.Add(neighbour);
-								neighbour.occupation = Constants.TILE_TYPE.WALL;
-								corners++;
+								tile.passages &= ~Constants.DIRECTIONS[i];
+								neighbour.passages &= ~Constants.OPPOSITE_DIRECTIONS[i];
 							}
 						}
 					}
 				}
 			}
-			Debug.Log(this.ToString() + " has " + corners + " corners");
 			return this;
 		}
 

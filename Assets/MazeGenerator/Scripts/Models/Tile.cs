@@ -24,22 +24,23 @@ namespace larcom.MazeGenerator.Models {
 		public int y { get { return coord.y; } }
 
 		public Tile (int x, int y, Map map) {
+			this.map = map;
 			occupation = TILE_TYPE.EMPTY;
 			this.coord = new MapCoord(x, y);
 
 			setStartingPassages();
 			this.doors = DIRECTION_NONE;
-			this.map = map;
 		}
 
 		void setStartingPassages() {
 			// start allowing all directions
 			passages = DIRECTION_ALL;
 			// check which passages go outside the game board and block them.
-			if (this.left == null) passages &= ~DIRECTION_LEFT;
-			if (this.right == null) passages &= ~DIRECTION_RIGHT;
-			if (this.down == null) passages &= ~DIRECTION_DOWN;
-			if (this.up == null) passages &= ~DIRECTION_UP;
+			for (int i = 0; i < DIRECTIONS.Length; i++) {
+				if (!map.isInside(this.coord + DELTA[i])) {
+					this.passages &= ~DIRECTIONS[i];
+				}
+			}
 		}
 
 		public override string ToString () {
