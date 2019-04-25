@@ -117,6 +117,13 @@ namespace larcom.MazeGenerator.Models {
 			return passage;
 		}
 
+		public void makeWall(bool empty) {
+			passages = DIRECTION_NONE;
+			occupation = empty? TILE_TYPE.EMPTY : TILE_TYPE.WALL;
+			space = null;
+			doors = DIRECTION_NONE;
+		}
+
 		public int getDoorDirection() {
 			if (occupation != TILE_TYPE.DOOR) {
 				return DIRECTION_NONE;

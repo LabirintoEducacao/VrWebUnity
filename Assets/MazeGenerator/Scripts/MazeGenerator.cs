@@ -16,6 +16,7 @@ public class MazeGenerator : MonoBehaviour
 	public int height = 32;
 	public float cellSize = 1f;
 	public int roomAmount = 10;
+	public int cleanIterations = 3;
 	public ROOM_PLACER_TYPES roomPlacerType;
 
 	[Header("Map Creation Assets")]
@@ -49,8 +50,17 @@ public class MazeGenerator : MonoBehaviour
 		}
 
 		//Corridors
+		IMazeConstructor mazer = new RecursiveBackTrackerMaze();
+		mazer.generateMaze(map, map.rooms.Count);
 
+		//Open Doors
+		foreach (Room r in map.rooms)
+		{
+			r.openDoors();
+		}
 		//Clean Maze
+		IMazeCleaner cleaner = new CorridorCleaner();
+		cleaner.cleanMaze(map, cleanIterations);
 
 		//Clean map
 		if (rootNode == null) {
@@ -133,10 +143,10 @@ public class MazeGenerator : MonoBehaviour
 							Gizmos.color = Color.black;
 							break;
 						case Constants.TILE_TYPE.CORRIDOR:
-							Gizmos.color = Color.yellow;
+							Gizmos.color = Color.HSVToRGB((float) (map.mapGrid[i, j].space.space_id + 1 - map.rooms.Count)/map.corridors.Count, 1f,1f);
 							break;
 						case Constants.TILE_TYPE.ROOM:
-							Gizmos.color = Color.HSVToRGB((float) (map.mapGrid[i, j].space.space_id)/roomAmount, 1f,1f);
+							Gizmos.color = Color.HSVToRGB((float) (map.mapGrid[i, j].space.space_id)/map.rooms.Count, 1f,1f);
 							break;
 						case Constants.TILE_TYPE.WALL:
 							Gizmos.color = Color.green;
