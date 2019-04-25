@@ -95,12 +95,13 @@ namespace larcom.MazeGenerator.Models {
 							if (remainingNeighbours.IndexOf (b.nextTile.space) == -1)
 								remainingNeighbours.Add (b.nextTile.space);
 						} else {
-							if (doors.IndexOf(b) == -1) {
-								doors.Add(b);
-							}
+							doors.Add(b);
 						}
 					}
 				}
+			}
+			foreach (Border b in doors) {
+				remainingNeighbours.Remove(b.nextTile.space);
 			}
 			reducedBorders = getRemainingBorder (remainingNeighbours);
 
