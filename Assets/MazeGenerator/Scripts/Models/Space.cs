@@ -31,6 +31,11 @@ namespace larcom.MazeGenerator.Models {
 			return this;
 		}
 
+		public Space RemoveTile(Tile tile) {
+			tiles.Remove(tile);
+			return this;
+		}
+
 		public static bool checkArea (MapCoord topLeft, int width, int height, Map map, Constants.TILE_TYPE[] allowed) {
 			MapCoord pos = topLeft;
 			List<Constants.TILE_TYPE> allowable = new List<Constants.TILE_TYPE>(allowed);
