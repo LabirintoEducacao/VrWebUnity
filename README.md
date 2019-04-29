@@ -1,3 +1,3 @@
 # Labirinto da Educação
 
-*Versão do Unity:* 2018.3.10
+*Versão do Unity:* 2019.1.0f2

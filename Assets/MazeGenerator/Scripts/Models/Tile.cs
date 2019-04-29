@@ -26,18 +26,18 @@ namespace larcom.MazeGenerator.Models {
 		public Tile (int x, int y, Map map) {
 			this.map = map;
 			occupation = TILE_TYPE.EMPTY;
-			this.coord = new MapCoord(x, y);
+			this.coord = new MapCoord (x, y);
 
-			setStartingPassages();
+			setStartingPassages ();
 			this.doors = DIRECTION_NONE;
 		}
 
-		void setStartingPassages() {
+		void setStartingPassages () {
 			// start allowing all directions
 			passages = DIRECTION_ALL;
 			// check which passages go outside the game board and block them.
 			for (int i = 0; i < DIRECTIONS.Length; i++) {
-				if (!map.isInside(this.coord + DELTA[i])) {
+				if (!map.isInside (this.coord + DELTA[i])) {
 					this.passages &= ~DIRECTIONS[i];
 				}
 			}
@@ -47,15 +47,15 @@ namespace larcom.MazeGenerator.Models {
 			int space_id = -1;
 			if (space != null)
 				space_id = space.space_id;
-			return string.Format("Tile: {0}, {1}. Passage: {3} - Doors: {4} - Space: {5}", new object[] {coord.x, coord.y, passages, doors, space_id });
+			return string.Format ("Tile: {0}, {1}. Passage: {2} - Doors: {3} - Space: {4}", new object[] { coord.x, coord.y, passages, doors, space_id });
 		}
 
-		public int getWallDirection() {
+		public int getWallDirection () {
 			if (occupation != TILE_TYPE.WALL) {
 				return DIRECTION_NONE;
 			}
 
-			return surroundingWall();
+			return surroundingWall ();
 		}
 
 		#region neighbours
@@ -64,7 +64,7 @@ namespace larcom.MazeGenerator.Models {
 				if (x <= 0)
 					return null;
 
-				return map.tile(coord + MapCoord.LEFT);
+				return map.tile (coord + MapCoord.LEFT);
 			}
 		}
 		public Tile right {
@@ -72,7 +72,7 @@ namespace larcom.MazeGenerator.Models {
 				if (x >= map.width - 1)
 					return null;
 
-				return map.tile(coord + MapCoord.RIGHT);
+				return map.tile (coord + MapCoord.RIGHT);
 			}
 		}
 		public Tile up {
@@ -80,7 +80,7 @@ namespace larcom.MazeGenerator.Models {
 				if (y >= map.height - 1)
 					return null;
 
-				return map.tile(coord + MapCoord.UP);
+				return map.tile (coord + MapCoord.UP);
 			}
 		}
 		public Tile down {
@@ -88,7 +88,7 @@ namespace larcom.MazeGenerator.Models {
 				if (y <= 0)
 					return null;
 
-				return map.tile(coord + MapCoord.DOWN);
+				return map.tile (coord + MapCoord.DOWN);
 			}
 		}
 		#endregion
@@ -117,20 +117,34 @@ namespace larcom.MazeGenerator.Models {
 			return passage;
 		}
 
-		public void makeWall(bool empty) {
+		public void makeWall (bool empty) {
 			passages = DIRECTION_NONE;
 			occupation = empty? TILE_TYPE.EMPTY : TILE_TYPE.WALL;
 			space = null;
 			doors = DIRECTION_NONE;
+
+			//block all 4 directions from neighbours to this tile
+			if (this.down != null) {
+				this.down.passages &= ~DIRECTION_UP;
+			}
+			if (this.left != null) {
+				this.left.passages &= ~DIRECTION_RIGHT;
+			}
+			if (this.up != null) {
+				this.up.passages &= ~DIRECTION_DOWN;
+			}
+			if (this.right != null) {
+				this.right.passages &= ~DIRECTION_LEFT;
+			}
 		}
 
-		public int getDoorDirection() {
+		public int getDoorDirection () {
 			if (occupation != TILE_TYPE.DOOR) {
 				return DIRECTION_NONE;
 			}
-			int wall_dir = surroundingWall();
+			int wall_dir = surroundingWall ();
 
-			if (wall_dir == (DIRECTION_LEFT|DIRECTION_RIGHT)) {
+			if (wall_dir == (DIRECTION_LEFT | DIRECTION_RIGHT)) {
 				if ((up != null) && (up.occupation == TILE_TYPE.CORRIDOR)) {
 					return DIRECTION_DOWN;
 				}

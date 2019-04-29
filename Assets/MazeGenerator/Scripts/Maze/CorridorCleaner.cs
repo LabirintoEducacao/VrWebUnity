@@ -46,14 +46,24 @@ namespace larcom.MazeGenerator.Generators {
                 //not a door, append to path
                 newPath.AddRange (path);
 
-                if (tile.passages == Constants.DIRECTION_NONE) {
+                //check for deadend
+                bool deadEnd = false;
+                foreach (int ded in Constants.DEAD_ENDS) {
+                    if (tile.passages == ded) {
+                        deadEnd = true;
+                        break;
+                    }
+                }
+
+                if (deadEnd) {
                     //dead end, remove
                     removePath (tile, newPath.ToArray ());
                     return;
                 } else {
+                    //not a dead end, so... maybe... a bifurcation
                     foreach (int bif in Constants.BIFURCATION) {
                         if (tile.passages == bif) {
-                            newPath.Add (tile);
+                            newPath = new List<Tile>(new Tile[] {tile});
                             break;
                         }
                     }
@@ -61,7 +71,7 @@ namespace larcom.MazeGenerator.Generators {
             }
 
             for (int i = 0; i < Constants.DIRECTIONS.Length; i++) {
-                List<Tile> finalPath = new List<Tile> (newPath);
+                List<Tile> finalPath = new List<Tile>(newPath);
                 if ((tile.passages & Constants.DIRECTIONS[i]) > 0) {
                     Tile newTile = map.tile (tile.coord + Constants.DELTA[i]);
                     if (visitedTiles.IndexOf (newTile) == -1) {
@@ -74,11 +84,16 @@ namespace larcom.MazeGenerator.Generators {
         }
 
         void removePath (Tile tile, Tile[] path) {
+            Debug.Log ("CorridorCleaner::removePath - " + tile.ToString () + " path size: " + path.Length);
             int direction = Tools.getDirectionInt (path[1].coord - path[0].coord);
             path[0].passages &= ~Constants.DIRECTIONS[direction];
             for (int i = 1; i < path.Length; i++) {
-                tile.space = null;
-                tile.makeWall (false);
+                Tile t = path[i];
+                if (t.space != null)
+                    t.space.RemoveTile(tile);
+                t.space = null;
+                t.makeWall (false);
+                
             }
         }
     }

@@ -29,7 +29,7 @@ namespace larcom.MazeGenerator.Generators {
                 Tile newTile = availableTiles[0];
                 Corridor newCorridor = new Corridor(spaceID, map);
                 _walkThrough(map, newTile, newCorridor);
-                map.corridors.Add(newCorridor);
+                map.addSpace(newCorridor);
                 spaceID ++;
             }
 
