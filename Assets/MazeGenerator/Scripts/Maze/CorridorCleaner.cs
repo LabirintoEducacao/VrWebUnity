@@ -13,6 +13,7 @@ namespace larcom.MazeGenerator.Generators {
     public class CorridorCleaner : IMazeCleaner {
         public List<Tile> visitedTiles;
         public void cleanMaze (Map map, int amount) {
+            //TODO: Rever pq não está funcionando a limpeza.
             for (int i = 0; i < amount; i++) {
                 visitedTiles = new List<Tile> ();
                 foreach (Corridor c in map.corridors) {
