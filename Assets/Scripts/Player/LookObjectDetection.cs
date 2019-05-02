@@ -28,6 +28,10 @@ public class LookObjectDetection : MonoBehaviour
                     sd.ActiveDestination();
                 }
             }
+            else
+            {
+                timeToActive = 0f;
+            }
         }
     }
 }

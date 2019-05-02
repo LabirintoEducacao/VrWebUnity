@@ -25,15 +25,15 @@ public class Npc_Movement : MonoBehaviour
     }
 
     private void ArrivedAtDestinationCheck(){
-        float distanceToTarget = Vector3.Distance (transform.position, _SetDestiny.position);
+        //float distanceToTarget = Vector3.Distance (transform.position, _SetDestiny.position);
 
-        if(distanceToTarget < distanceDestiny){
-            _ArrivedDestiny = true;
+        // if(distanceToTarget < distanceDestiny){
+        //     _ArrivedDestiny = true;
             
-            // agent.Stop();
-        } else{
-            _ArrivedDestiny = false;
-        }
+        //     // agent.Stop();
+        // } else{
+        //     _ArrivedDestiny = false;
+        // }
             
     }
 
