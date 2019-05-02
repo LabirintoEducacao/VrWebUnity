@@ -30,7 +30,7 @@ public class Npc_Movement : MonoBehaviour
         if(distanceToTarget < distanceDestiny){
             _ArrivedDestiny = true;
             
-            agent.Stop();
+            // agent.Stop();
         } else{
             _ArrivedDestiny = false;
         }

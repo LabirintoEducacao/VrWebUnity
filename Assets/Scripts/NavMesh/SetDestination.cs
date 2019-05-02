@@ -23,9 +23,12 @@ public class SetDestination : MonoBehaviour
     }
 
     private void OnMouseDown() {
+        ActiveDestination();        
+    }
+
+    public void ActiveDestination(){
         npc.SetDestination(_checkpoint);
         myMesh.enabled = false;
         myCollider.enabled = false;
-        
     }
 }
