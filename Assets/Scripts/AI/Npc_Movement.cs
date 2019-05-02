@@ -14,11 +14,9 @@ public class Npc_Movement : MonoBehaviour
 
         if(agent == null)
             Debug.Log("Objeto Sem NavMeshAgent!");
-        else
-            SetDestination();
     }
 
-    private void SetDestination(){
+    public void SetDestination(){
         Vector3 targetVector = _SetDestiny.transform.position;
         agent.SetDestination(targetVector);
     }
