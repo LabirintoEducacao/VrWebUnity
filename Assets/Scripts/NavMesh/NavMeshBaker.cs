@@ -8,6 +8,17 @@ public class NavMeshBaker : MonoBehaviour
     [SerializeField] private NavMeshSurface[] navMeshSurfaces;
     [SerializeField] private GameObject mapRoot;
 
+    [Header("Player")]
+    [SerializeField] private GameObject playerObj;
+    [SerializeField] private string playerName;
+
+    public bool mapBaked = false;
+
+    private void Awake() {
+        playerObj = GameObject.Find(playerName);
+        playerObj.SetActive(false);
+    }
+
     private void Start() {
         getComponents();
     }
@@ -27,6 +38,8 @@ public class NavMeshBaker : MonoBehaviour
     private void CreateBake(){
         for(int i = 0 ; i < navMeshSurfaces.Length; i++){
             navMeshSurfaces[i].BuildNavMesh();
+            if(i == (navMeshSurfaces.Length - 1))
+                playerObj.SetActive(true);
         }
     }
 }
