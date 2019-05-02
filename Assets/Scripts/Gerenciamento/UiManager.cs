@@ -15,6 +15,6 @@ public class UiManager : MonoBehaviour
     }
 
     public void PlayAI(){
-        _npc.SetDestination();
+        
     }
 }
