@@ -42,6 +42,15 @@ public class Checkpoint : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other) {
+        if(other.CompareTag(_tagPlayer)){
+            for (int i = 0; i < _Buttons.Length; i++)
+            {
+                _Buttons[i].SetActive(true);
+            }
+        }
+    }
+
     private void OnTriggerExit(Collider other) {
         if(other.CompareTag(_tagPlayer)){
             for (int i = 0; i < _Buttons.Length; i++)
@@ -70,45 +79,22 @@ public class Checkpoint : MonoBehaviour
             if((item.transform.position - transform.position).magnitude < _RangeLimit){
                 _Buttons[i] = item;
                 i++;
-                _Buttons[j] = null;
             }
-            j++;
         }
+
+        size = i;
 
         _Buttons = new GameObject[size];
 
-        int Length = _Temp.Length - 1;
-
-        foreach (GameObject item in _Buttons)
+        foreach (GameObject item in _Temp)
         {
-            if(item == null){
-                size--;
+            if((item.transform.position - transform.position).magnitude < _RangeLimit){
+                _Buttons[j] = item;
+                j++;
             }
         }
 
-        //_Buttons = new GameObject[size];
-        
-        
-        
-
-
-        // foreach (GameObject item in _Temp)
-        // {
-        //     if((item.transform.position - transform.position).magnitude < _RangeLimit){
-        //         _Buttons[i] = item;
-        //         i++;
-        //         _Buttons[j] = null;
-        //     }
-        //     j++;
-        // }
-
-        // int Length = _Buttons.Length - 1;
-        // for (int k = 0; k < _Buttons.Length; k++)
-        // {
-        //     if(_Buttons[Length] == _Buttons[k] || _Buttons[k] == null){
-        //         _Buttons[Length] = null;
-        //     }
-        // }
+        _Temp = new GameObject[0];
     }
 
     private void OnDrawGizmos() {
