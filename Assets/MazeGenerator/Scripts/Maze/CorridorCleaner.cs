@@ -13,7 +13,7 @@ namespace larcom.MazeGenerator.Generators {
     public class CorridorCleaner : IMazeCleaner {
         public List<Tile> visitedTiles;
         public void cleanMaze (Map map, int amount) {
-            //TODO: Rever pq não está funcionando a limpeza.
+            
             for (int i = 0; i < amount; i++) {
                 visitedTiles = new List<Tile> ();
                 foreach (Corridor c in map.corridors) {
@@ -74,7 +74,7 @@ namespace larcom.MazeGenerator.Generators {
                 List<Tile> finalPath = new List<Tile>(newPath);
                 if ((tile.passages & Constants.DIRECTIONS[i]) > 0) {
                     Tile newTile = map.tile (tile.coord + Constants.DELTA[i]);
-                    if (visitedTiles.IndexOf (newTile) == -1) {
+                    if ((newTile != null) && (visitedTiles.IndexOf (newTile) == -1)) {
                         //not visited yet
                         finalPath.Add (newTile);
                         floodMaze (map, newTile, finalPath);
