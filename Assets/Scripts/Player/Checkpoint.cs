@@ -52,12 +52,10 @@ public class Checkpoint : MonoBehaviour
     }
 
     private void OnTriggerExit(Collider other) {
-        if(other.CompareTag(_tagPlayer)){
-            for (int i = 0; i < _Buttons.Length; i++)
+        for (int i = 0; i < _Buttons.Length; i++)
             {
                 _Buttons[i].SetActive(false);
             }
-        }
     }
 
     private void getButtons(){
