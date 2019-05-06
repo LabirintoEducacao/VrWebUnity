@@ -52,6 +52,10 @@ public class Checkpoint : MonoBehaviour
     }
 
     private void OnTriggerExit(Collider other) {
+        desactiveButtons();
+    }
+
+    public void desactiveButtons(){
         for (int i = 0; i < _Buttons.Length; i++)
             {
                 _Buttons[i].SetActive(false);

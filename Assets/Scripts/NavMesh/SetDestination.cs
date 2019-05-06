@@ -6,6 +6,8 @@ public class SetDestination : MonoBehaviour
 {
     [Header("Checkpoint")]
     [SerializeField] private Transform _checkpoint;
+    private bool DestinyIsTrue = false;
+    private Checkpoint check;
 
     [Header("Components")]
     private MeshRenderer myMesh;
@@ -30,5 +32,14 @@ public class SetDestination : MonoBehaviour
         npc.SetDestination(_checkpoint);
         myMesh.enabled = false;
         myCollider.enabled = false;
+        DestinyIsTrue = true;
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if(other.CompareTag("Checkpoint") && DestinyIsTrue){
+            check = other.gameObject.GetComponent<Checkpoint>();
+            check.desactiveButtons();
+            DestinyIsTrue = false;
+        }
     }
 }
