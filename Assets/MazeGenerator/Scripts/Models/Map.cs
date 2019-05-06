@@ -79,6 +79,7 @@ namespace larcom.MazeGenerator.Models {
 		}
 	}
 
+	[System.Serializable]
 	public class MapCoord {
 		public int x;
 		public int y;
