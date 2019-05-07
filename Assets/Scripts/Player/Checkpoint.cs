@@ -42,22 +42,6 @@ public class Checkpoint : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other) {
-        if(other.CompareTag(_tagPlayer)){
-            for (int i = 0; i < _Buttons.Length; i++)
-            {
-                _Buttons[i].SetActive(true);
-            }
-        }
-    }
-
-    private void OnTriggerExit(Collider other) {
-         for (int i = 0; i < _Buttons.Length; i++)
-            {
-                _Buttons[i].SetActive(false);
-            }
-    }
-
     public void desactiveButtons(){
         for (int i = 0; i < _Buttons.Length; i++)
             {
@@ -97,6 +81,13 @@ public class Checkpoint : MonoBehaviour
                 _Buttons[j] = item;
                 j++;
             }
+        }
+
+        for (int m = 0; m < _Buttons.Length; m++)
+        {
+            SetDestination set;
+            set = _Buttons[m].GetComponent<SetDestination>();
+            set.check = this;
         }
 
         _Temp = new GameObject[0];
