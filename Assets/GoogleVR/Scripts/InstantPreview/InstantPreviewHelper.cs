@@ -58,7 +58,7 @@ public class InstantPreviewHelper : MonoBehaviour
         var sdkRoot = EditorPrefs.GetString("AndroidSdkRoot");
         if (string.IsNullOrEmpty(sdkRoot))
         {
-            //Debug.LogError(CHECK_ANDROID_SDK_PATH);
+            Debug.LogError(CHECK_ANDROID_SDK_PATH);
             return;
         }
 
