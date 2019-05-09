@@ -18,8 +18,7 @@ public class CorridorGenerator : MonoBehaviour {
 	public int height = 2;
 	public int direction = Constants.DIRECTION_UP | Constants.DIRECTION_RIGHT;
 	public float cellSize = 1;
-	public MazeGenerator.MazeWallPrefabs wallPrefabs;
-	public GameObject floorPrefab;
+	public GameObject tileBlock;
 
 	private Map map;
 
@@ -53,10 +52,10 @@ public class CorridorGenerator : MonoBehaviour {
 
 		openIO ();
 		if (cleanMaze) {
-			CorridorCleaner cc = new CorridorCleaner();
+			CorridorCleaner cc = new CorridorCleaner ();
 			int b4clean = map.corridors[0].tiles.Count;
 			while (true) {
-				cc.cleanMaze(map,1);
+				cc.cleanMaze (map, 1);
 				if (map.corridors[0].tiles.Count == b4clean) {
 					break;
 				}
@@ -88,58 +87,34 @@ public class CorridorGenerator : MonoBehaviour {
 			}
 		}
 
-		//Render
+		//Blocks
+		List<TileAsset> blocks = new List<TileAsset> ();
 		for (int i = 0; i < map.width; i++) {
 			for (int j = 0; j < map.height; j++) {
 				Vector3 position = this.topLeft + new Vector3 (i * cellSize, 0f, j * cellSize);
-				GameObject prefab = null;
+				GameObject prefab = tileBlock;
 				Tile tile = map.tile (i, j);
 				switch (tile.occupation) {
 					case Constants.TILE_TYPE.EMPTY:
+						prefab = null;
 						break;
 					case Constants.TILE_TYPE.CORRIDOR:
-						prefab = floorPrefab;
-						break;
 					case Constants.TILE_TYPE.ROOM:
-						prefab = floorPrefab;
-						break;
 					case Constants.TILE_TYPE.WALL:
-						prefab = wallPrefabs.FullWall;
-						break;
 					default:
 						break;
 				}
 				if (prefab != null) {
 					GameObject go = Instantiate (prefab, position, Quaternion.identity, rootNode.transform);
-					createTileSpecificWall (tile, position, go);
+					TileAsset block = go.GetComponent<TileAsset>();
+					block.tile = tile;
+					blocks.Add (block);
 				}
-
 			}
 		}
-	}
-
-	void createTileSpecificWall (Tile tile, Vector3 position, GameObject parent) {
-		if (tile.passages == Constants.DIRECTION_NONE)
-			return;
-		if ((tile.passages & Constants.DIRECTION_UP) == 0) {
-			if (wallPrefabs.WallN) {
-				Instantiate (wallPrefabs.WallN, position, Quaternion.identity, parent.transform);
-			}
-		}
-		if ((tile.passages & Constants.DIRECTION_RIGHT) == 0) {
-			if (wallPrefabs.WallE) {
-				Instantiate (wallPrefabs.WallE, position, Quaternion.identity, parent.transform);
-			}
-		}
-		if ((tile.passages & Constants.DIRECTION_DOWN) == 0) {
-			if (wallPrefabs.WallS) {
-				Instantiate (wallPrefabs.WallS, position, Quaternion.identity, parent.transform);
-			}
-		}
-		if ((tile.passages & Constants.DIRECTION_LEFT) == 0) {
-			if (wallPrefabs.WallW) {
-				Instantiate (wallPrefabs.WallW, position, Quaternion.identity, parent.transform);
-			}
+		//Create Renderer
+		foreach (TileAsset block in blocks) {
+			block.create ();
 		}
 	}
 

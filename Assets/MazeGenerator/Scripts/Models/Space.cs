@@ -1,7 +1,7 @@
-﻿using larcom.MazeGenerator.Support;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using larcom.MazeGenerator.Support;
 using UnityEngine;
 
 namespace larcom.MazeGenerator.Models {
@@ -11,38 +11,38 @@ namespace larcom.MazeGenerator.Models {
 	/// </summary>
 	/// 
 	[Serializable]
-	public class Space: System.Object, ISerializationCallbackReceiver, IDisposable {
+	public class Space : System.Object, ISerializationCallbackReceiver, IDisposable {
 		public int space_id = -1;
 		public SPACE_TYPE spaceType;
 		public List<Tile> tiles;
 
 		protected Map map;
 
-		public Space(int id, Map map, SPACE_TYPE type) {
+		public Space (int id, Map map, SPACE_TYPE type) {
 			this.space_id = id;
 			this.spaceType = type;
-			this.tiles = new List<Tile>();
+			this.tiles = new List<Tile> ();
 			this.map = map;
 		}
 
-		public Space AddTile(Tile tile) {
-			tiles.Add(tile);
+		public Space AddTile (Tile tile) {
+			tiles.Add (tile);
 			tile.space = this;
 			return this;
 		}
 
-		public Space RemoveTile(Tile tile) {
-			tiles.Remove(tile);
+		public Space RemoveTile (Tile tile) {
+			tiles.Remove (tile);
 			return this;
 		}
 
 		public static bool checkArea (MapCoord topLeft, int width, int height, Map map, Constants.TILE_TYPE[] allowed) {
 			MapCoord pos = topLeft;
-			List<Constants.TILE_TYPE> allowable = new List<Constants.TILE_TYPE>(allowed);
+			List<Constants.TILE_TYPE> allowable = new List<Constants.TILE_TYPE> (allowed);
 			for (int i = 0; i < width; i++) {
 				for (int j = 0; j < height; j++) {
-					Tile tile = map.tile(pos);
-					if ((tile == null) || (!allowable.Contains(tile.occupation)))
+					Tile tile = map.tile (pos);
+					if ((tile == null) || (!allowable.Contains (tile.occupation)))
 						return false;
 
 					//walk right
@@ -59,16 +59,21 @@ namespace larcom.MazeGenerator.Models {
 		Tile[] _tiles;
 
 		public void OnAfterDeserialize () {
-			tiles = new List<Tile>(_tiles);
-			_tiles = null;
+			if (_tiles != null) {
+				tiles = new List<Tile> (_tiles);
+			} else {
+				tiles = new List<Tile> ();
+			}
 		}
 
 		public void OnBeforeSerialize () {
-			_tiles = tiles.ToArray();
+			if (tiles != null) {
+				_tiles = tiles.ToArray ();
+			}
 		}
 
 		public void Dispose () {
-			this.map.removeSpace(this);
+			this.map.removeSpace (this);
 			this.tiles = null;
 			this._tiles = null;
 			this.map = null;

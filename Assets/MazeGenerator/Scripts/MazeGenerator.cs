@@ -89,7 +89,7 @@ public class MazeGenerator : MonoBehaviour
 						prefab = roomPrefab;
 						break;
 					case Constants.TILE_TYPE.WALL:
-						prefab = wallPrefabs.FullWall;
+						prefab = wallPrefabs.FullTile;
 						break;
 					default:
 						break;
@@ -107,23 +107,23 @@ public class MazeGenerator : MonoBehaviour
 		if (tile.passages == Constants.DIRECTION_NONE)
 			return;
 		if ((tile.passages&Constants.DIRECTION_UP) == 0) {
-			if (wallPrefabs.WallN) {
-				Instantiate(wallPrefabs.WallN, position, Quaternion.identity, parent.transform);
+			if (wallPrefabs.TileN) {
+				Instantiate(wallPrefabs.TileN, position, Quaternion.identity, parent.transform);
 			}
 		}
 		if ((tile.passages & Constants.DIRECTION_RIGHT) == 0) {
-			if (wallPrefabs.WallE) {
-				Instantiate(wallPrefabs.WallE, position, Quaternion.identity, parent.transform);
+			if (wallPrefabs.TileE) {
+				Instantiate(wallPrefabs.TileE, position, Quaternion.identity, parent.transform);
 			}
 		}
 		if ((tile.passages & Constants.DIRECTION_DOWN) == 0) {
-			if (wallPrefabs.WallS) {
-				Instantiate(wallPrefabs.WallS, position, Quaternion.identity, parent.transform);
+			if (wallPrefabs.TileS) {
+				Instantiate(wallPrefabs.TileS, position, Quaternion.identity, parent.transform);
 			}
 		}
 		if ((tile.passages & Constants.DIRECTION_LEFT) == 0) {
-			if (wallPrefabs.WallW) {
-				Instantiate(wallPrefabs.WallW, position, Quaternion.identity, parent.transform);
+			if (wallPrefabs.TileW) {
+				Instantiate(wallPrefabs.TileW, position, Quaternion.identity, parent.transform);
 			}
 		}
 
@@ -163,10 +163,10 @@ public class MazeGenerator : MonoBehaviour
 
 	[System.Serializable]
 	public class MazeWallPrefabs {
-		public GameObject FullWall;
-		public GameObject WallW;
-		public GameObject WallE;
-		public GameObject WallN;
-		public GameObject WallS;
+		public GameObject FullTile;
+		public GameObject TileW;
+		public GameObject TileE;
+		public GameObject TileN;
+		public GameObject TileS;
 	}
 }
