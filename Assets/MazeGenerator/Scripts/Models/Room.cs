@@ -16,7 +16,7 @@ namespace larcom.MazeGenerator.Models {
 		public Room (int id, Map map, MapCoord topLeft, int width, int height) : base (id, map, SPACE_TYPE.ROOM) {
 			border = new List<Border> ();
 			neighbours = new List<Space> ();
-			doors = new List<Border>();
+			doors = new List<Border> ();
 
 			MapCoord pos = topLeft;
 			for (int i = 0; i < width; i++) {
@@ -95,32 +95,33 @@ namespace larcom.MazeGenerator.Models {
 							if (remainingNeighbours.IndexOf (b.nextTile.space) == -1)
 								remainingNeighbours.Add (b.nextTile.space);
 						} else {
-							doors.Add(b);
+							doors.Add (b);
 						}
 					}
 				}
 			}
 			foreach (Border b in doors) {
-				remainingNeighbours.Remove(b.nextTile.space);
+				remainingNeighbours.Remove (b.nextTile.space);
 			}
 			reducedBorders = getRemainingBorder (remainingNeighbours);
 
 			while (reducedBorders.Length > 0) {
 				int borderI = UnityEngine.Random.Range (0, reducedBorders.Length);
 				Border b = reducedBorders[borderI];
-				openDoor(b);
+				openDoor (b);
 				//remove the newly connected space from available options and continue.
 				remainingNeighbours.Remove (b.nextTile.space);
 				reducedBorders = getRemainingBorder (remainingNeighbours);
 			}
 		}
 
-		void openDoor(Border b) {
-			doors.Add(b);
+		void openDoor (Border b) {
+			doors.Add (b);
 			b.tile.doors |= b.doorDirection;
 			b.tile.passages |= b.doorDirection;
 			b.nextTile.doors |= b.oppositeDirection;
 			b.nextTile.passages |= b.oppositeDirection;
+			Debug.Log ("Openning door on tile: " + b.tile.coord + " with " + b.nextTile.coord + " - direction " + b.doorDirection);
 		}
 
 		Border[] getRemainingBorder (List<Space> validSpaces) {

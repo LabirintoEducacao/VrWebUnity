@@ -88,6 +88,10 @@ namespace larcom.MazeGenerator.Models {
 			this.y = y;
 		}
 
+		public override string ToString() {
+			return x+", "+y;
+		}
+
 		#region accessories
 		public MapCoord n_up {
 			get { return (this + UP); }

@@ -63,24 +63,24 @@ public class TileAsset : MonoBehaviour, ITileCreator {
   void createDoors() {
 		if (tile.doors == Constants.DIRECTION_NONE)
 			return;
-		if ((tile.doors & Constants.DIRECTION_UP) == 0) {
-			if (mazeDoors.TileS) {
-				Instantiate(mazeDoors.TileS, _representation.transform.position, Quaternion.identity, _representation.transform);
-			}
-		}
-		if ((tile.doors & Constants.DIRECTION_RIGHT) == 0) {
-			if (mazeDoors.TileW) {
-				Instantiate(mazeDoors.TileW, _representation.transform.position, Quaternion.identity, _representation.transform);
-			}
-		}
-		if ((tile.doors & Constants.DIRECTION_DOWN) == 0) {
+		if ((tile.doors & Constants.DIRECTION_UP) != 0) {
 			if (mazeDoors.TileN) {
 				Instantiate(mazeDoors.TileN, _representation.transform.position, Quaternion.identity, _representation.transform);
 			}
 		}
-		if ((tile.doors & Constants.DIRECTION_LEFT) == 0) {
+		if ((tile.doors & Constants.DIRECTION_RIGHT) != 0) {
 			if (mazeDoors.TileE) {
 				Instantiate(mazeDoors.TileE, _representation.transform.position, Quaternion.identity, _representation.transform);
+			}
+		}
+		if ((tile.doors & Constants.DIRECTION_DOWN) != 0) {
+			if (mazeDoors.TileS) {
+				Instantiate(mazeDoors.TileS, _representation.transform.position, Quaternion.identity, _representation.transform);
+			}
+		}
+		if ((tile.doors & Constants.DIRECTION_LEFT) != 0) {
+			if (mazeDoors.TileW) {
+				Instantiate(mazeDoors.TileW, _representation.transform.position, Quaternion.identity, _representation.transform);
 			}
 		}
   }

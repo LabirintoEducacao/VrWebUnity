@@ -15,5 +15,9 @@ public class MazeGeneratorEditor: Editor {
 		if (GUILayout.Button("Generate Map")) {
 			mazeGenerator.generate();
 		}
+
+		if (GUILayout.Button("Clean")) {
+			mazeGenerator.clean();
+		}
 	}
 }

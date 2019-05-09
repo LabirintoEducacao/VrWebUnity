@@ -82,9 +82,7 @@ public class CorridorGenerator : MonoBehaviour {
 			rootNode = this.transform;
 		} else {
 			//clear root node
-			for (int i = rootNode.childCount - 1; i >= 0; i--) {
-				DestroyImmediate (rootNode.GetChild (i).gameObject);
-			}
+			clean ();
 		}
 
 		//Blocks
@@ -106,7 +104,7 @@ public class CorridorGenerator : MonoBehaviour {
 				}
 				if (prefab != null) {
 					GameObject go = Instantiate (prefab, position, Quaternion.identity, rootNode.transform);
-					TileAsset block = go.GetComponent<TileAsset>();
+					TileAsset block = go.GetComponent<TileAsset> ();
 					block.tile = tile;
 					blocks.Add (block);
 				}
@@ -115,6 +113,14 @@ public class CorridorGenerator : MonoBehaviour {
 		//Create Renderer
 		foreach (TileAsset block in blocks) {
 			block.create ();
+		}
+	}
+	
+	public void clean () {
+		if (rootNode == null)
+			rootNode = this.transform;
+		for (int i = rootNode.childCount - 1; i >= 0; i--) {
+			DestroyImmediate (rootNode.GetChild (i).gameObject);
 		}
 	}
 

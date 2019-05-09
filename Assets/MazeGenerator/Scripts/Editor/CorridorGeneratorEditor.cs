@@ -14,5 +14,9 @@ public class CorridorGeneratorEditor: Editor {
 		if (GUILayout.Button("Generate")) {
 			gen.generateCorridor();
 		}
+
+		if (GUILayout.Button("Clean")) {
+			gen.clean();
+		}
 	}
 }
