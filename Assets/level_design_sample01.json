@@ -2,45 +2,23 @@
     "maze_id": 1234,
     "starting_question_id": 666,
     "time_limit":333333,
+    "theme": 1,
     "questions": [
         {
             "question_id": 666,
-            "tema":"inferno",
-            "question":"Com quantos paus se faz uma canoa?",
+            "answer_type":"mov|img|text",
+            "question_type":"mov|img|text",
+            "question":"./vid000.mp4",
+            "room_type":"key|doors|machine|objects",
+            "path": {
+                "width":4,
+                "height":5,
+                "type":"corridor|maze"
+            },
             "answers": [
-                {"answer_id": 13, "answer_text":"dois"},
-                {"answer_id": 14, "answer_text":"três", "connected_question":12},
-                {"answer_id": 15, "answer_text":"depende da canoa", "connected_question":32, "correct":true}
-            ]
-        },
-        {
-            "question_id": 12,
-            "tema": "floresta",
-            "question":"Qual o tamanho do universo?",
-            "answers": [
-                {"answer_id": 16, "answer_text":"pequeno", "morre":true },
-                {"answer_id": 17, "answer_text":"grandinho" },
-                {"answer_id": 18, "answer_text":"grande pra caralho", "connected_question":999, "correct":true}
-            ]
-        },
-        {
-            "question_id": 999,
-            "question":"Onde é a saída?",
-            "tema":"floresta",
-            "answers": [
-                {"answer_id": 22, "answer_text":"pra direita"},
-                {"answer_id": 21, "answer_text":"pra esquerda"},
-                {"answer_id": 22, "answer_text":"aqui", "endgame":true, "correct":true},
-                {"answer_id": 23, "answer_text":"logo ali", "connected_question":666}
-            ]
-        },
-        {
-            "question_id": 32,
-            "tema":"inferno",
-            "question":"Como eu vendo a alma?",
-            "answers": [
-                {"answer_id": 1, "answer_text":"na loja", "connected_question":"666"},
-                {"answer_id": 2, "answer_text":"na encruzilhada", "correct":true, "connected_question":999}
+                {"answer_id": 13, "answer":"dois"},
+                {"answer_id": 14, "answer":"três", "connected_question":12},
+                {"answer_id": 15, "answer":"depende da canoa", "connected_question":32, "correct":true, "end_game": true}
             ]
         }
     ]
