@@ -5,13 +5,13 @@ using UnityEngine;
 public class UiManager : MonoBehaviour
 {
     [Header("Names Objects")]
-    [SerializeField] private string _PlayerName;
+    [SerializeField] private string TagPlayer = "Player";
 
     [Header("Scripts")]
-    private Npc_Movement _npc;
+    private PlayerMovement _npc;
 
     private void Awake() {
-        _npc = GameObject.Find(_PlayerName).GetComponent<Npc_Movement>();
+        _npc = GameObject.Find(TagPlayer).GetComponent<PlayerMovement>();
     }
 
     public void PlayAI(){

@@ -13,11 +13,11 @@ public class SetDestination : MonoBehaviour
     private BoxCollider myCollider;
 
     [Header("Scripts")]
-    private Npc_Movement npc;
-    [SerializeField] private string playerName;
+    private PlayerMovement npc;
+    [SerializeField] private string TagPlayer;
 
     private void Awake() {
-        npc = GameObject.Find(playerName).GetComponent<Npc_Movement>();
+        npc = GameObject.FindGameObjectWithTag(TagPlayer).GetComponent<PlayerMovement>();
 
         myMesh = GetComponent<MeshRenderer>();
         myCollider = GetComponent<BoxCollider>();
