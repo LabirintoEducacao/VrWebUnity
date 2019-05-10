@@ -1,16 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(BoxCollider))]
 public class Checkpoint : MonoBehaviour
 {
     [Header("Components")]
-    [SerializeField] private Collider collider;
+    [SerializeField] private BoxCollider box;
 
     [Header("Tags, Names and Layers")]
     [SerializeField] private string _tagButton = "Button";
-    [SerializeField] private string _tagPlayer = "Player";
+    [SerializeField] private string _PlayerName = "Player";
 
     [Header("Buttons")]
     [SerializeField] private GameObject[] _Buttons;
@@ -19,9 +20,10 @@ public class Checkpoint : MonoBehaviour
     [Header("Variables")]
     [SerializeField] private float _RangeLimit;
     [SerializeField] private int size = 0;
+    public bool seted;
 
     private void Start() {
-        collider = GetComponent<BoxCollider>();
+        box = GetComponent<BoxCollider>();
 
         _Temp = GameObject.FindGameObjectsWithTag(_tagButton);
         // _Buttons = GameObject.FindGameObjectsWithTag(_tagButton);
@@ -35,7 +37,19 @@ public class Checkpoint : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(other.CompareTag(_tagPlayer)){
+        seted = false;
+        
+        if(other.name == _PlayerName && !seted){
+            for (int i = 0; i < _Buttons.Length; i++)
+            {
+                _Buttons[i].SetActive(true);
+            }
+        }
+    }
+
+    private void OnTriggerStay(Collider other) {
+        
+        if(other.name == _PlayerName && !seted){
             for (int i = 0; i < _Buttons.Length; i++)
             {
                 _Buttons[i].SetActive(true);

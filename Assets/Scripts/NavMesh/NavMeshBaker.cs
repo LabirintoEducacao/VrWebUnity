@@ -10,7 +10,7 @@ public class NavMeshBaker : MonoBehaviour
 
     [Header("Player")]
     [SerializeField] private GameObject playerObj;
-    [SerializeField] private string TagPlayer = "Player";
+    [SerializeField] private string TagPlayer = "PlayerAgent";
 
     public bool mapBaked = false;
 

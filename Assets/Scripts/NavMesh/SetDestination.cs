@@ -17,7 +17,7 @@ public class SetDestination : MonoBehaviour
     [SerializeField] private string TagPlayer;
 
     private void Awake() {
-        npc = GameObject.FindGameObjectWithTag(TagPlayer).GetComponent<PlayerMovement>();
+        npc = GameObject.FindGameObjectWithTag(TagPlayer).GetComponentInChildren<PlayerMovement>();
 
         myMesh = GetComponent<MeshRenderer>();
         myCollider = GetComponent<BoxCollider>();
@@ -30,5 +30,6 @@ public class SetDestination : MonoBehaviour
     public void ActiveDestination(){
         npc.SetDestination(_checkpoint);
         check.desactiveButtons();
+        check.seted = true;
     }
 }
