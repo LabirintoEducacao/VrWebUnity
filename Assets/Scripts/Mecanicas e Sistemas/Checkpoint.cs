@@ -11,7 +11,7 @@ public class Checkpoint : MonoBehaviour
 
     [Header("Tags, Names and Layers")]
     [SerializeField] private string _tagButton = "Button";
-    [SerializeField] private string _PlayerName = "Player";
+    [SerializeField] private string _PlayerName = "PlayerAgent";
 
     [Header("Buttons")]
     [SerializeField] private GameObject[] _Buttons;
@@ -26,7 +26,6 @@ public class Checkpoint : MonoBehaviour
         box = GetComponent<BoxCollider>();
 
         _Temp = GameObject.FindGameObjectsWithTag(_tagButton);
-        // _Buttons = GameObject.FindGameObjectsWithTag(_tagButton);
         
         getButtons();
 
