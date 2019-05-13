@@ -16,6 +16,8 @@ public class Checkpoint : MonoBehaviour
     [Header("Buttons")]
     [SerializeField] private GameObject[] _Buttons;
     [SerializeField] private GameObject[] _Temp;
+    [SerializeField] private MeshRenderer[] meshButtons;
+    [SerializeField] private MeshCollider[] colliderButtons;
 
     [Header("Variables")]
     [SerializeField] private float _RangeLimit;
@@ -31,7 +33,8 @@ public class Checkpoint : MonoBehaviour
 
         for (int i = 0; i < _Buttons.Length; i++)
         {
-            _Buttons[i].SetActive(false);
+            meshButtons[i].enabled = false;
+            colliderButtons[i].enabled = false;
         }
     }
 
@@ -41,7 +44,8 @@ public class Checkpoint : MonoBehaviour
         if(other.name == _PlayerName && !seted){
             for (int i = 0; i < _Buttons.Length; i++)
             {
-                _Buttons[i].SetActive(true);
+                meshButtons[i].enabled = true;
+                colliderButtons[i].enabled = true;
             }
         }
     }
@@ -51,16 +55,18 @@ public class Checkpoint : MonoBehaviour
         if(other.name == _PlayerName && !seted){
             for (int i = 0; i < _Buttons.Length; i++)
             {
-                _Buttons[i].SetActive(true);
+                meshButtons[i].enabled = true;
+                colliderButtons[i].enabled = true;
             }
         }
     }
 
     public void desactiveButtons(){
         for (int i = 0; i < _Buttons.Length; i++)
-            {
-                _Buttons[i].SetActive(false);
-            }
+        {
+                colliderButtons[i].enabled = false;
+                meshButtons[i].enabled = false;
+        }
     }
 
     private void getButtons(){
@@ -76,11 +82,16 @@ public class Checkpoint : MonoBehaviour
             }
         }
         _Buttons = new GameObject[size];
+        meshButtons = new MeshRenderer[size];
+        colliderButtons = new MeshCollider[size];
 
         foreach (GameObject item in _Temp)
         {
             if((item.transform.position - transform.position).magnitude < _RangeLimit){
                 _Buttons[i] = item;
+                meshButtons[i] = item.GetComponent<MeshRenderer>();
+                colliderButtons[i] = item.GetComponent<MeshCollider>();
+
                 i++;
             }
         }

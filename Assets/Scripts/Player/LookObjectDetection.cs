@@ -15,9 +15,6 @@ public class LookObjectDetection : MonoBehaviour
     [Header("UI")]
     public Image GUIReticleLoad;
 
-    Ray ray;
-    RaycastHit hit;
-
     private void Start() {
         GUIReticleLoad.gameObject.SetActive(false);
     }
@@ -25,13 +22,6 @@ public class LookObjectDetection : MonoBehaviour
     private void Update() {
         timeFillAmount = timeToActive / timeToActiveMax;
         if (HitButton) SetMyDestiny();
-        else
-        {
-            timeToActive = 0;
-            delayLook = 0;
-            GUIReticleLoad.fillAmount = 0;
-            GUIReticleLoad.gameObject.SetActive(false);
-        }
     }
 
     public void SetMyDestiny()
