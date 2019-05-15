@@ -706,64 +706,32 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1198517616959952517, guid: dea181868ab9b3f49a3e47f0d44cb38a,
-        type: 3}
-      propertyPath: m_IsTrigger
+    - target: {fileID: 1030602122, guid: dea181868ab9b3f49a3e47f0d44cb38a, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 82745072}
+    - target: {fileID: 1206096034, guid: dea181868ab9b3f49a3e47f0d44cb38a, type: 3}
+      propertyPath: agent
+      value: 
+      objectReference: {fileID: 82745071}
+    - target: {fileID: 1206096034, guid: dea181868ab9b3f49a3e47f0d44cb38a, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 82745073}
+    - target: {fileID: 1206096034, guid: dea181868ab9b3f49a3e47f0d44cb38a, type: 3}
+      propertyPath: timeToUnlock
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1198517616959952518, guid: dea181868ab9b3f49a3e47f0d44cb38a,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 80
+    - target: {fileID: 1206096034, guid: dea181868ab9b3f49a3e47f0d44cb38a, type: 3}
+      propertyPath: currentTimeLoadFillAmount
+      value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1726826030, guid: dea181868ab9b3f49a3e47f0d44cb38a, type: 3}
+    - target: {fileID: 1206096034, guid: dea181868ab9b3f49a3e47f0d44cb38a, type: 3}
+      propertyPath: timeToLoadFillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dea181868ab9b3f49a3e47f0d44cb38a, type: 3}
---- !u!1 &1030602121 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1198517618201190273, guid: dea181868ab9b3f49a3e47f0d44cb38a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1030602120}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1030602122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1030602121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9fadd36eeb6d944bad8f8fe5316b0d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 82745072}
-  y: 0.4
---- !u!1 &1206096033 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1198517616309127873, guid: dea181868ab9b3f49a3e47f0d44cb38a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1030602120}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1206096034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1206096033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2daea16db0a7f324b8ff87862e907d86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 82745071}
-  rb: {fileID: 82745073}
-  layerButton:
-    serializedVersion: 2
-    m_Bits: 512
-  button: {fileID: 0}
-  st: {fileID: 0}
 --- !u!1001 &1596307627
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -901,7 +869,7 @@ GameObject:
   - component: {fileID: 1886478834}
   - component: {fileID: 1886478838}
   - component: {fileID: 1886478839}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ButtonRight
   m_TagString: Button
   m_Icon: {fileID: 0}
@@ -1020,7 +988,7 @@ GameObject:
   - component: {fileID: 2051593020}
   - component: {fileID: 2051593024}
   - component: {fileID: 2051593025}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ButtonLeft
   m_TagString: Button
   m_Icon: {fileID: 0}

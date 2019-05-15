@@ -1,11 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : PlayerBase
 {
+    [Header("Components")]
     public LayerMask layerButton;
     public GameObject button;
+    public Image GUIReticleLoad;
+
+    [Header("Variables")]
+    public float currentTimeUnlock;
+    public float timeToUnlock;
+    public float timeToLoadFillAmount;
+    public float currentTimeLoadFillAmount;
+
+    private void Start()
+    {
+        GUIReticleLoad.gameObject.SetActive(false);
+    }
 
     public SetTarget st;
 
@@ -16,13 +30,43 @@ public class Player : PlayerBase
 
         if (Physics.Raycast(ray.origin, ray.direction, out hit, layerButton))
         {
-            Debug.Log("Button atigindo");
-            button = hit.collider.gameObject;
-            st = button.GetComponent<SetTarget>();
-            if (st != null)
+            if (hit.collider.CompareTag("Button"))
             {
-                SetTarget(st.Target.position);
+                currentTimeUnlock += Time.deltaTime;
+                if (currentTimeUnlock >= timeToUnlock)
+                {
+                    GUIReticleLoad.gameObject.SetActive(true);
+                    currentTimeLoadFillAmount += Time.deltaTime;
+                    GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
+                    button = hit.collider.gameObject;
+                    st = button.GetComponent<SetTarget>();
+                    if (st != null & currentTimeLoadFillAmount >= timeToLoadFillAmount)
+                    {
+                        SetTarget(st.Target.position);
+                        GUIReticleLoad.fillAmount = 0;
+                        GUIReticleLoad.gameObject.SetActive(false);
+
+                        currentTimeLoadFillAmount = 0;
+                        currentTimeUnlock = 0;
+                    }
+                }
             }
+            else
+            {
+                GUIReticleLoad.fillAmount = 0;
+                GUIReticleLoad.gameObject.SetActive(false);
+
+                currentTimeLoadFillAmount = 0;
+                currentTimeUnlock = 0;
+            }
+        }
+        else
+        {
+            GUIReticleLoad.fillAmount = 0;
+            GUIReticleLoad.gameObject.SetActive(false);
+
+            currentTimeLoadFillAmount = 0;
+            currentTimeUnlock = 0;
         }
         Debug.DrawRay(ray.origin, ray.direction, Color.red);
     }
