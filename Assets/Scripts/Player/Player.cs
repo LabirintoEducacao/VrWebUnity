@@ -15,6 +15,7 @@ public class Player : PlayerBase
     public float timeToUnlock;
     public float timeToLoadFillAmount;
     public float currentTimeLoadFillAmount;
+    public bool IsSeted;
 
     private void Start()
     {
@@ -73,6 +74,7 @@ public class Player : PlayerBase
 
     internal override void SetTarget(Vector3 target)
     {
+        IsSeted = true;
         agent.SetDestination(target);
     }
 }
