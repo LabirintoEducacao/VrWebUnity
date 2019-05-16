@@ -15,7 +15,24 @@ namespace larcom.MazeGenerator.Models {
 	public class Tile : System.Object {
 		public Map map;
 		public MapCoord coord;
-		public Space space;
+		public int space_id = -1;
+
+		public Space space {
+			get {
+				if (space_id == -1) {
+					return null;
+				} else {
+					return map.allSpaces.Find(x => x.space_id == space_id);
+				}
+			}
+			set {
+				if (value == null) {
+					space_id = -1;
+				} else {
+					space_id = value.space_id;
+				}
+			}
+		}
 		public int passages;
 		public int doors;
 		public TILE_TYPE occupation = TILE_TYPE.EMPTY;
