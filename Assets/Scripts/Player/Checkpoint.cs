@@ -5,7 +5,6 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     public GameObject[] buttons;
-    GameController controller;
     public Player p;
     public string TagPlayerAgent = "PlayerAgent";
     public string TagPlayer = "Player";
