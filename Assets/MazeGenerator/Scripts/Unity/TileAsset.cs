@@ -24,14 +24,15 @@ public class TileAsset : MonoBehaviour, ITileCreator {
   public MazeGenerator.MazeWallPrefabs mazeDoors;
   public GameObject floorPrefab;
 
-  public void create() {
+  public void create(bool hasDoors = true) {
     _representation = null;
     if (
       (tile.occupation == Constants.TILE_TYPE.CORRIDOR) || 
       (tile.occupation == Constants.TILE_TYPE.ROOM) ) {
         _representation = Instantiate(floorPrefab, this.transform.position, Quaternion.identity, this.transform);
         createWalls();
-        createDoors();
+				if (hasDoors)
+        	createDoors();
     }
   }
 
@@ -96,5 +97,5 @@ public interface ITileCreator {
   bool isGenerated {get;}
   GameObject representation {get; set;}
 
-  void create();
+  void create(bool hasDoors = true);
 }
