@@ -10,12 +10,12 @@ public class NavMeshBaker : MonoBehaviour
 
     [Header("Player")]
     [SerializeField] private GameObject playerObj;
-    [SerializeField] private string playerName;
+    [SerializeField] private string TagPlayer = "PlayerAgent";
 
     public bool mapBaked = false;
 
     private void Awake() {
-        playerObj = GameObject.Find(playerName);
+        playerObj = GameObject.FindWithTag(TagPlayer);
         playerObj.SetActive(false);
     }
 

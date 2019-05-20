@@ -4,106 +4,66 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    [Header("Components")]
-    [SerializeField] private BoxCollider collider;
+    public GameObject[] buttons;
+    GameController controller;
+    public Player p;
+    public string TagPlayerAgent = "PlayerAgent";
+    public string TagPlayer = "Player";
+    public string TagButton = "Button";
 
-    [Header("Tags, Names and Layers")]
-    [SerializeField] private string _tagButton = "Button";
-    [SerializeField] private string _tagPlayer = "Player";
+    public float distanceMax;
 
-    [Header("Buttons")]
-    [SerializeField] private GameObject[] _Buttons;
-    [SerializeField] private GameObject[] _Temp;
+    private void Awake()
+    {
+        buttons = GameObject.FindGameObjectsWithTag(TagButton);
+        p = GameObject.FindGameObjectWithTag(TagPlayer).GetComponent<Player>();
+    }
 
-    [Header("Variables")]
-    [SerializeField] private float _RangeLimit;
-    [SerializeField] private int size = 0;
-
-    private void Start() {
-        collider = GetComponent<BoxCollider>();
-
-        _Temp = GameObject.FindGameObjectsWithTag(_tagButton);
-        // _Buttons = GameObject.FindGameObjectsWithTag(_tagButton);
-        
-        getButtons();
-
-        for (int i = 0; i < _Buttons.Length; i++)
+    private void Start()
+    {
+        foreach (GameObject item in buttons)
         {
-            _Buttons[i].SetActive(false);
+            item.SetActive(false);
         }
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if(other.CompareTag(_tagPlayer)){
-            for (int i = 0; i < _Buttons.Length; i++)
-            {
-                _Buttons[i].SetActive(true);
-            }
-        }
-    }
-
-    private void OnTriggerStay(Collider other) {
-        if(other.CompareTag(_tagPlayer)){
-            for (int i = 0; i < _Buttons.Length; i++)
-            {
-                _Buttons[i].SetActive(true);
-            }
-        }
-    }
-
-    private void OnTriggerExit(Collider other) {
-         for (int i = 0; i < _Buttons.Length; i++)
-            {
-                _Buttons[i].SetActive(false);
-            }
-    }
-
-    public void desactiveButtons(){
-        for (int i = 0; i < _Buttons.Length; i++)
-            {
-                _Buttons[i].SetActive(false);
-            }
-    }
-
-    private void getButtons(){
-        int i = 0;
-        int j = 0;
-
-        
-
-        foreach (GameObject item in _Temp)
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(TagPlayerAgent))
         {
-            if((item.transform.position - transform.position).magnitude < _RangeLimit){
-                size++;
+            p.IsSeted = false;
+            Debug.Log("Entrou");
+            foreach (GameObject item in buttons)
+            {
+                if ((item.transform.position - transform.position).magnitude <= distanceMax)
+                {
+                    item.SetActive(true);
+                }
             }
         }
-        _Buttons = new GameObject[size];
-
-        foreach (GameObject item in _Temp)
-        {
-            if((item.transform.position - transform.position).magnitude < _RangeLimit){
-                _Buttons[i] = item;
-                i++;
-            }
-        }
-
-        size = i;
-
-        _Buttons = new GameObject[size];
-
-        foreach (GameObject item in _Temp)
-        {
-            if((item.transform.position - transform.position).magnitude < _RangeLimit){
-                _Buttons[j] = item;
-                j++;
-            }
-        }
-
-        _Temp = new GameObject[0];
     }
 
-    private void OnDrawGizmos() {
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag(TagPlayerAgent))
+        {
+            if (p.IsSeted)
+            {
+                Debug.Log("Entrou Stay");
+                foreach (GameObject item in buttons)
+                {
+                    if ((item.transform.position - transform.position).magnitude <= distanceMax)
+                    {
+                        item.SetActive(false);
+                    }
+                }
+            }
+       }
+    }
+
+    private void OnDrawGizmos()
+    {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, _RangeLimit);
+        Gizmos.DrawWireSphere(transform.position, distanceMax);
     }
 }
