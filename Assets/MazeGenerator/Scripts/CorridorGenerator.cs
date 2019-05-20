@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class CorridorGenerator : MonoBehaviour {
 	public bool gizmosOn = true;
+	public bool createDoors = true;
 
 	[Header ("Random properties")]
 	public int seed;
@@ -121,7 +122,7 @@ public class CorridorGenerator : MonoBehaviour {
 		}
 		//Create Renderer
 		foreach (TileAsset block in blocks) {
-			block.create ( );
+			block.create ( this.createDoors );
 		}
 	}
 

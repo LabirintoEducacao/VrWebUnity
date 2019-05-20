@@ -24,7 +24,8 @@ public class NavMeshBaker : MonoBehaviour
     }
 
     private void getComponents(){
-        mapRoot = GameObject.Find("MapRoot");
+        if (mapRoot == null)
+            mapRoot = GameObject.Find("MapRoot");
         getNavMesh();
     }
 
