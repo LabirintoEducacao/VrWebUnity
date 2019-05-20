@@ -43,6 +43,8 @@ public class Player : PlayerBase
                     st = button.GetComponent<SetTarget>();
                     if (st != null & currentTimeLoadFillAmount >= timeToLoadFillAmount)
                     {
+                        //foi acionado, mandando o agent se mexer e reiniciando as variáveis
+                        st.select();
                         SetTarget(st.Target.position);
                         GUIReticleLoad.fillAmount = 0;
                         GUIReticleLoad.gameObject.SetActive(false);
