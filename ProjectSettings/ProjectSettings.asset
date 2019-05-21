@@ -162,8 +162,8 @@ PlayerSettings:
     Android: com.Larcom.labirinto
   buildNumber: {}
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 26
-  AndroidTargetSdkVersion: 0
+  AndroidMinSdkVersion: 28
+  AndroidTargetSdkVersion: 28
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   stripEngineCode: 1
@@ -401,7 +401,6 @@ PlayerSettings:
   - m_BuildTarget: Android
     m_Enabled: 1
     m_Devices:
-    - daydream
     - cardboard
   m_BuildTargetEnableVuforiaSettings: []
   openGLRequireES31: 0
