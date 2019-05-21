@@ -44,8 +44,8 @@ public class Player : PlayerBase
                     if (st != null & currentTimeLoadFillAmount >= timeToLoadFillAmount)
                     {
                         //foi acionado, mandando o agent se mexer e reiniciando as variáveis
-                        st.select();
                         SetTarget(st.Target.position);
+                        st.select();
                         GUIReticleLoad.fillAmount = 0;
                         GUIReticleLoad.gameObject.SetActive(false);
 

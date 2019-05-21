@@ -20,6 +20,7 @@ public class CorridorGenerator : MonoBehaviour {
 	public int direction = Constants.DIRECTION_UP | Constants.DIRECTION_RIGHT;
 	public float cellSize = 1;
 	public GameObject tileBlock;
+	public GameObject hubPrefab;
 
 	private Map _map;
 	public Map map { get => _map; }
@@ -69,6 +70,35 @@ public class CorridorGenerator : MonoBehaviour {
 
 		pathFinder = new PathFinder (map, entrance);
 		generateMesh ( );
+		generateHubs ( );
+	}
+
+	void generateHubs ( ) {
+		//create all hubs but can't connect as the destinations are not defined yet.
+		Dictionary<MapCoord, HubCheckpoint> hubDict = new Dictionary<MapCoord, HubCheckpoint> ( );
+		foreach (PathHub hub in pathFinder.hubs) {
+			Vector3 position = this.topLeft + new Vector3 (hub.coord.x * cellSize, 1f, hub.coord.y * cellSize);
+			GameObject go = Instantiate (hubPrefab, position, Quaternion.identity, rootNode.transform);
+			HubCheckpoint hubC = go.GetComponent<HubCheckpoint> ( );
+
+			if (hubC == null) {
+				Debug.LogError ("Not possible to create hubs with a prefab that do not have a HubCheckpoint script.");
+				return;
+			}
+
+			hubC.goals = new Transform[4];
+			hubDict.Add (hub.coord, hubC);
+		}
+
+		//assign hub connections
+		foreach (PathHub hub in pathFinder.hubs) {
+			HubCheckpoint hubC = hubDict[hub.coord];
+			for (int i = 0; i < hub.paths.Length; i++) {
+				if (hub.paths[i] != null) {
+					hubC.goals[i] = hubDict[hub.paths[i].coord].transform;
+				}
+			}
+		}
 	}
 
 	void openIO ( ) {
@@ -122,7 +152,7 @@ public class CorridorGenerator : MonoBehaviour {
 		}
 		//Create Renderer
 		foreach (TileAsset block in blocks) {
-			block.create ( this.createDoors );
+			block.create (this.createDoors);
 		}
 	}
 
@@ -182,7 +212,7 @@ public class CorridorGenerator : MonoBehaviour {
 				}
 
 				if (pathFinder == null) {
-					pathFinder = new PathFinder(map, entrance);
+					pathFinder = new PathFinder (map, entrance);
 				}
 
 				for (int i = 0; i < pathFinder.hubs.Count; i++) {

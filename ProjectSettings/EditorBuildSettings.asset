@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Vr Tests.unity
-    guid: b902d820a04f98f40a70c8c94e58f7c8
-  - enabled: 1
     path: Assets/Scenes/MazeGen.unity
     guid: 580c19b22b0234944bd9dc517407cd07
+  - enabled: 1
+    path: Assets/Scenes/Vr Tests.unity
+    guid: b902d820a04f98f40a70c8c94e58f7c8
   m_configObjects: {}

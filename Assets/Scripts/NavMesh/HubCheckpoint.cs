@@ -2,44 +2,69 @@
 using System.Collections.Generic;
 using larcom.MazeGenerator.Support;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class HubCheckpoint : MonoBehaviour
-{
+public class HubCheckpoint : MonoBehaviour {
+    public bool startingPoint = false;
+    public bool isPlayerInside {
+        get { return playerAgent != null; }
+    }
     private ControlArrows arrows;
-    public Transform[] goals;
+    public Transform[ ] goals;
+    GameObject playerAgent;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start ( ) {
         if (arrows == null)
-            this.arrows = GameObject.FindObjectOfType<ControlArrows>();
-        verifyIfPlayerInside();    
+            this.arrows = GameObject.FindObjectOfType<ControlArrows> ( );
+        playerAgent = GameObject.FindGameObjectWithTag("PlayerAgent");
+        // verifyIfPlayerInside();
     }
 
-    private void OnEnable() {
-        this.arrows = GameObject.FindObjectOfType<ControlArrows>();
+    private void OnEnable ( ) {
+        this.arrows = GameObject.FindObjectOfType<ControlArrows> ( );
     }
 
-    private void OnDisable() {
+    private void OnDisable ( ) {
         this.arrows = null;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void OnTriggerEnter (Collider other) {
+        if (other.gameObject.CompareTag ("PlayerAgent")) {
+            playerAgent = other.gameObject;
+            enableArrows();
+        }
     }
 
-    void verifyIfPlayerInside() {
-        Player player = GameObject.FindObjectOfType<Player>();
-        SphereCollider coll = this.GetComponent<SphereCollider>();
-        float dist = Vector3.Distance(player.transform.position, coll.transform.position);
+    private void OnTriggerExit(Collider other) {
+        if (other.gameObject.CompareTag("PlayerAgent")) {
+            playerAgent = null;
+            // arrows.changeState(false);
+        }
+    }
+
+    private void FixedUpdate() {
+        if (isPlayerInside) {
+            if (playerAgent.GetComponent<NavMeshAgent>().isStopped)
+                enableArrows();
+        }
+    }
+
+    void enableArrows ( ) {
+        //gotcha! Ele está aqui dentro
+        for (int i = 0; i < goals.Length; i++) {
+            arrows.setGoal (Constants.DIRECTIONS[i], goals[i]);
+        }
+        arrows.showArrows ( );
+    }
+
+    void verifyIfPlayerInside ( ) {
+        GameObject player = GameObject.FindGameObjectWithTag("PlayerAgent");
+        SphereCollider coll = this.GetComponent<SphereCollider> ( );
+        float dist = Vector3.Distance (player.transform.position, coll.transform.position);
         if (dist < coll.radius) {
-            //gotcha! Ele está aqui dentro
-            for (int i = 0; i < goals.Length; i++) {
-                arrows.setGoal(Constants.DIRECTIONS[i], goals[i]);
-            }
-            arrows.showArrows();
+            playerAgent = player;
+            enableArrows ( );
         }
     }
 }

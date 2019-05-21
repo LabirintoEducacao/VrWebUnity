@@ -15,7 +15,7 @@ public class NavMeshBaker : MonoBehaviour
     public bool mapBaked = false;
 
     private void Awake() {
-        playerObj = GameObject.FindWithTag(TagPlayer);
+        playerObj = GameObject.FindGameObjectWithTag(TagPlayer);
         playerObj.SetActive(false);
     }
 
