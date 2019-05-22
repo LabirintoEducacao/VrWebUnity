@@ -54,6 +54,30 @@ public class Player : PlayerBase
                     }
                 }
             }
+            if (hit.collider.CompareTag("ButtonExit"))
+            {
+                currentTimeUnlock += Time.deltaTime;
+                if (currentTimeUnlock >= timeToUnlock)
+                {
+                    GUIReticleLoad.gameObject.SetActive(true);
+                    currentTimeLoadFillAmount += Time.deltaTime;
+                    GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
+                    button = hit.collider.gameObject;
+                    ExitButton exit = button.GetComponent<ExitButton>();
+
+                    if (st != null & currentTimeLoadFillAmount >= timeToLoadFillAmount)
+                    {
+                        //foi acionado, mandando o agent se mexer e reiniciando as variáveis
+                        exit.desactivePanel();
+
+                        GUIReticleLoad.fillAmount = 0;
+                        GUIReticleLoad.gameObject.SetActive(false);
+
+                        currentTimeLoadFillAmount = 0;
+                        currentTimeUnlock = 0;
+                    }
+                }
+            }
             else
             {
                 GUIReticleLoad.fillAmount = 0;

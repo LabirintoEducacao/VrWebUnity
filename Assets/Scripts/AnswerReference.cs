@@ -9,11 +9,6 @@ public class AnswerReference : MonoBehaviour
     public TextMeshProUGUI textPanel;
     public GameObject panel;
 
-    private void Start()
-    {
-       panel.SetActive(false);
-    }
-
     public void ActivePanel()
     {
         panel.SetActive(true);

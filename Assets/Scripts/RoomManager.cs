@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
-    
+
     public Transform[] spawnAnswer;
     public AnswerReference[] answerReference;
     public GameObject answerPrefab;
@@ -41,6 +41,7 @@ public class RoomManager : MonoBehaviour
         {
             Debug.Log(question.answers[i].answer);
             answerReference[i].textPanel.text = question.answers[i].answer;
+            answerReference[i].panel.SetActive(false);
         }
     }
 }
