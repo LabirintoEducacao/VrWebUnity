@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,7 +30,17 @@ public class RoomManager : MonoBehaviour
         for (int i = 0; i < answerTemp.Length; i++)
         {
             answerReference[i] = answerTemp[i].GetComponent<AnswerReference>();
-            answerReference[i].textPanel.text = answers[i].answer;
+        }
+
+        Invoke("AnswerText", 0.1f);
+    }
+
+    public void AnswerText()
+    {
+        for (int i = 0; i < question.answers.Length; i++)
+        {
+            Debug.Log(question.answers[i].answer);
+            answerReference[i].textPanel.text = question.answers[i].answer;
         }
     }
 }
