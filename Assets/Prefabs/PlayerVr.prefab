@@ -139,7 +139,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   button: {fileID: 0}
-  GUIReticleLoad: {fileID: 0}
+  GUIReticleLoad: {fileID: 5979610247627960432}
+  exit: {fileID: 0}
   currentTimeUnlock: 0
   timeToUnlock: 1
   timeToLoadFillAmount: 1

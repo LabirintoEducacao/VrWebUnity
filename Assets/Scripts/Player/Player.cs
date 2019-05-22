@@ -9,6 +9,7 @@ public class Player : PlayerBase
     public LayerMask layerButton;
     public GameObject button;
     public Image GUIReticleLoad;
+    public ExitButton exit;
 
     [Header("Variables")]
     public float currentTimeUnlock;
@@ -63,7 +64,7 @@ public class Player : PlayerBase
                     currentTimeLoadFillAmount += Time.deltaTime;
                     GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
                     button = hit.collider.gameObject;
-                    ExitButton exit = button.GetComponent<ExitButton>();
+                    exit = button.GetComponent<ExitButton>();
 
                     if (st != null & currentTimeLoadFillAmount >= timeToLoadFillAmount)
                     {
