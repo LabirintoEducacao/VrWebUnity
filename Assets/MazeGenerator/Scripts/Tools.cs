@@ -39,6 +39,14 @@ namespace larcom.MazeGenerator.Support {
 			}
 		}
 
+		public static int directionToIndex(int direction) {
+			for (int i = 0; i < Constants.DIRECTIONS.Length; i++) {
+				if (Constants.DIRECTIONS[i] == direction)
+					return i;
+			}
+			return -1;
+		}
+
 		public static int getOpositeDirection (int direction) {
 			for (int i = 0; i < Constants.DIRECTIONS.Length; i++) {
 				if (Constants.DIRECTIONS[i] == direction)

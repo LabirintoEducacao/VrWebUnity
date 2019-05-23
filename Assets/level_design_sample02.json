@@ -1,0 +1,76 @@
+{
+  "maze_id": 1,
+  "starting_question_id": 1,
+  "time_limit":-1,
+  "theme": 1,
+  "questions": [
+    {
+      "question_id": 1,
+      "answer_type":"text",
+      "question_type":"text",
+      "question":"Para onde fica o Leste?",
+      "room_type":"key",
+      "path": {
+        "width":2,
+        "height":5,
+        "type":"corridor"
+      },
+      "answers": [
+        {"answer_id": 1, "answer":"Para o Oeste."},
+        {"answer_id": 2, "answer":"Para a direita."},
+        {"answer_id": 3, "answer":"Onde nasce o Sol.", "connected_question":2, "correct":true}
+      ]
+    },
+    {
+      "question_id": 2,
+      "answer_type":"text",
+      "question_type":"text",
+      "question":"Para onde fica o Leste?",
+      "room_type":"doors",
+      "path": {
+        "width":3,
+        "height":5,
+        "type":"maze"
+      },
+      "answers": [
+        {"answer_id": 4, "answer":"Para o Oeste.", "connected_question":4},
+        {"answer_id": 5, "answer":"Para a direita.", "connected_question":4},
+        {"answer_id": 6, "answer":"Onde nasce o Sol.", "connected_question":3, "correct":true}
+      ]
+    },
+    {
+      "question_id": 3,
+      "answer_type":"text",
+      "question_type":"text",
+      "question":"Para onde fica o Leste?",
+      "room_type":"key",
+      "path": {
+        "width":2,
+        "height":5,
+        "type":"corridor"
+      },
+      "answers": [
+        {"answer_id": 7, "answer":"Para o Oeste."},
+        {"answer_id": 8, "answer":"Para a direita."},
+        {"answer_id": 9, "answer":"Onde nasce o Sol.", "correct":true, "end_game": true}
+      ]
+    },
+    {
+      "question_id": 4,
+      "answer_type":"text",
+      "question_type":"text",
+      "question":"Para onde fica o Leste?",
+      "room_type":"machine",
+      "path": {
+        "width":2,
+        "height":5,
+        "type":"corridor"
+      },
+      "answers": [
+        {"answer_id": 7, "answer":"Para o Oeste."},
+        {"answer_id": 8, "answer":"Para a direita."},
+        {"answer_id": 9, "answer":"Onde nasce o Sol.", "correct":true, "connected_question":3 }
+      ]
+    }
+  ]
+}

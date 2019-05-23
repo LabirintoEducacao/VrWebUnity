@@ -87,6 +87,7 @@ public class CorridorGenerator : MonoBehaviour {
 			}
 
 			hubC.goals = new Transform[4];
+			hubC.coord = hub.coord;
 			hubDict.Add (hub.coord, hubC);
 		}
 
@@ -99,6 +100,28 @@ public class CorridorGenerator : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	void setEntranceMotion(Transform transf) {
+		List<HubCheckpoint> checks = new List<HubCheckpoint> (this.GetComponentsInChildren	<HubCheckpoint>());
+		int dir = Tools.getOpositeDirection (this.doorDirectionIn);
+		HubCheckpoint hub = checks.Find(x => x.coord.Equals(entrance));
+		if (hub == null) {
+			Debug.LogWarning("no hub found on entrance.");
+			return;
+		}
+		hub.goals[Tools.directionToIndex(dir)] = transf;
+	}
+
+	void setExitMotion(Transform transf) {
+		List<HubCheckpoint> checks = new List<HubCheckpoint> (this.GetComponentsInChildren	<HubCheckpoint>());
+		int dir = Tools.getOpositeDirection (this.doorDirectionOut);
+		HubCheckpoint hub = checks.Find(x => x.coord.Equals(exit));
+		if (hub == null) {
+			Debug.LogWarning("no hub found on exit.");
+			return;
+		}
+		hub.goals[Tools.directionToIndex(dir)] = transf;
 	}
 
 	void openIO ( ) {
@@ -212,7 +235,8 @@ public class CorridorGenerator : MonoBehaviour {
 				}
 
 				if (pathFinder == null) {
-					pathFinder = new PathFinder (map, entrance);
+					return;
+					// pathFinder = new PathFinder (map, entrance);
 				}
 
 				for (int i = 0; i < pathFinder.hubs.Count; i++) {

@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using larcom.MazeGenerator.Models;
 using larcom.MazeGenerator.Support;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class HubCheckpoint : MonoBehaviour {
+    public MapCoord coord;
     public bool startingPoint = false;
     public bool isPlayerInside {
         get { return playerAgent != null; }

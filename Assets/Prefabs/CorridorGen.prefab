@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gizmosOn: 1
+  createDoors: 0
   seed: -1751580256
   randomizeSeed: 1
   cleanMaze: 0
@@ -52,6 +53,8 @@ MonoBehaviour:
   direction: 3
   cellSize: 1
   tileBlock: {fileID: 2526487606973917187, guid: f5685ec62011f624b80919c349d7057b,
+    type: 3}
+  hubPrefab: {fileID: 6324771386752177873, guid: eb0c8f9f377c6474eb93a7e729202597,
     type: 3}
   entrance:
     x: 0

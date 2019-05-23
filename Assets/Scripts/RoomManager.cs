@@ -11,9 +11,6 @@ public class RoomManager : MonoBehaviour
     public GameObject answerPrefab;
 
     [Header("room data")]
-    public int starting_question_id;
-    public float time_limit;
-    public int theme;
     public Question question;
     public Answer[] answers;
 
