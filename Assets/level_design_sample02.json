@@ -52,7 +52,7 @@
       "answers": [
         {"answer_id": 7, "answer":"Para o Oeste."},
         {"answer_id": 8, "answer":"Para a direita."},
-        {"answer_id": 9, "answer":"Onde nasce o Sol.", "correct":true, "end_game": true}
+        {"answer_id": 9, "answer":"Onde nasce o Sol.", "correct":true, "end_game": true }
       ]
     },
     {

@@ -14,9 +14,11 @@ GameObject:
   - component: {fileID: 1768756157828278964}
   - component: {fileID: 1768756157828278965}
   - component: {fileID: 1768756157828278952}
+  - component: {fileID: -6054340697272647060}
+  - component: {fileID: 8244890510301957038}
   m_Layer: 0
   m_Name: Room3x3
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 9
@@ -362,3 +364,45 @@ MonoBehaviour:
   m_VoxelSize: 0.033333335
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &-6054340697272647060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768756157828278962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68d217940cf509740b44ef7d7f0c1866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 3, y: 3}
+  pivot: 0
+--- !u!114 &8244890510301957038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768756157828278962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2467cf60aeb7884a8f4e4206220e20f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnAnswer: []
+  answerReference: []
+  answerPrefab: {fileID: 9072403018518014131, guid: 1bfe28c885b2f704f8ca6cec2066cf91,
+    type: 3}
+  question:
+    question_id: -1
+    answer_type: text
+    question_type: text
+    question: 
+    room_type: 
+    path:
+      width: 1
+      height: 1
+      type: maze
+    answers: []
+  answers: []

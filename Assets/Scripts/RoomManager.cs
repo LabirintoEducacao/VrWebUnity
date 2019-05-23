@@ -1,43 +1,33 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using larcom.MazeGenerator.Support;
 using UnityEngine;
 
-public class RoomManager : MonoBehaviour
-{
+public class RoomManager : MonoBehaviour {
 
     public Transform[] spawnAnswer;
-    public AnswerReference[] answerReference;
+    public List<AnswerReference> answerReference;
     public GameObject answerPrefab;
 
-    [Header("room data")]
+    [Header ("room data")]
     public Question question;
-    public Answer[] answers;
 
-    private void Start()
-    {
-        GameObject[] answerTemp = new GameObject[spawnAnswer.Length];
-        answerReference = new AnswerReference[spawnAnswer.Length];
-        answers = question.answers;
-        for (int i = 0; i < spawnAnswer.Length; i++)
-        {
-            answerTemp[i] = Instantiate(answerPrefab, spawnAnswer[i].position, spawnAnswer[i].rotation);
-        }
+    private void Start ( ) { }
 
-        for (int i = 0; i < answerTemp.Length; i++)
-        {
-            answerReference[i] = answerTemp[i].GetComponent<AnswerReference>();
-        }
+    public void generateAnswers ( ) {
+        Answer[] answers = question.answers;
+        GameObject[] answerTemp = new GameObject[answers.Length];
+        answerReference = new List<AnswerReference> ( );
 
-        Invoke("AnswerText", 0.1f);
-    }
+        List<Transform> molds = new List<Transform> (spawnAnswer);
+        Tools.Shuffle (molds);
 
-    public void AnswerText()
-    {
-        for (int i = 0; i < question.answers.Length; i++)
-        {
-            Debug.Log(question.answers[i].answer);
-            answerReference[i].properties = question.answers[i];
+        for (int i = 0; i < answers.Length; i++) {
+            GameObject go = Instantiate (answerPrefab, molds[i].position, molds[i].rotation, molds[i]);
+            AnswerReference ansRef = go.GetComponent<AnswerReference> ( );
+            ansRef.properties = answers[i];
+            answerReference.Add (ansRef);
         }
     }
 }

@@ -9,8 +9,12 @@ public class GameManager : MonoBehaviour {
     public TextAsset levelDesign;
     MazeLDWrapper mazeLD;
 
-    public RoomManager[ ] rooms;
     public string tagRoom;
+    public Transform mapRoot;
+    public RoomDescriptor startingRoom;
+    public GameObject roomPrefab;
+
+    public List<RoomManager> rooms;
 
     private void Awake ( ) {
         if (Instance == null) {
@@ -26,24 +30,30 @@ public class GameManager : MonoBehaviour {
         }
         mazeLD = readData (levelDesign.text);
 
-        GetRooms ( );
-
+        StartCoroutine(CreateRooms( ));
     }
 
-    public void GetRooms ( ) {
-        GameObject[ ] roomsObjects = GameObject.FindGameObjectsWithTag (tagRoom);
-        rooms = new RoomManager[roomsObjects.Length];
-        if (roomsObjects.Length > 0) {
-            for (int i = 0; i < roomsObjects.Length; i++) {
-                rooms[i] = roomsObjects[i].GetComponent<RoomManager> ( );
+    public RoomManager getRoom(int id) {
+        return this.rooms.Find(x=> x.question.question_id == id);
+    }
+
+    public IEnumerator CreateRooms ( ) {
+        this.rooms = new List<RoomManager>();
+        foreach (Question quest in mazeLD.questions)
+        {
+            GameObject go;
+            if (quest.question_id == mazeLD.starting_question_id) {
+                go = startingRoom.gameObject;
+            } else {
+                go = Instantiate(roomPrefab, new Vector3(this.rooms.Count*this.startingRoom.size.x*2f, -300f, 0f), Quaternion.identity, mapRoot);
             }
-            setPropertiesRooms ( );
-        }
-    }
+            yield return new WaitForSeconds(0.1f);
+            go.name = "room_"+quest.question_id;
+            RoomManager rm = go.GetComponent<RoomManager>();
+            rm.question = quest;
+            rm.generateAnswers();
 
-    public void setPropertiesRooms ( ) {
-        for (int i = 0; i < rooms.Length; i++) {
-            rooms[i].question = mazeLD.questions[0];
+            this.rooms.Add(rm);
         }
     }
 
