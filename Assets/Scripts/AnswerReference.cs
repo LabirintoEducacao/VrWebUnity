@@ -8,6 +8,7 @@ public class AnswerReference : MonoBehaviour
 {
     public TextMeshProUGUI textPanel;
     public GameObject panel;
+    public Answer properties;
 
     public void ActivePanel()
     {

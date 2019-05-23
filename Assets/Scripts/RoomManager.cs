@@ -40,8 +40,7 @@ public class RoomManager : MonoBehaviour
         for (int i = 0; i < question.answers.Length; i++)
         {
             Debug.Log(question.answers[i].answer);
-            answerReference[i].textPanel.text = question.answers[i].answer;
-            answerReference[i].panel.SetActive(false);
+            answerReference[i].properties = question.answers[i];
         }
     }
 }
