@@ -131,8 +131,8 @@ PlayerSettings:
       enableTransitionView: 1
     daydream:
       depthFormat: 0
-      useSustainedPerformanceMode: 1
-      enableVideoLayer: 1
+      useSustainedPerformanceMode: 0
+      enableVideoLayer: 0
       useProtectedVideoMemory: 0
       minimumSupportedHeadTracking: 0
       maximumSupportedHeadTracking: 1
@@ -402,7 +402,6 @@ PlayerSettings:
     m_Enabled: 1
     m_Devices:
     - cardboard
-    - daydream
   m_BuildTargetEnableVuforiaSettings: []
   openGLRequireES31: 0
   openGLRequireES31AEP: 0

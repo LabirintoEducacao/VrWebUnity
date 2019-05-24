@@ -10,6 +10,7 @@ public class Player : PlayerBase
     public GameObject button;
     public Image GUIReticleLoad;
     public ExitButton exit;
+    public Inventory inventory;
 
     [Header("Variables")]
     public float currentTimeUnlock;
@@ -27,58 +28,25 @@ public class Player : PlayerBase
 
     private void Update()
     {
+        PlayerInterctive();
+    }
+
+    public void PlayerInterctive()
+    {
         Ray ray = new Ray(this.transform.position, transform.forward);
         RaycastHit hit;
 
         if (Physics.Raycast(ray.origin, ray.direction, out hit, layerButton))
         {
             if (hit.collider.CompareTag("Button"))
-            {
-                currentTimeUnlock += Time.deltaTime;
-                if (currentTimeUnlock >= timeToUnlock)
-                {
-                    GUIReticleLoad.gameObject.SetActive(true);
-                    currentTimeLoadFillAmount += Time.deltaTime;
-                    GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
-                    button = hit.collider.gameObject;
-                    st = button.GetComponent<SetTarget>();
-                    if (st != null & currentTimeLoadFillAmount >= timeToLoadFillAmount)
-                    {
-                        //foi acionado, mandando o agent se mexer e reiniciando as variáveis
-                        SetTarget(st.Target.position);
-                        st.select();
-                        GUIReticleLoad.fillAmount = 0;
-                        GUIReticleLoad.gameObject.SetActive(false);
+                InteractiveButton(hit);
 
-                        currentTimeLoadFillAmount = 0;
-                        currentTimeUnlock = 0;
-                    }
-                }
-            }
             if (hit.collider.CompareTag("ButtonExit"))
-            {
-                currentTimeUnlock += Time.deltaTime;
-                if (currentTimeUnlock >= timeToUnlock)
-                {
-                    GUIReticleLoad.gameObject.SetActive(true);
-                    currentTimeLoadFillAmount += Time.deltaTime;
-                    GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
-                    button = hit.collider.gameObject;
-                    exit = button.GetComponent<ExitButton>();
+                InteractiveButtonExit(hit);
 
-                    if (st != null & currentTimeLoadFillAmount >= timeToLoadFillAmount)
-                    {
-                        //foi acionado, mandando o agent se mexer e reiniciando as variáveis
-                        exit.desactivePanel();
+            if (hit.collider.CompareTag(""))
+                InteractiveItem(hit);
 
-                        GUIReticleLoad.fillAmount = 0;
-                        GUIReticleLoad.gameObject.SetActive(false);
-
-                        currentTimeLoadFillAmount = 0;
-                        currentTimeUnlock = 0;
-                    }
-                }
-            }
             else
             {
                 GUIReticleLoad.fillAmount = 0;
@@ -97,6 +65,67 @@ public class Player : PlayerBase
             currentTimeUnlock = 0;
         }
         Debug.DrawRay(ray.origin, ray.direction, Color.red);
+    }
+
+    public void InteractiveItem(RaycastHit hit)
+    {
+        if(inventory.item != null)
+        {
+            //Continua o código.
+            GUIReticleLoad.gameObject.SetActive(true);
+            currentTimeLoadFillAmount += Time.deltaTime;
+            GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
+            button = hit.collider.gameObject;
+        }
+    }
+
+    public void InteractiveButtonExit(RaycastHit hit)
+    {
+        currentTimeUnlock += Time.deltaTime;
+        if (currentTimeUnlock >= timeToUnlock)
+        {
+            GUIReticleLoad.gameObject.SetActive(true);
+            currentTimeLoadFillAmount += Time.deltaTime;
+            GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
+            button = hit.collider.gameObject;
+            exit = button.GetComponent<ExitButton>();
+
+            if (st != null & currentTimeLoadFillAmount >= timeToLoadFillAmount)
+            {
+                //foi acionado, mandando o agent se mexer e reiniciando as variáveis
+                exit.desactivePanel();
+
+                GUIReticleLoad.fillAmount = 0;
+                GUIReticleLoad.gameObject.SetActive(false);
+
+                currentTimeLoadFillAmount = 0;
+                currentTimeUnlock = 0;
+            }
+        }
+    }
+
+    public void InteractiveButton(RaycastHit hit)
+    {
+        currentTimeUnlock += Time.deltaTime;
+        if (currentTimeUnlock >= timeToUnlock)
+        {
+            GUIReticleLoad.gameObject.SetActive(true);
+            currentTimeLoadFillAmount += Time.deltaTime;
+            GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
+            button = hit.collider.gameObject;
+            st = button.GetComponent<SetTarget>();
+            if (st != null & currentTimeLoadFillAmount >= timeToLoadFillAmount)
+            {
+                //foi acionado, mandando o agent se mexer e reiniciando as variáveis
+                SetTarget(st.Target.position);
+                st.select();
+                GUIReticleLoad.fillAmount = 0;
+                GUIReticleLoad.gameObject.SetActive(false);
+
+                currentTimeLoadFillAmount = 0;
+                currentTimeUnlock = 0;
+            }
+        }
     }
 
     internal override void SetTarget(Vector3 target)
