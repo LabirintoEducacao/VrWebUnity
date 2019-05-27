@@ -90,14 +90,33 @@ public class Player : PlayerBase
                     GUIReticleLoad.gameObject.SetActive(true);
                     currentTimeLoadFillAmount += Time.deltaTime;
                     GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
+
                     button = hit.collider.gameObject;
 
-                    inventory.item = button.GetComponentInParent<AnswerReference>();
-                    inventory.ItemObject = inventory.item.gameObject;
-
-                    if (currentTimeLoadFillAmount >= timeToLoadFillAmount)
+                    if (inventory.item != null && currentTimeLoadFillAmount >= timeToLoadFillAmount)
                     {
-                        //foi acionado, mandando o agent se mexer e reiniciando as variáveis
+                        inventory.ItemObject.transform.position = button.transform.parent.transform.position;
+                        inventory.ItemObject.transform.rotation = button.transform.parent.transform.rotation;
+
+                        inventory.ItemObject.SetActive(true);
+                        inventory.item.DesactivePanel();
+
+                        inventory.item = button.GetComponentInParent<AnswerReference>();
+                        inventory.ItemObject = inventory.item.gameObject;
+
+                        inventory.ItemObject.gameObject.SetActive(false);
+                        
+                        GUIReticleLoad.fillAmount = 0;
+                        GUIReticleLoad.gameObject.SetActive(false);
+
+                        currentTimeLoadFillAmount = 0;
+                        currentTimeUnlock = 0;
+                    }
+                    else if(inventory.item == null && currentTimeLoadFillAmount >= timeToLoadFillAmount)
+                    {
+                        inventory.item = button.GetComponentInParent<AnswerReference>();
+                        inventory.ItemObject = inventory.item.gameObject;
+
                         inventory.ItemObject.gameObject.SetActive(false);
 
                         GUIReticleLoad.fillAmount = 0;
