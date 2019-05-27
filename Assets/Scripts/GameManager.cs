@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public RoomManager getRoom(int id) {
-        return this.rooms.Find(x=> x.question.question_id == id);
+        return this.rooms.Find( x => (x.question.question_id == id));
     }
 
     public IEnumerator CreateRooms ( ) {
@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour {
             if (quest.question_id == mazeLD.starting_question_id) {
                 go = startingRoom.gameObject;
             } else {
-                go = Instantiate(roomPrefab, new Vector3(this.rooms.Count*this.startingRoom.size.x*2f, -300f, 0f), Quaternion.identity, mapRoot);
+                go = Instantiate(roomPrefab, new Vector3(0f, -100f - (this.rooms.Count*2f), 0f), Quaternion.identity, mapRoot);
             }
             yield return new WaitForSeconds(0.1f);
             go.name = "room_"+quest.question_id;

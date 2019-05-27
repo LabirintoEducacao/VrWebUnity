@@ -29,9 +29,9 @@ public class EyeRaycaster : MonoBehaviour
 	
 	void Start()
 	{
-		indicatorFillRT = transform.FindChild("IndicatorFill").GetComponent<RectTransform>();
-		indicatorFillRawImage = transform.FindChild("IndicatorFill").GetComponent<RawImage>();
-		centerRawImage = transform.FindChild("Center").GetComponent<RawImage>();
+		indicatorFillRT = transform.Find("IndicatorFill").GetComponent<RectTransform>();
+		indicatorFillRawImage = transform.Find("IndicatorFill").GetComponent<RawImage>();
+		centerRawImage = transform.Find("Center").GetComponent<RawImage>();
 
 		gameObject.SetActive(XRSettings.enabled || forceActive);
 

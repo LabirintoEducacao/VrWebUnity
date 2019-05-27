@@ -14,7 +14,7 @@ public class Question {
   public string question_type = "text";
   public string question;
   public string room_type;
-  public MazePath path;
+  public MazePath[] paths;
   public Answer[] answers;
 }
 
@@ -23,13 +23,13 @@ public class MazePath {
   public int width = 1;
   public int height = 1;
   public string type = "maze";
+  public int connected_question = -1;
+  public bool end_game = false;
 }
 
 [System.Serializable]
 public class Answer {
   public int answer_id = -1;
   public string answer;
-  public int connected_question = -1;
   public bool correct = false;
-  public bool end_game = false;
 }
