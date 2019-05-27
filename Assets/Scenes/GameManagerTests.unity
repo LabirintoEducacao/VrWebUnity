@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 0}
-  transformItem: {fileID: 0}
+  ItemObject: {fileID: 0}
 --- !u!1001 &449696189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -692,6 +692,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4114791358050417744, guid: 1bfe28c885b2f704f8ca6cec2066cf91,
+        type: 3}
+      propertyPath: m_TagString
+      value: Item
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bfe28c885b2f704f8ca6cec2066cf91, type: 3}
@@ -1111,7 +1116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1620307290
 MonoBehaviour:
   m_ObjectHideFlags: 0

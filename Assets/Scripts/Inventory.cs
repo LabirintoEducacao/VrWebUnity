@@ -31,5 +31,5 @@ public class Inventory : MonoBehaviour
 
 
     public AnswerReference item;
-    public Transform transformItem;
+    public GameObject ItemObject;
 }

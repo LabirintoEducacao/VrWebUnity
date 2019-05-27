@@ -33,8 +33,7 @@ public class Player : PlayerBase
 
         if (Physics.Raycast(ray.origin, ray.direction, out hit))
         {
-
-            Debug.Log(hit.collider.name);
+            Debug.Log(hit.collider.tag);
             if (hit.collider.CompareTag("Button"))
             {
                 currentTimeUnlock += Time.deltaTime;
@@ -74,6 +73,32 @@ public class Player : PlayerBase
                     {
                         //foi acionado, mandando o agent se mexer e reiniciando as variáveis
                         exit.desactivePanel();
+
+                        GUIReticleLoad.fillAmount = 0;
+                        GUIReticleLoad.gameObject.SetActive(false);
+
+                        currentTimeLoadFillAmount = 0;
+                        currentTimeUnlock = 0;
+                    }
+                }
+            }
+            else if (hit.collider.CompareTag("Item"))
+            {
+                currentTimeUnlock += Time.deltaTime;
+                if (currentTimeUnlock >= timeToUnlock)
+                {
+                    GUIReticleLoad.gameObject.SetActive(true);
+                    currentTimeLoadFillAmount += Time.deltaTime;
+                    GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
+                    button = hit.collider.gameObject;
+
+                    inventory.item = button.GetComponentInParent<AnswerReference>();
+                    inventory.ItemObject = inventory.item.gameObject;
+
+                    if (currentTimeLoadFillAmount >= timeToLoadFillAmount)
+                    {
+                        //foi acionado, mandando o agent se mexer e reiniciando as variáveis
+                        inventory.ItemObject.gameObject.SetActive(false);
 
                         GUIReticleLoad.fillAmount = 0;
                         GUIReticleLoad.gameObject.SetActive(false);
