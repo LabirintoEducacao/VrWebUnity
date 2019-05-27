@@ -9,6 +9,7 @@ TagManager:
   - PlayerAgent
   - Room
   - ButtonExit
+  - Item
   layers:
   - Default
   - TransparentFX

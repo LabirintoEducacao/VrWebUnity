@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 3984584133513767531}
   - component: {fileID: 1235591882167482012}
   - component: {fileID: 6942399005305145550}
+  - component: {fileID: 5730596883375009840}
   m_Layer: 0
   m_Name: ExitButton
   m_TagString: ButtonExit
@@ -123,6 +124,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5730596883375009840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034070447917437162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aeed42cc1fe0dd41a66889959698d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  answerReference: {fileID: 8966160002521945924}
 --- !u!1 &4114791358050417744
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,7 +610,7 @@ GameObject:
   - component: {fileID: 8966160002521945924}
   m_Layer: 0
   m_Name: Answer
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
