@@ -9,11 +9,13 @@ public class RoomManager : MonoBehaviour {
     public Transform[] spawnAnswer;
     public List<AnswerReference> answerReference;
     public GameObject answerPrefab;
-
+    public Door door;
     [Header ("room data")]
     public Question question;
 
-    private void Start ( ) { }
+    private void Start ( ) {
+        
+    }
 
     public void generateAnswers ( ) {
         Answer[] answers = question.answers;
@@ -28,6 +30,14 @@ public class RoomManager : MonoBehaviour {
             AnswerReference ansRef = go.GetComponent<AnswerReference> ( );
             ansRef.properties = answers[i];
             answerReference.Add (ansRef);
+        }
+
+        for (int i = 0; i < answers.Length; i++)
+        {
+            if (answers[i].correct)
+            {
+                door.AnswerCorrect = answers[i];
+            }
         }
     }
 }

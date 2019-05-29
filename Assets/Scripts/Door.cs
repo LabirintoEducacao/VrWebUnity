@@ -10,4 +10,6 @@ public class Door : MonoBehaviour
      * 
      * Caso seja a resposta errada, o jogador perderá uma estrela.
      */
+
+    public Answer AnswerCorrect;
 }
