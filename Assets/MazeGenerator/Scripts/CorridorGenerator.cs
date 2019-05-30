@@ -102,7 +102,7 @@ public class CorridorGenerator : MonoBehaviour {
 		}
 	}
 
-	void setEntranceMotion(Transform transf) {
+	public void setEntranceMotion(Transform transf) {
 		List<HubCheckpoint> checks = new List<HubCheckpoint> (this.GetComponentsInChildren	<HubCheckpoint>());
 		int dir = Tools.getOpositeDirection (this.doorDirectionIn);
 		HubCheckpoint hub = checks.Find(x => x.coord.Equals(entrance));
@@ -113,7 +113,29 @@ public class CorridorGenerator : MonoBehaviour {
 		hub.goals[Tools.directionToIndex(dir)] = transf;
 	}
 
-	void setExitMotion(Transform transf) {
+	public Transform getEntranceTranform() {
+		List<HubCheckpoint> checks = new List<HubCheckpoint> (this.GetComponentsInChildren	<HubCheckpoint>());
+		int dir = Tools.getOpositeDirection (this.doorDirectionIn);
+		HubCheckpoint hub = checks.Find(x => x.coord.Equals(entrance));
+		if (hub == null) {
+			Debug.LogWarning("no hub found on entrance.");
+			return null;
+		}
+		return hub.transform;
+	}
+	
+	public Transform getExitTranform() {
+		List<HubCheckpoint> checks = new List<HubCheckpoint> (this.GetComponentsInChildren	<HubCheckpoint>());
+		int dir = Tools.getOpositeDirection (this.doorDirectionIn);
+		HubCheckpoint hub = checks.Find(x => x.coord.Equals(exit));
+		if (hub == null) {
+			Debug.LogWarning("no hub found on entrance.");
+			return null;
+		}
+		return hub.transform;
+	}
+
+	public void setExitMotion(Transform transf) {
 		List<HubCheckpoint> checks = new List<HubCheckpoint> (this.GetComponentsInChildren	<HubCheckpoint>());
 		int dir = Tools.getOpositeDirection (this.doorDirectionOut);
 		HubCheckpoint hub = checks.Find(x => x.coord.Equals(exit));

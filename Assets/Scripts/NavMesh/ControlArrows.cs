@@ -36,6 +36,7 @@ public class ControlArrows : MonoBehaviour {
         changeState(false);
     }
 
+    /** Liga as setas que tem destino */
     public void showArrows() {
         foreach (SetTarget target in getTargets)
         {
@@ -54,6 +55,7 @@ public class ControlArrows : MonoBehaviour {
         }
     }
 
+    /** define um destino para uma direção */
     public void setGoal(int direction, Transform goal) {
         switch (direction) {
             case Constants.DIRECTION_UP:

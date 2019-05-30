@@ -12,7 +12,7 @@ public class HubCheckpoint : MonoBehaviour {
         get { return playerAgent != null; }
     }
     private ControlArrows arrows;
-    public Transform[ ] goals;
+    public Transform[ ] goals; // UP, RIGHT, DOWN, LEFT
     GameObject playerAgent;
 
     // Start is called before the first frame update
