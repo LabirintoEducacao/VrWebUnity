@@ -32,12 +32,12 @@ public class RoomManager : MonoBehaviour {
             answerReference.Add (ansRef);
         }
 
-        for (int i = 0; i < answers.Length; i++)
-        {
-            if (answers[i].correct)
-            {
-                door.AnswerCorrect = answers[i];
-            }
-        }
+        // for (int i = 0; i < answers.Length; i++)
+        // {
+        //     if (answers[i].correct)
+        //     {
+        //         door.AnswerCorrect = answers[i];
+        //     }
+        // }
     }
 }
