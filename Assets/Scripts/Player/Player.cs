@@ -184,8 +184,8 @@ public class Player : PlayerBase
             currentTimeUnlock = 0;
         }
         Debug.DrawRay(ray.origin, ray.direction, Color.red);
-        if(hit.collider != null)
-            Debug.Log(hit.collider.name);
+        // if(hit.collider != null)
+        //     Debug.Log(hit.collider.name);
     }
 
 

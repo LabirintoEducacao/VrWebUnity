@@ -11,16 +11,28 @@ public class HubCheckpoint : MonoBehaviour {
     public bool isPlayerInside {
         get { return playerAgent != null; }
     }
-    private ControlArrows arrows;
+    public ControlArrows arrows;
     public Transform[ ] goals; // UP, RIGHT, DOWN, LEFT
-    GameObject playerAgent;
+    public GameObject playerAgent;
+
+    bool canShow = false;
+
+    public delegate void OnPlayerEnter(HubCheckpoint hub);
+    public event OnPlayerEnter onPlayerEnter;
+
+    public delegate void OnPlayerExit(HubCheckpoint hub);
+    public event OnPlayerExit onPlayerExit;
 
     // Start is called before the first frame update
     void Start ( ) {
         if (arrows == null)
             this.arrows = GameObject.FindObjectOfType<ControlArrows> ( );
-        playerAgent = GameObject.FindGameObjectWithTag("PlayerAgent");
         // verifyIfPlayerInside();
+        if (startingPoint) {
+            playerAgent = GameObject.FindGameObjectWithTag("PlayerAgent");
+            canShow = true;
+        }
+
     }
 
     private void OnEnable ( ) {
@@ -34,7 +46,11 @@ public class HubCheckpoint : MonoBehaviour {
     private void OnTriggerEnter (Collider other) {
         if (other.gameObject.CompareTag ("PlayerAgent")) {
             playerAgent = other.gameObject;
-            enableArrows();
+            canShow = true;
+
+            if (onPlayerEnter != null) {
+                this.onPlayerEnter(this);
+            }
         }
     }
 
@@ -42,18 +58,26 @@ public class HubCheckpoint : MonoBehaviour {
         if (other.gameObject.CompareTag("PlayerAgent")) {
             playerAgent = null;
             // arrows.changeState(false);
+
+            if (this.onPlayerExit != null){
+                this.onPlayerExit(this);
+            }
         }
     }
 
     private void FixedUpdate() {
-        if (isPlayerInside) {
-            if (playerAgent.GetComponent<NavMeshAgent>().isStopped)
+        if (isPlayerInside && canShow) {
+            NavMeshAgent agent = playerAgent.GetComponent<NavMeshAgent>();
+            if (agent.velocity.magnitude == 0f)
                 enableArrows();
         }
     }
 
     void enableArrows ( ) {
+        if (arrows == null)
+            this.arrows = GameObject.FindObjectOfType<ControlArrows> ( );
         //gotcha! Ele está aqui dentro
+        canShow = false;
         for (int i = 0; i < goals.Length; i++) {
             arrows.setGoal (Constants.DIRECTIONS[i], goals[i]);
         }
@@ -66,7 +90,30 @@ public class HubCheckpoint : MonoBehaviour {
         float dist = Vector3.Distance (player.transform.position, coll.transform.position);
         if (dist < coll.radius) {
             playerAgent = player;
-            enableArrows ( );
+        }
+    }
+
+    public void activate() {
+        enableArrows();
+    }
+
+    /** define um destino para uma direção */
+    public void setGoal(int direction, Transform goal) {
+        switch (direction) {
+            case Constants.DIRECTION_UP:
+                goals[0] = goal;
+                break;
+            case Constants.DIRECTION_RIGHT:
+                goals[1] = goal;
+                break;
+            case Constants.DIRECTION_DOWN:
+                goals[2] = goal;
+                break;
+            case Constants.DIRECTION_LEFT:
+                goals[3] = goal;
+                break;
+            default:
+                break;
         }
     }
 }

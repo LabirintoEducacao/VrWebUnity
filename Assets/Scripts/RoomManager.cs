@@ -12,6 +12,7 @@ public class RoomManager : MonoBehaviour {
     public Door door;
     [Header ("room data")]
     public Question question;
+    public int id { get => question.question_id; }
 
     private void Start ( ) {
         

@@ -17,7 +17,7 @@ public class ControlArrows : MonoBehaviour {
     }
 
     void Start ( ) {
-        changeState (false);
+        //changeState (false);
 
         foreach (SetTarget targ in getTargets) {
             targ.onTargetSelected += onTargetSelected;
@@ -42,6 +42,8 @@ public class ControlArrows : MonoBehaviour {
         {
             if (target.Target != null) {
                 target.gameObject.SetActive(true);
+            } else {
+                target.gameObject.SetActive(false);
             }
         }
     }

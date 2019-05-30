@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4371143025232129060}
   - component: {fileID: 4371143025232129081}
   - component: {fileID: 4371143025232129082}
+  - component: {fileID: 6900545523849780302}
   m_Layer: 11
   m_Name: PlayerAgent
   m_TagString: PlayerAgent
@@ -84,3 +85,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &6900545523849780302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4371143025232129061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 154bc1f38711fb04785b3eaf7c6ef230, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

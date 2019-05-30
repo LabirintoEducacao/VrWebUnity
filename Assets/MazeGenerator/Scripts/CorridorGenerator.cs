@@ -104,18 +104,17 @@ public class CorridorGenerator : MonoBehaviour {
 
 	public void setEntranceMotion(Transform transf) {
 		List<HubCheckpoint> checks = new List<HubCheckpoint> (this.GetComponentsInChildren	<HubCheckpoint>());
-		int dir = Tools.getOpositeDirection (this.doorDirectionIn);
+		// int dir = Tools.getOpositeDirection (this.doorDirectionIn);
 		HubCheckpoint hub = checks.Find(x => x.coord.Equals(entrance));
 		if (hub == null) {
 			Debug.LogWarning("no hub found on entrance.");
 			return;
 		}
-		hub.goals[Tools.directionToIndex(dir)] = transf;
+		hub.goals[Tools.directionToIndex(this.doorDirectionIn)] = transf;
 	}
 
 	public Transform getEntranceTranform() {
 		List<HubCheckpoint> checks = new List<HubCheckpoint> (this.GetComponentsInChildren	<HubCheckpoint>());
-		int dir = Tools.getOpositeDirection (this.doorDirectionIn);
 		HubCheckpoint hub = checks.Find(x => x.coord.Equals(entrance));
 		if (hub == null) {
 			Debug.LogWarning("no hub found on entrance.");
@@ -126,7 +125,6 @@ public class CorridorGenerator : MonoBehaviour {
 	
 	public Transform getExitTranform() {
 		List<HubCheckpoint> checks = new List<HubCheckpoint> (this.GetComponentsInChildren	<HubCheckpoint>());
-		int dir = Tools.getOpositeDirection (this.doorDirectionIn);
 		HubCheckpoint hub = checks.Find(x => x.coord.Equals(exit));
 		if (hub == null) {
 			Debug.LogWarning("no hub found on entrance.");
@@ -137,13 +135,13 @@ public class CorridorGenerator : MonoBehaviour {
 
 	public void setExitMotion(Transform transf) {
 		List<HubCheckpoint> checks = new List<HubCheckpoint> (this.GetComponentsInChildren	<HubCheckpoint>());
-		int dir = Tools.getOpositeDirection (this.doorDirectionOut);
+		// int dir = Tools.getOpositeDirection (this.doorDirectionOut);
 		HubCheckpoint hub = checks.Find(x => x.coord.Equals(exit));
 		if (hub == null) {
 			Debug.LogWarning("no hub found on exit.");
 			return;
 		}
-		hub.goals[Tools.directionToIndex(dir)] = transf;
+		hub.goals[Tools.directionToIndex(doorDirectionOut)] = transf;
 	}
 
 	void openIO ( ) {
