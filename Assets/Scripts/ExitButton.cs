@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ExitButton : MonoBehaviour
 {
-    public AnswerReference answerReference;
+    public GameObject _desactivePanel;
 
     public void desactivePanel()
     {
-        answerReference.DesactivePanel();
+        _desactivePanel.SetActive(false);
     }
 }

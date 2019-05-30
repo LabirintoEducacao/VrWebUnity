@@ -12,4 +12,5 @@ public class Door : MonoBehaviour
      */
 
     public Answer AnswerCorrect;
+    public bool openDoor;
 }

@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Player : PlayerBase
 {
     [Header("Components")]
-    public LayerMask layerButton;
     public GameObject button;
     public Image GUIReticleLoad;
     public ExitButton exit;
@@ -69,7 +68,7 @@ public class Player : PlayerBase
                     ExitButton exit = button.GetComponent<ExitButton>();
                     exit = button.GetComponent<ExitButton>();
 
-                    if (st != null & currentTimeLoadFillAmount >= timeToLoadFillAmount)
+                    if (currentTimeLoadFillAmount >= timeToLoadFillAmount)
                     {
                         //foi acionado, mandando o agent se mexer e reiniciando as variáveis
                         exit.desactivePanel();
@@ -127,6 +126,46 @@ public class Player : PlayerBase
                     }
                 }
             }
+            else if (hit.collider.CompareTag("Door"))
+            {
+                currentTimeUnlock += Time.deltaTime;
+                if (currentTimeUnlock >= timeToUnlock)
+                {
+                    GUIReticleLoad.gameObject.SetActive(true);
+                    currentTimeLoadFillAmount += Time.deltaTime;
+                    GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
+
+                    button = hit.collider.gameObject;
+
+                    Door door = button.GetComponent<Door>();
+
+                    if (inventory.item != null && currentTimeLoadFillAmount >= timeToLoadFillAmount)
+                    {
+                        if (door.AnswerCorrect == inventory.item.properties)
+                        {
+                            Debug.Log("Resposta Certa!");
+                            door.openDoor = true;
+                            inventory.item = null;
+
+                            GUIReticleLoad.fillAmount = 0;
+                            GUIReticleLoad.gameObject.SetActive(false);
+
+                            currentTimeLoadFillAmount = 0;
+                            currentTimeUnlock = 0;
+                        }
+                        else
+                        {
+                            Debug.Log("Resposta errada!");
+
+                            GUIReticleLoad.fillAmount = 0;
+                            GUIReticleLoad.gameObject.SetActive(false);
+
+                            currentTimeLoadFillAmount = 0;
+                            currentTimeUnlock = 0;
+                        }
+                    }
+                }
+            }
             else
             {
                 GUIReticleLoad.fillAmount = 0;
@@ -145,6 +184,8 @@ public class Player : PlayerBase
             currentTimeUnlock = 0;
         }
         Debug.DrawRay(ray.origin, ray.direction, Color.red);
+        if(hit.collider != null)
+            Debug.Log(hit.collider.name);
     }
 
 
