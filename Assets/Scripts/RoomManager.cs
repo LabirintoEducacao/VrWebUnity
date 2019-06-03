@@ -31,6 +31,11 @@ public class RoomManager : MonoBehaviour {
             AnswerReference ansRef = go.GetComponent<AnswerReference> ( );
             ansRef.properties = answers[i];
             answerReference.Add (ansRef);
+            if (ansRef.properties.correct)
+            {
+                door.AnswerCorrect = ansRef.properties;
+            }
+                
         }
 
         // for (int i = 0; i < answers.Length; i++)
