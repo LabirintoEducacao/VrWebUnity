@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class CorridorGenerator : MonoBehaviour {
 	public bool gizmosOn = true;
+	public bool createDoors = true;
 
 	[Header ("Random properties")]
 	public int seed;
@@ -19,6 +20,7 @@ public class CorridorGenerator : MonoBehaviour {
 	public int direction = Constants.DIRECTION_UP | Constants.DIRECTION_RIGHT;
 	public float cellSize = 1;
 	public GameObject tileBlock;
+	public GameObject hubPrefab;
 
 	private Map _map;
 	public Map map { get => _map; }
@@ -68,6 +70,78 @@ public class CorridorGenerator : MonoBehaviour {
 
 		pathFinder = new PathFinder (map, entrance);
 		generateMesh ( );
+		generateHubs ( );
+	}
+
+	void generateHubs ( ) {
+		//create all hubs but can't connect as the destinations are not defined yet.
+		Dictionary<MapCoord, HubCheckpoint> hubDict = new Dictionary<MapCoord, HubCheckpoint> ( );
+		foreach (PathHub hub in pathFinder.hubs) {
+			Vector3 position = this.topLeft + new Vector3 (hub.coord.x * cellSize, 1f, hub.coord.y * cellSize);
+			GameObject go = Instantiate (hubPrefab, position, Quaternion.identity, rootNode.transform);
+			HubCheckpoint hubC = go.GetComponent<HubCheckpoint> ( );
+
+			if (hubC == null) {
+				Debug.LogError ("Not possible to create hubs with a prefab that do not have a HubCheckpoint script.");
+				return;
+			}
+
+			hubC.goals = new Transform[4];
+			hubC.coord = hub.coord;
+			hubDict.Add (hub.coord, hubC);
+		}
+
+		//assign hub connections
+		foreach (PathHub hub in pathFinder.hubs) {
+			HubCheckpoint hubC = hubDict[hub.coord];
+			for (int i = 0; i < hub.paths.Length; i++) {
+				if (hub.paths[i] != null) {
+					hubC.goals[i] = hubDict[hub.paths[i].coord].transform;
+				}
+			}
+		}
+	}
+
+	public void setEntranceMotion(Transform transf) {
+		List<HubCheckpoint> checks = new List<HubCheckpoint> (this.GetComponentsInChildren	<HubCheckpoint>());
+		// int dir = Tools.getOpositeDirection (this.doorDirectionIn);
+		HubCheckpoint hub = checks.Find(x => x.coord.Equals(entrance));
+		if (hub == null) {
+			Debug.LogWarning("no hub found on entrance.");
+			return;
+		}
+		hub.goals[Tools.directionToIndex(this.doorDirectionIn)] = transf;
+	}
+
+	public Transform getEntranceTranform() {
+		List<HubCheckpoint> checks = new List<HubCheckpoint> (this.GetComponentsInChildren	<HubCheckpoint>());
+		HubCheckpoint hub = checks.Find(x => x.coord.Equals(entrance));
+		if (hub == null) {
+			Debug.LogWarning("no hub found on entrance.");
+			return null;
+		}
+		return hub.transform;
+	}
+	
+	public Transform getExitTranform() {
+		List<HubCheckpoint> checks = new List<HubCheckpoint> (this.GetComponentsInChildren	<HubCheckpoint>());
+		HubCheckpoint hub = checks.Find(x => x.coord.Equals(exit));
+		if (hub == null) {
+			Debug.LogWarning("no hub found on entrance.");
+			return null;
+		}
+		return hub.transform;
+	}
+
+	public void setExitMotion(Transform transf) {
+		List<HubCheckpoint> checks = new List<HubCheckpoint> (this.GetComponentsInChildren	<HubCheckpoint>());
+		// int dir = Tools.getOpositeDirection (this.doorDirectionOut);
+		HubCheckpoint hub = checks.Find(x => x.coord.Equals(exit));
+		if (hub == null) {
+			Debug.LogWarning("no hub found on exit.");
+			return;
+		}
+		hub.goals[Tools.directionToIndex(doorDirectionOut)] = transf;
 	}
 
 	void openIO ( ) {
@@ -121,7 +195,7 @@ public class CorridorGenerator : MonoBehaviour {
 		}
 		//Create Renderer
 		foreach (TileAsset block in blocks) {
-			block.create ( );
+			block.create (this.createDoors);
 		}
 	}
 
@@ -181,7 +255,8 @@ public class CorridorGenerator : MonoBehaviour {
 				}
 
 				if (pathFinder == null) {
-					pathFinder = new PathFinder(map, entrance);
+					return;
+					// pathFinder = new PathFinder (map, entrance);
 				}
 
 				for (int i = 0; i < pathFinder.hubs.Count; i++) {

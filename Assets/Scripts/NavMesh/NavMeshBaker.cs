@@ -9,37 +9,41 @@ public class NavMeshBaker : MonoBehaviour
     [SerializeField] private GameObject mapRoot;
 
     [Header("Player")]
-    [SerializeField] private GameObject playerObj;
     [SerializeField] private string TagPlayer = "PlayerAgent";
 
-    public bool mapBaked = false;
-
-    private void Awake() {
-        playerObj = GameObject.FindWithTag(TagPlayer);
-        playerObj.SetActive(false);
-    }
-
-    private void Start() {
-        getComponents();
+    void Start() {
+        CreateBake();
     }
 
     private void getComponents(){
-        mapRoot = GameObject.Find("MapRoot");
-        getNavMesh();
+        if (mapRoot == null)
+            mapRoot = GameObject.Find("MapRoot");
+        if (mapRoot == null) {
+            Debug.LogError("Cannot deal with NavMesh if there is object named MapRoot on the scene");
+            return;
+        }
+
+        // getNavMesh();
     }
 
     private void getNavMesh(){
-        navMeshSurfaces = mapRoot.GetComponentsInChildren<NavMeshSurface>();
+        navMeshSurfaces = mapRoot.GetComponentsInChildren<NavMeshSurface>(false);
         if(navMeshSurfaces != null){
             CreateBake();
         }
     }
 
-    private void CreateBake(){
-        for(int i = 0 ; i < navMeshSurfaces.Length; i++){
-            navMeshSurfaces[i].BuildNavMesh();
-            if(i == (navMeshSurfaces.Length - 1))
-                playerObj.SetActive(true);
-        }
+    public void CreateBake(){
+        getComponents();
+        GameObject playerObj = GameObject.FindGameObjectWithTag(TagPlayer);
+        playerObj.SetActive(false);
+        mapRoot.GetComponent<NavMeshSurface>().BuildNavMesh();
+        playerObj.SetActive(true);
+        // for(int i = 0 ; i < navMeshSurfaces.Length; i++){
+        //     // navMeshSurfaces[i].RemoveData();
+        //     navMeshSurfaces[i].BuildNavMesh();
+        //     if(i == (navMeshSurfaces.Length - 1))
+        //         playerObj.SetActive(true);
+        // }
     }
 }

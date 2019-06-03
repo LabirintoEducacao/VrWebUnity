@@ -12,7 +12,7 @@ public class PathFinder {
     hubs = new List<PathHub>();
     visitedTiles = new List<MapCoord>();
     List<MapCoord> path = new List<MapCoord> ();
-    path.Add(startingPosition);
+    // path.Add(startingPosition);
     walkAbout (map, startingPosition, Constants.DIRECTION_NONE, path, null);
   }
 
@@ -29,9 +29,12 @@ public class PathFinder {
       hub.doors = tile.doors;
       if (path.Count > 0) {
         //not starting point
-        int dir = entranceDir;
+        List<MapCoord> deltaPath = new List<MapCoord>(path);
+        deltaPath.Add(entrance);
+        int dir = Tools.getOpositeDirection(entranceDir);
         if ((dir != Constants.DIRECTION_NONE) && (oHub != null)) {
           hub.setPath(dir, oHub);
+          setReverseConnection(deltaPath, hub, oHub);
         } else {
           Debug.Log("No direction found.");
         }
@@ -45,12 +48,13 @@ public class PathFinder {
     }
 
     for (int i = 0; i < Constants.DIRECTIONS.Length; i++) {
+      List<MapCoord> thetaPath = new List<MapCoord>(newPath);
       if ((tile.passages & Constants.DIRECTIONS[i]) == 0) {
         // facing wall, change dir.
         continue;
       }
 
-      newPath.Add(entrance);
+      thetaPath.Add(entrance);
       Tile newTile = map.tile (entrance + Constants.DELTA[i]);
       if (newTile == null) {
         // void, return
@@ -61,7 +65,17 @@ public class PathFinder {
         // já passou aqui
         continue;
       }
-      walkAbout(map, newTile.coord, Constants.DIRECTIONS[i], newPath, hub);
+      walkAbout(map, newTile.coord, Constants.DIRECTIONS[i], thetaPath, hub);
+    }
+  }
+
+  private void setReverseConnection(List<MapCoord> path, PathHub hub, PathHub oHub)
+  {
+    int dir = Constants.DIRECTIONS[Tools.deltaToDirectionInt(path[0], path[1])];
+    if (dir == Constants.DIRECTION_NONE) {
+      Debug.LogError("no back direction? "+path[0].ToString()+" - "+path[1].ToString());
+    } else {
+      oHub.setPath(dir, hub);
     }
   }
 

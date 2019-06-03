@@ -10,15 +10,17 @@
             "question_type":"mov|img|text",
             "question":"./vid000.mp4",
             "room_type":"key|doors|machine|objects",
-            "path": {
+            "paths": [{
+                "availability":"right|wrong|always",
                 "width":4,
                 "height":5,
-                "type":"corridor|maze"
-            },
+                "type":"corridor|maze",
+                "connected_question":32
+            }],
             "answers": [
                 {"answer_id": 13, "answer":"dois"},
-                {"answer_id": 14, "answer":"três", "connected_question":12},
-                {"answer_id": 15, "answer":"depende da canoa", "connected_question":32, "correct":true, "end_game": true}
+                {"answer_id": 14, "answer":"três"},
+                {"answer_id": 15, "answer":"depende da canoa", "correct":true, "end_game": true}
             ]
         }
     ]

@@ -7,6 +7,10 @@ TagManager:
   - Button
   - Checkpoint
   - PlayerAgent
+  - Room
+  - ButtonExit
+  - Item
+  - Door
   layers:
   - Default
   - TransparentFX
@@ -18,8 +22,8 @@ TagManager:
   - 
   - PostProcessing
   - Buttons
-  - 
-  - 
+  - Checkpoint
+  - Player
   - 
   - 
   - 
