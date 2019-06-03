@@ -12,5 +12,18 @@ public class Door : MonoBehaviour
      */
 
     public Answer AnswerCorrect;
+    public RoomManager room;
     public bool openDoor;
+
+    private void Start() {
+        Invoke("getAnswer", 1);
+    }
+
+    void getAnswer(){
+        foreach (AnswerReference item in room.answerReference)
+        {
+            if(item.properties.correct)
+                AnswerCorrect = item.properties;
+        }
+    }
 }

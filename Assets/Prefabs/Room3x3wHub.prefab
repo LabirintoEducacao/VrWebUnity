@@ -191,16 +191,6 @@ PrefabInstance:
       propertyPath: spawnAnswer.Array.data[2]
       value: 
       objectReference: {fileID: 7832872499810529160}
-    - target: {fileID: 1768756157828278966, guid: 394a0243983bd7f40b23a6b53df7eb3c,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1768756157828278965, guid: 394a0243983bd7f40b23a6b53df7eb3c,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1768756157828278953, guid: 394a0243983bd7f40b23a6b53df7eb3c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -267,6 +257,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 695410475894574629, guid: 394a0243983bd7f40b23a6b53df7eb3c,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768756157828278966, guid: 394a0243983bd7f40b23a6b53df7eb3c,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768756157828278965, guid: 394a0243983bd7f40b23a6b53df7eb3c,
         type: 3}
       propertyPath: m_Mesh
       value: 

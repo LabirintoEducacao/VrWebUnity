@@ -128,8 +128,10 @@ public class Player : PlayerBase
             }
             else if (hit.collider.CompareTag("Door"))
             {
+                Door checkDoor = hit.collider.GetComponent<Door>();
+
                 currentTimeUnlock += Time.deltaTime;
-                if (currentTimeUnlock >= timeToUnlock)
+                if (inventory.item != null && currentTimeUnlock >= timeToUnlock && !checkDoor.openDoor)
                 {
                     GUIReticleLoad.gameObject.SetActive(true);
                     currentTimeLoadFillAmount += Time.deltaTime;
@@ -139,7 +141,7 @@ public class Player : PlayerBase
 
                     Door door = button.GetComponent<Door>();
 
-                    if (inventory.item != null && currentTimeLoadFillAmount >= timeToLoadFillAmount)
+                    if (currentTimeLoadFillAmount >= timeToLoadFillAmount)
                     {
                         if (door.AnswerCorrect == inventory.item.properties)
                         {
