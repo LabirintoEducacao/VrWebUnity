@@ -4,6 +4,15 @@ using System.Collections.Generic;
 using larcom.MazeGenerator.Support;
 using UnityEngine;
 
+public enum TypeRoom
+{
+    OneDoor,
+    MultipleDoors,
+    ObjectsAndShapes,
+    MultipleChoice
+} 
+
+
 public class RoomManager : MonoBehaviour {
 
     public Transform[] spawnAnswer;
@@ -13,6 +22,7 @@ public class RoomManager : MonoBehaviour {
     [Header ("room data")]
     public Question question;
     public int id { get => question.question_id; }
+    public TypeRoom type;
 
     private void Start ( ) {
         
@@ -32,6 +42,26 @@ public class RoomManager : MonoBehaviour {
             ansRef.properties = answers[i];
             answerReference.Add (ansRef);
         }
-        door.room = this;
+
+        TypeRoom room;
+
+        if((int)type == 0){
+            Debug.Log("Entrou no if do tipo" + type);
+            setAnswerDoor();
+        }
+        else if((int)type == 1)
+            Debug.Log("Entrou no if do tipo" + type);
+        else if((int)type == 2)
+            Debug.Log("Entrou no if do tipo" + type);
+        else if((int)type == 3)
+            Debug.Log("Entrou no if do tipo" + type);
+    }
+
+    void setAnswerDoor(){
+        foreach (AnswerReference item in answerReference)
+        {
+            if(item.properties.correct)
+                door.AnswerCorrect = item.properties;
+        }
     }
 }
