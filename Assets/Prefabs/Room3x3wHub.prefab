@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &36853616920313073
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3925467679443489980}
+  m_Layer: 0
+  m_Name: SpawnDoor
+  m_TagString: Untagged
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3925467679443489980
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36853616920313073}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.5, y: 1.125, z: -2.95}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4683957355388839963}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1670221421672688692
 GameObject:
   m_ObjectHideFlags: 0
@@ -24,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670221421672688692}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 2.3, y: 1, z: -1.5}
+  m_LocalPosition: {x: 2.3, y: 2, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7308111454956688032}
@@ -54,7 +84,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2001596737418241042}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.7, y: 1, z: -1.5}
+  m_LocalPosition: {x: 0.7, y: 2, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7308111454956688032}
@@ -84,7 +114,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6404334670350790689}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 1, z: -0.7}
+  m_LocalPosition: {x: 1.5, y: 2, z: -0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7308111454956688032}
@@ -169,12 +199,17 @@ PrefabInstance:
     - target: {fileID: 1768756157828278962, guid: 394a0243983bd7f40b23a6b53df7eb3c,
         type: 3}
       propertyPath: m_Name
-      value: Room3x3wHub
+      value: StartingRoom
       objectReference: {fileID: 0}
     - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
         type: 3}
       propertyPath: spawnAnswer.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
+        type: 3}
+      propertyPath: spawnDoor.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
         type: 3}
@@ -191,6 +226,17 @@ PrefabInstance:
       propertyPath: spawnAnswer.Array.data[2]
       value: 
       objectReference: {fileID: 7832872499810529160}
+    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
+        type: 3}
+      propertyPath: spawnDoor.Array.data[0]
+      value: 
+      objectReference: {fileID: 3925467679443489980}
+    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
+        type: 3}
+      propertyPath: doorPrefab
+      value: 
+      objectReference: {fileID: 4937490983137653606, guid: ee3363d3fe944674d94424b342dfb710,
+        type: 3}
     - target: {fileID: 1768756157828278953, guid: 394a0243983bd7f40b23a6b53df7eb3c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -199,7 +245,7 @@ PrefabInstance:
     - target: {fileID: 1768756157828278953, guid: 394a0243983bd7f40b23a6b53df7eb3c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1768756157828278953, guid: 394a0243983bd7f40b23a6b53df7eb3c,
         type: 3}
@@ -246,33 +292,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4386647438741213202, guid: 394a0243983bd7f40b23a6b53df7eb3c,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1256467933872616242, guid: 394a0243983bd7f40b23a6b53df7eb3c,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 695410475894574629, guid: 394a0243983bd7f40b23a6b53df7eb3c,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1768756157828278966, guid: 394a0243983bd7f40b23a6b53df7eb3c,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1768756157828278965, guid: 394a0243983bd7f40b23a6b53df7eb3c,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 394a0243983bd7f40b23a6b53df7eb3c, type: 3}
+--- !u!4 &4683957355388839963 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1768756157828278953, guid: 394a0243983bd7f40b23a6b53df7eb3c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6452286347546985138}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7308111454956688032 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4386647438741213202, guid: 394a0243983bd7f40b23a6b53df7eb3c,

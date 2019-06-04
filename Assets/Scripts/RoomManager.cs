@@ -16,8 +16,10 @@ public enum TypeRoom
 public class RoomManager : MonoBehaviour {
 
     public Transform[] spawnAnswer;
+    public Transform[] spawnDoor;
     public List<AnswerReference> answerReference;
     public GameObject answerPrefab;
+    public GameObject doorPrefab;
     public Door door;
     [Header ("room data")]
     public Question question;
@@ -47,6 +49,10 @@ public class RoomManager : MonoBehaviour {
 
         if((int)type == 0){
             Debug.Log("Entrou no if do tipo" + type);
+            
+            GameObject doorRef;
+            doorRef = Instantiate(doorPrefab, spawnDoor[0].position, Quaternion.identity);
+            door = doorRef.GetComponent<Door>();
             setAnswerDoor();
         }
         else if((int)type == 1)
@@ -58,6 +64,8 @@ public class RoomManager : MonoBehaviour {
     }
 
     void setAnswerDoor(){
+        
+        
         foreach (AnswerReference item in answerReference)
         {
             if(item.properties.correct)
