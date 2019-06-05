@@ -49,7 +49,7 @@ public class RoomManager : MonoBehaviour {
             Debug.Log("Entrou no if do tipo " + type);
             
             GameObject doorRef;
-            doorRef = Instantiate(doorPrefab, spawnDoor[0].position, Quaternion.identity,spawnDoor[0]);
+            doorRef = Instantiate(doorPrefab, spawnDoor[0].position, spawnDoor[0].rotation,spawnDoor[0]);
             door = doorRef.GetComponent<Door>();
             setAnswerDoor();
         }
@@ -57,7 +57,7 @@ public class RoomManager : MonoBehaviour {
             Debug.Log("Entrou no if do tipo " + type);
             for(int i = 0; i < spawnDoor.Length; i++){
                 GameObject doorRef;
-            doorRef = Instantiate(doorPrefab, spawnDoor[i].position, Quaternion.identity,spawnDoor[i]);
+            doorRef = Instantiate(doorPrefab, spawnDoor[i].position, spawnDoor[i].rotation,spawnDoor[i]);
             door = doorRef.GetComponent<Door>();
             }
         }
