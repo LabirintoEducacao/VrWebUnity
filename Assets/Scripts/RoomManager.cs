@@ -45,22 +45,27 @@ public class RoomManager : MonoBehaviour {
             answerReference.Add (ansRef);
         }
 
-        TypeRoom room;
-
         if((int)type == 0){
-            Debug.Log("Entrou no if do tipo" + type);
+            Debug.Log("Entrou no if do tipo " + type);
             
             GameObject doorRef;
-            doorRef = Instantiate(doorPrefab, spawnDoor[0].position, Quaternion.identity);
+            doorRef = Instantiate(doorPrefab, spawnDoor[0].position, Quaternion.identity,spawnDoor[0]);
             door = doorRef.GetComponent<Door>();
             setAnswerDoor();
         }
-        else if((int)type == 1)
-            Debug.Log("Entrou no if do tipo" + type);
+        else if((int)type == 1){
+            Debug.Log("Entrou no if do tipo " + type);
+            for(int i = 0; i < spawnDoor.Length; i++){
+                GameObject doorRef;
+            doorRef = Instantiate(doorPrefab, spawnDoor[i].position, Quaternion.identity,spawnDoor[i]);
+            door = doorRef.GetComponent<Door>();
+            }
+        }
+
         else if((int)type == 2)
-            Debug.Log("Entrou no if do tipo" + type);
+            Debug.Log("Entrou no if do tipo " + type);
         else if((int)type == 3)
-            Debug.Log("Entrou no if do tipo" + type);
+            Debug.Log("Entrou no if do tipo " + type);
     }
 
     void setAnswerDoor(){
@@ -71,5 +76,9 @@ public class RoomManager : MonoBehaviour {
             if(item.properties.correct)
                 door.AnswerCorrect = item.properties;
         }
+    }
+
+    void setAnswerForMultipleDoors(){
+
     }
 }
