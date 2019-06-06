@@ -25,10 +25,10 @@ public class RoomManager : MonoBehaviour {
     public Question question;
     public int id { get => question.question_id; }
     public TypeRoom type;
+    public bool doorSpawned;
 
-    private void Start ( ) {
-        
-    }
+
+
 
     public void generateAnswers ( ) {
         Answer[] answers = question.answers;
@@ -45,21 +45,53 @@ public class RoomManager : MonoBehaviour {
             answerReference.Add (ansRef);
         }
 
+        if(!doorSpawned)
+            createDoors();
+    }
+
+    void createDoors(){
+        /* Quando for uma sala que contém somente uma porta de saida, deve spawnar 2 portas
+         * No qual uma é de entrada, por onde o player vem e o outro é de sáida no qual o player
+         * deve utilizar a o objeto resposta pra ver se está certo
+         *
+         * Lembrando que deve verificar onde está o corredor para que posicione a porta no local correto
+         *
+         * Em caso de sala com uma porta de saída, a porta deve ser posicionada no fim do corredor
+         */
         if((int)type == 0){
             Debug.Log("Entrou no if do tipo " + type);
-            
+
+            GameObject doorEnter = Instantiate(doorPrefab, spawnDoor[0].position, spawnDoor[0].rotation,spawnDoor[0]);
+            doorEnter.name = "EnterDoor";
+
             GameObject doorRef;
-            doorRef = Instantiate(doorPrefab, spawnDoor[0].position, spawnDoor[0].rotation,spawnDoor[0]);
+            doorRef = Instantiate(doorPrefab, spawnDoor[1].position, spawnDoor[1].rotation,spawnDoor[1]);
             door = doorRef.GetComponent<Door>();
             setAnswerDoor();
         }
         else if((int)type == 1){
             Debug.Log("Entrou no if do tipo " + type);
-            for(int i = 0; i < spawnDoor.Length; i++){
-                GameObject doorRef;
-            doorRef = Instantiate(doorPrefab, spawnDoor[i].position, spawnDoor[i].rotation,spawnDoor[i]);
-            door = doorRef.GetComponent<Door>();
+            
+            int i = 0;
+            foreach(Transform spawn in spawnDoor){
+                GameObject doorRef = null;
+                if(i == 0){
+                    doorRef = Instantiate(doorPrefab, spawnDoor[i].position, spawnDoor[i].rotation,spawnDoor[i]);
+                    doorRef.name = "EnterDoor";
+                    i++;
+                }
+                else {
+                    string nameDoor = "DoorAnswer_" + i;
+                    
+                    
+                    doorRef = Instantiate(doorPrefab, spawnDoor[i].position, spawnDoor[i].rotation,spawnDoor[i]);
+                    doorRef.name = nameDoor;
+
+                    i++;
+                }
+                door = doorRef.GetComponent<Door>();
             }
+            doorSpawned = true;
         }
 
         else if((int)type == 2)
