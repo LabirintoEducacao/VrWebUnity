@@ -54,6 +54,10 @@ public class GameManager : MonoBehaviour {
         return this.corridors.FindAll (x => (x.question_id == question_id)).ToArray ( );
     }
 
+    public CorridorManager[] getCorridorsByRoomAndType(int question_id, string room_type) {
+        return this.corridors.FindAll (x => ((x.question_id == question_id)&&(x.pathInfo.type.Equals(room_type)))).ToArray ( );
+    }
+
     IEnumerator placeContinuation() {
         Vector3 nextCorrPivot = currentRoom.GetComponent<RoomDescriptor>().topLeft;
         Vector2 roomSize = currentRoom.GetComponent<RoomDescriptor>().size;

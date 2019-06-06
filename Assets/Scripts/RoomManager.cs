@@ -5,7 +5,7 @@ using larcom.MazeGenerator.Support;
 using UnityEngine;
 
 public class RoomManager : MonoBehaviour {
-
+    public int entranceDirection = Constants.DIRECTION_NONE;
     public Transform[] spawnAnswer;
     public List<AnswerReference> answerReference;
     public GameObject answerPrefab;
