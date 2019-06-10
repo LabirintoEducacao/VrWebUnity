@@ -98,6 +98,7 @@ namespace larcom.MazeGenerator.Support {
  public const int WALL_LEFT = DIRECTION_UP | DIRECTION_RIGHT | DIRECTION_DOWN;
 
  public static MapCoord[ ] DELTA = { MapCoord.UP, MapCoord.RIGHT, MapCoord.DOWN, MapCoord.LEFT };
+ public static float[ ] ROTATIONS = {0f, 90f, 180f, 270f};
 
  public static int[ ] BIFURCATION = { //0111, 1011, 1101, 1110, 1111
  DIRECTION_ALL & ~DIRECTION_UP,

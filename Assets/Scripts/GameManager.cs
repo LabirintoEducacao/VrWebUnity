@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using larcom.MazeGenerator.Models;
 using larcom.MazeGenerator.Support;
 using UnityEngine;
 
@@ -43,7 +44,7 @@ public class GameManager : MonoBehaviour {
         // StartCoroutine (CreateCorridors ( ));
         CreateRooms ( );
         CreateCorridors ( );
-        StartCoroutine(this.placeContinuation());
+        // StartCoroutine(this.placeContinuation());
     }
 
     public RoomManager getRoom (int id) {
@@ -54,24 +55,34 @@ public class GameManager : MonoBehaviour {
         return this.corridors.FindAll (x => (x.question_id == question_id)).ToArray ( );
     }
 
-    IEnumerator placeContinuation() {
-        Vector3 nextCorrPivot = currentRoom.GetComponent<RoomDescriptor>().topLeft;
-        Vector2 roomSize = currentRoom.GetComponent<RoomDescriptor>().size;
+    public CorridorManager[] getCorridorsByRoomAndType(int question_id, string room_type) {
+        return this.corridors.FindAll (x => ((x.question_id == question_id)&&(x.pathInfo.type.Equals(room_type)))).ToArray ( );
+    }
 
-        CorridorManager[] corridors = getCorridorsByRoom(currentRoom.id);
-        if (this.currentCorridor != null) {
-            this.currentCorridor.gameObject.SetActive(false);
-            this.currentCorridor = null;
-        }
-        
-        if (corridors.Length > 0) {
-            currentCorridor = getCorridorsByRoom(currentRoom.id)[0];
-        } else {
-            Debug.Log("Must have reached the endgame.");
+    public IEnumerator placeNextCorridor(Vector3 position, Quaternion baseRot, int direction, CorridorManager corridor) {
+        Vector3 nextCorrPivot = position;
+
+        //se já tem corredor, desabilita
+        // if (this.currentCorridor != null) {
+        //     this.currentCorridor.gameObject.SetActive(false);
+        // }
+        this.currentCorridor = corridor;
+
+        if (this.currentCorridor == null) {
+            Debug.LogError(string.Format("Cannot allocate inexistent corridor. Room-{0}", new object[] {currentRoom.id}));
             yield break;
         }
-        currentCorridor.transform.position = nextCorrPivot + Vector3.right * roomSize.x/2f;
-        currentCorridor.gameObject.SetActive(true);
+        // Debug.Log("generating corridor in direction: "+direction+" index: "+Tools.directionToIndex(direction));
+        // coloca o novo corredor em posição e rotação e espera até o final do frame pra continuar devido a problemas de render/update
+        float rot = Constants.ROTATIONS[Tools.directionToIndex(direction)];
+        MapCoord d = Constants.DELTA[Tools.directionToIndex(direction)];
+        Vector3 fwd = new Vector3(d.x, 0f, d.y);
+        d = Constants.DELTA[(Tools.directionToIndex(direction)+1)%4];
+        Vector3 right = new Vector3(d.x, 0f, d.y);
+        float corrEntx = (corridor.GetComponent<CorridorGenerator>().entrance.x + 0.5f) * corridor.cellSize;
+        this.currentCorridor.transform.rotation = Quaternion.Euler(0f, rot + baseRot.y, 0f);
+        this.currentCorridor.transform.position = nextCorrPivot - right * corrEntx;
+        this.currentCorridor.gameObject.SetActive(true);
         yield return new WaitForEndOfFrame();
 
         if (!currentCorridor.pathInfo.end_game) {
@@ -80,7 +91,14 @@ public class GameManager : MonoBehaviour {
                 Debug.LogError(string.Format("Room {0} does not exist on path of type {1} from room {2}.",new object[] {currentCorridor.pathInfo.connected_question, currentCorridor.pathInfo.type, currentRoom.id}));
                 yield break;
             }
-            nextRoom.transform.position = nextCorrPivot + Vector3.forward * currentCorridor.pathInfo.height + Vector3.forward * nextRoom.GetComponent<RoomDescriptor>().size.y; // currentCorridor.roomExit.position+Vector3.forward*1f;
+            //add delta to finishing position in corridor
+            float corrEndx = (corridor.GetComponent<CorridorGenerator>().exit.x + 0.5f) * corridor.cellSize;
+            nextCorrPivot += (fwd * (corridor.pathInfo.height * corridor.cellSize) + right * corrEndx);
+
+            nextRoom.transform.rotation = Quaternion.Euler(0f, rot + baseRot.y, 0f);
+            //nextRoom.transform.position = nextCorrPivot + Vector3.forward * currentCorridor.pathInfo.height + Vector3.forward * nextRoom.GetComponent<RoomDescriptor>().size.y;
+            nextRoom.transform.position = nextCorrPivot + fwd * nextRoom.GetComponent<RoomDescriptor>().size.y - right * nextRoom.GetComponent<RoomDescriptor>().size.x;// - nextRoom.spawnDoor[0].transform.localPosition;
+
             //change listener
             currentRoom.GetComponentInChildren<HubCheckpoint>().onPlayerEnter -= onEnteredNextRoom;
             nextRoom.GetComponentInChildren<HubCheckpoint>().onPlayerEnter += onEnteredNextRoom;
@@ -97,11 +115,26 @@ public class GameManager : MonoBehaviour {
         this.currentRoom.GetComponentInChildren<HubCheckpoint>().activate();
     }
 
+    IEnumerator placeContinuation() {
+        Vector3 nextCorrPivot = currentRoom.GetComponent<RoomDescriptor>().topLeft;
+        Vector2 roomSize = currentRoom.GetComponent<RoomDescriptor>().size;
+
+        CorridorManager[] corridors = getCorridorsByRoom(currentRoom.id);
+        CorridorManager corr = null;
+        if (corridors.Length > 0) {
+            corr = corridors[0];
+        } else {
+            Debug.Log("Must have reached the endgame.");
+            yield break;
+        }
+        yield return placeNextCorridor(nextCorrPivot + Vector3.right * roomSize.x/2f, this.transform.rotation, Constants.DIRECTION_UP, corr);
+    }
+
     void onEnteredNextRoom(HubCheckpoint hub) {
         this.currentRoom.gameObject.SetActive(false);
         this.currentCorridor.gameObject.SetActive(false);
         this.currentRoom = this.nextRoom;
-        StartCoroutine(placeContinuation());
+        // StartCoroutine(placeContinuation());
     }
 
     public void CreateRooms ( ) {
