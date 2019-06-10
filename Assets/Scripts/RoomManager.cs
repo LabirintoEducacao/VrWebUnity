@@ -28,8 +28,6 @@ public class RoomManager : MonoBehaviour {
     public bool doorSpawned;
 
 
-
-
     public void generateAnswers ( ) {
         Answer[] answers = question.answers;
         GameObject[] answerTemp = new GameObject[answers.Length];
@@ -46,7 +44,18 @@ public class RoomManager : MonoBehaviour {
         }
 
         if(!doorSpawned)
-            createDoors();
+            setTypeRoom();
+    }
+
+    void setTypeRoom(){
+        if(question.room_type == "key"){
+            type = TypeRoom.OneDoor;
+            RoomTypeSingleDoor();
+        }
+        else if(question.room_type == "doors"){
+            type = TypeRoom.MultipleDoors;
+            RoomTypeMultipleDoors();
+        }
     }
 
     void createDoors(){
