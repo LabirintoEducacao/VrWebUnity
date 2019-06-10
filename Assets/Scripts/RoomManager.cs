@@ -59,7 +59,21 @@ public class RoomManager : MonoBehaviour {
          * Em caso de sala com uma porta de saída, a porta deve ser posicionada no fim do corredor
          */
         if((int)type == 0){
+            RoomTypeSingleDoor();
+            
+        }
+        else if((int)type == 1){
+            RoomTypeMultipleDoors();
+        }
+
+        else if((int)type == 2)
             Debug.Log("Entrou no if do tipo " + type);
+        else if((int)type == 3)
+            Debug.Log("Entrou no if do tipo " + type);
+    }
+
+    void RoomTypeSingleDoor(){
+        Debug.Log("Entrou no if do tipo " + type);
 
             GameObject doorEnter = Instantiate(doorPrefab, spawnDoor[0].position, spawnDoor[0].rotation,spawnDoor[0]);
             doorEnter.name = "EnterDoor";
@@ -68,9 +82,10 @@ public class RoomManager : MonoBehaviour {
             doorRef = Instantiate(doorPrefab, spawnDoor[1].position, spawnDoor[1].rotation,spawnDoor[1]);
             door = doorRef.GetComponent<Door>();
             setAnswerDoor();
-        }
-        else if((int)type == 1){
-            Debug.Log("Entrou no if do tipo " + type);
+    }
+
+    void RoomTypeMultipleDoors(){
+        Debug.Log("Entrou no if do tipo " + type);
             
             int i = 0;
             foreach(Transform spawn in spawnDoor){
@@ -92,12 +107,6 @@ public class RoomManager : MonoBehaviour {
                 door = doorRef.GetComponent<Door>();
             }
             doorSpawned = true;
-        }
-
-        else if((int)type == 2)
-            Debug.Log("Entrou no if do tipo " + type);
-        else if((int)type == 3)
-            Debug.Log("Entrou no if do tipo " + type);
     }
 
     void setAnswerDoor(){
