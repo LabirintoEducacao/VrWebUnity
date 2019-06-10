@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  y: 0
+  y: 1.5
 --- !u!1001 &3817815308466699662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -121,14 +121,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 5166200275186966543, guid: 4be4ca3f4405a7d4ab3028f1651bc1f9,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 905538914091191664, guid: 4be4ca3f4405a7d4ab3028f1651bc1f9,
         type: 3}
       propertyPath: Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5166200275186966543, guid: 4be4ca3f4405a7d4ab3028f1651bc1f9,
+        type: 3}
+      propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -211,14 +211,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 5166200275186966543, guid: 4be4ca3f4405a7d4ab3028f1651bc1f9,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 905538914091191664, guid: 4be4ca3f4405a7d4ab3028f1651bc1f9,
         type: 3}
       propertyPath: Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5166200275186966543, guid: 4be4ca3f4405a7d4ab3028f1651bc1f9,
+        type: 3}
+      propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -301,14 +301,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 5166200275186966543, guid: 4be4ca3f4405a7d4ab3028f1651bc1f9,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 905538914091191664, guid: 4be4ca3f4405a7d4ab3028f1651bc1f9,
         type: 3}
       propertyPath: Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5166200275186966543, guid: 4be4ca3f4405a7d4ab3028f1651bc1f9,
+        type: 3}
+      propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -391,14 +391,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 5166200275186966543, guid: 4be4ca3f4405a7d4ab3028f1651bc1f9,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 905538914091191664, guid: 4be4ca3f4405a7d4ab3028f1651bc1f9,
         type: 3}
       propertyPath: Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5166200275186966543, guid: 4be4ca3f4405a7d4ab3028f1651bc1f9,
+        type: 3}
+      propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
