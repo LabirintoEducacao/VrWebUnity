@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 4683957355388839936, guid: f99a935da6b12bb418e9c3c29f32084a,
         type: 3}
       propertyPath: m_Name
-      value: StartingRoomWithDoor
+      value: MultipleDoors
       objectReference: {fileID: 0}
     - target: {fileID: 4683957355388839963, guid: f99a935da6b12bb418e9c3c29f32084a,
         type: 3}
@@ -76,6 +76,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161698475250125084, guid: f99a935da6b12bb418e9c3c29f32084a,
+        type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f99a935da6b12bb418e9c3c29f32084a, type: 3}
