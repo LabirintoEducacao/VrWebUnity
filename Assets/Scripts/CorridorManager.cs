@@ -6,6 +6,7 @@ public class CorridorManager : MonoBehaviour {
   public Transform roomEntrance;
   public Transform roomExit;
   public MazePath pathInfo;
+  public int cellSize = 1;
   public int question_id = -1;
   public int id;
 
@@ -21,6 +22,7 @@ public class CorridorManager : MonoBehaviour {
     generator.createDoors = false;
     generator.hubPrefab = hubPrefab;
     generator.tileBlock = tilePrefab;
+    generator.cellSize = cellSize;
     createDoors(generator);
     generator.generateCorridor();
 
@@ -37,7 +39,7 @@ public class CorridorManager : MonoBehaviour {
 
   void createDoors(CorridorGenerator generator) {
     //corridor sprout direction
-    generator.direction = Constants.DIRECTION_UP;
+    generator.direction = Constants.DIRECTION_UP|Constants.DIRECTION_RIGHT;
 
     // entrance position
     generator.entrance = new MapCoord(Mathf.FloorToInt(generator.width/2),0);

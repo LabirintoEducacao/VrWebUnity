@@ -26,6 +26,7 @@ public class RoomManager : MonoBehaviour {
     public int id { get => question.question_id; }
     public TypeRoom type;
     public bool doorSpawned;
+    public bool testing = false;
 
 
 
@@ -82,6 +83,18 @@ public class RoomManager : MonoBehaviour {
             doorRef = Instantiate(doorPrefab, spawnDoor[1].position, spawnDoor[1].rotation,spawnDoor[1]);
             door = doorRef.GetComponent<Door>();
             setAnswerDoor();
+    }
+
+    private void Update() {
+        if (testing) {
+            if (Input.GetKeyDown(KeyCode.H)) {
+                int door = UnityEngine.Random.Range(0,4);
+                int dir = Constants.DIRECTIONS[door];
+
+                CorridorManager[] corridors = GameManager.Instance.getCorridorsByRoom(this.id);
+                StartCoroutine(GameManager.Instance.placeNextCorridor(this.spawnDoor[door].position, this.transform.rotation, dir, corridors[0]));
+            } 
+        }
     }
 
     void RoomTypeMultipleDoors(){
