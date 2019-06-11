@@ -89,6 +89,7 @@ public class RoomManager : MonoBehaviour {
 
             GameObject doorEnter = Instantiate(doorPrefab, spawnDoor[0].position, spawnDoor[0].rotation,spawnDoor[0]);
             doorEnter.name = "EnterDoor";
+            EnterDoor = doorEnter.GetComponent<Door>();
 
             if(question.paths[0].end_game == true){
                 if(question.paths[0].end_game == true){
@@ -103,7 +104,6 @@ public class RoomManager : MonoBehaviour {
             // if(door != null){
             //     Debug.Log("Pegou Porta");
             // }
-            setAnswerDoor();
     }
 
     void RoomTypeMultipleDoors(){
@@ -115,6 +115,7 @@ public class RoomManager : MonoBehaviour {
                 if(i == 0){
                     doorRef = Instantiate(doorPrefab, spawnDoor[i].position, spawnDoor[i].rotation,spawnDoor[i]);
                     doorRef.name = "EnterDoor";
+                    EnterDoor = doorRef.GetComponent<Door>();
                     i++;
                 }
                 else {
@@ -129,16 +130,6 @@ public class RoomManager : MonoBehaviour {
                 door = doorRef.GetComponent<Door>();
             }
             doorSpawned = true;
-    }
-
-    void setAnswerDoor(){
-        
-        
-        // foreach (AnswerReference item in answerReference)
-        // {
-        //     if(item.properties.correct)
-        //         door.AnswerCorrect = item.properties;
-        // }
     }
 
     void setNextDoor(){
