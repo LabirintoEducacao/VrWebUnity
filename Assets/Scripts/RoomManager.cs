@@ -21,11 +21,14 @@ public class RoomManager : MonoBehaviour {
     public GameObject answerPrefab;
     public GameObject doorPrefab;
     public Door door;
+    public Door EnterDoor;
+
     [Header ("room data")]
     public Question question;
     public int id { get => question.question_id; }
     public TypeRoom type;
     public bool doorSpawned;
+    public GameManager manager;
 
 
     public void generateAnswers ( ) {
@@ -87,9 +90,19 @@ public class RoomManager : MonoBehaviour {
             GameObject doorEnter = Instantiate(doorPrefab, spawnDoor[0].position, spawnDoor[0].rotation,spawnDoor[0]);
             doorEnter.name = "EnterDoor";
 
-            GameObject doorRef;
-            doorRef = Instantiate(doorPrefab, spawnDoor[1].position, spawnDoor[1].rotation,spawnDoor[1]);
-            door = doorRef.GetComponent<Door>();
+            if(question.paths[0].end_game == true){
+                if(question.paths[0].end_game == true){
+                        GameObject finalDoor = Instantiate(doorPrefab, spawnDoor[0].position, spawnDoor[0].rotation,spawnDoor[0]);
+                        finalDoor.name = "FinalDoor";
+                }
+            } else{
+                Invoke("setNextDoor", 2f);
+            }
+            // doorRef = Instantiate(doorPrefab, spawnDoor[1].position, spawnDoor[1].rotation,spawnDoor[1]);
+            //door = GameObject.Find("EnterDoor").GetComponent<Door>();
+            // if(door != null){
+            //     Debug.Log("Pegou Porta");
+            // }
             setAnswerDoor();
     }
 
@@ -121,14 +134,29 @@ public class RoomManager : MonoBehaviour {
     void setAnswerDoor(){
         
         
-        foreach (AnswerReference item in answerReference)
-        {
-            if(item.properties.correct)
-                door.AnswerCorrect = item.properties;
-        }
+        // foreach (AnswerReference item in answerReference)
+        // {
+        //     if(item.properties.correct)
+        //         door.AnswerCorrect = item.properties;
+        // }
     }
 
-    void setAnswerForMultipleDoors(){
-
+    void setNextDoor(){
+        RoomManager ConnectedRoom = null;
+        if(ConnectedRoom == null){
+            foreach (RoomManager room in manager.roomsObjects)
+            {
+                if(room.id == question.paths[0].connected_question){
+                    ConnectedRoom = room;
+                    break;
+                }
+            }
+            if(ConnectedRoom != null){
+                    Debug.Log("Funfou!!");
+            } else{
+                    Debug.Log("Não funfou!");
+            }
+        }
+        door = ConnectedRoom.EnterDoor;
     }
 }
