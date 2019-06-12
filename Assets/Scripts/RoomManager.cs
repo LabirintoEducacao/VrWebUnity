@@ -84,6 +84,11 @@ public class RoomManager : MonoBehaviour {
             Debug.Log("Entrou no if do tipo " + type);
     }
 
+    /* Quando a sala for de uma saída somente, o RoomManager deve indentificar se há uma proxima sala,
+     * Ou se a a sala atual é a ultim. Em caso de haver um proxima sala, ele deve pegar a refenrencia
+     * da porta EnterDoor(Porta de entrada da sala seguinte) e passar qual a resposta correta para ela,
+     * para que ao jogador chegar na porta ele verifique se a resposta coletada é a correta.
+     */
     void RoomTypeSingleDoor(){
         Debug.Log("Entrou no if do tipo " + type);
 
@@ -149,5 +154,15 @@ public class RoomManager : MonoBehaviour {
             }
         }
         door = ConnectedRoom.EnterDoor;
+        GetCorrectAnswer();
+    }
+
+    void GetCorrectAnswer(){
+        foreach(Answer ans in question.answers){
+            if (ans.correct)
+            {
+                door.AnswerCorrect = ans;
+            }
+        }
     }
 }

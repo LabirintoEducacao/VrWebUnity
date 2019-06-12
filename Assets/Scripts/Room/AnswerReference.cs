@@ -10,6 +10,10 @@ public class AnswerReference : MonoBehaviour
     public GameObject panel;
     public Answer properties;
 
+    private void Start() {
+        textPanel.text = properties.answer;
+    }
+
     public void ActivePanel()
     {
         panel.SetActive(true);
