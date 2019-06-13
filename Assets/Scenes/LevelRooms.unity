@@ -228,7 +228,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-12798
+  m_Name: pb_Mesh-9918
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -409,7 +409,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-12838
+  m_Name: pb_Mesh-9954
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -818,6 +818,7 @@ MonoBehaviour:
   mapRoot: {fileID: 1848642511}
   startingRoom: {fileID: 285990640}
   roomPrefab: {fileID: 4683957355388839936}
+  roomsObjects: []
   rooms: []
   corridors: []
   basicTilePrefab: {fileID: 2526487606973917187, guid: f5685ec62011f624b80919c349d7057b,
@@ -1071,7 +1072,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-12796
+  m_Name: pb_Mesh-9916
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1409,7 +1410,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-12794
+  m_Name: pb_Mesh-9914
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1681,7 +1682,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-12800
+  m_Name: pb_Mesh-9920
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2126,6 +2127,56 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 581876513}
+    - target: {fileID: 3912115515147838292, guid: f99a935da6b12bb418e9c3c29f32084a,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3912115515147838292, guid: f99a935da6b12bb418e9c3c29f32084a,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3912115515147838292, guid: f99a935da6b12bb418e9c3c29f32084a,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3912115515147838292, guid: f99a935da6b12bb418e9c3c29f32084a,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3912115515147838292, guid: f99a935da6b12bb418e9c3c29f32084a,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8052858802108260838, guid: f99a935da6b12bb418e9c3c29f32084a,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8052858802108260838, guid: f99a935da6b12bb418e9c3c29f32084a,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8052858802108260838, guid: f99a935da6b12bb418e9c3c29f32084a,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8052858802108260838, guid: f99a935da6b12bb418e9c3c29f32084a,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8052858802108260838, guid: f99a935da6b12bb418e9c3c29f32084a,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f99a935da6b12bb418e9c3c29f32084a, type: 3}
 --- !u!1 &4683957355388839936 stripped

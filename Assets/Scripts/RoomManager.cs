@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using larcom.MazeGenerator.Support;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public enum TypeRoom
 {
@@ -22,6 +24,9 @@ public class RoomManager : MonoBehaviour {
     public GameObject doorPrefab;
     public Door door;
     public Door EnterDoor;
+
+    [Header("UI")]
+    public TextMeshProUGUI TextQuestion;
 
     [Header ("room data")]
     public Question question;
@@ -45,6 +50,8 @@ public class RoomManager : MonoBehaviour {
             ansRef.properties = answers[i];
             answerReference.Add (ansRef);
         }
+
+        TextQuestion.text = question.question;
 
         if(!doorSpawned)
             setTypeRoom();
@@ -113,26 +120,29 @@ public class RoomManager : MonoBehaviour {
 
     void RoomTypeMultipleDoors(){
         Debug.Log("Entrou no if do tipo " + type);
-            
+            bool enterDoorSpawned = false;
             int i = 0;
             foreach(Transform spawn in spawnDoor){
                 GameObject doorRef = null;
-                if(i == 0){
+                if(i == 0 && enterDoorSpawned){
+                    enterDoorSpawned = true;
                     doorRef = Instantiate(doorPrefab, spawnDoor[i].position, spawnDoor[i].rotation,spawnDoor[i]);
                     doorRef.name = "EnterDoor";
                     EnterDoor = doorRef.GetComponent<Door>();
-                    i++;
+                    
+                    door = doorRef.GetComponent<Door>();
                 }
-                else {
+                else if(i != 0) {
                     string nameDoor = "DoorAnswer_" + i;
                     
                     
                     doorRef = Instantiate(doorPrefab, spawnDoor[i].position, spawnDoor[i].rotation,spawnDoor[i]);
                     doorRef.name = nameDoor;
 
-                    i++;
+                    
+                    door = doorRef.GetComponent<Door>();
                 }
-                door = doorRef.GetComponent<Door>();
+                i++;
             }
             doorSpawned = true;
     }
