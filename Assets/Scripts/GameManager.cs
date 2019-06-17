@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour {
     public RoomDescriptor startingRoom;
     public GameObject roomPrefab;
 
+    public RoomManager[] roomsObjects;
+
     public List<RoomManager> rooms;
     public List<CorridorManager> corridors;
     public GameObject basicTilePrefab;
@@ -39,6 +41,8 @@ public class GameManager : MonoBehaviour {
             Debug.LogError ("Cannot play without a level.");
         }
         mazeLD = readData (levelDesign.text);
+
+        
 
         // StartCoroutine (CreateRooms ( ));
         // StartCoroutine (CreateCorridors ( ));
@@ -140,6 +144,9 @@ public class GameManager : MonoBehaviour {
     public void CreateRooms ( ) {
         this.rooms = new List<RoomManager> ( );
         this.corridors = new List<CorridorManager> ( );
+        this.roomsObjects = new RoomManager[mazeLD.questions.Length];
+        int i = 0;
+
         foreach (Question quest in mazeLD.questions) {
             GameObject go;
             if (quest.question_id == mazeLD.starting_question_id) {
@@ -157,6 +164,9 @@ public class GameManager : MonoBehaviour {
             }
             rm.question = quest;
             rm.generateAnswers ( );
+            rm.manager = this;
+            roomsObjects[i] = go.GetComponent<RoomManager>();
+            i++;
 
             this.rooms.Add (rm);
         }
