@@ -36,6 +36,18 @@ public class RoomManager : MonoBehaviour {
     public GameManager manager;
     public bool testing = false;
 
+    private void Update() {
+        if (testing) {
+            if (Input.GetKeyDown(KeyCode.H)) {
+                int door = UnityEngine.Random.Range(0,4);
+                int dir = Constants.DIRECTIONS[door];
+
+                CorridorManager[] corridors = GameManager.Instance.getCorridorsByRoom(this.id);
+                StartCoroutine(GameManager.Instance.placeNextCorridor(this.spawnDoor[door].position, this.transform.rotation, dir, corridors[0]));
+            } 
+        }
+    }
+
     public void generateAnswers ( ) {
         Answer[] answers = question.answers;
         GameObject[] answerTemp = new GameObject[answers.Length];
@@ -118,17 +130,7 @@ public class RoomManager : MonoBehaviour {
             // }
     }
 
-    private void Update() {
-        if (testing) {
-            if (Input.GetKeyDown(KeyCode.H)) {
-                int door = UnityEngine.Random.Range(0,4);
-                int dir = Constants.DIRECTIONS[door];
-
-                CorridorManager[] corridors = GameManager.Instance.getCorridorsByRoom(this.id);
-                StartCoroutine(GameManager.Instance.placeNextCorridor(this.spawnDoor[door].position, this.transform.rotation, dir, corridors[0]));
-            } 
-        }
-    }
+    
 
     void RoomTypeMultipleDoors(){
         Debug.Log("Entrou no if do tipo " + type);
@@ -136,7 +138,7 @@ public class RoomManager : MonoBehaviour {
             int i = 0;
             foreach(Transform spawn in spawnDoor){
                 GameObject doorRef = null;
-                if(i == 0 && enterDoorSpawned){
+                if(i == 0){
                     enterDoorSpawned = true;
                     doorRef = Instantiate(doorPrefab, spawnDoor[i].position, spawnDoor[i].rotation,spawnDoor[i]);
                     doorRef.name = "EnterDoor";
@@ -166,17 +168,17 @@ public class RoomManager : MonoBehaviour {
             {
                 if(room.id == question.paths[0].connected_question){
                     ConnectedRoom = room;
-                    break;
+                    Debug.Log("Name ConnectedRoom: " + ConnectedRoom.name);
                 }
             }
             if(ConnectedRoom != null){
-                    Debug.Log("Funfou!!");
+                    Debug.Log("ConnectedRoom Não está vazio!!");
+                    door = ConnectedRoom.EnterDoor;
+                    if(door != null) GetCorrectAnswer();
             } else{
-                    Debug.Log("Não funfou!");
+                    Debug.Log("ConnectedRoom está vazio!");
             }
         }
-        door = ConnectedRoom.EnterDoor;
-        GetCorrectAnswer();
     }
 
     void GetCorrectAnswer(){
