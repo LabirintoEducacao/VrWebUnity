@@ -90,14 +90,21 @@ public class Player : PlayerBase
                     currentTimeLoadFillAmount += Time.deltaTime;
                     GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
 
+                    GameObject parentFuture, parentActual;
                     button = hit.collider.gameObject;
+                    parentFuture = button.transform.parent.gameObject;
+                    Transform pos = parentFuture.transform;
+                    
 
                     if (inventory.item != null && currentTimeLoadFillAmount >= timeToLoadFillAmount)
                     {
-                        inventory.ItemObject.transform.position = button.transform.parent.transform.position;
-                        inventory.ItemObject.transform.rotation = button.transform.parent.transform.rotation;
+                        parentActual = inventory.ItemObject.transform.parent.gameObject;
+
+                        parentActual.transform.position = pos.position;
+                        parentActual.transform.rotation = pos.rotation;
 
                         inventory.ItemObject.SetActive(true);
+                         
                         inventory.item.DesactivePanel();
 
                         inventory.item = button.GetComponentInParent<AnswerReference>();

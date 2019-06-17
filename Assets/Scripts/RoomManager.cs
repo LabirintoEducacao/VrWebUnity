@@ -98,7 +98,7 @@ public class RoomManager : MonoBehaviour {
         }
 
         else if((int)type == 2)
-            Debug.Log("Entrou no if do tipo " + type);
+            RoomTypeObjectsAndShapes();
         else if((int)type == 3)
             Debug.Log("Entrou no if do tipo " + type);
     }
@@ -134,12 +134,10 @@ public class RoomManager : MonoBehaviour {
 
     void RoomTypeMultipleDoors(){
         Debug.Log("Entrou no if do tipo " + type);
-            bool enterDoorSpawned = false;
             int i = 0;
             foreach(Transform spawn in spawnDoor){
                 GameObject doorRef = null;
                 if(i == 0){
-                    enterDoorSpawned = true;
                     doorRef = Instantiate(doorPrefab, spawnDoor[i].position, spawnDoor[i].rotation,spawnDoor[i]);
                     doorRef.name = "EnterDoor";
                     EnterDoor = doorRef.GetComponent<Door>();
@@ -159,6 +157,12 @@ public class RoomManager : MonoBehaviour {
                 i++;
             }
             doorSpawned = true;
+    }
+
+    void RoomTypeObjectsAndShapes(){
+        Debug.Log("Entrou no if do tipo " + type);
+
+        
     }
 
     void setNextDoor(){
