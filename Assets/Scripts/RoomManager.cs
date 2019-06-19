@@ -64,12 +64,12 @@ public class RoomManager : MonoBehaviour {
                 ansRef.properties = answers[i];
                 answerReference.Add (ansRef);
             }
-
-            TextQuestion.text = question.question;
         }
 
         if(!doorSpawned)
             setTypeRoom();
+
+        TextQuestion.text = question.question;
     }
 
     void setTypeRoom(){
