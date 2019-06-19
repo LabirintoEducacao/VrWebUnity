@@ -20,7 +20,8 @@ public class RoomManager : MonoBehaviour {
     public Transform[] spawnAnswer;
     public Transform[] spawnDoor;
     public List<AnswerReference> answerReference;
-    public GameObject answerPrefab;
+    /* 0 - Key; 1 - Cube; 2 - Prism; 3 - Circle; */
+    public GameObject[] answerPrefab;
     public GameObject doorPrefab;
     public Door door;
     public Door EnterDoor;
@@ -49,21 +50,23 @@ public class RoomManager : MonoBehaviour {
     }
 
     public void generateAnswers ( ) {
-        Answer[] answers = question.answers;
-        GameObject[] answerTemp = new GameObject[answers.Length];
-        answerReference = new List<AnswerReference> ( );
+        if(question.room_type != "ObjectsAndShapes"){
+            Answer[] answers = question.answers;
+            GameObject[] answerTemp = new GameObject[answers.Length];
+            answerReference = new List<AnswerReference> ( );
 
-        List<Transform> molds = new List<Transform> (spawnAnswer);
-        Tools.Shuffle (molds);
+            List<Transform> molds = new List<Transform> (spawnAnswer);
+            Tools.Shuffle (molds);
 
-        for (int i = 0; i < answers.Length; i++) {
-            GameObject go = Instantiate (answerPrefab, molds[i].position, molds[i].rotation, molds[i]);
-            AnswerReference ansRef = go.GetComponent<AnswerReference> ( );
-            ansRef.properties = answers[i];
-            answerReference.Add (ansRef);
+            for (int i = 0; i < answers.Length; i++) {
+                GameObject go = Instantiate (answerPrefab[0], molds[i].position, molds[i].rotation, molds[i]);
+                AnswerReference ansRef = go.GetComponent<AnswerReference> ( );
+                ansRef.properties = answers[i];
+                answerReference.Add (ansRef);
+            }
+
+            TextQuestion.text = question.question;
         }
-
-        TextQuestion.text = question.question;
 
         if(!doorSpawned)
             setTypeRoom();
@@ -77,6 +80,10 @@ public class RoomManager : MonoBehaviour {
         else if(question.room_type == "doors"){
             type = TypeRoom.MultipleDoors;
             RoomTypeMultipleDoors();
+        }
+        else if(question.room_type == "ObjectsAndShapes"){
+            type = TypeRoom.ObjectsAndShapes;
+            RoomTypeObjectsAndShapes();
         }
     }
 
@@ -100,7 +107,7 @@ public class RoomManager : MonoBehaviour {
         else if((int)type == 2)
             RoomTypeObjectsAndShapes();
         else if((int)type == 3)
-            Debug.Log("Entrou no if do tipo " + type);
+            Debug.Log("Entrou no if do tipo " + type + this.gameObject.name);
     }
 
     /* Quando a sala for de uma saída somente, o RoomManager deve indentificar se há uma proxima sala,
@@ -109,7 +116,7 @@ public class RoomManager : MonoBehaviour {
      * para que ao jogador chegar na porta ele verifique se a resposta coletada é a correta.
      */
     void RoomTypeSingleDoor(){
-        Debug.Log("Entrou no if do tipo " + type);
+        Debug.Log("Entrou no if do tipo " + type + this.gameObject.name);
 
             GameObject doorEnter = Instantiate(doorPrefab, spawnDoor[0].position, spawnDoor[0].rotation,spawnDoor[0]);
             doorEnter.name = "EnterDoor";
@@ -133,7 +140,7 @@ public class RoomManager : MonoBehaviour {
     
 
     void RoomTypeMultipleDoors(){
-        Debug.Log("Entrou no if do tipo " + type);
+        Debug.Log("Entrou no if do tipo " + type + this.gameObject.name);
             int i = 0;
             foreach(Transform spawn in spawnDoor){
                 GameObject doorRef = null;
@@ -160,8 +167,53 @@ public class RoomManager : MonoBehaviour {
     }
 
     void RoomTypeObjectsAndShapes(){
-        Debug.Log("Entrou no if do tipo " + type);
+        Debug.Log("Entrou no if do tipo " + type + this.gameObject.name);
 
+        bool cube = false, prism = false, circle = false;
+        bool spawned = false;
+
+        Answer[] answers = question.answers;
+        GameObject[] answerTemp = new GameObject[answers.Length];
+        answerReference = new List<AnswerReference> ( );
+
+        List<Transform> molds = new List<Transform> (spawnAnswer);
+        Tools.Shuffle (molds);
+
+        int i = 0;
+        while (!spawned)
+        {
+            
+            Debug.Log("Entrou aqui!");
+            int j = UnityEngine.Random.Range(1, 4);
+            Debug.Log("J = " + j);
+            if(j == 1 && !cube){
+                GameObject go = Instantiate (answerPrefab[j], molds[i].position, molds[i].rotation, molds[i]);
+                AnswerReference ansRef = go.GetComponent<AnswerReference> ( );
+                ansRef.properties = answers[i];
+                answerReference.Add (ansRef);
+                i++;
+                cube = true;
+            }
+            else if(j == 2 && !prism){
+                GameObject go = Instantiate (answerPrefab[j], molds[i].position, molds[i].rotation, molds[i]);
+                AnswerReference ansRef = go.GetComponent<AnswerReference> ( );
+                ansRef.properties = answers[i];
+                answerReference.Add (ansRef);
+                i++;
+                prism = true;
+            }
+            else if(j == 3 && !circle){
+                GameObject go = Instantiate (answerPrefab[j], molds[i].position, molds[i].rotation, molds[i]);
+                AnswerReference ansRef = go.GetComponent<AnswerReference> ( );
+                ansRef.properties = answers[i];
+                answerReference.Add (ansRef);
+                i++;
+                circle = true;
+            }
+            if(cube && circle && prism){
+                spawned = true;
+            }
+        }
         
     }
 
