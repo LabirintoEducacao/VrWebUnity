@@ -169,6 +169,31 @@ public class RoomManager : MonoBehaviour {
     void RoomTypeObjectsAndShapes(){
         Debug.Log("Entrou no if do tipo " + type + this.gameObject.name);
 
+        int s = 0;
+            foreach(Transform spawn in spawnDoor){
+                GameObject doorRef = null;
+                if(s == 0){
+                    doorRef = Instantiate(doorPrefab, spawnDoor[s].position, spawnDoor[s].rotation,spawnDoor[s]);
+                    doorRef.name = "EnterDoor";
+                    EnterDoor = doorRef.GetComponent<Door>();
+                    
+                    door = doorRef.GetComponent<Door>();
+                }
+                else if(s != 0) {
+                    string nameDoor = "DoorAnswer_" + s;
+                    
+                    
+                    doorRef = Instantiate(doorPrefab, spawnDoor[s].position, spawnDoor[s].rotation,spawnDoor[s]);
+                    doorRef.name = nameDoor;
+
+                    
+                    door = doorRef.GetComponent<Door>();
+                }
+                s++;
+            }
+            doorSpawned = true;
+
+        // Answer Spawn
         bool cube = false, prism = false, circle = false;
         bool spawned = false;
 
