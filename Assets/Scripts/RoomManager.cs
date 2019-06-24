@@ -213,7 +213,6 @@ public class RoomManager : MonoBehaviour {
 
         // Answer Spawn
         bool cube = false, prism = false, circle = false;
-        bool spawned = false;
 
         Answer[] answers = question.answers;
         GameObject[] answerTemp = new GameObject[answers.Length];
@@ -221,40 +220,45 @@ public class RoomManager : MonoBehaviour {
 
         List<Transform> molds = new List<Transform> (spawnAnswer);
         Tools.Shuffle (molds);
+
+        List<int> count = new List<int>();
+        int i;
         
-        int i = 0;
-        while (!spawned)
+        while (count.Count < 3)
         { 
-            
+            i = UnityEngine.Random.Range(0, 3);
             Debug.Log("Entrou aqui!");
-            int j = UnityEngine.Random.Range(1, 4);
-            Debug.Log("J = " + j);
-            if(j == 1 && !cube){
-                GameObject go = Instantiate (answerPrefab[j], molds[i].position, molds[i].rotation, molds[i]);
-                AnswerReference ansRef = go.GetComponent<AnswerReference> ( );
-                ansRef.properties = answers[i];
-                answerReference.Add (ansRef);
-                i++;
-                cube = true;
-            }
-            else if(j == 2 && !prism){
-                GameObject go = Instantiate (answerPrefab[j], molds[i].position, molds[i].rotation, molds[i]);
-                AnswerReference ansRef = go.GetComponent<AnswerReference> ( );
-                ansRef.properties = answers[i];
-                answerReference.Add (ansRef);
-                i++;
-                prism = true;
-            }
-            else if(j == 3 && !circle){
-                GameObject go = Instantiate (answerPrefab[j], molds[i].position, molds[i].rotation, molds[i]);
-                AnswerReference ansRef = go.GetComponent<AnswerReference> ( );
-                ansRef.properties = answers[i];
-                answerReference.Add (ansRef);
-                i++;
-                circle = true;
-            }
-            if(cube && circle && prism){
-                spawned = true;
+            if(!count.Contains(i)){
+                if(!cube){
+                    GameObject go = Instantiate (answerPrefab[i + 1], molds[i].position, molds[i].rotation, molds[i]);
+                    AnswerReference ansRef = go.GetComponent<AnswerReference> ( );
+                    ansRef.properties = answers[i];
+                    answerReference.Add (ansRef);
+                    count.Add(i);
+                    cube = true;
+                    
+                    Debug.Log("Object: " + go.name + "\n in Spawn: " + i);
+                } else if(!prism){
+                    GameObject go = Instantiate (answerPrefab[i + 1], molds[i].position, molds[i].rotation, molds[i]);
+                    AnswerReference ansRef = go.GetComponent<AnswerReference> ( );
+                    ansRef.properties = answers[i];
+                    answerReference.Add (ansRef);
+                    count.Add(i);
+                    prism = true;
+
+                    Debug.Log("Object: " + go.name + "\n in Spawn: " + i);
+                } else if(!circle){
+                    GameObject go = Instantiate (answerPrefab[i + 1], molds[i].position, molds[i].rotation, molds[i]);
+                    AnswerReference ansRef = go.GetComponent<AnswerReference> ( );
+                    ansRef.properties = answers[i];
+                    answerReference.Add (ansRef);
+                    count.Add(i);
+                    circle = true;
+
+                    Debug.Log("Object: " + go.name + "\n in Spawn: " + i);
+                }
+
+                
             }
         }
         
