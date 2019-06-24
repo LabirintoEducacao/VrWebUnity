@@ -22,6 +22,8 @@ public class RoomManager : MonoBehaviour {
     public List<AnswerReference> answerReference;
     /* 0 - Key; 1 - Cube; 2 - Prism; 3 - Circle; */
     public GameObject[] answerPrefab;
+    public GameObject WallPrefab;
+
     public GameObject doorPrefab;
     public Door door;
     public Door EnterDoor;
@@ -130,7 +132,23 @@ public class RoomManager : MonoBehaviour {
             } else{
                 Invoke("setNextDoor", 2f);
             }
-            // doorRef = Instantiate(doorPrefab, spawnDoor[1].position, spawnDoor[1].rotation,spawnDoor[1]);
+            List<int> count = new List<int>();
+            int num = UnityEngine.Random.Range(1, 4);
+            count.Add(num);
+            //Add Exit Door
+            Instantiate(doorPrefab, spawnDoor[num].position, spawnDoor[num].rotation,spawnDoor[num]);
+
+            //Add Walls
+            while(count.Count < 3){
+                num = UnityEngine.Random.Range(1, 4);
+
+                if(!count.Contains(num)){
+                    Instantiate(WallPrefab, spawnDoor[num].position, spawnDoor[num].rotation,spawnDoor[num]);
+                    count.Add(num);
+                }
+            }
+
+            // doorRef = 
             //door = GameObject.Find("EnterDoor").GetComponent<Door>();
             // if(door != null){
             //     Debug.Log("Pegou Porta");
@@ -203,10 +221,10 @@ public class RoomManager : MonoBehaviour {
 
         List<Transform> molds = new List<Transform> (spawnAnswer);
         Tools.Shuffle (molds);
-
+        
         int i = 0;
         while (!spawned)
-        {
+        { 
             
             Debug.Log("Entrou aqui!");
             int j = UnityEngine.Random.Range(1, 4);

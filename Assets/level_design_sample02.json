@@ -9,7 +9,7 @@
       "answer_type":"text",
       "question_type":"text",
       "question":"Para onde fica o Leste?",
-      "room_type":"ObjectsAndShapes",
+      "room_type":"key",
       "paths": [{
         "availability":"always",
         "width":2,
