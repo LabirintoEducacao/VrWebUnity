@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Animations;
 
 public class Player : PlayerBase
 {
@@ -10,6 +11,7 @@ public class Player : PlayerBase
     public Image GUIReticleLoad;
     public ExitButton exit;
     public Inventory inventory;
+    public RoomManager currentRoom;
 
     [Header("Variables")]
     public float currentTimeUnlock;
@@ -117,6 +119,10 @@ public class Player : PlayerBase
 
                         currentTimeLoadFillAmount = 0;
                         currentTimeUnlock = 0;
+                        foreach (Animator item in currentRoom.anims)
+                        {
+                            item.SetTrigger("openning");
+                        }
                     }
                     else if(inventory.item == null && currentTimeLoadFillAmount >= timeToLoadFillAmount)
                     {
@@ -130,6 +136,11 @@ public class Player : PlayerBase
 
                         currentTimeLoadFillAmount = 0;
                         currentTimeUnlock = 0;
+
+                        foreach (Animator item in currentRoom.anims)
+                        {
+                            item.SetTrigger("openning");
+                        }
                     }
                 }
             }

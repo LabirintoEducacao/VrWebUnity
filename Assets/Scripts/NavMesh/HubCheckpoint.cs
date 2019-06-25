@@ -47,6 +47,8 @@ public class HubCheckpoint : MonoBehaviour {
         if (other.gameObject.CompareTag ("PlayerAgent")) {
             playerAgent = other.gameObject;
             canShow = true;
+            Player player = GameObject.Find("PlayerVr").GetComponentInChildren<Player>();
+            player.currentRoom = this.gameObject.GetComponentInParent<RoomManager>();
 
             if (onPlayerEnter != null) {
                 this.onPlayerEnter(this);

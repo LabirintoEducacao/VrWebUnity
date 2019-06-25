@@ -5,6 +5,8 @@ using larcom.MazeGenerator.Support;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Animations;
+
 
 public enum TypeRoom
 {
@@ -16,6 +18,7 @@ public enum TypeRoom
 
 
 public class RoomManager : MonoBehaviour {
+    [Header("Doors, Answer and Wall")]
     public int entranceDirection = Constants.DIRECTION_NONE;
     public Transform[] spawnAnswer;
     public Transform[] spawnDoor;
@@ -27,6 +30,9 @@ public class RoomManager : MonoBehaviour {
     public GameObject doorPrefab;
     public Door door;
     public Door EnterDoor;
+
+    [Header("Animations")]
+    public List<Animator> anims;
 
     [Header("UI")]
     public TextMeshProUGUI TextQuestion;
@@ -118,11 +124,15 @@ public class RoomManager : MonoBehaviour {
      * para que ao jogador chegar na porta ele verifique se a resposta coletada é a correta.
      */
     void RoomTypeSingleDoor(){
+        List<int> count = new List<int>();
+        
+        
         Debug.Log("Entrou no if do tipo " + type + this.gameObject.name);
 
-            GameObject doorEnter = Instantiate(doorPrefab, spawnDoor[0].position, spawnDoor[0].rotation,spawnDoor[0]);
+            GameObject doorEnter = Instantiate(doorPrefab, spawnDoor[2].position, spawnDoor[2].rotation,spawnDoor[2]);
             doorEnter.name = "EnterDoor";
             EnterDoor = doorEnter.GetComponent<Door>();
+            count.Add(2);
 
             if(question.paths[0].end_game == true){
                 if(question.paths[0].end_game == true){
@@ -132,15 +142,18 @@ public class RoomManager : MonoBehaviour {
             } else{
                 Invoke("setNextDoor", 2f);
             }
-            List<int> count = new List<int>();
-            int num = UnityEngine.Random.Range(1, 4);
-            count.Add(num);
+            int num = UnityEngine.Random.Range(0, 4);
+            
             //Add Exit Door
-            Instantiate(doorPrefab, spawnDoor[num].position, spawnDoor[num].rotation,spawnDoor[num]);
+            GameObject temp = Instantiate(doorPrefab, spawnDoor[0].position, spawnDoor[0].rotation,spawnDoor[0]);
+            count.Add(0);
+            anims = new List<Animator>();
+            Animator animTemp = temp.GetComponent<Animator>();
+            anims.Add(animTemp);
 
             //Add Walls
-            while(count.Count < 3){
-                num = UnityEngine.Random.Range(1, 4);
+            while(count.Count < 4){
+                num = UnityEngine.Random.Range(0, 4);
 
                 if(!count.Contains(num)){
                     Instantiate(WallPrefab, spawnDoor[num].position, spawnDoor[num].rotation,spawnDoor[num]);
