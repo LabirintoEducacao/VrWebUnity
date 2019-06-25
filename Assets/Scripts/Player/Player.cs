@@ -172,6 +172,9 @@ public class Player : PlayerBase
 
                             currentTimeLoadFillAmount = 0;
                             currentTimeUnlock = 0;
+
+                            Animator anim = door.gameObject.GetComponent<Animator>();
+                            anim.SetTrigger("openning");
                         }
                         else
                         {

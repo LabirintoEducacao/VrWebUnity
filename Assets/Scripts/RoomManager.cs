@@ -80,6 +80,14 @@ public class RoomManager : MonoBehaviour {
         TextQuestion.text = question.question;
     }
 
+    /* Quando for uma sala que contém somente uma porta de saida, deve spawnar 2 portas
+         * No qual uma é de entrada, por onde o player vem e o outro é de sáida no qual o player
+         * deve utilizar a o objeto resposta pra ver se está certo
+         *
+         * Lembrando que deve verificar onde está o corredor para que posicione a porta no local correto
+         *
+         * Em caso de sala com uma porta de saída, a porta deve ser posicionada no fim do corredor
+    */
     void setTypeRoom(){
         if(question.room_type == "key"){
             type = TypeRoom.OneDoor;
@@ -93,27 +101,6 @@ public class RoomManager : MonoBehaviour {
             type = TypeRoom.ObjectsAndShapes;
             RoomTypeObjectsAndShapes();
         }
-    }
-
-    void createDoors(){
-        /* Quando for uma sala que contém somente uma porta de saida, deve spawnar 2 portas
-         * No qual uma é de entrada, por onde o player vem e o outro é de sáida no qual o player
-         * deve utilizar a o objeto resposta pra ver se está certo
-         *
-         * Lembrando que deve verificar onde está o corredor para que posicione a porta no local correto
-         *
-         * Em caso de sala com uma porta de saída, a porta deve ser posicionada no fim do corredor
-         */
-        if((int)type == 0){
-            RoomTypeSingleDoor();
-            
-        }
-        else if((int)type == 1){
-            RoomTypeMultipleDoors();
-        }
-
-        else if((int)type == 2)
-            RoomTypeObjectsAndShapes();
         else if((int)type == 3)
             Debug.Log("Entrou no if do tipo " + type + this.gameObject.name);
     }
