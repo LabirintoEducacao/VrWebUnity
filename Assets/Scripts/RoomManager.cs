@@ -62,10 +62,20 @@ public class RoomManager : MonoBehaviour {
     private void Update() {
         if (testing) {
             if (Input.GetKeyDown(KeyCode.H)) {
-                int door = UnityEngine.Random.Range(0,4);
+                int door = 0; //= UnityEngine.Random.Range(0,4);
+                foreach (DoorStructure item in portDatas)
+                {
+                    if(item.name == "DoorAnswer"){
+                        door = item.doorPosition;
+                    }
+                }
+
                 int dir = Constants.DIRECTIONS[door];
 
                 CorridorManager[] corridors = GameManager.Instance.getCorridorsByRoom(this.id);
+
+
+
                 StartCoroutine(GameManager.Instance.placeNextCorridor(this.spawnDoor[door].position, this.transform.rotation, dir, corridors[0]));
             } 
         }
@@ -156,8 +166,13 @@ public class RoomManager : MonoBehaviour {
             
             //Add Exit Door
             GameObject temp = Instantiate(doorPrefab, spawnDoor[0].position, spawnDoor[0].rotation,spawnDoor[0]);
+            string nameDoor = "DoorAnswer";
+            temp.name = nameDoor;
 
-            
+            ds.name = temp.name;
+            ds.doorProperties = temp.GetComponent<Door>();
+            ds.doorPosition = 0;
+
             count.Add(0);
             anims = new List<Animator>();
             Animator animTemp = temp.GetComponent<Animator>();
