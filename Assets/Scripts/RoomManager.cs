@@ -14,22 +14,32 @@ public enum TypeRoom
     MultipleDoors,
     ObjectsAndShapes,
     MultipleChoice
-} 
+}
 
+public struct  DoorStructure{
+    public string name;
+    public Door doorProperties;
+    public int doorPosition;
+}
 
 public class RoomManager : MonoBehaviour {
-    [Header("Doors, Answer and Wall")]
+    [Header("Answer")]
     public int entranceDirection = Constants.DIRECTION_NONE;
     public Transform[] spawnAnswer;
     public Transform[] spawnDoor;
     public List<AnswerReference> answerReference;
     /* 0 - Key; 1 - Cube; 2 - Prism; 3 - Circle; */
+    [Tooltip("Prefabs das respostas que serão instanciados no mapa. 0 - Key; 1 - Cube; 2 - Prism; 3 - Circle; ")]
     public GameObject[] answerPrefab;
+    [Header("Wall")]
     public GameObject WallPrefab;
 
+    [Header("Door")]
+    [Tooltip("Prefab da porta que será instanciado no mapa.")]
     public GameObject doorPrefab;
     public Door door;
     public Door EnterDoor;
+    public DoorStructure[] portDatas;
 
     [Header("Animations")]
     public List<Animator> anims;
@@ -44,6 +54,10 @@ public class RoomManager : MonoBehaviour {
     public bool doorSpawned;
     public GameManager manager;
     public bool testing = false;
+
+    private void Start() {
+        
+    }
 
     private void Update() {
         if (testing) {
@@ -81,12 +95,12 @@ public class RoomManager : MonoBehaviour {
     }
 
     /* Quando for uma sala que contém somente uma porta de saida, deve spawnar 2 portas
-         * No qual uma é de entrada, por onde o player vem e o outro é de sáida no qual o player
-         * deve utilizar a o objeto resposta pra ver se está certo
-         *
-         * Lembrando que deve verificar onde está o corredor para que posicione a porta no local correto
-         *
-         * Em caso de sala com uma porta de saída, a porta deve ser posicionada no fim do corredor
+     * No qual uma é de entrada, por onde o player vem e o outro é de sáida no qual o player
+     * deve utilizar a o objeto resposta pra ver se está certo
+     *
+     * Lembrando que deve verificar onde está o corredor para que posicione a porta no local correto
+     *
+     * Em caso de sala com uma porta de saída, a porta deve ser posicionada no fim do corredor
     */
     void setTypeRoom(){
         if(question.room_type == "key"){
@@ -121,11 +135,20 @@ public class RoomManager : MonoBehaviour {
             EnterDoor = doorEnter.GetComponent<Door>();
             count.Add(2);
 
+            portDatas = new DoorStructure[2];
+
+            DoorStructure ds = new DoorStructure();
+            ds.name = doorEnter.name;
+            ds.doorProperties = EnterDoor;
+            ds.doorPosition = 2;
+            
+            portDatas[0] = ds;
+
+            Debug.Log(portDatas[0].name + "\n" + "Door Cadastrado \n" + "Posição em que a porta se encontra: " + portDatas[0].doorPosition);
+
             if(question.paths[0].end_game == true){
-                if(question.paths[0].end_game == true){
-                        GameObject finalDoor = Instantiate(doorPrefab, spawnDoor[0].position, spawnDoor[0].rotation,spawnDoor[0]);
-                        finalDoor.name = "FinalDoor";
-                }
+                GameObject finalDoor = Instantiate(doorPrefab, spawnDoor[0].position, spawnDoor[0].rotation,spawnDoor[0]);
+                finalDoor.name = "FinalDoor";
             } else{
                 Invoke("setNextDoor", 2f);
             }
@@ -133,6 +156,8 @@ public class RoomManager : MonoBehaviour {
             
             //Add Exit Door
             GameObject temp = Instantiate(doorPrefab, spawnDoor[0].position, spawnDoor[0].rotation,spawnDoor[0]);
+
+            
             count.Add(0);
             anims = new List<Animator>();
             Animator animTemp = temp.GetComponent<Animator>();
@@ -159,57 +184,57 @@ public class RoomManager : MonoBehaviour {
 
     void RoomTypeMultipleDoors(){
         Debug.Log("Entrou no if do tipo " + type + this.gameObject.name);
-            int i = 0;
-            foreach(Transform spawn in spawnDoor){
-                GameObject doorRef = null;
-                if(i == 0){
-                    doorRef = Instantiate(doorPrefab, spawnDoor[i].position, spawnDoor[i].rotation,spawnDoor[i]);
-                    doorRef.name = "EnterDoor";
-                    EnterDoor = doorRef.GetComponent<Door>();
-                    
-                    door = doorRef.GetComponent<Door>();
-                }
-                else if(i != 0) {
-                    string nameDoor = "DoorAnswer_" + i;
-                    
-                    
-                    doorRef = Instantiate(doorPrefab, spawnDoor[i].position, spawnDoor[i].rotation,spawnDoor[i]);
-                    doorRef.name = nameDoor;
-
-                    
-                    door = doorRef.GetComponent<Door>();
-                }
-                i++;
+        int i = 0;
+        foreach(Transform spawn in spawnDoor){
+            GameObject doorRef = null;
+            if(i == 0){
+                doorRef = Instantiate(doorPrefab, spawnDoor[i].position, spawnDoor[i].rotation,spawnDoor[i]);
+                doorRef.name = "EnterDoor";
+                EnterDoor = doorRef.GetComponent<Door>();
+                
+                door = doorRef.GetComponent<Door>();
             }
-            doorSpawned = true;
+            else if(i != 0) {
+                string nameDoor = "DoorAnswer_" + i;
+                
+                
+                doorRef = Instantiate(doorPrefab, spawnDoor[i].position, spawnDoor[i].rotation,spawnDoor[i]);
+                doorRef.name = nameDoor;
+
+                
+                door = doorRef.GetComponent<Door>();
+            }
+            i++;
+        }
+        doorSpawned = true;
     }
 
     void RoomTypeObjectsAndShapes(){
         Debug.Log("Entrou no if do tipo " + type + this.gameObject.name);
 
         int s = 0;
-            foreach(Transform spawn in spawnDoor){
-                GameObject doorRef = null;
-                if(s == 0){
-                    doorRef = Instantiate(doorPrefab, spawnDoor[s].position, spawnDoor[s].rotation,spawnDoor[s]);
-                    doorRef.name = "EnterDoor";
-                    EnterDoor = doorRef.GetComponent<Door>();
-                    
-                    door = doorRef.GetComponent<Door>();
-                }
-                else if(s != 0) {
-                    string nameDoor = "DoorAnswer_" + s;
-                    
-                    
-                    doorRef = Instantiate(doorPrefab, spawnDoor[s].position, spawnDoor[s].rotation,spawnDoor[s]);
-                    doorRef.name = nameDoor;
-
-                    
-                    door = doorRef.GetComponent<Door>();
-                }
-                s++;
+        foreach(Transform spawn in spawnDoor){
+            GameObject doorRef = null;
+            if(s == 0){
+                doorRef = Instantiate(doorPrefab, spawnDoor[s].position, spawnDoor[s].rotation,spawnDoor[s]);
+                doorRef.name = "EnterDoor";
+                EnterDoor = doorRef.GetComponent<Door>();
+                
+                door = doorRef.GetComponent<Door>();
             }
-            doorSpawned = true;
+            else if(s != 0) {
+                string nameDoor = "DoorAnswer_" + s;
+                
+                
+                doorRef = Instantiate(doorPrefab, spawnDoor[s].position, spawnDoor[s].rotation,spawnDoor[s]);
+                doorRef.name = nameDoor;
+
+                
+                door = doorRef.GetComponent<Door>();
+            }
+            s++;
+        }
+        doorSpawned = true;
 
         // Answer Spawn
         bool cube = false, prism = false, circle = false;
@@ -267,19 +292,19 @@ public class RoomManager : MonoBehaviour {
     void setNextDoor(){
         RoomManager ConnectedRoom = null;
         if(ConnectedRoom == null){
-            foreach (RoomManager room in manager.roomsObjects)
-            {
-                if(room.id == question.paths[0].connected_question){
-                    ConnectedRoom = room;
-                    Debug.Log("Name ConnectedRoom: " + ConnectedRoom.name);
-                }
+        foreach (RoomManager room in manager.roomsObjects)
+        {
+            if(room.id == question.paths[0].connected_question){
+                ConnectedRoom = room;
+                Debug.Log("Name ConnectedRoom: " + ConnectedRoom.name);
+            }
             }
             if(ConnectedRoom != null){
                     Debug.Log("ConnectedRoom Não está vazio!!");
                     door = ConnectedRoom.EnterDoor;
                     if(door != null) GetCorrectAnswer();
             } else{
-                    Debug.Log("ConnectedRoom está vazio!");
+                Debug.Log("ConnectedRoom está vazio!");
             }
         }
     }
