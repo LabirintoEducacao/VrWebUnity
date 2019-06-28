@@ -74,8 +74,6 @@ public class RoomManager : MonoBehaviour {
 
                 CorridorManager[] corridors = GameManager.Instance.getCorridorsByRoom(this.id);
 
-
-
                 StartCoroutine(GameManager.Instance.placeNextCorridor(this.spawnDoor[door].position, this.transform.rotation, dir, corridors[0]));
             } 
         }
@@ -331,5 +329,22 @@ public class RoomManager : MonoBehaviour {
                 door.AnswerCorrect = ans;
             }
         }
+    }
+
+    void PositionNextCorridorAndRoom(string nameDoor){
+        int door = 0; //= UnityEngine.Random.Range(0,4);
+        foreach (DoorStructure item in portDatas)
+        {
+            if(item.name ==nameDoor){
+                door = item.doorPosition;
+            }
+        }
+
+        int dir = Constants.DIRECTIONS[door];
+
+        CorridorManager[] corridors = GameManager.Instance.getCorridorsByRoom(this.id);
+
+        StartCoroutine(GameManager.Instance.placeNextCorridor(this.spawnDoor[door].position, this.transform.rotation, dir, corridors[0]));
+
     }
 }
