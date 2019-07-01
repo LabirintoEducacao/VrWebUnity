@@ -119,6 +119,9 @@ public class Player : PlayerBase
 
                         currentTimeLoadFillAmount = 0;
                         currentTimeUnlock = 0;
+                        
+                        currentRoom.PositionNextCorridorAndRoom("DoorAnswer");
+
                         foreach (Animator item in currentRoom.anims)
                         {
                             item.SetTrigger("openning");
@@ -136,6 +139,8 @@ public class Player : PlayerBase
 
                         currentTimeLoadFillAmount = 0;
                         currentTimeUnlock = 0;
+
+                        currentRoom.PositionNextCorridorAndRoom("DoorAnswer");
 
                         foreach (Animator item in currentRoom.anims)
                         {

@@ -56,27 +56,26 @@ public class RoomManager : MonoBehaviour {
     public bool testing = false;
 
     private void Start() {
-        
     }
 
     private void Update() {
-        if (testing) {
-            if (Input.GetKeyDown(KeyCode.H)) {
-                int door = 0; //= UnityEngine.Random.Range(0,4);
-                foreach (DoorStructure item in portDatas)
-                {
-                    if(item.name == "DoorAnswer"){
-                        door = item.doorPosition;
-                    }
-                }
+        // if (testing) {
+        //     if (Input.GetKeyDown(KeyCode.H)) {
+        //         int door = 0; //= UnityEngine.Random.Range(0,4);
+        //         foreach (DoorStructure item in portDatas)
+        //         {
+        //             if(item.name == "DoorAnswer"){
+        //                 door = item.doorPosition;
+        //             }
+        //         }
 
-                int dir = Constants.DIRECTIONS[door];
+        //         int dir = Constants.DIRECTIONS[door];
 
-                CorridorManager[] corridors = GameManager.Instance.getCorridorsByRoom(this.id);
+        //         CorridorManager[] corridors = GameManager.Instance.getCorridorsByRoom(this.id);
 
-                StartCoroutine(GameManager.Instance.placeNextCorridor(this.spawnDoor[door].position, this.transform.rotation, dir, corridors[0]));
-            } 
-        }
+        //         StartCoroutine(GameManager.Instance.placeNextCorridor(this.spawnDoor[door].position, this.transform.rotation, dir, corridors[0]));
+        //     } 
+        // }
     }
 
     public void generateAnswers ( ) {
@@ -138,59 +137,54 @@ public class RoomManager : MonoBehaviour {
         
         Debug.Log("Entrou no if do tipo " + type + this.gameObject.name);
 
-            GameObject doorEnter = Instantiate(doorPrefab, spawnDoor[2].position, spawnDoor[2].rotation,spawnDoor[2]);
-            doorEnter.name = "EnterDoor";
-            EnterDoor = doorEnter.GetComponent<Door>();
-            count.Add(2);
+        GameObject doorEnter = Instantiate(doorPrefab, spawnDoor[2].position, spawnDoor[2].rotation,spawnDoor[2]);
+        doorEnter.name = "EnterDoor";
+        EnterDoor = doorEnter.GetComponent<Door>();
+        count.Add(2);
 
-            portDatas = new DoorStructure[2];
+        portDatas = new DoorStructure[2];
 
-            DoorStructure ds = new DoorStructure();
-            ds.name = doorEnter.name;
-            ds.doorProperties = EnterDoor;
-            ds.doorPosition = 2;
-            
-            portDatas[0] = ds;
+        DoorStructure ds = new DoorStructure();
+        ds.name = doorEnter.name;
+        ds.doorProperties = EnterDoor;
+        ds.doorPosition = 2;
+        
+        portDatas[0] = ds;
 
-            Debug.Log(portDatas[0].name + "\n" + "Door Cadastrado \n" + "Posição em que a porta se encontra: " + portDatas[0].doorPosition);
+        Debug.Log(portDatas[0].name + "\n" + "Door Cadastrado \n" + "Posição em que a porta se encontra: " + portDatas[0].doorPosition);
 
-            if(question.paths[0].end_game == true){
-                GameObject finalDoor = Instantiate(doorPrefab, spawnDoor[0].position, spawnDoor[0].rotation,spawnDoor[0]);
-                finalDoor.name = "FinalDoor";
-            } else{
-                Invoke("setNextDoor", 2f);
+        if(question.paths[0].end_game == true){
+            GameObject finalDoor = Instantiate(doorPrefab, spawnDoor[0].position, spawnDoor[0].rotation,spawnDoor[0]);
+            finalDoor.name = "FinalDoor";
+        } else{
+            Invoke("setNextDoor", 2f);
+        }
+        int num = UnityEngine.Random.Range(0, 4);
+        
+        //Add Exit Door
+        GameObject temp = Instantiate(doorPrefab, spawnDoor[0].position, spawnDoor[0].rotation,spawnDoor[0]);
+        string nameDoor = "DoorAnswer";
+        temp.name = nameDoor;
+
+        ds.name = temp.name;
+        ds.doorProperties = temp.GetComponent<Door>();
+        ds.doorPosition = 0;
+
+        count.Add(0);
+        anims = new List<Animator>();
+        Animator animTemp = temp.GetComponent<Animator>();
+        anims.Add(animTemp);
+
+        //Add Walls
+        while(count.Count < 4){
+            num = UnityEngine.Random.Range(0, 4);
+
+            if(!count.Contains(num)){
+                Instantiate(WallPrefab, spawnDoor[num].position, spawnDoor[num].rotation,spawnDoor[num]);
+                count.Add(num);
             }
-            int num = UnityEngine.Random.Range(0, 4);
-            
-            //Add Exit Door
-            GameObject temp = Instantiate(doorPrefab, spawnDoor[0].position, spawnDoor[0].rotation,spawnDoor[0]);
-            string nameDoor = "DoorAnswer";
-            temp.name = nameDoor;
-
-            ds.name = temp.name;
-            ds.doorProperties = temp.GetComponent<Door>();
-            ds.doorPosition = 0;
-
-            count.Add(0);
-            anims = new List<Animator>();
-            Animator animTemp = temp.GetComponent<Animator>();
-            anims.Add(animTemp);
-
-            //Add Walls
-            while(count.Count < 4){
-                num = UnityEngine.Random.Range(0, 4);
-
-                if(!count.Contains(num)){
-                    Instantiate(WallPrefab, spawnDoor[num].position, spawnDoor[num].rotation,spawnDoor[num]);
-                    count.Add(num);
-                }
-            }
-
-            // doorRef = 
-            //door = GameObject.Find("EnterDoor").GetComponent<Door>();
-            // if(door != null){
-            //     Debug.Log("Pegou Porta");
-            // }
+        }
+        // PositionNextCorridorAndRoom("DoorAnswer");
     }
 
     
@@ -331,7 +325,7 @@ public class RoomManager : MonoBehaviour {
         }
     }
 
-    void PositionNextCorridorAndRoom(string nameDoor){
+    public void PositionNextCorridorAndRoom(string nameDoor){
         int door = 0; //= UnityEngine.Random.Range(0,4);
         foreach (DoorStructure item in portDatas)
         {
