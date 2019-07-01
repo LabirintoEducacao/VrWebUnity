@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour {
     public GameObject roomPrefab;
 
     public RoomManager[] roomsObjects;
+    public int cellSize = 1;
 
     public List<RoomManager> rooms;
     public List<CorridorManager> corridors;
@@ -96,12 +97,16 @@ public class GameManager : MonoBehaviour {
                 yield break;
             }
             //add delta to finishing position in corridor
+            Transform exitHub = corridor.GetComponent<CorridorGenerator>().getExitTranform();
+
             float corrEndx = (corridor.GetComponent<CorridorGenerator>().exit.x + 0.5f) * corridor.cellSize;
             nextCorrPivot += (fwd * (corridor.pathInfo.height * corridor.cellSize) + right * corrEndx);
 
+            nextCorrPivot = exitHub.transform.position + exitHub.forward * cellSize/2f;
+
             nextRoom.transform.rotation = Quaternion.Euler(0f, rot + baseRot.y, 0f);
             //nextRoom.transform.position = nextCorrPivot + Vector3.forward * currentCorridor.pathInfo.height + Vector3.forward * nextRoom.GetComponent<RoomDescriptor>().size.y;
-            nextRoom.transform.position = nextCorrPivot + fwd * nextRoom.GetComponent<RoomDescriptor>().size.y - right * nextRoom.GetComponent<RoomDescriptor>().size.x;// - nextRoom.spawnDoor[0].transform.localPosition;
+            nextRoom.transform.position = nextCorrPivot + fwd * nextRoom.GetComponent<RoomDescriptor>().size.y - right * nextRoom.GetComponent<RoomDescriptor>().size.x/2f;// - nextRoom.spawnDoor[0].transform.localPosition;
 
             //change listener
             currentRoom.GetComponentInChildren<HubCheckpoint>().onPlayerEnter -= onEnteredNextRoom;
@@ -184,6 +189,7 @@ public class GameManager : MonoBehaviour {
                 go.name = "corridor_" + room.id + "_" + path.type;
 
                 CorridorManager man = go.AddComponent<CorridorManager> ( );
+                man.cellSize = this.cellSize;
                 man.question_id = room.id;
                 man.roomEntrance = room.GetComponentInChildren<HubCheckpoint> ( ).transform;
                 man.pathInfo = path;

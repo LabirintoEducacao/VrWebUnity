@@ -4,37 +4,36 @@ using UnityEngine;
 
 public class TileAsset : MonoBehaviour, ITileCreator {
   private GameObject _representation;
-
-  public Tile tile;
-  public bool isGenerated{ get { return representation != null; }}
-  public GameObject representation {
-    get {
-      return _representation;
-    }
-    set {
-      clearChildren();
-      if (value != null) {
-        value.transform.parent = this.transform;
-      }
-      this._representation = value;
-    }
-  }
+	public Tile tile { get; set; } = null;
+	public float cellSize { get; set; } = 1f;
+  public GameObject representation { get => this._representation; }
   
   public MazeGenerator.MazeWallPrefabs mazeWall;
   public MazeGenerator.MazeWallPrefabs mazeDoors;
   public GameObject floorPrefab;
 
   public void create(bool hasDoors = true) {
-    _representation = null;
+		if (_representation != null) {
+      clearChildren();
+    	_representation = null;
+		}
+		
     if (
       (tile.occupation == Constants.TILE_TYPE.CORRIDOR) || 
       (tile.occupation == Constants.TILE_TYPE.ROOM) ) {
-        _representation = Instantiate(floorPrefab, this.transform.position, Quaternion.identity, this.transform);
-        createWalls();
-				if (hasDoors)
-        	createDoors();
+			_representation = Instantiate(floorPrefab, this.transform.position, Quaternion.identity, this.transform);
+			createWalls();
+			if (hasDoors)
+				createDoors();
     }
   }
+
+	void generateTile(){
+      // if (value != null) {
+      //   value.transform.parent = this.transform;
+      // }
+      // this._representation = value;
+	}
 
   void createWalls() {
 		if (tile.passages == Constants.DIRECTION_NONE)
@@ -94,8 +93,9 @@ public class TileAsset : MonoBehaviour, ITileCreator {
 }
 
 public interface ITileCreator {
-  bool isGenerated {get;}
-  GameObject representation {get; set;}
+  GameObject representation { get; }
+	Tile tile { get; set; }
+	float cellSize { get; set; }
 
   void create(bool hasDoors = true);
 }
