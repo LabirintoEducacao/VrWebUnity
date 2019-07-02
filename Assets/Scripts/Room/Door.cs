@@ -12,7 +12,18 @@ public class Door : MonoBehaviour
      */
 
     public Answer AnswerCorrect;
+
+    public linkDoor ld;
+    public bool seted;
+
     public bool openDoor;
+
+    private void Update() {
+        if(ld != null && !seted){
+            
+            seted = true;
+        }
+    }
 
     
 }

@@ -225,9 +225,10 @@ public class RoomManager : MonoBehaviour {
             if(s == 0){
                 doorRef = Instantiate(doorPrefab, spawnDoor[s].position, spawnDoor[s].rotation,spawnDoor[s]);
                 doorRef.name = "EnterDoor";
-                EnterDoor = doorRef.GetComponent<Door>();
+                linkDoor link = doorRef.GetComponent<linkDoor>();
+                EnterDoor = link.answerLinked.GetComponent<Door>();
                 
-                door = doorRef.GetComponent<Door>();
+                door = EnterDoor;
             }
             else if(s != 0) {
                 string nameDoor = "DoorAnswer_" + s;
@@ -308,6 +309,7 @@ public class RoomManager : MonoBehaviour {
             }
             if(ConnectedRoom != null){
                     Debug.Log("ConnectedRoom Não está vazio!!");
+
                     door = ConnectedRoom.EnterDoor;
                     if(door != null) GetCorrectAnswer();
             } else{
@@ -320,6 +322,8 @@ public class RoomManager : MonoBehaviour {
         foreach(Answer ans in question.answers){
             if (ans.correct)
             {
+                GameObject doorTemp = door.gameObject.GetComponentInChildren<GameObject>();
+                door = doorTemp.GetComponent<Door>();
                 door.AnswerCorrect = ans;
             }
         }
