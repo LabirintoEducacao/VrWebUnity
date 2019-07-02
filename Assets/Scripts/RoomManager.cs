@@ -59,23 +59,23 @@ public class RoomManager : MonoBehaviour {
     }
 
     private void Update() {
-        // if (testing) {
-        //     if (Input.GetKeyDown(KeyCode.H)) {
-        //         int door = 0; //= UnityEngine.Random.Range(0,4);
-        //         foreach (DoorStructure item in portDatas)
-        //         {
-        //             if(item.name == "DoorAnswer"){
-        //                 door = item.doorPosition;
-        //             }
-        //         }
+        if (testing) {
+            if (Input.GetKeyDown(KeyCode.H)) {
+                int door = 0; //= UnityEngine.Random.Range(0,4);
+                foreach (DoorStructure item in portDatas)
+                {
+                    if(item.name == "DoorAnswer"){
+                        door = item.doorPosition;
+                    }
+                }
 
-        //         int dir = Constants.DIRECTIONS[door];
+                int dir = Constants.DIRECTIONS[door];
 
-        //         CorridorManager[] corridors = GameManager.Instance.getCorridorsByRoom(this.id);
+                CorridorManager[] corridors = GameManager.Instance.getCorridorsByRoom(this.id);
 
-        //         StartCoroutine(GameManager.Instance.placeNextCorridor(this.spawnDoor[door].position, this.transform.rotation, dir, corridors[0]));
-        //     } 
-        // }
+                StartCoroutine(GameManager.Instance.placeNextCorridor(this.spawnDoor[door].position, this.transform.rotation, dir, corridors[0]));
+            } 
+        }
     }
 
     public void generateAnswers ( ) {
@@ -339,6 +339,5 @@ public class RoomManager : MonoBehaviour {
         CorridorManager[] corridors = GameManager.Instance.getCorridorsByRoom(this.id);
 
         StartCoroutine(GameManager.Instance.placeNextCorridor(this.spawnDoor[door].position, this.transform.rotation, dir, corridors[0]));
-
     }
 }

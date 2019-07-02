@@ -154,44 +154,50 @@ public class Player : PlayerBase
                 Door checkDoor = hit.collider.GetComponent<Door>();
 
                 currentTimeUnlock += Time.deltaTime;
-                if (inventory.item != null && currentTimeUnlock >= timeToUnlock && !checkDoor.openDoor)
-                {
-                    GUIReticleLoad.gameObject.SetActive(true);
-                    currentTimeLoadFillAmount += Time.deltaTime;
-                    GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
-
-                    button = hit.collider.gameObject;
-
-                    Door door = button.GetComponent<Door>();
-
-                    if (currentTimeLoadFillAmount >= timeToLoadFillAmount)
+                if(checkDoor != null){
+                    if (inventory.item != null && currentTimeUnlock >= timeToUnlock && !checkDoor.openDoor)
                     {
-                        if (door.AnswerCorrect == inventory.item.properties)
+                        GUIReticleLoad.gameObject.SetActive(true);
+                        currentTimeLoadFillAmount += Time.deltaTime;
+                        GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
+
+                        button = hit.collider.gameObject;
+
+                        Door door = button.GetComponent<Door>();
+
+                        if (currentTimeLoadFillAmount >= timeToLoadFillAmount)
                         {
-                            Debug.Log("Resposta Certa!");
-                            door.openDoor = true;
-                            inventory.item = null;
+                            if (door.AnswerCorrect == inventory.item.properties)
+                            {
+                                Debug.Log("Resposta Certa!");
+                                door.openDoor = true;
+                                inventory.item = null;
 
-                            GUIReticleLoad.fillAmount = 0;
-                            GUIReticleLoad.gameObject.SetActive(false);
+                                GUIReticleLoad.fillAmount = 0;
+                                GUIReticleLoad.gameObject.SetActive(false);
 
-                            currentTimeLoadFillAmount = 0;
-                            currentTimeUnlock = 0;
+                                currentTimeLoadFillAmount = 0;
+                                currentTimeUnlock = 0;
 
-                            Animator anim = door.gameObject.GetComponent<Animator>();
-                            anim.SetTrigger("openning");
-                        }
-                        else
-                        {
-                            Debug.Log("Resposta errada!");
+                                Animator anim = door.gameObject.GetComponent<Animator>();
+                                anim.SetTrigger("openning");
+                            }
+                            else
+                            {
+                                Debug.Log("Resposta errada!");
 
-                            GUIReticleLoad.fillAmount = 0;
-                            GUIReticleLoad.gameObject.SetActive(false);
+                                GUIReticleLoad.fillAmount = 0;
+                                GUIReticleLoad.gameObject.SetActive(false);
 
-                            currentTimeLoadFillAmount = 0;
-                            currentTimeUnlock = 0;
+                                currentTimeLoadFillAmount = 0;
+                                currentTimeUnlock = 0;
+                            }
                         }
                     }
+                }
+                else
+                {
+                    Debug.Log("door vazio");
                 }
             }
             else

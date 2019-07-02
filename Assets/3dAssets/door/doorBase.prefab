@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3450644411247949307}
   - component: {fileID: 3450644411247949308}
-  - component: {fileID: 6191716840963852829}
   - component: {fileID: 7325904297158343864}
   m_Layer: 0
   m_Name: doorBase
@@ -53,23 +52,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6191716840963852829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3450644411247949306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 461856c51b4c8bc4a8085f29cb94e134, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnswerCorrect:
-    answer_id: -1
-    answer: 
-    correct: 0
-  openDoor: 0
 --- !u!208 &7325904297158343864
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -131,6 +113,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates: []
+--- !u!114 &1624399896428404003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4684321563712693654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 461856c51b4c8bc4a8085f29cb94e134, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AnswerCorrect:
+    answer_id: -1
+    answer: 
+    correct: 0
+  openDoor: 0
 --- !u!1001 &3450644410013834392
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -282,6 +281,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7524634977902729399, guid: 5725f30f195966a4487ab190d5de7a31,
+        type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7524634977902729399, guid: 5725f30f195966a4487ab190d5de7a31,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -1866256995970051414, guid: 5725f30f195966a4487ab190d5de7a31,
         type: 3}
