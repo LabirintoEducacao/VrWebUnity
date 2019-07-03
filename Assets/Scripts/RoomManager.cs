@@ -39,6 +39,8 @@ public class RoomManager : MonoBehaviour {
     public GameObject doorPrefab;
     public Door door;
     public Door EnterDoor;
+
+    public linkDoor linkedDoor;
     public DoorStructure[] portDatas;
 
     [Header("Animations")]
@@ -310,7 +312,11 @@ public class RoomManager : MonoBehaviour {
             if(ConnectedRoom != null){
                     Debug.Log("ConnectedRoom Não está vazio!!");
 
-                    door = ConnectedRoom.EnterDoor;
+                    // door = ConnectedRoom.EnterDoor;
+                    linkDoor ld = ConnectedRoom.linkedDoor;
+                    if(ld != null) Debug.Log("------Achou linkDoor!----");
+                    else Debug.Log("------NÂO Achou linkDoor!----");
+                    door = ld.answerLinked;
                     if(door != null) GetCorrectAnswer();
             } else{
                 Debug.Log("ConnectedRoom está vazio!");
