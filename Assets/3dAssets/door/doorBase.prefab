@@ -253,11 +253,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.4
       objectReference: {fileID: 0}
-    - target: {fileID: -1233657081076909810, guid: 5725f30f195966a4487ab190d5de7a31,
-        type: 3}
-      propertyPath: m_TagString
-      value: Door
-      objectReference: {fileID: 0}
     - target: {fileID: 7270388410884628797, guid: 5725f30f195966a4487ab190d5de7a31,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -288,10 +283,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4651621050845549083, guid: 5725f30f195966a4487ab190d5de7a31,
+    - target: {fileID: -2783258327448258989, guid: 5725f30f195966a4487ab190d5de7a31,
         type: 3}
-      propertyPath: m_Enabled
-      value: 1
+      propertyPath: m_LocalPosition.y
+      value: -0.011122062
+      objectReference: {fileID: 0}
+    - target: {fileID: -2783258327448258989, guid: 5725f30f195966a4487ab190d5de7a31,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0014149069
       objectReference: {fileID: 0}
     - target: {fileID: -8843364123092395435, guid: 5725f30f195966a4487ab190d5de7a31,
         type: 3}
@@ -299,6 +299,11 @@ PrefabInstance:
       value: Door
       objectReference: {fileID: 0}
     - target: {fileID: -7200779716406036781, guid: 5725f30f195966a4487ab190d5de7a31,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: -1233657081076909810, guid: 5725f30f195966a4487ab190d5de7a31,
         type: 3}
       propertyPath: m_TagString
       value: Door
@@ -327,6 +332,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4651621050845549083, guid: 5725f30f195966a4487ab190d5de7a31,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5059611198962745316, guid: 5725f30f195966a4487ab190d5de7a31,
         type: 3}

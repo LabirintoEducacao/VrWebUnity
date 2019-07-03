@@ -103,6 +103,7 @@ public class GameManager : MonoBehaviour {
             nextCorrPivot += (fwd * (corridor.pathInfo.height * corridor.cellSize) + right * corrEndx);
 
             nextCorrPivot = exitHub.transform.position + exitHub.forward * cellSize/2f;
+            nextCorrPivot.y -= 1.5f;
 
             nextRoom.transform.rotation = Quaternion.Euler(0f, rot + baseRot.y, 0f);
             //nextRoom.transform.position = nextCorrPivot + Vector3.forward * currentCorridor.pathInfo.height + Vector3.forward * nextRoom.GetComponent<RoomDescriptor>().size.y;

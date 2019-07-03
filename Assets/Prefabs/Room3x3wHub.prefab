@@ -8066,7 +8066,73 @@ PrefabInstance:
     - target: {fileID: 1768756157828278962, guid: 394a0243983bd7f40b23a6b53df7eb3c,
         type: 3}
       propertyPath: m_Name
-      value: StartingRoom
+      value: Room3x3wHub
+      objectReference: {fileID: 0}
+    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
+        type: 3}
+      propertyPath: answerPrefab.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
+        type: 3}
+      propertyPath: spawnDoor.Array.data[0]
+      value: 
+      objectReference: {fileID: 7670208598439811122}
+    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
+        type: 3}
+      propertyPath: spawnDoor.Array.data[1]
+      value: 
+      objectReference: {fileID: 396517221679251487}
+    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
+        type: 3}
+      propertyPath: spawnDoor.Array.data[2]
+      value: 
+      objectReference: {fileID: 8066281395215242766}
+    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
+        type: 3}
+      propertyPath: spawnDoor.Array.data[3]
+      value: 
+      objectReference: {fileID: 6728717008271916589}
+    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
+        type: 3}
+      propertyPath: answerPrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 9072403018518014131, guid: 59e6b0d3c8a3cd04aac38f362be0008a,
+        type: 3}
+    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
+        type: 3}
+      propertyPath: answerPrefab.Array.data[1]
+      value: 
+      objectReference: {fileID: 9072403018518014131, guid: 11e2bdae3c9f87e409b0bf7b5e1d1b59,
+        type: 3}
+    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
+        type: 3}
+      propertyPath: answerPrefab.Array.data[2]
+      value: 
+      objectReference: {fileID: 9072403018518014131, guid: 6e75c3a6be4e7544293d3d621251684f,
+        type: 3}
+    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
+        type: 3}
+      propertyPath: answerPrefab.Array.data[3]
+      value: 
+      objectReference: {fileID: 9072403018518014131, guid: 1bfe28c885b2f704f8ca6cec2066cf91,
+        type: 3}
+    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
+        type: 3}
+      propertyPath: WallPrefab
+      value: 
+      objectReference: {fileID: 3263489045675159858, guid: a7d94b52c022e244393ca0b107441fd2,
+        type: 3}
+    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
+        type: 3}
+      propertyPath: doorPrefab
+      value: 
+      objectReference: {fileID: 3450644411247949306, guid: 58f432b613ed4aa4dac4bd8003cfbe13,
+        type: 3}
+    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
+        type: 3}
+      propertyPath: testing
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1768756157828278953, guid: 394a0243983bd7f40b23a6b53df7eb3c,
         type: 3}
@@ -8143,72 +8209,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90
       objectReference: {fileID: 0}
-    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
-        type: 3}
-      propertyPath: answerPrefab.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
-        type: 3}
-      propertyPath: spawnDoor.Array.data[0]
-      value: 
-      objectReference: {fileID: 7670208598439811122}
-    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
-        type: 3}
-      propertyPath: spawnDoor.Array.data[1]
-      value: 
-      objectReference: {fileID: 396517221679251487}
-    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
-        type: 3}
-      propertyPath: spawnDoor.Array.data[2]
-      value: 
-      objectReference: {fileID: 8066281395215242766}
-    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
-        type: 3}
-      propertyPath: spawnDoor.Array.data[3]
-      value: 
-      objectReference: {fileID: 6728717008271916589}
-    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
-        type: 3}
-      propertyPath: answerPrefab.Array.data[0]
-      value: 
-      objectReference: {fileID: 9072403018518014131, guid: 59e6b0d3c8a3cd04aac38f362be0008a,
-        type: 3}
-    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
-        type: 3}
-      propertyPath: answerPrefab.Array.data[1]
-      value: 
-      objectReference: {fileID: 9072403018518014131, guid: 11e2bdae3c9f87e409b0bf7b5e1d1b59,
-        type: 3}
-    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
-        type: 3}
-      propertyPath: answerPrefab.Array.data[2]
-      value: 
-      objectReference: {fileID: 9072403018518014131, guid: 6e75c3a6be4e7544293d3d621251684f,
-        type: 3}
-    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
-        type: 3}
-      propertyPath: answerPrefab.Array.data[3]
-      value: 
-      objectReference: {fileID: 9072403018518014131, guid: 1bfe28c885b2f704f8ca6cec2066cf91,
-        type: 3}
-    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
-        type: 3}
-      propertyPath: WallPrefab
-      value: 
-      objectReference: {fileID: 3263489045675159858, guid: a7d94b52c022e244393ca0b107441fd2,
-        type: 3}
-    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
-        type: 3}
-      propertyPath: doorPrefab
-      value: 
-      objectReference: {fileID: 3450644411247949306, guid: 58f432b613ed4aa4dac4bd8003cfbe13,
-        type: 3}
-    - target: {fileID: 8244890510301957038, guid: 394a0243983bd7f40b23a6b53df7eb3c,
-        type: 3}
-      propertyPath: testing
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 354117817329073311, guid: 394a0243983bd7f40b23a6b53df7eb3c,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -8277,7 +8277,7 @@ PrefabInstance:
     - target: {fileID: 3925467679443489980, guid: 394a0243983bd7f40b23a6b53df7eb3c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3925467679443489980, guid: 394a0243983bd7f40b23a6b53df7eb3c,
         type: 3}
