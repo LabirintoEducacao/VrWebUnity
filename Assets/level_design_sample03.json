@@ -1,0 +1,90 @@
+{
+  "maze_id": 1,
+  "starting_question_id": 1,
+  "time_limit":-1,
+  "theme": 1,
+  "questions": [
+    {
+      "question_id": 1,
+      "answer_type":"text",
+      "question_type":"text",
+      "question":"Para onde fica o Leste?",
+      "room_type":"key",
+      "paths": [{
+        "availability":"always",
+        "width":2,
+        "height":5,
+        "type":"corridor",
+        "connected_question":2
+      }],
+      "answers": [
+        {"answer_id": 1, "answer":"Para o Oeste."},
+        {"answer_id": 2, "answer":"Para a direita."},
+        {"answer_id": 3, "answer":"Onde nasce o Sol.", "correct":true}
+      ]
+    },
+    {
+      "question_id": 2,
+      "answer_type":"text",
+      "question_type":"text",
+      "question":"Para onde fica o Leste?",
+      "room_type":"key",
+      "paths": [{
+        "availability":"right",
+        "width":3,
+        "height":5,
+        "type":"maze",
+        "connected_question":3
+      }, {
+        "availability":"wrong",
+        "width":3,
+        "height":5,
+        "type":"maze",
+        "connected_question":4
+      }],
+      "answers": [
+        {"answer_id": 4, "answer":"Para o Oeste."},
+        {"answer_id": 5, "answer":"Para a direita."},
+        {"answer_id": 6, "answer":"Onde nasce o Sol.", "correct":true}
+      ]
+    },
+    {
+      "question_id": 3,
+      "answer_type":"text",
+      "question_type":"text",
+      "question":"Para onde fica o Leste?",
+      "room_type":"key",
+      "paths": [{
+        "availability":"right",
+        "width":2,
+        "height":5,
+        "type":"corridor",
+        "end_game":true
+      }],
+      "answers": [
+        {"answer_id": 7, "answer":"Para o Oeste."},
+        {"answer_id": 8, "answer":"Para a direita."},
+        {"answer_id": 9, "answer":"Onde nasce o Sol.", "correct":true }
+      ]
+    },
+    {
+      "question_id": 4,
+      "answer_type":"text",
+      "question_type":"text",
+      "question":"Para onde fica o Leste?",
+      "room_type":"key",
+      "paths": [{
+        "availability":"right",
+        "width":2,
+        "height":5,
+        "type":"corridor",
+        "connected_question":3
+      }],
+      "answers": [
+        {"answer_id": 7, "answer":"Para o Oeste."},
+        {"answer_id": 8, "answer":"Para a direita."},
+        {"answer_id": 9, "answer":"Onde nasce o Sol.", "correct":true }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class Door : MonoBehaviour
 {
@@ -12,7 +13,23 @@ public class Door : MonoBehaviour
      */
 
     public Answer AnswerCorrect;
+    public Animator thisAnimator;
+
+    public linkDoor ld;
+    public bool seted;
+
     public bool openDoor;
+    
+    // private void Start() {
+    //     ld.thisDoor = this;
+    // }
+
+    private void Update() {
+        if(ld != null && AnswerCorrect != null && !seted){
+            AnswerCorrect = ld.answerLinked;
+            seted = true;
+        }
+    }
 
     
 }

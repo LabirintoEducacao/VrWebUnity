@@ -12,6 +12,7 @@ public class AnswerReference : MonoBehaviour
 
     private void Start() {
         textPanel.text = properties.answer;
+        DesactivePanel();
     }
 
     public void ActivePanel()
@@ -19,6 +20,14 @@ public class AnswerReference : MonoBehaviour
         panel.SetActive(true);
     }
     public void DesactivePanel()
+    {
+        panel.SetActive(false);
+    }
+
+    /// <summary>
+    /// OnBecameInvisible is called when the renderer is no longer visible by any camera.
+    /// </summary>
+    void OnBecameInvisible()
     {
         panel.SetActive(false);
     }

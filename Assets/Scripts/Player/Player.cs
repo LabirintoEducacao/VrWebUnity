@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Animations;
 
 public class Player : PlayerBase
 {
@@ -10,6 +11,7 @@ public class Player : PlayerBase
     public Image GUIReticleLoad;
     public ExitButton exit;
     public Inventory inventory;
+    public RoomManager currentRoom;
 
     [Header("Variables")]
     public float currentTimeUnlock;
@@ -90,14 +92,21 @@ public class Player : PlayerBase
                     currentTimeLoadFillAmount += Time.deltaTime;
                     GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
 
+                    GameObject parentFuture, parentActual;
                     button = hit.collider.gameObject;
+                    parentFuture = button.transform.parent.gameObject;
+                    Transform pos = parentFuture.transform;
+                    
 
                     if (inventory.item != null && currentTimeLoadFillAmount >= timeToLoadFillAmount)
                     {
-                        inventory.ItemObject.transform.position = button.transform.parent.transform.position;
-                        inventory.ItemObject.transform.rotation = button.transform.parent.transform.rotation;
+                        parentActual = inventory.ItemObject.transform.parent.gameObject;
+
+                        parentActual.transform.position = pos.position;
+                        parentActual.transform.rotation = pos.rotation;
 
                         inventory.ItemObject.SetActive(true);
+                         
                         inventory.item.DesactivePanel();
 
                         inventory.item = button.GetComponentInParent<AnswerReference>();
@@ -110,6 +119,13 @@ public class Player : PlayerBase
 
                         currentTimeLoadFillAmount = 0;
                         currentTimeUnlock = 0;
+                        
+                        currentRoom.PositionNextCorridorAndRoom("DoorAnswer");
+
+                        foreach (Animator item in currentRoom.anims)
+                        {
+                            item.SetTrigger("openning");
+                        }
                     }
                     else if(inventory.item == null && currentTimeLoadFillAmount >= timeToLoadFillAmount)
                     {
@@ -123,6 +139,13 @@ public class Player : PlayerBase
 
                         currentTimeLoadFillAmount = 0;
                         currentTimeUnlock = 0;
+
+                        currentRoom.PositionNextCorridorAndRoom("DoorAnswer");
+
+                        foreach (Animator item in currentRoom.anims)
+                        {
+                            item.SetTrigger("openning");
+                        }
                     }
                 }
             }
@@ -131,39 +154,44 @@ public class Player : PlayerBase
                 Door checkDoor = hit.collider.GetComponent<Door>();
 
                 currentTimeUnlock += Time.deltaTime;
-                if (inventory.item != null && currentTimeUnlock >= timeToUnlock && !checkDoor.openDoor)
-                {
-                    GUIReticleLoad.gameObject.SetActive(true);
-                    currentTimeLoadFillAmount += Time.deltaTime;
-                    GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
-
-                    button = hit.collider.gameObject;
-
-                    Door door = button.GetComponent<Door>();
-
-                    if (currentTimeLoadFillAmount >= timeToLoadFillAmount)
+                if(checkDoor != null){
+                    if (inventory.item != null && currentTimeUnlock >= timeToUnlock && !checkDoor.openDoor)
                     {
-                        if (door.AnswerCorrect == inventory.item.properties)
+                        GUIReticleLoad.gameObject.SetActive(true);
+                        currentTimeLoadFillAmount += Time.deltaTime;
+                        GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
+
+                        button = hit.collider.gameObject;
+
+                        Door door = button.GetComponent<Door>();
+
+                        if (currentTimeLoadFillAmount >= timeToLoadFillAmount)
                         {
-                            Debug.Log("Resposta Certa!");
-                            door.openDoor = true;
-                            inventory.item = null;
+                            if (inventory.AnswerSelected.answer == door.AnswerCorrect.answer)
+                            {
+                                Debug.Log("Resposta Certa!");
+                                door.openDoor = true;
+                                inventory.item = null;
 
-                            GUIReticleLoad.fillAmount = 0;
-                            GUIReticleLoad.gameObject.SetActive(false);
+                                GUIReticleLoad.fillAmount = 0;
+                                GUIReticleLoad.gameObject.SetActive(false);
 
-                            currentTimeLoadFillAmount = 0;
-                            currentTimeUnlock = 0;
-                        }
-                        else
-                        {
-                            Debug.Log("Resposta errada!");
+                                currentTimeLoadFillAmount = 0;
+                                currentTimeUnlock = 0;
 
-                            GUIReticleLoad.fillAmount = 0;
-                            GUIReticleLoad.gameObject.SetActive(false);
+                                Animator anim = door.thisAnimator;
+                                anim.SetTrigger("openning");
+                            }
+                            else if(door != null && door.AnswerCorrect.answer != inventory.AnswerSelected.answer)
+                            {
+                                Debug.Log("Resposta errada!");
 
-                            currentTimeLoadFillAmount = 0;
-                            currentTimeUnlock = 0;
+                                GUIReticleLoad.fillAmount = 0;
+                                GUIReticleLoad.gameObject.SetActive(false);
+
+                                currentTimeLoadFillAmount = 0;
+                                currentTimeUnlock = 0;
+                            }
                         }
                     }
                 }
