@@ -135,13 +135,13 @@ public class RoomManager : MonoBehaviour {
      */
     void RoomTypeSingleDoor(){
         List<int> count = new List<int>();
-        
-        
-        Debug.Log("Entrou no if do tipo " + type + this.gameObject.name);
 
         GameObject doorEnter = Instantiate(doorPrefab, spawnDoor[2].position, spawnDoor[2].rotation,spawnDoor[2]);
         doorEnter.name = "EnterDoor";
-        EnterDoor = doorEnter.GetComponent<Door>();
+
+        linkedDoor = doorEnter.GetComponent<linkDoor>();
+
+        EnterDoor = linkedDoor.thisDoor;
         count.Add(2);
 
         portDatas = new DoorStructure[2];
@@ -152,8 +152,6 @@ public class RoomManager : MonoBehaviour {
         ds.doorPosition = 2;
         
         portDatas[0] = ds;
-
-        Debug.Log(portDatas[0].name + "\n" + "Door Cadastrado \n" + "Posição em que a porta se encontra: " + portDatas[0].doorPosition);
 
         if(question.paths[0].end_game == true){
             GameObject finalDoor = Instantiate(doorPrefab, spawnDoor[0].position, spawnDoor[0].rotation,spawnDoor[0]);
@@ -228,7 +226,7 @@ public class RoomManager : MonoBehaviour {
                 doorRef = Instantiate(doorPrefab, spawnDoor[s].position, spawnDoor[s].rotation,spawnDoor[s]);
                 doorRef.name = "EnterDoor";
                 linkDoor link = doorRef.GetComponent<linkDoor>();
-                EnterDoor = link.answerLinked.GetComponent<Door>();
+                EnterDoor = link.thisDoor;
                 
                 door = EnterDoor;
             }
@@ -313,11 +311,9 @@ public class RoomManager : MonoBehaviour {
                     Debug.Log("ConnectedRoom Não está vazio!!");
 
                     // door = ConnectedRoom.EnterDoor;
-                    linkDoor ld = ConnectedRoom.linkedDoor;
-                    if(ld != null) Debug.Log("------Achou linkDoor!----");
-                    else Debug.Log("------NÂO Achou linkDoor!----");
-                    door = ld.answerLinked;
-                    if(door != null) GetCorrectAnswer();
+                    // if(ld != null) Debug.Log("------Achou linkDoor!----");
+                    // else Debug.Log("------NÂO Achou linkDoor!----");
+                    if(linkedDoor != null) GetCorrectAnswer();
             } else{
                 Debug.Log("ConnectedRoom está vazio!");
             }
@@ -328,9 +324,7 @@ public class RoomManager : MonoBehaviour {
         foreach(Answer ans in question.answers){
             if (ans.correct)
             {
-                GameObject doorTemp = door.gameObject.GetComponentInChildren<GameObject>();
-                door = doorTemp.GetComponent<Door>();
-                door.AnswerCorrect = ans;
+                linkedDoor.answerLinked = ans;
             }
         }
     }

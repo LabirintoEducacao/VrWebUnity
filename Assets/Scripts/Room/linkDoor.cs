@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class linkDoor : MonoBehaviour
 {
-    public Door answerLinked;
+    public Answer answerLinked;
+    public Door thisDoor;
     
 }

@@ -167,7 +167,7 @@ public class Player : PlayerBase
 
                         if (currentTimeLoadFillAmount >= timeToLoadFillAmount)
                         {
-                            if (door.AnswerCorrect == inventory.item.properties)
+                            if (inventory.AnswerSelected.answer == door.AnswerCorrect.answer)
                             {
                                 Debug.Log("Resposta Certa!");
                                 door.openDoor = true;
@@ -179,10 +179,10 @@ public class Player : PlayerBase
                                 currentTimeLoadFillAmount = 0;
                                 currentTimeUnlock = 0;
 
-                                Animator anim = door.gameObject.GetComponent<Animator>();
+                                Animator anim = door.thisAnimator;
                                 anim.SetTrigger("openning");
                             }
-                            else
+                            else if(door != null && door.AnswerCorrect.answer != inventory.AnswerSelected.answer)
                             {
                                 Debug.Log("Resposta errada!");
 
@@ -194,10 +194,6 @@ public class Player : PlayerBase
                             }
                         }
                     }
-                }
-                else
-                {
-                    Debug.Log("door vazio");
                 }
             }
             else

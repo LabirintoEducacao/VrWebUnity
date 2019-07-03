@@ -30,6 +30,5 @@ public class AnswerReference : MonoBehaviour
     void OnBecameInvisible()
     {
         panel.SetActive(false);
-        Debug.Log("Entrou aqui!");
     }
 }

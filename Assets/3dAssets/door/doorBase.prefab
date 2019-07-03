@@ -81,7 +81,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35f6f1cae3caf674d963f083157a8306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linkScript: {fileID: 1624399896428404003}
+  answerLinked:
+    answer_id: -1
+    answer: 
+    correct: 0
+  thisDoor: {fileID: 1624399896428404003}
 --- !u!54 &6553797803912134557
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -130,6 +134,9 @@ MonoBehaviour:
     answer_id: -1
     answer: 
     correct: 0
+  thisAnimator: {fileID: 3450644411247949308}
+  ld: {fileID: 8682248349005489919}
+  seted: 0
   openDoor: 0
 --- !u!114 &1914704337535175112
 MonoBehaviour:
@@ -246,6 +253,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: -1233657081076909810, guid: 5725f30f195966a4487ab190d5de7a31,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
     - target: {fileID: 7270388410884628797, guid: 5725f30f195966a4487ab190d5de7a31,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -276,17 +288,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4651621050845549083, guid: 5725f30f195966a4487ab190d5de7a31,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -8843364123092395435, guid: 5725f30f195966a4487ab190d5de7a31,
         type: 3}
       propertyPath: m_TagString
       value: Door
       objectReference: {fileID: 0}
     - target: {fileID: -7200779716406036781, guid: 5725f30f195966a4487ab190d5de7a31,
-        type: 3}
-      propertyPath: m_TagString
-      value: Door
-      objectReference: {fileID: 0}
-    - target: {fileID: -1233657081076909810, guid: 5725f30f195966a4487ab190d5de7a31,
         type: 3}
       propertyPath: m_TagString
       value: Door
@@ -315,11 +327,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4651621050845549083, guid: 5725f30f195966a4487ab190d5de7a31,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5059611198962745316, guid: 5725f30f195966a4487ab190d5de7a31,
         type: 3}

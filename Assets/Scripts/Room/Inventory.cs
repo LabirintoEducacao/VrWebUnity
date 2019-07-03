@@ -29,7 +29,13 @@ public class Inventory : MonoBehaviour
      */
 
 
-
+    public Answer AnswerSelected;
     public AnswerReference item;
     public GameObject ItemObject;
+
+    private void Update() {
+        if(item != null){
+            AnswerSelected = item.properties;
+        }
+    }
 }
