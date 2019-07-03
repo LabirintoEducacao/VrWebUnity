@@ -169,7 +169,7 @@ public class CorridorGenerator : MonoBehaviour {
 		}
 
 		//Blocks
-		List<TileAsset> blocks = new List<TileAsset> ( );
+		List<ITileCreator> blocks = new List<ITileCreator> ( );
 		for (int i = 0; i < _map.width; i++) {
 			for (int j = 0; j < _map.height; j++) {
 				Vector3 position = this.topLeft + new Vector3 (i * cellSize, 0f, j * cellSize);
@@ -187,14 +187,15 @@ public class CorridorGenerator : MonoBehaviour {
 				}
 				if (prefab != null) {
 					GameObject go = Instantiate (prefab, position, Quaternion.identity, rootNode.transform);
-					TileAsset block = go.GetComponent<TileAsset> ( );
+					ITileCreator block = go.GetComponent<ITileCreator> ( );
+					block.cellSize = this.cellSize;
 					block.tile = tile;
 					blocks.Add (block);
 				}
 			}
 		}
 		//Create Renderer
-		foreach (TileAsset block in blocks) {
+		foreach (ITileCreator block in blocks) {
 			block.create (this.createDoors);
 		}
 	}
@@ -250,7 +251,7 @@ public class CorridorGenerator : MonoBehaviour {
 								Gizmos.color = Color.cyan;
 								break;
 						}
-						Gizmos.DrawCube (pos, Vector3.one);
+						Gizmos.DrawCube (pos, Vector3.one * cellSize);
 					}
 				}
 

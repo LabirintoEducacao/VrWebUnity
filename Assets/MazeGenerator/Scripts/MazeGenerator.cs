@@ -69,7 +69,7 @@ public class MazeGenerator : MonoBehaviour {
 	}
 
 	void render () {
-		List<TileAsset> blocks = new List<TileAsset> ();
+		List<ITileCreator> blocks = new List<ITileCreator> ();
 		for (int i = 0; i < map.width; i++) {
 			for (int j = 0; j < map.height; j++) {
 				Vector3 position = this.topLeft + new Vector3 (i * cellSize, 0f, j * cellSize);
@@ -87,14 +87,14 @@ public class MazeGenerator : MonoBehaviour {
 				}
 				if (prefab != null) {
 					GameObject go = Instantiate (prefab, position, Quaternion.identity, rootNode.transform);
-					TileAsset block = go.GetComponent<TileAsset> ();
+					ITileCreator block = go.GetComponent<ITileCreator> ();
 					block.tile = tile;
 					blocks.Add (block);
 				}
 			}
 		}
 		//Create Renderer
-		foreach (TileAsset block in blocks) {
+		foreach (ITileCreator block in blocks) {
 			block.create ();
 		}
 	}
