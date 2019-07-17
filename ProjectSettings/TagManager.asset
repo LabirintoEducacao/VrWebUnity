@@ -24,8 +24,8 @@ TagManager:
   - Buttons
   - Checkpoint
   - Player
-  - 
-  - 
+  - Ground
+  - Obstacles
   - 
   - 
   - 
@@ -47,4 +47,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 2746490713
     locked: 0

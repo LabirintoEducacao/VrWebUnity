@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: ff5526370de4f7143a145f04398a27ee
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Montserrat Alternates ExLight
+  fontNames:
+  - Montserrat Alternates ExLight
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 90351ec54dc958048ae1b7346a0f9ebe, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
