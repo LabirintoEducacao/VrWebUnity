@@ -119,7 +119,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.1
+  bundleVersion: 0.1.1
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -128,7 +128,7 @@ PlayerSettings:
   xboxOneEnable7thCore: 1
   vrSettings:
     cardboard:
-      depthFormat: 0
+      depthFormat: 2
       enableTransitionView: 1
     daydream:
       depthFormat: 0
@@ -162,9 +162,9 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.Larcom.labirinto
   buildNumber: {}
-  AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 28
-  AndroidTargetSdkVersion: 28
+  AndroidBundleVersionCode: 2
+  AndroidMinSdkVersion: 24
+  AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   stripEngineCode: 1
@@ -270,7 +270,14 @@ PlayerSettings:
     banner: {fileID: 0}
   androidGamepadSupportLevel: 1
   resolutionDialogBanner: {fileID: 0}
-  m_BuildTargetIcons: []
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 7998782a3c8f16c42aed7b8a84174276, type: 3}
+      m_Width: 128
+      m_Height: 128
+      m_Kind: 0
   m_BuildTargetPlatformIcons:
   - m_BuildTarget: Android
     m_Icons:
@@ -402,6 +409,7 @@ PlayerSettings:
   - m_BuildTarget: Android
     m_Enabled: 1
     m_Devices:
+    - None
     - cardboard
   m_BuildTargetEnableVuforiaSettings: []
   openGLRequireES31: 0
@@ -659,7 +667,9 @@ PlayerSettings:
   scriptingRuntimeVersion: 1
   gcIncremental: 0
   gcWBarrierValidation: 0
-  apiCompatibilityLevelPerPlatform: {}
+  apiCompatibilityLevelPerPlatform:
+    Android: 3
+    Standalone: 3
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: Template_3D
@@ -717,7 +727,8 @@ PlayerSettings:
   XboxOneOverrideIdentityName: 
   vrEditorSettings:
     daydream:
-      daydreamIconForeground: {fileID: 0}
+      daydreamIconForeground: {fileID: 2800000, guid: cbda98e7dceebc34aae2732ff8ae6a3b,
+        type: 3}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
     UNet: 1

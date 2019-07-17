@@ -40,6 +40,10 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.hardware.camera.autofocus" />
+
     <!-- VR feature tags. -->
     <uses-feature android:name="android.software.vr.mode" android:required="false"/>
     <uses-feature android:name="android.hardware.vr.high_performance" android:required="false"/>

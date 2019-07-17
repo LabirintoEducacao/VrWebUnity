@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 63482899992386546}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BaseFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,11 +38,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 63482899992386546}
     m_Modifications:
-    - target: {fileID: 2238468049341275996, guid: 93a27f41e9b198e43b32f2e52804fcfa,
-        type: 3}
-      propertyPath: m_Name
-      value: Corridor
-      objectReference: {fileID: 0}
     - target: {fileID: 4662399335995520072, guid: 93a27f41e9b198e43b32f2e52804fcfa,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -97,6 +92,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2238468049341275996, guid: 93a27f41e9b198e43b32f2e52804fcfa,
+        type: 3}
+      propertyPath: m_Name
+      value: Corridor
+      objectReference: {fileID: 0}
+    - target: {fileID: 2238468049341275996, guid: 93a27f41e9b198e43b32f2e52804fcfa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93a27f41e9b198e43b32f2e52804fcfa, type: 3}

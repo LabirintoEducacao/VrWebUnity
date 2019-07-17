@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2467cf60aeb7884a8f4e4206220e20f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entranceDirection: 0
   spawnAnswer:
   - {fileID: 5715714459954344139}
   - {fileID: 3173285974776016712}
@@ -129,12 +130,17 @@ MonoBehaviour:
   - {fileID: 354117817329073311}
   - {fileID: 6632560286817600173}
   answerReference: []
-  answerPrefab: {fileID: 9072403018518014131, guid: 1bfe28c885b2f704f8ca6cec2066cf91,
-    type: 3}
+  answerPrefab:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  WallPrefab: {fileID: 0}
   doorPrefab: {fileID: 4937490983137653606, guid: ee3363d3fe944674d94424b342dfb710,
     type: 3}
   door: {fileID: 0}
   EnterDoor: {fileID: 0}
+  linkedDoor: {fileID: 0}
+  anims: []
   TextQuestion: {fileID: 3912115515147838292}
   question:
     question_id: -1
@@ -147,6 +153,7 @@ MonoBehaviour:
   type: 1
   doorSpawned: 0
   manager: {fileID: 0}
+  testing: 0
 --- !u!1 &2001596737418241042
 GameObject:
   m_ObjectHideFlags: 0
@@ -1013,6 +1020,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hub
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324771386752177873, guid: eb0c8f9f377c6474eb93a7e729202597,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6324771386752177900, guid: eb0c8f9f377c6474eb93a7e729202597,
         type: 3}
