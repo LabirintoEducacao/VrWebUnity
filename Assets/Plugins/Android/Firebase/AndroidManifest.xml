@@ -11,7 +11,4 @@ needed for the plugin to be parsed correctly in the folder structure we use.
           android:versionCode="1"
           android:versionName="1.0">
   <uses-sdk android:minSdkVersion="14"/>
-
-  <uses-permission android:name="android.permission.INTERNET" />
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 </manifest>
