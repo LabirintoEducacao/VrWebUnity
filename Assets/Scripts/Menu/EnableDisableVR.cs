@@ -25,16 +25,20 @@ public class EnableDisableVR : MonoBehaviour {
         string desiredDevice = ""; // Or "cardboard".
         Debug.Log ("Trying VR to set to no device.");
 
-        // Some VR Devices do not support reloading when already active, see
-        // https://docs.unity3d.com/ScriptReference/XR.XRSettings.LoadDeviceByName.html
-        XRSettings.LoadDeviceByName (desiredDevice);
+        if (desiredDevice.Equals(XRSettings.loadedDeviceName)) {
+            Debug.Log("Trying to switch VR off on a non-VR status");
+            yield return null;
+        } else {
+            // Some VR Devices do not support reloading when already active, see
+            // https://docs.unity3d.com/ScriptReference/XR.XRSettings.LoadDeviceByName.html
+            XRSettings.LoadDeviceByName (desiredDevice);
 
-        // Must wait one frame after calling `XRSettings.LoadDeviceByName()`.
-        yield return new WaitForSeconds (0.2f);
+            // Must wait one frame after calling `XRSettings.LoadDeviceByName()`.
+            yield return new WaitForSeconds (0.2f);
 
-        // Now it's ok to enable VR mode.
-        XRSettings.enabled = false;
-
+            // Now it's ok to enable VR mode.
+            // XRSettings.enabled = false;
+        }
         if (callback != null) {
             callback (0);
         }
@@ -48,16 +52,21 @@ public class EnableDisableVR : MonoBehaviour {
             Debug.Log ("device: " + device);
         }
 
-        // Some VR Devices do not support reloading when already active, see
-        // https://docs.unity3d.com/ScriptReference/XR.XRSettings.LoadDeviceByName.html
-        XRSettings.LoadDeviceByName (desiredDevice);
+        if (desiredDevice.Equals(XRSettings.loadedDeviceName)) {
+            Debug.Log("Trying to switch VR on but VR is already on.");
+        } else {
+            // Some VR Devices do not support reloading when already active, see
+            // https://docs.unity3d.com/ScriptReference/XR.XRSettings.LoadDeviceByName.html
+            XRSettings.LoadDeviceByName (desiredDevice);
 
-        // Must wait one frame after calling `XRSettings.LoadDeviceByName()`.
-        yield return new WaitForSeconds (0.2f);
+            // Must wait one frame after calling `XRSettings.LoadDeviceByName()`.
+            yield return new WaitForSeconds (0.2f);
 
-        // Now it's ok to enable VR mode.
-        XRSettings.enabled = true;
+            // Now it's ok to enable VR mode.
+            XRSettings.enabled = true;
+        }
 
+        yield return null;
         if (callback != null) {
             callback (0);
         }

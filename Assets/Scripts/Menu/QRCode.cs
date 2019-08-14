@@ -32,6 +32,7 @@ public class QRCode : MonoBehaviour {
 
         // Start playing the camera
         scanner.Camera.Play ();
+        yield return null;
         scanner.OnReady += (sender, arg) => {
             // Bind the Camera texture to any RawImage in your scene and start scan
             target.texture = scanner.Camera.Texture;

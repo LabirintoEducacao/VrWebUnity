@@ -17,6 +17,7 @@ public class CubeButton : MonoBehaviour, IGvrPointerHoverHandler {
 
     float minFlickTime = 3f;
     float maxFlickTime = 20f;
+    int nextSceneLoad = -1;
 
     CubeButton[] buttons;
 
@@ -53,9 +54,22 @@ public class CubeButton : MonoBehaviour, IGvrPointerHoverHandler {
     }
 
     IEnumerator changeScene () {
-        Camera.main.GetComponent<EnableDisableVR> ().changeState (isDestinationVR, loadScene);
+        this.nextSceneLoad = 1; //loading
+        Camera.main.GetComponent<EnableDisableVR> ().changeState (isDestinationVR, allowChangeScene);
         yield return new WaitForSeconds (0.1f);
         // SceneManager.LoadScene (destination);
+    }
+
+    void allowChangeScene(int teste) {
+        this.nextSceneLoad = 2;
+    }
+
+    private void FixedUpdate() {
+        if (this.nextSceneLoad == 2) {
+            this.loadScene(0);
+            this.nextSceneLoad = -1;
+            StopAllCoroutines();
+        }
     }
 
     void loadScene (int teste) {
@@ -106,6 +120,10 @@ public class CubeButton : MonoBehaviour, IGvrPointerHoverHandler {
             StartCoroutine (changeScene ()); // UnityBarCodeScanner has a problem with disable and destroy in the same frame
         }
         // changeScene ();
+    }
+
+    private void OnDisable() {
+        StopAllCoroutines();
     }
 
     public void afterCanvasCancel () {
