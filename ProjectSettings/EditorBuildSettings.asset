@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Gabriel_Level_Test.unity
+    guid: 213debc8850c0b349ad6f8d1236e1460
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: c7524b32ec88ea94baa81096aec3f377
-  - enabled: 1
-    path: Assets/Scenes/LevelRooms.unity
-    guid: 7cb0a19d2a1253b4c870658d626d9fc2
   - enabled: 1
     path: Assets/Scenes/LevelGen.unity
     guid: 174d55c82be8f9447b9482bc1533b74f

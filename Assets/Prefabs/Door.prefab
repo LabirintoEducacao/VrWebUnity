@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4937490983137653593}
   - component: {fileID: 4937490983137653599}
   - component: {fileID: 4937490983137653598}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Door
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -327,6 +327,9 @@ MonoBehaviour:
     answer_id: -1
     answer: 
     correct: 0
+  thisAnimator: {fileID: 0}
+  ld: {fileID: 0}
+  seted: 0
   openDoor: 0
 --- !u!54 &4937490983137653599
 Rigidbody:

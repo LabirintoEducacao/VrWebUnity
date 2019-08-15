@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using larcom.MazeGenerator.Models;
+﻿using larcom.MazeGenerator.Models;
 using larcom.MazeGenerator.Support;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Animations;
 
 public class HubCheckpoint : MonoBehaviour {
     public MapCoord coord;
@@ -11,6 +10,9 @@ public class HubCheckpoint : MonoBehaviour {
     public bool isPlayerInside {
         get { return playerAgent != null; }
     }
+    public RoomManager roomManager;
+    public Animator anim;
+
     public ControlArrows arrows;
     public Transform[ ] goals; // UP, RIGHT, DOWN, LEFT
     public GameObject playerAgent;
@@ -32,7 +34,7 @@ public class HubCheckpoint : MonoBehaviour {
             playerAgent = GameObject.FindGameObjectWithTag("PlayerAgent");
             canShow = true;
         }
-
+        
     }
 
     private void OnEnable ( ) {
@@ -54,12 +56,18 @@ public class HubCheckpoint : MonoBehaviour {
                 this.onPlayerEnter(this);
             }
         }
+        if(roomManager != null && roomManager.portDatas[0].anim != null){
+            anim = roomManager.portDatas[0].anim;
+        } 
+        if(anim != null){
+            anim.SetTrigger("closing");
+        }
     }
 
     private void OnTriggerExit(Collider other) {
         if (other.gameObject.CompareTag("PlayerAgent")) {
             playerAgent = null;
-            // arrows.changeState(false);
+            arrows.changeState(false);
 
             if (this.onPlayerExit != null){
                 this.onPlayerExit(this);

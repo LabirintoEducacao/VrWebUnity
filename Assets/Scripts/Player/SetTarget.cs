@@ -11,6 +11,7 @@ public class SetTarget : MonoBehaviour
 
     public void select() {
         if (onTargetSelected != null) {
+            //Debug.Log("Entrou aqui;");
             onTargetSelected(this, Target);
         }
     }

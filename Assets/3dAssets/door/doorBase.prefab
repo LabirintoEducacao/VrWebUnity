@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3450644411247949307}
   - component: {fileID: 3450644411247949308}
+  - component: {fileID: 7325904297158343864}
   - component: {fileID: 8682248349005489919}
   m_Layer: 13
   m_Name: doorBase
@@ -52,6 +53,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!208 &7325904297158343864
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3450644411247949306}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 1, z: 0.1}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!114 &8682248349005489919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,6 +118,20 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!64 &8290249783628079810
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4684321563712693654}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 5779197439840542771, guid: 5725f30f195966a4487ab190d5de7a31, type: 3}
 --- !u!114 &1624399896428404003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,14 +144,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 461856c51b4c8bc4a8085f29cb94e134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  answer:
+    answer_id: -1
+    answer: 
+    correct: 0
+  anim: {fileID: 3450644411247949308}
+  ld: {fileID: 8682248349005489919}
+  seted: 0
+  openDoor: 0
   AnswerCorrect:
     answer_id: -1
     answer: 
     correct: 0
-  thisAnimator: {fileID: 3450644411247949308}
-  ld: {fileID: 8682248349005489919}
-  seted: 0
-  openDoor: 0
 --- !u!114 &1914704337535175112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,6 +286,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: -1233657081076909810, guid: 5725f30f195966a4487ab190d5de7a31,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: -1233657081076909810, guid: 5725f30f195966a4487ab190d5de7a31,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 7270388410884628797, guid: 5725f30f195966a4487ab190d5de7a31,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -311,15 +356,30 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 13
       objectReference: {fileID: 0}
-    - target: {fileID: -1233657081076909810, guid: 5725f30f195966a4487ab190d5de7a31,
+    - target: {fileID: -1866256995970051414, guid: 5725f30f195966a4487ab190d5de7a31,
         type: 3}
       propertyPath: m_TagString
       value: Door
       objectReference: {fileID: 0}
-    - target: {fileID: -1233657081076909810, guid: 5725f30f195966a4487ab190d5de7a31,
+    - target: {fileID: -1866256995970051414, guid: 5725f30f195966a4487ab190d5de7a31,
         type: 3}
       propertyPath: m_Layer
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: -4651621050845549083, guid: 5725f30f195966a4487ab190d5de7a31,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4651621050845549083, guid: 5725f30f195966a4487ab190d5de7a31,
+        type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4651621050845549083, guid: 5725f30f195966a4487ab190d5de7a31,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7524634977902729399, guid: 5725f30f195966a4487ab190d5de7a31,
         type: 3}
@@ -336,24 +396,19 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -1866256995970051414, guid: 5725f30f195966a4487ab190d5de7a31,
-        type: 3}
-      propertyPath: m_TagString
-      value: Door
-      objectReference: {fileID: 0}
-    - target: {fileID: -1866256995970051414, guid: 5725f30f195966a4487ab190d5de7a31,
-        type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
     - target: {fileID: 2791750678234173352, guid: 5725f30f195966a4487ab190d5de7a31,
         type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4651621050845549083, guid: 5725f30f195966a4487ab190d5de7a31,
+    - target: {fileID: 2791750678234173352, guid: 5725f30f195966a4487ab190d5de7a31,
         type: 3}
-      propertyPath: m_Enabled
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791750678234173352, guid: 5725f30f195966a4487ab190d5de7a31,
+        type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5059611198962745316, guid: 5725f30f195966a4487ab190d5de7a31,
@@ -361,12 +416,36 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5059611198962745316, guid: 5725f30f195966a4487ab190d5de7a31,
+        type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5059611198962745316, guid: 5725f30f195966a4487ab190d5de7a31,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -4286519977909515068, guid: 5725f30f195966a4487ab190d5de7a31,
         type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: -4286519977909515068, guid: 5725f30f195966a4487ab190d5de7a31,
+        type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4286519977909515068, guid: 5725f30f195966a4487ab190d5de7a31,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7524634977902729399, guid: 5725f30f195966a4487ab190d5de7a31, type: 3}
+    - {fileID: 2791750678234173352, guid: 5725f30f195966a4487ab190d5de7a31, type: 3}
+    - {fileID: 5059611198962745316, guid: 5725f30f195966a4487ab190d5de7a31, type: 3}
+    - {fileID: -4286519977909515068, guid: 5725f30f195966a4487ab190d5de7a31, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5725f30f195966a4487ab190d5de7a31, type: 3}
 --- !u!4 &7681331174607058818 stripped
 Transform:
