@@ -27,15 +27,39 @@ public class Inventory : MonoBehaviour
      *      da continuidade ao labirinto, as outras duas levam as corredores que direcionam para salas
      *      de reforço.
      */
-
+    public static Inventory instance;
 
     public Answer AnswerSelected;
-    public AnswerReference item;
+    public ItemBase item;
     public GameObject ItemObject;
+    public bool Correct;
+    public bool ItemSeted = false;
+
+    Player p;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+
+        p = GetComponent<Player>();
+    }
 
     private void Update() {
-        if(item != null){
+        if(item != null && !ItemSeted){
             AnswerSelected = item.properties;
+            Correct = AnswerSelected.correct;
+            ItemSeted = true;
+            p.currentRoom.PositionNextRoom("DoorAnswer", Correct);
+        }
+        else if (item == null || AnswerSelected != item.properties){
+            ItemSeted = false;
         }
     }
 }

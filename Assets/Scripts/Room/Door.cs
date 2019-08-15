@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class Door : MonoBehaviour
+public class Door : CheckBase
 {
     /* Quando acontecer uma interação com a porta, o script deve verificar se a reposta(item)
      * que o jogador carrega com ele é o que deve ser utilizado para abrir a porta em que este
@@ -13,23 +13,21 @@ public class Door : MonoBehaviour
      */
 
     public Answer AnswerCorrect;
-    public Animator thisAnimator;
-
     public linkDoor ld;
-    public bool seted;
-
-    public bool openDoor;
     
-    // private void Start() {
-    //     ld.thisDoor = this;
-    // }
 
-    private void Update() {
-        if(ld != null && AnswerCorrect != null && !seted){
-            AnswerCorrect = ld.answerLinked;
-            seted = true;
+    public override bool checkAnswer(Answer ans){
+        if(ans == answer){
+            anim.SetTrigger("openning");
+            return true;
         }
+        return false;
     }
+
+    /*
+    Animator anim = door.thisAnimator;
+                        anim.SetTrigger("openning");
+ */
 
     
 }

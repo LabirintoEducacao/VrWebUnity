@@ -20,6 +20,7 @@ public class Question {
 
 [System.Serializable]
 public class MazePath {
+  public string availability;
   public int width = 1;
   public int height = 1;
   public string type = "maze";

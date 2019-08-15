@@ -4,7 +4,7 @@ using larcom.MazeGenerator.Models;
 using larcom.MazeGenerator.Support;
 using UnityEngine;
 
-[RequireComponent (typeof (NavMeshBaker))]
+[RequireComponent(typeof(NavMeshBaker))]
 public class GameManager : MonoBehaviour {
     public static GameManager Instance;
 
@@ -25,16 +25,15 @@ public class GameManager : MonoBehaviour {
     public GameObject basicTilePrefab;
     public GameObject hubPrefab;
 
-    RoomManager currentRoom;
-    RoomManager nextRoom;
+    public RoomManager currentRoom;
+    public RoomManager nextRoom;
     CorridorManager currentCorridor;
 
-    private void Awake () {
+    private void Awake ( ) {
         if (Instance == null) {
             Instance = this;
         } else {
             Destroy (this.gameObject);
-            return;
         }
     }
 
@@ -51,8 +50,8 @@ public class GameManager : MonoBehaviour {
 
         // StartCoroutine (CreateRooms ( ));
         // StartCoroutine (CreateCorridors ( ));
-        CreateRooms ();
-        CreateCorridors ();
+        CreateRooms ( );
+        CreateCorridors ( );
         // StartCoroutine(this.placeContinuation());
     }
 
@@ -61,14 +60,19 @@ public class GameManager : MonoBehaviour {
     }
 
     public CorridorManager[] getCorridorsByRoom (int question_id) {
-        return this.corridors.FindAll (x => (x.question_id == question_id)).ToArray ();
+        return this.corridors.FindAll (x => (x.question_id == question_id)).ToArray ( );
     }
 
-    public CorridorManager[] getCorridorsByRoomAndType (int question_id, string room_type) {
-        return this.corridors.FindAll (x => ((x.question_id == question_id) && (x.pathInfo.type.Equals (room_type)))).ToArray ();
+    public CorridorManager[] getCorridorsByRoomAndType(int question_id, string room_type) {
+        return this.corridors.FindAll (x => ((x.question_id == question_id)&&(x.pathInfo.type.Equals(room_type)))).ToArray ( );
     }
 
-    public IEnumerator placeNextCorridor (Vector3 position, Quaternion baseRot, int direction, CorridorManager corridor) {
+    public CorridorManager[] getCorridorsByRoomAndAvailbility(int question_id, string availbility)
+    {
+        return this.corridors.FindAll(x => ((x.question_id == question_id) && (x.pathInfo.availability.Equals(availbility)))).ToArray();
+    }
+
+    public IEnumerator placeNextCorridor(Vector3 position, Quaternion baseRot, int direction, CorridorManager corridor) {
         Vector3 nextCorrPivot = position;
 
         //se já tem corredor, desabilita
@@ -76,6 +80,8 @@ public class GameManager : MonoBehaviour {
         //     this.currentCorridor.gameObject.SetActive(false);
         // }
         this.currentCorridor = corridor;
+
+        Debug.Log(currentCorridor.pathInfo.connected_question);
 
         if (this.currentCorridor == null) {
             Debug.LogError (string.Format ("Cannot allocate inexistent corridor. Room-{0}", new object[] { currentRoom.id }));
@@ -129,9 +135,76 @@ public class GameManager : MonoBehaviour {
         this.currentRoom.GetComponentInChildren<HubCheckpoint> ().activate ();
     }
 
-    IEnumerator placeContinuation () {
-        Vector3 nextCorrPivot = currentRoom.GetComponent<RoomDescriptor> ().topLeft;
-        Vector2 roomSize = currentRoom.GetComponent<RoomDescriptor> ().size;
+    public IEnumerator placeNextCorridorWithMultipleRooms(Vector3 position, Quaternion baseRot, int direction, CorridorManager corridor, MazePath path)
+    {
+        Vector3 nextCorrPivot = position;
+
+        //se já tem corredor, desabilita
+        // if (this.currentCorridor != null) {
+        //     this.currentCorridor.gameObject.SetActive(false);
+        // }
+        this.currentCorridor = corridor;
+
+        Debug.Log(currentCorridor.pathInfo.connected_question);
+
+        if (this.currentCorridor == null)
+        {
+            Debug.LogError(string.Format("Cannot allocate inexistent corridor. Room-{0}", new object[] { currentRoom.id }));
+            yield break;
+        }
+        // Debug.Log("generating corridor in direction: "+direction+" index: "+Tools.directionToIndex(direction));
+        // coloca o novo corredor em posição e rotação e espera até o final do frame pra continuar devido a problemas de render/update
+        float rot = Constants.ROTATIONS[Tools.directionToIndex(direction)];
+        MapCoord d = Constants.DELTA[Tools.directionToIndex(direction)];
+        Vector3 fwd = new Vector3(d.x, 0f, d.y);
+        d = Constants.DELTA[(Tools.directionToIndex(direction) + 1) % 4];
+        Vector3 right = new Vector3(d.x, 0f, d.y);
+        float corrEntx = (corridor.GetComponent<CorridorGenerator>().entrance.x + 0.5f) * corridor.cellSize;
+        this.currentCorridor.transform.rotation = Quaternion.Euler(0f, rot + baseRot.y, 0f);
+        this.currentCorridor.transform.position = nextCorrPivot - right * corrEntx;
+        this.currentCorridor.gameObject.SetActive(true);
+        yield return new WaitForEndOfFrame();
+
+        if (!currentCorridor.pathInfo.end_game)
+        {
+            nextRoom = getRoom(path.connected_question);
+            if (nextRoom == null)
+            {
+                Debug.LogError(string.Format("Room {0} does not exist on path of type {1} from room {2}.", new object[] { currentCorridor.pathInfo.connected_question, currentCorridor.pathInfo.type, currentRoom.id }));
+                yield break;
+            }
+            //add delta to finishing position in corridor
+            Transform exitHub = corridor.GetComponent<CorridorGenerator>().getExitTranform();
+
+            float corrEndx = (corridor.GetComponent<CorridorGenerator>().exit.x + 0.5f) * corridor.cellSize;
+            nextCorrPivot += (fwd * (corridor.pathInfo.height * corridor.cellSize) + right * corrEndx);
+
+            nextCorrPivot = exitHub.transform.position + exitHub.forward * cellSize / 2f;
+            nextCorrPivot.y -= 1.5f;
+
+            nextRoom.transform.rotation = Quaternion.Euler(0f, rot + baseRot.y, 0f);
+            //nextRoom.transform.position = nextCorrPivot + Vector3.forward * currentCorridor.pathInfo.height + Vector3.forward * nextRoom.GetComponent<RoomDescriptor>().size.y;
+            nextRoom.transform.position = nextCorrPivot + fwd * nextRoom.GetComponent<RoomDescriptor>().size.y - right * nextRoom.GetComponent<RoomDescriptor>().size.x / 2f;// - nextRoom.spawnDoor[0].transform.localPosition;
+
+            //change listener
+            currentRoom.GetComponentInChildren<HubCheckpoint>().onPlayerEnter -= onEnteredNextRoom;
+            nextRoom.GetComponentInChildren<HubCheckpoint>().onPlayerEnter += onEnteredNextRoom;
+
+            yield return new WaitForEndOfFrame();
+            CorridorGenerator ccGen = currentCorridor.GetComponent<CorridorGenerator>();
+            currentRoom.GetComponentInChildren<HubCheckpoint>().setGoal(Constants.DIRECTION_UP, ccGen.getEntranceTranform());
+            ccGen.setEntranceMotion(currentRoom.GetComponentInChildren<HubCheckpoint>().transform);
+            ccGen.setExitMotion(nextRoom.GetComponentInChildren<HubCheckpoint>().transform);
+            this.nextRoom.gameObject.SetActive(true);
+        }
+        yield return new WaitForSeconds(0.1f);
+        this.GetComponent<NavMeshBaker>().CreateBake();
+        this.currentRoom.GetComponentInChildren<HubCheckpoint>().activate();
+    }
+
+    IEnumerator placeContinuation() {
+        Vector3 nextCorrPivot = currentRoom.GetComponent<RoomDescriptor>().topLeft;
+        Vector2 roomSize = currentRoom.GetComponent<RoomDescriptor>().size;
 
         CorridorManager[] corridors = getCorridorsByRoom (currentRoom.id);
         CorridorManager corr = null;
@@ -145,10 +218,12 @@ public class GameManager : MonoBehaviour {
     }
 
     void onEnteredNextRoom (HubCheckpoint hub) {
+        if(this.currentRoom.GetComponentInChildren<HubCheckpoint>() == hub)
+            return;
         this.currentRoom.gameObject.SetActive (false);
         this.currentCorridor.gameObject.SetActive (false);
         this.currentRoom = this.nextRoom;
-        // StartCoroutine(placeContinuation());
+        // this.currentRoom.gameObject.SetActive (true);
     }
 
     public void CreateRooms () {
