@@ -4888,6 +4888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 190803365}
   srcButton: {fileID: 203377468}
+  testQRCode: {fileID: 2800000, guid: 7add137f9f0bc7c4eaa0182a9e2d74a9, type: 3}
 --- !u!1 &2043676003
 GameObject:
   m_ObjectHideFlags: 0

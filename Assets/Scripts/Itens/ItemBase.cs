@@ -30,6 +30,5 @@ public class ItemBase : MonoBehaviour
     }
 
     public virtual void ActionItem(){
-
     }
 }

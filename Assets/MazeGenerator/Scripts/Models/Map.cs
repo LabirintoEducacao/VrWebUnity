@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using larcom.MazeGenerator.Support;
 using UnityEngine;
@@ -11,9 +12,10 @@ namespace larcom.MazeGenerator.Models {
 		public Constants.TILE_TYPE borderType = Constants.TILE_TYPE.WALL;
 
 		public Tile[, ] mapGrid;
-		[HideInInspector]
+		[HideInInspector] [System.NonSerialized]
 		public Tile[ ] _SerialGrid;
 
+		[System.NonSerialized]
 		List<Space> spaces;
 		public List<Space> rooms {
 			get {
