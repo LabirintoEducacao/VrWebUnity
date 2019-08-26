@@ -127,79 +127,12 @@ public class GameManager : MonoBehaviour {
             CorridorGenerator ccGen = currentCorridor.GetComponent<CorridorGenerator> ();
             currentRoom.GetComponentInChildren<HubCheckpoint> ().setGoal (Constants.DIRECTION_UP, ccGen.getEntranceTranform ());
             ccGen.setEntranceMotion (currentRoom.GetComponentInChildren<HubCheckpoint> ().transform);
-            ccGen.setExitMotion (nextRoom.GetComponentInChildren<HubCheckpoint> ().transform);
+            //ccGen.setExitMotion (nextRoom.GetComponentInChildren<HubCheckpoint> ().transform);
             this.nextRoom.gameObject.SetActive (true);
         }
         yield return new WaitForSeconds (0.1f);
         this.GetComponent<NavMeshBaker> ().CreateBake ();
         this.currentRoom.GetComponentInChildren<HubCheckpoint> ().activate ();
-    }
-
-    public IEnumerator placeNextCorridorWithMultipleRooms(Vector3 position, Quaternion baseRot, int direction, CorridorManager corridor, MazePath path)
-    {
-        Vector3 nextCorrPivot = position;
-
-        //se já tem corredor, desabilita
-        // if (this.currentCorridor != null) {
-        //     this.currentCorridor.gameObject.SetActive(false);
-        // }
-        this.currentCorridor = corridor;
-
-        Debug.Log(currentCorridor.pathInfo.connected_question);
-
-        if (this.currentCorridor == null)
-        {
-            Debug.LogError(string.Format("Cannot allocate inexistent corridor. Room-{0}", new object[] { currentRoom.id }));
-            yield break;
-        }
-        // Debug.Log("generating corridor in direction: "+direction+" index: "+Tools.directionToIndex(direction));
-        // coloca o novo corredor em posição e rotação e espera até o final do frame pra continuar devido a problemas de render/update
-        float rot = Constants.ROTATIONS[Tools.directionToIndex(direction)];
-        MapCoord d = Constants.DELTA[Tools.directionToIndex(direction)];
-        Vector3 fwd = new Vector3(d.x, 0f, d.y);
-        d = Constants.DELTA[(Tools.directionToIndex(direction) + 1) % 4];
-        Vector3 right = new Vector3(d.x, 0f, d.y);
-        float corrEntx = (corridor.GetComponent<CorridorGenerator>().entrance.x + 0.5f) * corridor.cellSize;
-        this.currentCorridor.transform.rotation = Quaternion.Euler(0f, rot + baseRot.y, 0f);
-        this.currentCorridor.transform.position = nextCorrPivot - right * corrEntx;
-        this.currentCorridor.gameObject.SetActive(true);
-        yield return new WaitForEndOfFrame();
-
-        if (!currentCorridor.pathInfo.end_game)
-        {
-            nextRoom = getRoom(path.connected_question);
-            if (nextRoom == null)
-            {
-                Debug.LogError(string.Format("Room {0} does not exist on path of type {1} from room {2}.", new object[] { currentCorridor.pathInfo.connected_question, currentCorridor.pathInfo.type, currentRoom.id }));
-                yield break;
-            }
-            //add delta to finishing position in corridor
-            Transform exitHub = corridor.GetComponent<CorridorGenerator>().getExitTranform();
-
-            float corrEndx = (corridor.GetComponent<CorridorGenerator>().exit.x + 0.5f) * corridor.cellSize;
-            nextCorrPivot += (fwd * (corridor.pathInfo.height * corridor.cellSize) + right * corrEndx);
-
-            nextCorrPivot = exitHub.transform.position + exitHub.forward * cellSize / 2f;
-            nextCorrPivot.y -= 1.5f;
-
-            nextRoom.transform.rotation = Quaternion.Euler(0f, rot + baseRot.y, 0f);
-            //nextRoom.transform.position = nextCorrPivot + Vector3.forward * currentCorridor.pathInfo.height + Vector3.forward * nextRoom.GetComponent<RoomDescriptor>().size.y;
-            nextRoom.transform.position = nextCorrPivot + fwd * nextRoom.GetComponent<RoomDescriptor>().size.y - right * nextRoom.GetComponent<RoomDescriptor>().size.x / 2f;// - nextRoom.spawnDoor[0].transform.localPosition;
-
-            //change listener
-            currentRoom.GetComponentInChildren<HubCheckpoint>().onPlayerEnter -= onEnteredNextRoom;
-            nextRoom.GetComponentInChildren<HubCheckpoint>().onPlayerEnter += onEnteredNextRoom;
-
-            yield return new WaitForEndOfFrame();
-            CorridorGenerator ccGen = currentCorridor.GetComponent<CorridorGenerator>();
-            currentRoom.GetComponentInChildren<HubCheckpoint>().setGoal(Constants.DIRECTION_UP, ccGen.getEntranceTranform());
-            ccGen.setEntranceMotion(currentRoom.GetComponentInChildren<HubCheckpoint>().transform);
-            ccGen.setExitMotion(nextRoom.GetComponentInChildren<HubCheckpoint>().transform);
-            this.nextRoom.gameObject.SetActive(true);
-        }
-        yield return new WaitForSeconds(0.1f);
-        this.GetComponent<NavMeshBaker>().CreateBake();
-        this.currentRoom.GetComponentInChildren<HubCheckpoint>().activate();
     }
 
     IEnumerator placeContinuation() {
@@ -283,6 +216,11 @@ public class GameManager : MonoBehaviour {
                 this.corridors.Add (man);
             }
         }
+    }
+
+    public void setExitMotionInHub()
+    {
+        currentCorridor.generator.setExitMotion(nextRoom.gameObject.GetComponentInChildren<HubCheckpoint>().transform);
     }
 
     public MazeLDWrapper readData (string json) {

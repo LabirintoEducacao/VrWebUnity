@@ -56,7 +56,7 @@ public class Inventory : MonoBehaviour
             AnswerSelected = item.properties;
             Correct = AnswerSelected.correct;
             ItemSeted = true;
-            p.currentRoom.PositionNextRoom("DoorAnswer", Correct);
+            // p.currentRoom.PositionNextRoom("DoorAnswer", Correct);
         }
         else if (item == null || AnswerSelected != item.properties){
             ItemSeted = false;

@@ -18,6 +18,17 @@ public class Player : PlayerBase
     public float currentTimeLoadFillAmount;
     public bool IsSeted;
     public SetTarget _SetTarget;
+
+    public static Player instance;
+
+    private void Awake() {
+        if(instance == null){
+        instance = this;
+        } else
+        {
+            Destroy(this.gameObject);
+        }
+    }
     private void Start()
     {
         GUIReticleLoad.gameObject.SetActive(false);
@@ -137,23 +148,23 @@ public class Player : PlayerBase
 
     void hitCheckAnswer(RaycastHit hit){
         CheckBase checkDoor = hit.collider.GetComponent<CheckBase>();
+        Debug.Log("Hit no object " + checkDoor.gameObject.name);
 
         currentTimeUnlock += Time.deltaTime;
         if(checkDoor != null){
-            if (Inventory.instance.item != null && currentTimeUnlock >= timeToUnlock && !checkDoor.openDoor)
+            if (Inventory.instance.item != null && currentTimeUnlock >= timeToUnlock && checkDoor.answer.answer != null)
             {
                 GUIReticleLoad.gameObject.SetActive(true);
                 currentTimeLoadFillAmount += Time.deltaTime;
                 GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
 
-                CheckBase objectCheck = hit.collider.gameObject.GetComponent<CheckBase>();
 
                 if (currentTimeLoadFillAmount >= timeToLoadFillAmount)
                 {
+                    CheckBase objectCheck = hit.collider.gameObject.GetComponent<CheckBase>();
                     bool correct = objectCheck.checkAnswer(Inventory.instance.AnswerSelected);
                     if(correct){
                         Debug.Log("Resposta Certa!");
-                        Inventory.instance.item = null;
 
                         GUIReticleLoad.fillAmount = 0;
                         GUIReticleLoad.gameObject.SetActive(false);

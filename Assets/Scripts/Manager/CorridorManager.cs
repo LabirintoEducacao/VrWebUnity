@@ -9,9 +9,10 @@ public class CorridorManager : MonoBehaviour {
   public int cellSize = 1;
   public int question_id = -1;
   public int id;
+    public CorridorGenerator generator;
 
   public void generateCorridor(GameObject tilePrefab, GameObject hubPrefab) {
-    CorridorGenerator generator =  this.GetComponent<CorridorGenerator>();
+    generator =  this.GetComponent<CorridorGenerator>();
     if (generator == null) {
       generator = this.gameObject.AddComponent<CorridorGenerator>();
     }
@@ -25,7 +26,8 @@ public class CorridorManager : MonoBehaviour {
     generator.cellSize = cellSize;
     createDoors(generator);
     generator.generateCorridor();
-
+ 
+    /*
     if (roomEntrance != null) {
       generator.setEntranceMotion(roomEntrance);
     } else {
@@ -34,7 +36,7 @@ public class CorridorManager : MonoBehaviour {
 
     if (roomExit != null) {
       generator.setExitMotion(roomExit);
-    }
+    }*/
   }
 
   void createDoors(CorridorGenerator generator) {

@@ -222,12 +222,26 @@ public class RoomManager : MonoBehaviour, IRoomSet
             count.Add(portDatas[1].doorPosition);
         }
         else{
+            objectTemp = Instantiate(doorPrefab, spawnDoor[0].position, spawnDoor[0].rotation, spawnDoor[0]);
+            objectTemp.name = "DoorAnswer";
+
+            ds.name = objectTemp.name;
+            ds.doorProperties = objectTemp.GetComponent<linkDoor>();
+            ds.doorPosition = 0;
+            ds.anim = objectTemp.GetComponent<Animator>();
+
+            portDatas[1] = ds;
+            count.Add(portDatas[1].doorPosition);
+
             while (count.Count < 4)
             {
                 int num = UnityEngine.Random.Range(0, 4);
+                int i = 0;
                 if (!count.Contains(num))
                 {
-                    Instantiate(doorPrefab, spawnDoor[num].position, spawnDoor[num].rotation, spawnDoor[num]);
+                    objectTemp = Instantiate(doorPrefab, spawnDoor[num].position, spawnDoor[num].rotation, spawnDoor[num]);
+                    objectTemp.name = "DoorAnswer";
+                    i++;
                     count.Add(num);
                 }
             }
@@ -240,6 +254,7 @@ public class RoomManager : MonoBehaviour, IRoomSet
 
         objectTemp = Instantiate(CheckFormAnswer, spawnCheckForm.position, spawnCheckForm.rotation, spawnCheckForm);
         checkShapes cs= objectTemp.GetComponent<checkShapes>();
+        cs.rmanager = this;
         
         foreach (Answer item in question.answers)
         {
@@ -310,11 +325,6 @@ public class RoomManager : MonoBehaviour, IRoomSet
     }
 #endregion
 
-    public void NextRoom()
-    {
-
-    }
-
     public void PositionNextRoom(string nameDoor ,bool checkAnswer)
     {
         int door = 0; //= UnityEngine.Random.Range(0,4);
@@ -347,9 +357,9 @@ public class RoomManager : MonoBehaviour, IRoomSet
                 }
             }
 
-            CorridorManager[] corridors = GameManager.Instance.getCorridorsByRoomAndAvailbility(this.id, availbility);
+            CorridorManager[] corridors = GameManager.Instance.getCorridorsByRoom(this.id);
             StartCoroutine(GameManager.Instance.placeNextCorridor(this.spawnDoor[door].position, this.transform.rotation, 
-                dir, corridors[0]));
+                dir, corridors[path]));
 
             SetDoorAnswer(path);
         }
@@ -412,5 +422,4 @@ public interface IRoomSet
     void PositionNextRoom(String nameDoor, bool checkAnswer);
     void generateAnswers();
     void SetTypeRoom();
-    void NextRoom();
 }
