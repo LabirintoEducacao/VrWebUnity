@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour {
                 Debug.LogError ("Cannot play without a level.");
             }
             mazeLD = readData (levelDesign.text);
+			DataManager.manager.setNewLevel(mazeLD);
         }
 
         // StartCoroutine (CreateRooms ( ));

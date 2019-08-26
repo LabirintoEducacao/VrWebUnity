@@ -26,8 +26,9 @@ public class MazeTools {
             encoded.Close ();
         }
         return o;
-    }
-    public static string base64ToText (string text, bool compress) {
+	}
+
+	public static string base64ToText (string text, bool compress) {
         string o = "";
         byte[] bytesToDecode = System.Convert.FromBase64String (text);
         using (MemoryStream decoded = new MemoryStream (bytesToDecode)) {

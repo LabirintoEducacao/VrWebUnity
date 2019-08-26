@@ -26,7 +26,7 @@ public class FirebaseInitializer : MonoBehaviour {
         } else {
             _instance = this;
             DontDestroyOnLoad (this.gameObject);
-            initialize ();
+			Invoke("initialize", 0.1f);
         }
     }
 
@@ -56,9 +56,15 @@ public class FirebaseInitializer : MonoBehaviour {
         }
     }
 
+	void OnDestroy() {
+		SceneManager.activeSceneChanged -= OnSceneChanged;
+	}
+
     private void OnSceneChanged(Scene oldScene, Scene newScene)
     {
-        FirebaseAnalytics
-            .LogEvent( "navigation", FirebaseAnalytics.ParameterLevelName, newScene.name);
+		if (firebaseLoaded) {
+			FirebaseAnalytics
+				.LogEvent("navigation", FirebaseAnalytics.ParameterLevelName, newScene.name);
+		}
     }
 }
