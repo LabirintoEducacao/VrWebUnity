@@ -12,13 +12,18 @@ public class Door : CheckBase
      * Caso seja a resposta errada, o jogador perderá uma estrela.
      */
 
-    public Answer AnswerCorrect;
     public linkDoor ld;
     
+    private void Update() {
+        if(answer != ld.answerLinked)
+            answer = ld.answerLinked;
+    }
 
     public override bool checkAnswer(Answer ans){
         if(ans == answer){
             anim.SetTrigger("openning");
+            Inventory.instance.item = null;
+            GameManager.Instance.setExitMotionInHub();
             return true;
         }
         return false;
@@ -28,6 +33,4 @@ public class Door : CheckBase
     Animator anim = door.thisAnimator;
                         anim.SetTrigger("openning");
  */
-
-    
 }

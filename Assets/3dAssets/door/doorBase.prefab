@@ -129,7 +129,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 5779197439840542771, guid: 5725f30f195966a4487ab190d5de7a31, type: 3}
 --- !u!114 &1624399896428404003
@@ -144,18 +144,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 461856c51b4c8bc4a8085f29cb94e134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rmanager: {fileID: 0}
   answer:
     answer_id: -1
     answer: 
     correct: 0
   anim: {fileID: 3450644411247949308}
-  ld: {fileID: 8682248349005489919}
   seted: 0
   openDoor: 0
-  AnswerCorrect:
-    answer_id: -1
-    answer: 
-    correct: 0
+  ld: {fileID: 8682248349005489919}
 --- !u!114 &1914704337535175112
 MonoBehaviour:
   m_ObjectHideFlags: 0

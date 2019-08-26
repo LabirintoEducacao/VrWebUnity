@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CheckBase : MonoBehaviour
 {
-
+    public RoomManager rmanager;
     public Answer answer;
     public Animator anim;
 
