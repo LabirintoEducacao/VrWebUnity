@@ -51,7 +51,7 @@ public class DataManager : MonoBehaviour {
 				new Parameter("ElapsedTime", svgd.timeElapsed)
 				);
 		}
-		FirebaseAnalytics.LogEvent(Firebase.Analytics.FirebaseAnalytics.EventLogin);
+		FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventLogin);
 	}
 	public MazeLDWrapper mazeLD = null;
 
