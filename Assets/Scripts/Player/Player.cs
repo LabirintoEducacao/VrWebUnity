@@ -107,26 +107,21 @@ public class Player : PlayerBase
             parentFuture = hit.collider.gameObject.transform.parent.gameObject;
             Transform pos = parentFuture.transform;
 
-            //Caso o inventário esteja vazio
+			//Caso o inventário esteja vazio
 			if (currentTimeLoadFillAmount >= timeToLoadFillAmount) {
-				DataManager.manager.answerStatus(this.currentRoom.question.question_id, Inventory.instance.AnswerSelected.correct);
-				if (Inventory.instance.item == null && currentTimeLoadFillAmount >= timeToLoadFillAmount) {
-					// Passando o item selecionado para o inventário
-					Inventory.instance.item.ActionItem();
-				}
-				//Caso já tenha algo no inventário
-				else if (Inventory.instance.item != null && currentTimeLoadFillAmount >= timeToLoadFillAmount) {
-					// removendo o item anterior
+				//Caso já tenha algo no inventário, trocar
+				if (Inventory.instance.item != null) {
 					parentActual = Inventory.instance.ItemObject.transform.parent.gameObject;
-					Inventory.instance.item.ActionItem();
 					parentActual.transform.position = pos.position;
 					parentActual.transform.rotation = pos.rotation;
 					Inventory.instance.ItemObject.SetActive(true);
 					Inventory.instance.item.DesactivePanel();
 				}
+
 				//Pegando o novo objeto
 				Inventory.instance.item = hit.collider.gameObject.GetComponentInParent<ItemBase>();
 				Inventory.instance.item.currentRoom = currentRoom;
+				Inventory.instance.item.ActionItem();
 				Inventory.instance.ItemObject = Inventory.instance.item.gameObject;
 				Inventory.instance.ItemObject.gameObject.SetActive(false);
 
@@ -134,6 +129,8 @@ public class Player : PlayerBase
 				GUIReticleLoad.gameObject.SetActive(false);
 				currentTimeLoadFillAmount = 0;
 				currentTimeUnlock = 0;
+
+				DataManager.manager.answerStatus(this.currentRoom.question.question_id, Inventory.instance.AnswerSelected.correct);
 			}
 		}
     }
