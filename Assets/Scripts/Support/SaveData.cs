@@ -34,12 +34,11 @@ namespace larcom.support {
 			string fullpath = Path.Combine(Application.persistentDataPath, SaveData.basePath, filename);
 			byte[] bytesToDecode = System.Text.Encoding.UTF8.GetBytes(jsondata);
 			
-			using (FileStream fdp = File.OpenWrite(fullpath)) {
+			using (FileStream fdp = File.Create(fullpath)) {
 				using (MemoryStream mem = new MemoryStream(bytesToDecode)) {
 					mem.CopyTo(fdp);
 				}
 			}
-			Debug.Log("game saved at: " + fullpath);
 		}
 
 		static async Task<bool> requestPermissionAsync(string permission) {
@@ -59,15 +58,14 @@ namespace larcom.support {
 			}
 			string fullpath = Path.Combine(Application.persistentDataPath, SaveData.basePath, filename);
 			if (File.Exists(fullpath)) {
-					string data;
-					using (MemoryStream mem = new MemoryStream()) {
-						using (FileStream fdp = File.OpenRead(fullpath)) {
-							fdp.CopyTo(mem);
-						}
-						data = System.Text.Encoding.UTF8.GetString(mem.ToArray());
+				string data;
+				using (MemoryStream mem = new MemoryStream()) {
+					using (FileStream fdp = File.OpenRead(fullpath)) {
+						fdp.CopyTo(mem);
 					}
-					var output = JsonUtility.FromJson<dynamic>(data);
-					return output;
+					data = System.Text.Encoding.UTF8.GetString(mem.ToArray());
+				}
+				return data;
 			} else {
 				return null;
 			}

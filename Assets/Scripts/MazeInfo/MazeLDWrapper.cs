@@ -1,10 +1,15 @@
 [System.Serializable]
 public class MazeLDWrapper {
-  public int maze_id = -1;
-  public int starting_question_id;
-  public int time_limit = -1;
-  public int theme;
-  public Question[] questions;
+	public int maze_id = -1;
+	public string maze_name = "Abacate faz bem";
+	public int starting_question_id;
+	public int time_limit = -1;
+	public int theme;
+	public Question[] questions;
+
+	public override string ToString() {
+		return string.Format("{0}.{1}", new object[] { maze_id, maze_name });
+	}
 }
 
 [System.Serializable]
