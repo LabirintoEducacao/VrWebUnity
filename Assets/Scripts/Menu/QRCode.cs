@@ -12,15 +12,69 @@ public class QRCode : MonoBehaviour {
     Scanner scanner;
     public RawImage target;
     public CubeButton srcButton;
-	public Texture2D testQRCode;
+	public Texture2D[] testQRCode;
+	bool noCamera = true;
+	bool finished = false;
+	public List<string> base64bits;
+
 
     private void OnEnable () {
         StartCoroutine (CameraStarter ());
     }
 
+	public int base64bitsSize {
+		get {
+			if (base64bits == null) {
+				return 0;
+			}
+			return base64bits.Count;
+		}
+	}
+	public bool base64BitRead(int bit) {
+		if ((base64bits == null) || (base64bits.Count <= bit)) {
+			return false;
+		}
+		return (!string.IsNullOrEmpty(base64bits [bit]));
+	}
+
+	void proccessQRCode(string base64bit) {
+		//append|i|len|<base64data>
+		string[] slicedBits = base64bit.Split('|');
+		//validations
+		if (slicedBits.Length != 4) {
+			Debug.LogError("Cannot parse QRCode with slices length != 4.  Starts with: "+base64bit.Substring(0,20));
+			return;
+		} else if (slicedBits[0] != "append") {
+			Debug.LogError("Invalid QR Code \"metadata\". Starts with... " + base64bit.Substring(0, 20));
+			return;
+		}
+		//real proccessing
+		int index = int.Parse (slicedBits[1]) - 1; // their numbering starts at 1 and we start at 0
+		int len = int.Parse (slicedBits[2]);
+		if (base64bits == null) {
+			base64bits = new List<string>();
+			for (int i = 0; i < len; i++) {
+				base64bits.Add("");
+			}
+		}
+		base64bits[index] = slicedBits[3];
+
+		//verify if all QR Codes have been read
+		bool fin = true;
+		for (int i = 0; i < base64bits.Count; i++) {
+			if ((base64bits[i] == null) || (base64bits[i].Length <= 0)) {
+				fin = false;
+				break;
+			}
+		}
+		this.finished = fin;
+	}
+
     IEnumerator CameraStarter () {
-		bool noCamera = true;
-#if PLATFORM_ANDROID && !UNITY_EDITOR
+		noCamera = true;
+		finished = false;
+		base64bits = null;
+#if UNITY_ANDROID && !UNITY_EDITOR
 		if (!Permission.HasUserAuthorizedPermission (Permission.Camera)) {
             Permission.RequestUserPermission (Permission.Camera);
             while (this.enabled && !Permission.HasUserAuthorizedPermission (Permission.Camera)) {
@@ -28,49 +82,69 @@ public class QRCode : MonoBehaviour {
             }
         }
 		noCamera = false;
+#else
+		yield return null;
 #endif
 		// Create a basic scanner
 		scanner = new Scanner();
 		if (noCamera) {
-			ParserResult result = scanner.Parser.Decode(testQRCode.GetPixels32(), testQRCode.width, testQRCode.height);
-			string levelData = MazeTools.base64ToText (result.Value, true);
-			Debug.Log("json... \n"+levelData);
-			DataManager.manager.setNewLevel(levelData);
-			this.gameObject.SetActive(false);
-
+			foreach (Texture2D t in this.testQRCode) {
+				ParserResult result = scanner.Parser.Decode(t.GetPixels32(), t.width, t.height);
+				proccessQRCode(result.Value);
+				//string levelData = MazeTools.base64ToText (result.Value, true);
+			}
+			if (!finished) {
+				Debug.LogError("Should have ended QR Code reading");
+			}
 		} else {
 			Debug.Log("Trying to start Cammera for QR Code Scanner.");
 
 			// Start playing the camera
 			scanner.Camera.Play();
-			yield return null;
+
 			scanner.OnReady += (sender, arg) => {
 				// Bind the Camera texture to any RawImage in your scene and start scan
 				target.texture = scanner.Camera.Texture;
 				scanner.Scan((barCodeType, barCodeValue) => {
 					//Set new level data
-					string levelDataStr = MazeTools.base64ToText (barCodeValue, true);
-					DataManager.manager.setNewLevel(levelDataStr);
+					//string levelDataStr = MazeTools.base64ToText (barCodeValue, true);
+					proccessQRCode(barCodeValue);
+					//DataManager.manager.setNewLevel(levelDataStr);
 
-					//stop camera
-					scanner.Camera.Stop();
-					scanner.Stop();
-					srcButton.afterCanvasOK();
 				});
-
 			};
 		}
     }
 
-    private void OnDisable () {
+	void OnReady(object sender, System.EventArgs args) {
+
+	}
+
+	private void OnDisable () {
         scanner.Camera.Stop ();
         scanner.Destroy ();
         scanner = null;
     }
 
-    void Update () {
+    void FixedUpdate () {
         // The barcode scanner has to be updated manually
-        if ((scanner != null) && (scanner.Camera != null) && (scanner.Camera.IsPlaying()))
+        if ((scanner != null) && (!noCamera))
             scanner.Update ();
+		
+		if (this.finished) {
+			if (!noCamera) {
+				//stop camera
+				scanner.Camera.Stop();
+			}
+			scanner.Stop();
+			string data = "";
+			foreach (string bit in base64bits) {
+				data += bit;
+			}
+			string levelData = MazeTools.base64ToText (data, true);
+			DataManager.manager.setNewLevel(levelData);
+
+			srcButton.afterCanvasOK();
+		}
     }
 }

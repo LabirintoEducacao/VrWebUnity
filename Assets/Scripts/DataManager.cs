@@ -35,9 +35,13 @@ public class DataManager : MonoBehaviour {
 			instance = this;
 			SceneManager.activeSceneChanged += SceneChanged;
 			DontDestroyOnLoad(this.gameObject);
-			this.mazeLD = SaveData.load("current_level") as MazeLDWrapper;
-			if (mazeLD != null) {
-				svgd = SaveData.load("savegame") as SaveGameData;
+			var ld = SaveData.load("current_level");
+			if (ld != null) {
+				this.mazeLD = JsonUtility.FromJson<MazeLDWrapper>(ld);
+				var save = SaveData.load("savegame");
+				if (save != null) {
+					svgd = JsonUtility.FromJson<SaveGameData>(save);
+				}
 			}
 		}
 	}
@@ -53,7 +57,8 @@ public class DataManager : MonoBehaviour {
 		}
 		FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventLogin);
 	}
-	public MazeLDWrapper mazeLD = null;
+	private MazeLDWrapper _maze = null;
+	public MazeLDWrapper mazeLD { get => _maze; set => _maze = value; }
 
 	public void setNewLevel(string levelDesign) {
 		MazeLDWrapper tempLD = JsonUtility.FromJson<MazeLDWrapper>(levelDesign);
