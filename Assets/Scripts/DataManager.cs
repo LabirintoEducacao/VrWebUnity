@@ -108,9 +108,16 @@ public class DataManager : MonoBehaviour {
 		FirebaseAnalytics.LogEvent(
 			FirebaseAnalytics.EventLevelStart,
 			StartParameters);
-		
-		//Eh nois, Analytics
 
+		//Eh nois, Analytics
+		EventInfo e = new EventInfo();
+		e.event_name = "maze_start";
+		e.maze_id = svgd.mazeID;
+		int uid = LoginHandler.handler.user == null ? -1 : int.Parse(LoginHandler.handler.user.uid);
+		e.user_id = uid <= 0 ? 0 : uid;
+		e.question_id = svgd.currentRoomID;
+		e.elapsed_time = Mathf.RoundToInt(svgd.timeElapsed);
+		EventPool.sendEvent(e);
 	}
 
 	public void endRoom() {

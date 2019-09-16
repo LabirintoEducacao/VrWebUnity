@@ -43,9 +43,30 @@ public class LoginHandler : MonoBehaviour {
 			this.webAPI = Resources.FindObjectsOfTypeAll<WebServiceData>()[0];
 		}
 	}
+#endregion
+
+#region event pool retrial
+	private void loadPool() {
+		//load events from disk
+
+		InvokeRepeating("checkAndSendEventInPool", 2f, 5f);
+	}
+
+	void checkAndSendEventInPool() {
+		if (EventPool.pool.Count > 0) {
+			//Events works like LIFO
+			EventInfo e = EventPool.pool[EventPool.pool.Count-1];
+			EventPool.pool.RemoveAt(EventPool.pool.Count - 1);
+			EventPool.sendEvent(e);
+		}
+	}
 	#endregion
 
-#region login
+	private void OnDestroy() {
+		CancelInvoke("checkAndSendEventInPool");
+	}
+
+	#region login
 	public delegate void LoginCompleted(UserInfo user);
 	public static LoginCompleted OnLoginCompleted;
 
