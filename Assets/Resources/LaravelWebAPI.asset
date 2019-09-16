@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c0ae76b188b1c6458908a7d498b69e1, type: 3}
   m_Name: LaravelWebAPI
   m_EditorClassIdentifier: 
-  baseURL: 
-  loginPath: 
-  getRoomPath: 
-  getMazePath: 
+  baseURL: http://192.168.240.222/api
+  loginPath: /login
+  getRoomPath: /virtual
+  getMazePath: /jsn
+  eventPath: /data

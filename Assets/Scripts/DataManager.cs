@@ -99,6 +99,7 @@ public class DataManager : MonoBehaviour {
 	}
 
 	public void startRoom() {
+		// FIREBASE ANALYTICS
 		Parameter[] StartParameters = {
 				new Parameter("MazeID", svgd.mazeID),
 				new Parameter(FirebaseAnalytics.ParameterLevel, svgd.currentRoomID),
@@ -107,6 +108,9 @@ public class DataManager : MonoBehaviour {
 		FirebaseAnalytics.LogEvent(
 			FirebaseAnalytics.EventLevelStart,
 			StartParameters);
+		
+		//Eh nois, Analytics
+
 	}
 
 	public void endRoom() {
