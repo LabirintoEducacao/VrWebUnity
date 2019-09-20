@@ -45,7 +45,95 @@ public class EventPool {
 			url += "&user_id=0";
 		}
 
-		e.async_timestamp = System.DateTime.Now.ToBinary();
+		if (e.async_timestamp > 0) {
+			url += "&async_timestamp=" + e.async_timestamp;
+		}
+		return url;
+	}
+
+	public static string createQuestionStartURL(EventInfo e) {
+		WebServiceData webAPI = Resources.FindObjectsOfTypeAll<WebServiceData>()[0];
+		string url = string.Format("{0}?event_name={1}&maze_id={2}&question_id={3}&elapsed_time={4}&wrong_count={5}&correct_count={6}", new object[] { webAPI.eventURL, e.event_name, e.maze_id, e.question_id, e.elapsed_time, e.wrong_count, e.correct_count });
+		if (e.user_id > 0) {
+			url += "&user_id=" + e.user_id.ToString();
+		} else {
+			url += "&user_id=0";
+		}
+
+		if (e.async_timestamp > 0) {
+			url += "&async_timestamp=" + e.async_timestamp;
+		}
+		return url;
+	}
+
+	public static string createQuestionReadURL(EventInfo e) {
+		WebServiceData webAPI = Resources.FindObjectsOfTypeAll<WebServiceData>()[0];
+		string url = string.Format("{0}?event_name={1}&maze_id={2}&question_id={3}&elapsed_time={4}", new object[] { webAPI.eventURL, e.event_name, e.maze_id, e.question_id, e.elapsed_time });
+		if (e.user_id > 0) {
+			url += "&user_id=" + e.user_id.ToString();
+		} else {
+			url += "&user_id=0";
+		}
+
+		if (e.async_timestamp > 0) {
+			url += "&async_timestamp=" + e.async_timestamp;
+		}
+		return url;
+	}
+
+	public static string createAnswerReadURL(EventInfo e) {
+		WebServiceData webAPI = Resources.FindObjectsOfTypeAll<WebServiceData>()[0];
+		string url = string.Format("{0}?event_name={1}&maze_id={2}&question_id={3}&elapsed_time={4}&answer_id={5}", new object[] { webAPI.eventURL, e.event_name, e.maze_id, e.question_id, e.elapsed_time, e.answer_id });
+		if (e.user_id > 0) {
+			url += "&user_id=" + e.user_id.ToString();
+		} else {
+			url += "&user_id=0";
+		}
+
+		if (e.async_timestamp > 0) {
+			url += "&async_timestamp=" + e.async_timestamp;
+		}
+		return url;
+	}
+
+	public static string createAnswerInteractionURL(EventInfo e) {
+		WebServiceData webAPI = Resources.FindObjectsOfTypeAll<WebServiceData>()[0];
+		string url = string.Format("{0}?event_name={1}&maze_id={2}&question_id={3}&elapsed_time={4}&answer_id={5}&correct={6}", new object[] { webAPI.eventURL, e.event_name, e.maze_id, e.question_id, e.elapsed_time, e.answer_id, e.correct ? "1" : "-1" });
+		if (e.user_id > 0) {
+			url += "&user_id=" + e.user_id.ToString();
+		} else {
+			url += "&user_id=0";
+		}
+
+		if (e.async_timestamp > 0) {
+			url += "&async_timestamp=" + e.async_timestamp;
+		}
+		return url;
+	}
+
+	public static string createQuestionEndURL(EventInfo e) {
+		WebServiceData webAPI = Resources.FindObjectsOfTypeAll<WebServiceData>()[0];
+		string url = string.Format("{0}?event_name={1}&maze_id={2}&question_id={3}&elapsed_time={4}&correct={5}&correct_count={6}&wrong_count={7}", new object[] { webAPI.eventURL, e.event_name, e.maze_id, e.question_id, e.elapsed_time, e.correct ? "1" : "-1", e.correct_count, e.wrong_count });
+		if (e.user_id > 0) {
+			url += "&user_id=" + e.user_id.ToString();
+		} else {
+			url += "&user_id=0";
+		}
+
+		if (e.async_timestamp > 0) {
+			url += "&async_timestamp=" + e.async_timestamp;
+		}
+		return url;
+	}
+	public static string createMazeEndURL(EventInfo e) {
+		WebServiceData webAPI = Resources.FindObjectsOfTypeAll<WebServiceData>()[0];
+		string url = string.Format("{0}?event_name={1}&maze_id={2}&question_id={3}&elapsed_time={4}&correct_count={5}&wrong_count={6}", new object[] { webAPI.eventURL, e.event_name, e.maze_id, e.question_id, e.elapsed_time, e.correct_count, e.wrong_count });
+		if (e.user_id > 0) {
+			url += "&user_id=" + e.user_id.ToString();
+		} else {
+			url += "&user_id=0";
+		}
+
 		if (e.async_timestamp > 0) {
 			url += "&async_timestamp=" + e.async_timestamp;
 		}
@@ -58,6 +146,24 @@ public class EventPool {
 			case "maze_start":
 				url = createMazeStartURL(e);
 				break;
+			case "question_start":
+				url = createQuestionStartURL(e);
+				break;
+			case "answer_read":
+				url = createAnswerReadURL(e);
+				break;
+			case "answer_interaction":
+				url = createAnswerInteractionURL(e);
+				break;
+			case "question_end":
+				url = createQuestionEndURL(e);
+				break;
+			case "maze_end":
+				url = createMazeEndURL(e);
+				break;
+			default:
+				Debug.LogError("Event - " + e.event_name + ". Not yet implemented.");
+				return -1;
 		}
 
 		if (Application.internetReachability != NetworkReachability.NotReachable) {
