@@ -35,6 +35,7 @@ public class DataManager : MonoBehaviour {
 			instance = this;
 			SceneManager.activeSceneChanged += SceneChanged;
 			DontDestroyOnLoad(this.gameObject);
+#if !UNITY_EDITOR
 			var ld = SaveData.load("current_level");
 			if (ld != null) {
 				this.mazeLD = JsonUtility.FromJson<MazeLDWrapper>(ld);
@@ -43,9 +44,10 @@ public class DataManager : MonoBehaviour {
 					svgd = JsonUtility.FromJson<SaveGameData>(save);
 				}
 			}
+#endif
 		}
 	}
-	#endregion
+#endregion
 
 	void Start() {
 		if ((mazeLD != null) && (svgd != null)) {

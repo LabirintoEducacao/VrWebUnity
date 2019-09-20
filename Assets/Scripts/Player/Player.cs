@@ -117,12 +117,13 @@ public class Player : PlayerBase
 					Inventory.instance.ItemObject.SetActive(true);
 					Inventory.instance.item.DesactivePanel();
 				}
-
-				//Pegando o novo objeto
+                //Pegando o novo objeto
+                Inventory.instance.item = null;
 				Inventory.instance.item = hit.collider.gameObject.GetComponentInParent<ItemBase>();
 				Inventory.instance.item.currentRoom = currentRoom;
-				Inventory.instance.item.ActionItem();
-				Inventory.instance.ItemObject = Inventory.instance.item.gameObject;
+                ItemBase item = hit.collider.gameObject.GetComponentInParent<ItemBase>();
+                item.ActionItem();
+                Inventory.instance.ItemObject = Inventory.instance.item.gameObject;
 				Inventory.instance.ItemObject.gameObject.SetActive(false);
 
 				GUIReticleLoad.fillAmount = 0;
@@ -130,8 +131,9 @@ public class Player : PlayerBase
 				currentTimeLoadFillAmount = 0;
 				currentTimeUnlock = 0;
 
-				DataManager.manager.answerStatus(this.currentRoom.question.question_id, Inventory.instance.AnswerSelected.correct);
-			}
+
+                //DataManager.manager.answerStatus(this.currentRoom.question.question_id, Inventory.instance.AnswerSelected.correct);
+            }
 		}
     }
 

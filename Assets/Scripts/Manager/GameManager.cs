@@ -75,6 +75,8 @@ public class GameManager : MonoBehaviour {
 
     public IEnumerator placeNextCorridor(Vector3 position, Quaternion baseRot, int direction, CorridorManager corridor) {
         Vector3 nextCorrPivot = position;
+		int delta = (Mathf.RoundToInt(baseRot.eulerAngles.y / 90) + 4) % 4;
+		int true_dir = (Tools.directionToIndex (direction)  + delta) % 4;
 
         //se já tem corredor, desabilita
         // if (this.currentCorridor != null) {
@@ -90,10 +92,10 @@ public class GameManager : MonoBehaviour {
         }
         // Debug.Log("generating corridor in direction: "+direction+" index: "+Tools.directionToIndex(direction));
         // coloca o novo corredor em posição e rotação e espera até o final do frame pra continuar devido a problemas de render/update
-        float rot = Constants.ROTATIONS[Tools.directionToIndex (direction)];
-        MapCoord d = Constants.DELTA[Tools.directionToIndex (direction)];
+        float rot = Constants.ROTATIONS[true_dir];
+        MapCoord d = Constants.DELTA[true_dir];
         Vector3 fwd = new Vector3 (d.x, 0f, d.y);
-        d = Constants.DELTA[(Tools.directionToIndex (direction) + 1) % 4];
+        d = Constants.DELTA[(true_dir + 1) % 4];
         Vector3 right = new Vector3 (d.x, 0f, d.y);
         float corrEntx = (corridor.GetComponent<CorridorGenerator> ().entrance.x + 0.5f) * corridor.cellSize;
         this.currentCorridor.transform.rotation = Quaternion.Euler (0f, rot + baseRot.y, 0f);
@@ -126,7 +128,7 @@ public class GameManager : MonoBehaviour {
 
             yield return new WaitForEndOfFrame ();
             CorridorGenerator ccGen = currentCorridor.GetComponent<CorridorGenerator> ();
-            currentRoom.GetComponentInChildren<HubCheckpoint> ().setGoal (Constants.DIRECTION_UP, ccGen.getEntranceTranform ());
+            currentRoom.GetComponentInChildren<HubCheckpoint> ().setGoal (direction, ccGen.getEntranceTranform ());
             ccGen.setEntranceMotion (currentRoom.GetComponentInChildren<HubCheckpoint> ().transform);
             //ccGen.setExitMotion (nextRoom.GetComponentInChildren<HubCheckpoint> ().transform);
             this.nextRoom.gameObject.SetActive (true);
