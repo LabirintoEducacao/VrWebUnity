@@ -88,8 +88,10 @@ public class HubCheckpoint : MonoBehaviour {
             this.arrows = GameObject.FindObjectOfType<ControlArrows> ( );
         //gotcha! Ele está aqui dentro
         canShow = false;
+		int delta = (Mathf.RoundToInt(this.transform.eulerAngles.y / 90) + 4) % 4;
         for (int i = 0; i < goals.Length; i++) {
-            arrows.setGoal (Constants.DIRECTIONS[i], goals[i]);
+			int true_i = (delta + i) % 4;
+            arrows.setGoal (Constants.DIRECTIONS[true_i], goals[i]);
         }
         arrows.showArrows ( );
     }
@@ -106,6 +108,10 @@ public class HubCheckpoint : MonoBehaviour {
     public void activate() {
         enableArrows();
     }
+
+	public void clearGoals() {
+		this.goals = new Transform[4];
+	}
 
     /** define um destino para uma direção */
     public void setGoal(int direction, Transform goal) {
