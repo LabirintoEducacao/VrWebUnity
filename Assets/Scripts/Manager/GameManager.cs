@@ -159,7 +159,16 @@ public class GameManager : MonoBehaviour {
         this.currentRoom.gameObject.SetActive (false);
         this.currentCorridor.gameObject.SetActive (false);
         this.currentRoom = this.nextRoom;
-        // this.currentRoom.gameObject.SetActive (true);
+
+		// this.currentRoom.gameObject.SetActive (true);
+		if (this.currentRoom.id  == -42) {
+			// id fixo para o endgame
+			EventPool.sendMazeEndEvent();
+			// uhuuuu!!!
+			// parabéns!!!
+		} else {
+			EventPool.sendQuestionStartEvent();
+		}
     }
 
     public void CreateRooms () {

@@ -196,4 +196,91 @@ public class EventPool {
 		}
 		return 0;
 	}
+
+#region event creation
+	public static void sendMazeStartEvent() {
+		EventInfo e = baseEventInfo("maze_start");
+		EventPool.sendEvent(e);
+	}
+
+	public static void sendQuestionStartEvent() {
+		SaveGameData svgd = DataManager.manager.savegame;
+		EventInfo e = new EventInfo();
+		e.event_name = "question_start";
+		e.maze_id = svgd.mazeID;
+		e.question_id = svgd.currentRoomID;
+		if (LoginHandler.handler.user != null) {
+			e.user_id = int.Parse(LoginHandler.handler.user.uid);
+		} else {
+			e.user_id = -1;
+		}
+		e.elapsed_time = Mathf.RoundToInt( svgd.timeElapsed );
+		e.wrong_count = svgd.wrongAnswers;
+		e.correct_count = svgd.rightAnswers;
+		EventPool.sendEvent(e);
+	}
+
+	public static void sendQuestionReadEvent() {
+		EventInfo e = baseEventInfo("question_read");
+
+		SaveGameData svgd = DataManager.manager.savegame;
+		e.question_id = svgd.currentRoomID;
+		EventPool.sendEvent(e);
+	}
+
+	public static void sendAnswerReadEvent(int answer_id) {
+		EventInfo e = baseEventInfo("answer_read");
+
+		SaveGameData svgd = DataManager.manager.savegame;
+		e.question_id = svgd.currentRoomID;
+		e.answer_id = answer_id;
+		EventPool.sendEvent(e);
+	}
+
+	public static void sendAnswerInteractionEvent(int answer_id, bool correct) {
+		EventInfo e = baseEventInfo("answer_interaction");
+
+		SaveGameData svgd = DataManager.manager.savegame;
+		e.question_id = svgd.currentRoomID;
+		e.answer_id = answer_id;
+		e.correct = correct;
+		EventPool.sendEvent(e);
+	}
+
+	public static void sendQuestionEndEvent(bool correct) {
+		EventInfo e = baseEventInfo("question_end");
+
+		SaveGameData svgd = DataManager.manager.savegame;
+		e.question_id = svgd.currentRoomID;
+		e.wrong_count = svgd.wrongAnswers;
+		e.correct_count = svgd.rightAnswers;
+		e.correct = correct;
+		EventPool.sendEvent(e);
+	}
+
+	public static void sendMazeEndEvent() {
+		EventInfo e = baseEventInfo("maze_end");
+
+		SaveGameData svgd = DataManager.manager.savegame;
+		e.wrong_count = svgd.wrongAnswers;
+		e.correct_count = svgd.rightAnswers;
+		EventPool.sendEvent(e);
+	}
+
+	/// <summary>
+	/// Evento base, com os campos: user_id, maze_id e elapsed_time; que estão em todos os eventos.
+	/// </summary>
+	/// <param name="event_name">Nome do evento a ser criado.</param>
+	/// <returns></returns>
+	static EventInfo baseEventInfo(string event_name) {
+		SaveGameData svgd = DataManager.manager.savegame;
+		EventInfo e = new EventInfo();
+		e.event_name = event_name;
+		e.maze_id = svgd.mazeID;
+		int uid = LoginHandler.handler.user == null ? -1 : int.Parse(LoginHandler.handler.user.uid);
+		e.user_id = uid <= 0 ? 0 : uid;
+		e.elapsed_time = Mathf.RoundToInt(svgd.timeElapsed);
+		return e;
+	}
+#endregion
 }

@@ -82,11 +82,11 @@ public class RoomGridCreator : MonoBehaviour
 	}
 
 	private void OnEnable() {
+		this.privateData = false;
 		if (LoginHandler.handler.isValidUser) {
 			this.privateData = true;
-		} else {
-			this.privateData = false;
 		}
+
 		this.clearGridChildren();
 		this.requestData();
 		if (DataManager.manager.mazeLD != null) {

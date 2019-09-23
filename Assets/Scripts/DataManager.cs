@@ -100,7 +100,7 @@ public class DataManager : MonoBehaviour {
 		checkAndCreateSave();
 	}
 
-	public void startRoom() {
+	public void startMaze() {
 		// FIREBASE ANALYTICS
 		Parameter[] StartParameters = {
 				new Parameter("MazeID", svgd.mazeID),
@@ -111,7 +111,7 @@ public class DataManager : MonoBehaviour {
 			FirebaseAnalytics.EventLevelStart,
 			StartParameters);
 
-		//Eh nois, Analytics
+		//Eh nois, Analytics - evento executado ao inicializar o jogo
 		EventInfo e = new EventInfo();
 		e.event_name = "maze_start";
 		e.maze_id = svgd.mazeID;
@@ -122,7 +122,7 @@ public class DataManager : MonoBehaviour {
 		EventPool.sendEvent(e);
 	}
 
-	public void endRoom() {
+	public void endMaze() {
 		Parameter[] EndParameters = {
 				new Parameter("MazeID", svgd.mazeID),
 				new Parameter(FirebaseAnalytics.ParameterScore, svgd.score),
@@ -139,21 +139,26 @@ public class DataManager : MonoBehaviour {
 
 	void SceneChanged(Scene current, Scene next) {
 		// cannot clean level data on main menu if we want the player to continue the next level while not finished
-		//if (next.name.Equals("MainMenu")) {
-		//	this.mazeLD = null;
-		//}
+
+		string[] nonMazeScenes = new string[] {"MainMenu"};
 		if (svgd != null) {
-			svgd.playing = !next.name.Equals("MainMenu");
+			svgd.playing = true;
+			for (int i = 0; i < nonMazeScenes.Length; i++) {
+				if (next.name.Equals(nonMazeScenes[i])) {
+					svgd.playing = false;
+					break;
+				}
+			}
 			SaveData.save("savegame", JsonUtility.ToJson(svgd));
 			if (svgd.playing) {
 				//acabou de entrar na sala, cria um save ou não
 				//manda evento de LevelStart
 				checkAndCreateSave();
-				startRoom();
+				startMaze();
 			} else {
 				//saiu da fase
 				//manda evento de level end
-				endRoom();
+				endMaze();
 			}
 		}
 
@@ -169,9 +174,11 @@ public class DataManager : MonoBehaviour {
 		FirebaseAnalytics.LogEvent(
 			FirebaseAnalytics.EventLevelUp,
 			LevelUpParameters);
-		if (correct) {
-			svgd.timeElapsed = 0;
-		}
+
+		EventPool.sendQuestionEndEvent(correct);
+		//if (correct) {
+		//	svgd.timeElapsed = 0;
+		//}
 	}
 
 	public void setActiveRoom(int room_id, bool end = false) {

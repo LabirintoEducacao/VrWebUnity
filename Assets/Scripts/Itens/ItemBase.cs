@@ -17,6 +17,9 @@ public class ItemBase : MonoBehaviour
 
     public void ActivePanel()
     {
+		if (!panel.activeSelf) {
+			EventPool.sendAnswerReadEvent(properties.answer_id);
+		}
         panel.SetActive(true);
     }
     public void DesactivePanel()
