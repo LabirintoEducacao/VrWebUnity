@@ -65,6 +65,46 @@ namespace larcom.support {
 					}
 					data = System.Text.Encoding.UTF8.GetString(mem.ToArray());
 				}
+				return JsonUtility.FromJson<dynamic>(data);
+			} else {
+				return null;
+			}
+		}
+
+		public static dynamic load<T>(string filename) {
+			string dirpath = Path.Combine(Application.persistentDataPath, SaveData.basePath);
+			if (!Directory.Exists(dirpath)) {
+				return null;
+			}
+			string fullpath = Path.Combine(Application.persistentDataPath, SaveData.basePath, filename);
+			if (File.Exists(fullpath)) {
+				string data;
+				using (MemoryStream mem = new MemoryStream()) {
+					using (FileStream fdp = File.OpenRead(fullpath)) {
+						fdp.CopyTo(mem);
+					}
+					data = System.Text.Encoding.UTF8.GetString(mem.ToArray());
+				}
+				return JsonUtility.FromJson<T>(data);
+			} else {
+				return null;
+			}
+		}
+
+		public static string loadString(string filename) {
+			string dirpath = Path.Combine(Application.persistentDataPath, SaveData.basePath);
+			if (!Directory.Exists(dirpath)) {
+				return null;
+			}
+			string fullpath = Path.Combine(Application.persistentDataPath, SaveData.basePath, filename);
+			if (File.Exists(fullpath)) {
+				string data;
+				using (MemoryStream mem = new MemoryStream()) {
+					using (FileStream fdp = File.OpenRead(fullpath)) {
+						fdp.CopyTo(mem);
+					}
+					data = System.Text.Encoding.UTF8.GetString(mem.ToArray());
+				}
 				return data;
 			} else {
 				return null;

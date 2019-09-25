@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour {
         this.currentCorridor = corridor;
 
         Debug.Log(currentCorridor.pathInfo.connected_question);
+		//TODO: condicao de endgame.
 
         if (this.currentCorridor == null) {
             Debug.LogError (string.Format ("Cannot allocate inexistent corridor. Room-{0}", new object[] { currentRoom.id }));
@@ -158,8 +159,21 @@ public class GameManager : MonoBehaviour {
             return;
         this.currentRoom.gameObject.SetActive (false);
         this.currentCorridor.gameObject.SetActive (false);
-        this.currentRoom = this.nextRoom;
-        // this.currentRoom.gameObject.SetActive (true);
+		this.currentRoom = this.nextRoom;
+		DataManager.manager.savegame.currentRoomID = this.currentRoom.id;
+		//limpa as setas da sala, pro caso de já ter passado aqui (volta do reforço)
+		
+
+		// this.currentRoom.gameObject.SetActive (true);
+		if (this.currentRoom.id  == -42) {
+			// id fixo para o endgame
+			EventPool.sendMazeEndEvent();
+			// uhuuuu!!!
+			// parabéns!!!
+		} else {
+			EventPool.sendQuestionStartEvent();
+			DataManager.manager.saveProgress();
+		}
     }
 
     public void CreateRooms () {

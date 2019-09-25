@@ -45,6 +45,13 @@ public class DataManager : MonoBehaviour {
 				}
 			}
 #endif
+			//reload unsent event pool
+			EventPoolWrapper ew = SaveData.load<EventPoolWrapper>("event_pool");
+			if (ew == null) {
+				EventPool.pool = new List<EventInfo>();
+			} else {
+				EventPool.pool = new List<EventInfo>(ew.pool);
+			}
 		}
 	}
 #endregion
@@ -79,28 +86,42 @@ public class DataManager : MonoBehaviour {
 
 	void checkAndCreateSave() {
 		if (mazeLD != null) {
+			// se não tem save, ou é outro labirinto, reseta os dados, caso contrário continua com o que tem.
 			if (svgd != null) {
-				svgd = new SaveGameData();
-				svgd.mazeID = mazeLD.maze_id;
-				svgd.currentRoomID = mazeLD.starting_question_id;
-				svgd.playing = false;
+				createNewSave();
 			} else if ((svgd == null) || (svgd.mazeID != mazeLD.maze_id)) {
-				svgd = new SaveGameData();
-				svgd.mazeID = mazeLD.maze_id;
-				svgd.currentRoomID = mazeLD.starting_question_id;
-				svgd.playing = false;
+				createNewSave();
 			}
 		} else {
 			svgd = null;
 		}
 	}
 
-	void cleanPlayerProgress() {
+	void createNewSave() {
+		svgd = new SaveGameData();
+		svgd.mazeID = mazeLD.maze_id;
+		svgd.currentRoomID = mazeLD.starting_question_id;
+		svgd.playing = false;
+		RoomPlayerInfo[] rooms = new RoomPlayerInfo[mazeLD.questions.Length];
+		for (int i = 0; i < rooms.Length; i++) {
+			rooms[i] = new RoomPlayerInfo(mazeLD.questions[i].question_id);
+		}
+	}
+
+	/// <summary>
+	/// Apenas save local.
+	/// </summary>
+	public void saveProgress() {
+		SaveData.save("savegame", JsonUtility.ToJson(svgd));
+	}
+
+	public void cleanPlayerProgress() {
 		SaveData.removeFile("savegame");
 		checkAndCreateSave();
 	}
 
-	public void startRoom() {
+	public void startMaze() {
+		// FIREBASE ANALYTICS
 		Parameter[] StartParameters = {
 				new Parameter("MazeID", svgd.mazeID),
 				new Parameter(FirebaseAnalytics.ParameterLevel, svgd.currentRoomID),
@@ -109,9 +130,19 @@ public class DataManager : MonoBehaviour {
 		FirebaseAnalytics.LogEvent(
 			FirebaseAnalytics.EventLevelStart,
 			StartParameters);
+
+		//Eh nois, Analytics - evento executado ao inicializar o jogo
+		EventInfo e = new EventInfo();
+		e.event_name = "maze_start";
+		e.maze_id = svgd.mazeID;
+		int uid = LoginHandler.handler.user == null ? -1 : int.Parse(LoginHandler.handler.user.uid);
+		e.user_id = uid <= 0 ? 0 : uid;
+		e.question_id = svgd.currentRoomID;
+		e.elapsed_time = Mathf.RoundToInt(svgd.timeElapsed);
+		EventPool.sendEvent(e);
 	}
 
-	public void endRoom() {
+	public void endMaze() {
 		Parameter[] EndParameters = {
 				new Parameter("MazeID", svgd.mazeID),
 				new Parameter(FirebaseAnalytics.ParameterScore, svgd.score),
@@ -128,22 +159,30 @@ public class DataManager : MonoBehaviour {
 
 	void SceneChanged(Scene current, Scene next) {
 		// cannot clean level data on main menu if we want the player to continue the next level while not finished
-		//if (next.name.Equals("MainMenu")) {
-		//	this.mazeLD = null;
-		//}
+
+		string[] nonMazeScenes = new string[] {"MainMenu"};
 		if (svgd != null) {
-			svgd.playing = !next.name.Equals("MainMenu");
+			bool playing = true;
+			for (int i = 0; i < nonMazeScenes.Length; i++) {
+				if (next.name.Equals(nonMazeScenes[i])) {
+					playing = false;
+					break;
+				}
+			}
 			SaveData.save("savegame", JsonUtility.ToJson(svgd));
+			// TODO: implementar também save na nuvem aqui
+
 			if (svgd.playing) {
 				//acabou de entrar na sala, cria um save ou não
 				//manda evento de LevelStart
 				checkAndCreateSave();
-				startRoom();
+				startMaze();
 			} else {
 				//saiu da fase
 				//manda evento de level end
-				endRoom();
+				endMaze();
 			}
+			svgd.playing = playing;
 		}
 
 	}
@@ -158,9 +197,11 @@ public class DataManager : MonoBehaviour {
 		FirebaseAnalytics.LogEvent(
 			FirebaseAnalytics.EventLevelUp,
 			LevelUpParameters);
-		if (correct) {
-			svgd.timeElapsed = 0;
-		}
+
+		EventPool.sendQuestionEndEvent(correct);
+		//if (correct) {
+		//	svgd.timeElapsed = 0;
+		//}
 	}
 
 	public void setActiveRoom(int room_id, bool end = false) {
@@ -174,6 +215,10 @@ public class DataManager : MonoBehaviour {
 	}
 
 	private void OnDestroy() {
+		EventPoolWrapper ew = new EventPoolWrapper();
+		ew.pool = EventPool.pool.ToArray();
+		SaveData.save("event_pool", JsonUtility.ToJson(ew));
+
 		SceneManager.activeSceneChanged -= SceneChanged;
 	}
 }

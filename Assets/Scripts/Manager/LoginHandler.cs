@@ -43,9 +43,30 @@ public class LoginHandler : MonoBehaviour {
 			this.webAPI = Resources.FindObjectsOfTypeAll<WebServiceData>()[0];
 		}
 	}
+#endregion
+
+#region event pool retrial
+	private void loadPool() {
+		//load events from disk
+
+		InvokeRepeating("checkAndSendEventInPool", 2f, 5f);
+	}
+
+	void checkAndSendEventInPool() {
+		if (EventPool.pool.Count > 0) {
+			//Events works like LIFO
+			EventInfo e = EventPool.pool[EventPool.pool.Count-1];
+			EventPool.pool.RemoveAt(EventPool.pool.Count - 1);
+			EventPool.sendEvent(e);
+		}
+	}
 	#endregion
 
-#region login
+	private void OnDestroy() {
+		CancelInvoke("checkAndSendEventInPool");
+	}
+
+	#region login
 	public delegate void LoginCompleted(UserInfo user);
 	public static LoginCompleted OnLoginCompleted;
 
@@ -93,7 +114,12 @@ public class LoginHandler : MonoBehaviour {
 
 	public async Task<WebRoomInfo[]> publicRoomsAsync(int uid = -2) {
 		if (uid == -2) {
-			uid = -1;
+			if (this.user != null) {
+				uid = int.Parse(this.user.uid);
+			}
+		}
+		if (uid == -1) {
+			uid = -2;
 		}
 		//this.pRooms = null;
 		this.pRooms = await getRoomsAsync(uid, 0);
@@ -103,7 +129,12 @@ public class LoginHandler : MonoBehaviour {
 
 	public async Task<WebRoomInfo[]> privateRoomsAsync(int uid = -2) {
 		if (uid == -2) {
-			uid = int.Parse(this.user.uid);
+			if (this.user != null) {
+				uid = int.Parse(this.user.uid);
+			}
+		}
+		if (uid == -1) {
+			uid = -2;
 		}
 		this.user.privateRooms = null;
 		this.user.privateRooms = await getRoomsAsync(uid, 1);
@@ -114,10 +145,9 @@ public class LoginHandler : MonoBehaviour {
 	async Task<WebRoomInfo[]> getRoomsAsync(int uid, int type) {
 		Debug.Log(string.Format("{1} Rooms requested for {0}", new object[] { uid, typeToNameType(type) }));
 		WebRoomInfo[] rooms = null;
-		string url = webAPI.getRoomURL+"?type=" + type.ToString();
-		if (uid != -1) {
-			url += "&id=" + uid.ToString();
-		}
+		string url = webAPI.getRoomURL+"?type=" + type.ToString()+"&id=" + uid.ToString();
+
+		Debug.Log(url);
 		using (UnityWebRequest uwr = UnityWebRequest.Post(url, "")) {
 			uwr.SetRequestHeader("Content-Type", "application/json");
 			uwr.downloadHandler = new DownloadHandlerBuffer();
