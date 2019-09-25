@@ -159,8 +159,10 @@ public class GameManager : MonoBehaviour {
             return;
         this.currentRoom.gameObject.SetActive (false);
         this.currentCorridor.gameObject.SetActive (false);
-        this.currentRoom = this.nextRoom;
+		this.currentRoom = this.nextRoom;
 		DataManager.manager.savegame.currentRoomID = this.currentRoom.id;
+		//limpa as setas da sala, pro caso de já ter passado aqui (volta do reforço)
+		
 
 		// this.currentRoom.gameObject.SetActive (true);
 		if (this.currentRoom.id  == -42) {
@@ -170,6 +172,7 @@ public class GameManager : MonoBehaviour {
 			// parabéns!!!
 		} else {
 			EventPool.sendQuestionStartEvent();
+			DataManager.manager.saveProgress();
 		}
     }
 

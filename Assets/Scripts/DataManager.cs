@@ -45,6 +45,13 @@ public class DataManager : MonoBehaviour {
 				}
 			}
 #endif
+			//reload unsent event pool
+			EventPoolWrapper ew = SaveData.load<EventPoolWrapper>("event_pool");
+			if (ew == null) {
+				EventPool.pool = new List<EventInfo>();
+			} else {
+				EventPool.pool = new List<EventInfo>(ew.pool);
+			}
 		}
 	}
 #endregion
@@ -79,23 +86,36 @@ public class DataManager : MonoBehaviour {
 
 	void checkAndCreateSave() {
 		if (mazeLD != null) {
+			// se não tem save, ou é outro labirinto, reseta os dados, caso contrário continua com o que tem.
 			if (svgd != null) {
-				svgd = new SaveGameData();
-				svgd.mazeID = mazeLD.maze_id;
-				svgd.currentRoomID = mazeLD.starting_question_id;
-				svgd.playing = false;
+				createNewSave();
 			} else if ((svgd == null) || (svgd.mazeID != mazeLD.maze_id)) {
-				svgd = new SaveGameData();
-				svgd.mazeID = mazeLD.maze_id;
-				svgd.currentRoomID = mazeLD.starting_question_id;
-				svgd.playing = false;
+				createNewSave();
 			}
 		} else {
 			svgd = null;
 		}
 	}
 
-	void cleanPlayerProgress() {
+	void createNewSave() {
+		svgd = new SaveGameData();
+		svgd.mazeID = mazeLD.maze_id;
+		svgd.currentRoomID = mazeLD.starting_question_id;
+		svgd.playing = false;
+		RoomPlayerInfo[] rooms = new RoomPlayerInfo[mazeLD.questions.Length];
+		for (int i = 0; i < rooms.Length; i++) {
+			rooms[i] = new RoomPlayerInfo(mazeLD.questions[i].question_id);
+		}
+	}
+
+	/// <summary>
+	/// Apenas save local.
+	/// </summary>
+	public void saveProgress() {
+		SaveData.save("savegame", JsonUtility.ToJson(svgd));
+	}
+
+	public void cleanPlayerProgress() {
 		SaveData.removeFile("savegame");
 		checkAndCreateSave();
 	}
@@ -142,14 +162,16 @@ public class DataManager : MonoBehaviour {
 
 		string[] nonMazeScenes = new string[] {"MainMenu"};
 		if (svgd != null) {
-			svgd.playing = true;
+			bool playing = true;
 			for (int i = 0; i < nonMazeScenes.Length; i++) {
 				if (next.name.Equals(nonMazeScenes[i])) {
-					svgd.playing = false;
+					playing = false;
 					break;
 				}
 			}
 			SaveData.save("savegame", JsonUtility.ToJson(svgd));
+			// TODO: implementar também save na nuvem aqui
+
 			if (svgd.playing) {
 				//acabou de entrar na sala, cria um save ou não
 				//manda evento de LevelStart
@@ -160,6 +182,7 @@ public class DataManager : MonoBehaviour {
 				//manda evento de level end
 				endMaze();
 			}
+			svgd.playing = playing;
 		}
 
 	}
@@ -192,6 +215,10 @@ public class DataManager : MonoBehaviour {
 	}
 
 	private void OnDestroy() {
+		EventPoolWrapper ew = new EventPoolWrapper();
+		ew.pool = EventPool.pool.ToArray();
+		SaveData.save("event_pool", JsonUtility.ToJson(ew));
+
 		SceneManager.activeSceneChanged -= SceneChanged;
 	}
 }

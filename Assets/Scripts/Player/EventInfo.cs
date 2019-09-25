@@ -217,6 +217,7 @@ public class EventPool {
 		e.elapsed_time = Mathf.RoundToInt( svgd.timeElapsed );
 		e.wrong_count = svgd.wrongAnswers;
 		e.correct_count = svgd.rightAnswers;
+		DataManager.manager.savegame.setRoomStart(e.question_id);
 		EventPool.sendEvent(e);
 	}
 
@@ -244,6 +245,7 @@ public class EventPool {
 		e.question_id = svgd.currentRoomID;
 		e.answer_id = answer_id;
 		e.correct = correct;
+		DataManager.manager.savegame.setAnswer(e.question_id, answer_id);
 		EventPool.sendEvent(e);
 	}
 
@@ -255,6 +257,7 @@ public class EventPool {
 		e.wrong_count = svgd.wrongAnswers;
 		e.correct_count = svgd.rightAnswers;
 		e.correct = correct;
+		DataManager.manager.savegame.setRoomEnd(e.question_id, correct);
 		EventPool.sendEvent(e);
 	}
 
@@ -283,4 +286,8 @@ public class EventPool {
 		return e;
 	}
 #endregion
+}
+
+public class EventPoolWrapper {
+	public EventInfo[] pool;
 }
