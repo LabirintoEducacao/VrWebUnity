@@ -140,11 +140,11 @@ public class Player : PlayerBase
 
     void hitCheckAnswer(RaycastHit hit){
         CheckBase checkDoor = hit.collider.GetComponent<CheckBase>();
-        Debug.Log("Hit no object " + checkDoor.gameObject.name);
 
         currentTimeUnlock += Time.deltaTime;
-        if(checkDoor != null){
-            if (Inventory.instance.item != null && currentTimeUnlock >= timeToUnlock && checkDoor.answer.answer != null)
+        if(checkDoor != null) {
+			Debug.Log("Hit no object " + checkDoor.gameObject.name);
+			if (Inventory.instance.item != null && currentTimeUnlock >= timeToUnlock && checkDoor.answer.answer != null)
             {
                 GUIReticleLoad.gameObject.SetActive(true);
                 currentTimeLoadFillAmount += Time.deltaTime;
@@ -153,8 +153,7 @@ public class Player : PlayerBase
 
                 if (currentTimeLoadFillAmount >= timeToLoadFillAmount)
                 {
-                    CheckBase objectCheck = hit.collider.gameObject.GetComponent<CheckBase>();
-                    bool correct = objectCheck.checkAnswer(Inventory.instance.AnswerSelected);
+                    bool correct = checkDoor.checkAnswer(Inventory.instance.AnswerSelected);
 					//dispara evento para registrar a resposta no analytics
 					DataManager.manager.answerStatus(this.currentRoom.id, correct);
                     if(correct){

@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour {
         this.currentCorridor = corridor;
 
         Debug.Log(currentCorridor.pathInfo.connected_question);
+		//TODO: condicao de endgame.
 
         if (this.currentCorridor == null) {
             Debug.LogError (string.Format ("Cannot allocate inexistent corridor. Room-{0}", new object[] { currentRoom.id }));
@@ -159,6 +160,7 @@ public class GameManager : MonoBehaviour {
         this.currentRoom.gameObject.SetActive (false);
         this.currentCorridor.gameObject.SetActive (false);
         this.currentRoom = this.nextRoom;
+		DataManager.manager.savegame.currentRoomID = this.currentRoom.id;
 
 		// this.currentRoom.gameObject.SetActive (true);
 		if (this.currentRoom.id  == -42) {
