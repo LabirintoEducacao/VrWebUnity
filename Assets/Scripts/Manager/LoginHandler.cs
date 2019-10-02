@@ -101,6 +101,10 @@ public class LoginHandler : MonoBehaviour {
 		}
 	}
 
+	public void logout () {
+		this.user = new UserInfo("Visitante", "-1");
+	}
+
 	struct LoginReturn {
 		public string id;
 		public string name;
@@ -217,13 +221,58 @@ public class LoginHandler : MonoBehaviour {
 	}
 
 	#endregion
+	#region load progress
+	public delegate void LoadMazeProgressCompleted(bool loaded);
+	public static LoadMazeProgressCompleted OnLoadMazeProgressCompleted;
 
+	public async Task<bool> getMazeProgress(int maze_id) {
+		int uid = isValidUser ?  user.user_id : -1;
+		Debug.Log(string.Format("Requesting maze {0} progress for user {1}.", new object[] { maze_id, uid }));
+		if (uid == -1) {
+			// no load for guest
+			OnLoadMazeProgressCompleted?.Invoke(false);
+			return false;
+		}
+
+		string url = webAPI.loadURL+"?maze_id=" + maze_id+"&user_id="+uid;
+		using (UnityWebRequest uwr = UnityWebRequest.Get(url)) {
+			uwr.SetRequestHeader("Content-Type", "application/json");
+			uwr.downloadHandler = new DownloadHandlerBuffer();
+			await uwr.SendWebRequest();
+			if (uwr.isNetworkError || uwr.isHttpError) {
+				Debug.LogWarning(string.Format("Could not get load data for maze {0} and user {2} - due to: {1}", new object[] { maze_id, uwr.error, uid }));
+				user.username = "Could not connect.";
+			} else {
+				string data = Encoding.UTF8.GetString(uwr.downloadHandler.data);
+				bool error = (data.IndexOf("\"success\":-1") != -1);
+
+				if (error) {
+					Debug.LogWarning(string.Format("Could not get load data for maze {0} and user {2} - due to: {1}", new object[] { maze_id, data, uid }));
+				} else {
+					dynamic load = JsonUtility.FromJson<dynamic>(data);
+					DataManager.manager.savegame.currentRoomID = load.stopped_question;
+					OnLoadMazeProgressCompleted?.Invoke(true);
+					return true;
+				}
+
+			}
+		}
+
+		OnLoadMazeProgressCompleted?.Invoke(false);
+		return false;
+	}
+	#endregion
 }
 
 
 public class UserInfo {
 	public string username;
 	public string uid;
+	public int user_id {
+		get {
+			return int.Parse(uid);
+		}
+	}
 	public WebRoomInfo[] privateRooms = null;
 
 	public UserInfo(string username, string uid) {

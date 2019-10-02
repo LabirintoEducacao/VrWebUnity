@@ -9,6 +9,7 @@ public class WebServiceData : ScriptableObject {
 	public string getRoomPath;
 	public string getMazePath;
 	public string eventPath;
+	public string loadPath;
 	public string loginURL {
 		get {
 			return baseURL + loginPath;
@@ -29,5 +30,8 @@ public class WebServiceData : ScriptableObject {
 
 	public string eventURL {
 		get { return baseURL + eventPath; }
+	}
+	public string loadURL {
+		get { return baseURL + loadPath; }
 	}
 }
