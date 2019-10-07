@@ -40,7 +40,7 @@ public class LoginHandler : MonoBehaviour {
 			_instance = this;
 			//publicRoomsAsync(-1);
 			DontDestroyOnLoad(this.gameObject);
-			this.webAPI = Resources.FindObjectsOfTypeAll<WebServiceData>()[0];
+			//this.webAPI = Resources.FindObjectsOfTypeAll<WebServiceData>()[0];
 		}
 	}
 #endregion

@@ -8,9 +8,10 @@ TagManager:
   - Checkpoint
   - PlayerAgent
   - Room
-  - ButtonExit
   - Item
   - Door
+  - BackToMenu
+  - ExitGame
   layers:
   - Default
   - TransparentFX

@@ -136,19 +136,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
   rb: {fileID: 0}
-  layerButton:
-    serializedVersion: 2
-    m_Bits: 512
-  button: {fileID: 0}
   GUIReticleLoad: {fileID: 5979610247627960432}
   exit: {fileID: 0}
-  inventory: {fileID: 414338488}
+  currentRoom: {fileID: 0}
   currentTimeUnlock: 0
   timeToUnlock: 1
   timeToLoadFillAmount: 1
   currentTimeLoadFillAmount: 0
   IsSeted: 0
-  st: {fileID: 0}
+  _SetTarget: {fileID: 0}
 --- !u!114 &414338488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,8 +157,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1bab9d230e3095458476f418141345e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AnswerSelected:
+    answer_id: -1
+    answer: 
+    correct: 0
   item: {fileID: 0}
   ItemObject: {fileID: 0}
+  Correct: 0
+  ItemSeted: 0
 --- !u!1 &1198517617243406270
 GameObject:
   m_ObjectHideFlags: 0

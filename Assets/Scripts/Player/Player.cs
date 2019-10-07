@@ -21,10 +21,13 @@ public class Player : PlayerBase
 
     public static Player instance;
 
-    private void Awake() {
-        if(instance == null){
-        instance = this;
-        } else
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
         {
             Destroy(this.gameObject);
         }
@@ -34,14 +37,15 @@ public class Player : PlayerBase
         GUIReticleLoad.gameObject.SetActive(false);
     }
 
-    private void Update() {
+    private void Update()
+    {
         Ray ray = new Ray(this.transform.position, transform.forward);
         RaycastHit hit;
 
         //Metodos para detecção
         if (Physics.Raycast(ray.origin, ray.direction, out hit))
         {
-            // Debug.Log(hit.collider.tag);
+            Debug.Log(hit.collider.tag);
             if (hit.collider.CompareTag("Button"))
             {
                 hitArrow(hit);
@@ -54,6 +58,14 @@ public class Player : PlayerBase
             {
                 hitCheckAnswer(hit);
             }
+            else if (hit.collider.CompareTag("BackToMenu"))
+            {
+                hitBackToMenu(hit);
+            }
+            else if (hit.collider.CompareTag("ExitGame"))
+            {
+                hitExitGame(hit);
+            }
             else
             {
                 GUIReticleLoad.fillAmount = 0;
@@ -63,31 +75,35 @@ public class Player : PlayerBase
                 currentTimeUnlock = 0;
             }
         }
-        else {
-                GUIReticleLoad.fillAmount = 0;
-                GUIReticleLoad.gameObject.SetActive(false);
+        else
+        {
+            GUIReticleLoad.fillAmount = 0;
+            GUIReticleLoad.gameObject.SetActive(false);
 
-                currentTimeLoadFillAmount = 0;
-                currentTimeUnlock = 0;
+            currentTimeLoadFillAmount = 0;
+            currentTimeUnlock = 0;
         }
         Debug.DrawRay(ray.origin, ray.direction, Color.red);
     }
 
     #region Hit Detection
-    void hitArrow(RaycastHit hit){
+    void hitArrow(RaycastHit hit)
+    {
         currentTimeUnlock += Time.deltaTime;
-        if (currentTimeUnlock >= timeToUnlock){
+        if (currentTimeUnlock >= timeToUnlock)
+        {
             GUIReticleLoad.gameObject.SetActive(true);
             currentTimeLoadFillAmount += Time.deltaTime;
             GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
 
             _SetTarget = hit.collider.gameObject.GetComponent<SetTarget>();
-            if(_SetTarget && currentTimeLoadFillAmount >+ timeToLoadFillAmount){
+            if (_SetTarget && currentTimeLoadFillAmount > +timeToLoadFillAmount)
+            {
                 //foi acionado, mandando o agent se mexer e reiniciando as variáveis.
                 SetTarget(_SetTarget.Target.position);
                 _SetTarget.select();
-                
-                
+
+
                 currentTimeLoadFillAmount = 0;
                 currentTimeUnlock = 0;
             }
@@ -95,9 +111,11 @@ public class Player : PlayerBase
         }
     }
 
-    void hitItem(RaycastHit hit){
+    void hitItem(RaycastHit hit)
+    {
         currentTimeUnlock += Time.deltaTime;
-        if (currentTimeUnlock >= timeToUnlock){
+        if (currentTimeUnlock >= timeToUnlock)
+        {
             GUIReticleLoad.gameObject.SetActive(true);
             currentTimeLoadFillAmount += Time.deltaTime;
             GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
@@ -107,44 +125,48 @@ public class Player : PlayerBase
             parentFuture = hit.collider.gameObject.transform.parent.gameObject;
             Transform pos = parentFuture.transform;
 
-			//Caso o inventário esteja vazio
-			if (currentTimeLoadFillAmount >= timeToLoadFillAmount) {
-				//Caso já tenha algo no inventário, trocar
-				if (Inventory.instance.item != null) {
-					parentActual = Inventory.instance.ItemObject.transform.parent.gameObject;
-					parentActual.transform.position = pos.position;
-					parentActual.transform.rotation = pos.rotation;
-					Inventory.instance.ItemObject.SetActive(true);
-					Inventory.instance.item.DesactivePanel();
-				}
+            //Caso o inventário esteja vazio
+            if (currentTimeLoadFillAmount >= timeToLoadFillAmount)
+            {
+                //Caso já tenha algo no inventário, trocar
+                if (Inventory.instance.item != null)
+                {
+                    parentActual = Inventory.instance.ItemObject.transform.parent.gameObject;
+                    parentActual.transform.position = pos.position;
+                    parentActual.transform.rotation = pos.rotation;
+                    Inventory.instance.ItemObject.SetActive(true);
+                    Inventory.instance.item.DesactivePanel();
+                }
                 //Pegando o novo objeto
                 Inventory.instance.item = null;
-				Inventory.instance.item = hit.collider.gameObject.GetComponentInParent<ItemBase>();
-				Inventory.instance.item.currentRoom = currentRoom;
+                Inventory.instance.item = hit.collider.gameObject.GetComponentInParent<ItemBase>();
+                Inventory.instance.item.currentRoom = currentRoom;
                 ItemBase item = hit.collider.gameObject.GetComponentInParent<ItemBase>();
                 item.ActionItem();
-				EventPool.sendAnswerInteractionEvent(item.properties.answer_id, item.properties.correct);
+                EventPool.sendAnswerInteractionEvent(item.properties.answer_id, item.properties.correct);
                 Inventory.instance.ItemObject = Inventory.instance.item.gameObject;
-				Inventory.instance.ItemObject.gameObject.SetActive(false);
+                Inventory.instance.ItemObject.gameObject.SetActive(false);
 
-				GUIReticleLoad.fillAmount = 0;
-				GUIReticleLoad.gameObject.SetActive(false);
-				currentTimeLoadFillAmount = 0;
-				currentTimeUnlock = 0;
+                GUIReticleLoad.fillAmount = 0;
+                GUIReticleLoad.gameObject.SetActive(false);
+                currentTimeLoadFillAmount = 0;
+                currentTimeUnlock = 0;
 
 
                 //DataManager.manager.answerStatus(this.currentRoom.question.question_id, Inventory.instance.AnswerSelected.correct);
             }
-		}
+        }
     }
 
-    void hitCheckAnswer(RaycastHit hit){
+    void hitCheckAnswer(RaycastHit hit)
+    {
         CheckBase checkDoor = hit.collider.GetComponent<CheckBase>();
 
         currentTimeUnlock += Time.deltaTime;
-        if(checkDoor != null) {
-			Debug.Log("Hit no object " + checkDoor.gameObject.name);
-			if (Inventory.instance.item != null && currentTimeUnlock >= timeToUnlock && checkDoor.answer.answer != null)
+        if (checkDoor != null)
+        {
+            //Debug.Log("Hit no object " + checkDoor.gameObject.name);
+            if (Inventory.instance.item != null && currentTimeUnlock >= timeToUnlock && checkDoor.answer.answer != null)
             {
                 GUIReticleLoad.gameObject.SetActive(true);
                 currentTimeLoadFillAmount += Time.deltaTime;
@@ -154,9 +176,10 @@ public class Player : PlayerBase
                 if (currentTimeLoadFillAmount >= timeToLoadFillAmount)
                 {
                     bool correct = checkDoor.checkAnswer(Inventory.instance.AnswerSelected);
-					//dispara evento para registrar a resposta no analytics
-					DataManager.manager.answerStatus(this.currentRoom.id, correct);
-                    if(correct){
+                    //dispara evento para registrar a resposta no analytics
+                    DataManager.manager.answerStatus(this.currentRoom.id, correct);
+                    if (correct)
+                    {
                         Debug.Log("Resposta Certa!");
 
                         GUIReticleLoad.fillAmount = 0;
@@ -164,7 +187,8 @@ public class Player : PlayerBase
 
                         currentTimeLoadFillAmount = 0;
                         currentTimeUnlock = 0;
-                    } else
+                    }
+                    else
                     {
                         Debug.Log("Resposta errada!");
                         GUIReticleLoad.fillAmount = 0;
@@ -174,6 +198,43 @@ public class Player : PlayerBase
                         currentTimeUnlock = 0;
                     }
                 }
+            }
+        }
+    }
+
+    void hitBackToMenu(RaycastHit hit)
+    {
+        MenuInGame menu = hit.collider.GetComponent<MenuInGame>();
+        if (menu != null)
+            Debug.Log("Menu não está vazio!");
+
+        currentTimeUnlock += Time.deltaTime;
+        if (currentTimeUnlock >= timeToUnlock)
+        {
+            GUIReticleLoad.gameObject.SetActive(true);
+            currentTimeLoadFillAmount += Time.deltaTime;
+            GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
+            if (currentTimeLoadFillAmount >= timeToLoadFillAmount)
+            {
+                menu.backToMenu("MainMenu");
+            }
+        }
+    }
+
+    void hitExitGame(RaycastHit hit)
+    {
+        MenuInGame menu = hit.collider.GetComponent<MenuInGame>();
+        if (menu != null)
+            Debug.Log("Menu não está vazio!");
+        currentTimeUnlock += Time.deltaTime;
+        if (currentTimeUnlock >= timeToUnlock)
+        {
+            GUIReticleLoad.gameObject.SetActive(true);
+            currentTimeLoadFillAmount += Time.deltaTime;
+            GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
+            if (currentTimeLoadFillAmount >= timeToLoadFillAmount)
+            {
+                menu.quitGame();
             }
         }
     }

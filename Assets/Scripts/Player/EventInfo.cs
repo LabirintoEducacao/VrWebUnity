@@ -245,7 +245,7 @@ public class EventPool {
 		e.question_id = svgd.currentRoomID;
 		e.answer_id = answer_id;
 		e.correct = correct;
-		DataManager.manager.savegame.setAnswer(e.question_id, answer_id);
+		//DataManager.manager.savegame.setAnswer(e.question_id, answer_id);
 		EventPool.sendEvent(e);
 	}
 

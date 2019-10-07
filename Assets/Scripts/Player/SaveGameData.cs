@@ -27,7 +27,7 @@ public class SaveGameData {
 		Debug.LogWarning("[End] Room " + room_id + " not found in save.");
 	}
 
-	public void setAnswer(int room_id, int answer_id) {
+	/*public void setAnswer(int room_id, int answer_id) {
 		for (int i = 0; i < rooms.Length; i++) {
 			if (rooms[i].room_id == room_id) {
 				rooms[i].answer_id = answer_id;
@@ -35,7 +35,7 @@ public class SaveGameData {
 			}
 		}
 		Debug.LogWarning("[Answer] Room " + room_id + " not found in save.");
-	}
+	}*/
 
 	public void setRoomStart(int room_id) {
 		for(int i = 0; i < rooms.Length; i++) {
