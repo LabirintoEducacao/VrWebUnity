@@ -21,6 +21,15 @@ public class SaveGameData {
 			if (rooms[i].room_id == room_id) {
 				rooms[i].timeInside = timeElapsed - rooms[i].enterTime;
 				rooms[i].status = correct ? ROOM_STATUS.RIGHT : ROOM_STATUS.WRONG;
+                if (correct)
+                {
+                    rightAnswers++;
+                }
+                else
+                {
+                    wrongAnswers++;
+                    rooms[i].wrongs++;
+                }
 				return;
 			}
 		}

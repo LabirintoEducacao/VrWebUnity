@@ -1,7 +1,8 @@
 Introduction :
 This is a simple asset using raycasting to provide a Gaze UI working with Unity's UI controls.
 There is a simple demonstration accessible on youtube : https://www.youtube.com/watch?v=8U4ChekAgnQ
-Feel free to contact me is you have any question : youe.graillot@gmail.com
+Feel free to contact me is you have any 
+: youe.graillot@gmail.com
 
 How to integrate ?
 

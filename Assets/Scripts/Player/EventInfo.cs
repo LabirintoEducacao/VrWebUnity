@@ -238,6 +238,11 @@ public class EventPool {
 		EventPool.sendEvent(e);
 	}
 
+    /// <summary>
+    /// Salva a resposta escolhida pelo Jogador.
+    /// </summary>
+    /// <param name="answer_id">id da resposta escolhida</param>
+    /// <param name="correct">flag da resposta escolhida</param>
 	public static void sendAnswerInteractionEvent(int answer_id, bool correct) {
 		EventInfo e = baseEventInfo("answer_interaction");
 
