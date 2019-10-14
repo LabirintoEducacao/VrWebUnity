@@ -111,8 +111,14 @@ public class Player : PlayerBase
         }
     }
 
-    void hitItem(RaycastHit hit)
-    {
+    /// <summary>
+    /// Verifica e analisa o objeto com tag "Item" visto pelo o jogador.
+    /// A verificação ocorre, quando o jogador fica olhando o objeto por um determinado tempo.
+    /// Após o tempo, o objeto é colocado no inventário e caso já esteja com um outro objeto no inventário, eles são trocados.
+    /// No final a resposta contida no objeto é salva.
+    /// </summary>
+    /// <param name="hit">Objeto "Item" visto pelo jogador</param>
+    void hitItem(RaycastHit hit){
         currentTimeUnlock += Time.deltaTime;
         if (currentTimeUnlock >= timeToUnlock)
         {
@@ -158,8 +164,11 @@ public class Player : PlayerBase
         }
     }
 
-    void hitCheckAnswer(RaycastHit hit)
-    {
+    /// <summary>
+    /// Verifica a porta com a resposta
+    /// </summary>
+    /// <param name="hit"></param>
+    void hitCheckAnswer(RaycastHit hit){
         CheckBase checkDoor = hit.collider.GetComponent<CheckBase>();
 
         currentTimeUnlock += Time.deltaTime;

@@ -32,6 +32,7 @@ public class DataManager : MonoBehaviour {
 				Destroy(this.gameObject);
 			}
 		} else {
+
 			instance = this;
 			SceneManager.activeSceneChanged += SceneChanged;
 			DontDestroyOnLoad(this.gameObject);
@@ -44,9 +45,12 @@ public class DataManager : MonoBehaviour {
 					svgd = JsonUtility.FromJson<SaveGameData>(save);
 				}
 			}
+#else
+            svgd = new SaveGameData();
+            svgd.playing = true;
 #endif
-			//reload unsent event pool
-			EventPoolWrapper ew = SaveData.load<EventPoolWrapper>("event_pool");
+            //reload unsent event pool
+            EventPoolWrapper ew = SaveData.load<EventPoolWrapper>("event_pool");
 			if (ew == null) {
 				EventPool.pool = new List<EventInfo>();
 			} else {
@@ -101,12 +105,22 @@ public class DataManager : MonoBehaviour {
 		svgd = new SaveGameData();
 		svgd.mazeID = mazeLD.maze_id;
 		svgd.currentRoomID = mazeLD.starting_question_id;
-		svgd.playing = false;
+        if (SceneManager.GetActiveScene().name != "MainMenu")
+        {
+            svgd.playing = true;
+        }
+        else
+        {
+            svgd.playing = false;
+        }
 		RoomPlayerInfo[] rooms = new RoomPlayerInfo[mazeLD.questions.Length];
 		for (int i = 0; i < rooms.Length; i++) {
 			rooms[i] = new RoomPlayerInfo(mazeLD.questions[i].question_id);
 		}
-	}
+
+        svgd.rooms = rooms; // Salvar as salas de questões
+
+    }
 
 	/// <summary>
 	/// Apenas save local.
@@ -187,6 +201,11 @@ public class DataManager : MonoBehaviour {
 
 	}
 
+	/// <summary>
+	/// Método para enviar evento sobre acertos e erros para o(s) analytics
+	/// </summary>
+	/// <param name="room_id">sala atual do jogo</param>
+	/// <param name="correct">resposta certa ou errada?</param>
 	public void answerStatus(int room_id, bool correct) {
 		Parameter[] LevelUpParameters = {
 				new Parameter("MazeID", svgd.mazeID),

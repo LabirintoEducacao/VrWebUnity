@@ -1,0 +1,40 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HubEndRoom : MonoBehaviour
+{
+
+    [Header("UI")]
+    public TMPro.TextMeshProUGUI FinalText;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //TODO Criar Panel com Score
+        // Adiciona Texto
+        SaveGameData svgd = DataManager.manager.savegame;
+        var sb = new System.Text.StringBuilder();
+
+        float sec = svgd.timeElapsed;
+        int min = 0;
+        int hour = 0;
+        while(sec >= 60f)
+        {
+            sec -= 60f;
+            min++;
+
+            if (min == 60)
+            {
+                min = 0;
+                hour++;
+            }
+        }
+
+        sb.AppendLine(System.String.Format("Tempo Total: {0}h {1}m {2}s", hour, min, System.Math.Round(svgd.timeElapsed, 0)));
+        sb.AppendLine(System.String.Format("Pontuação: {0}", svgd.score));
+        sb.AppendLine(System.String.Format("Acertos: {0}", svgd.rightAnswers));
+        sb.AppendLine(System.String.Format("Erros: {0}", svgd.wrongAnswers));
+
+        FinalText.text = sb.ToString();
+    }
+}

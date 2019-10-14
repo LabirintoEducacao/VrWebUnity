@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
     public string tagRoom;
     public Transform mapRoot;
     public RoomDescriptor startingRoom;
+    public GameObject endRoom; // Finish Game
     public GameObject roomPrefab;
 
     public RoomManager[] roomsObjects;
@@ -49,11 +50,8 @@ public class GameManager : MonoBehaviour {
 			DataManager.manager.setNewLevel(mazeLD);
         }
 
-        // StartCoroutine (CreateRooms ( ));
-        // StartCoroutine (CreateCorridors ( ));
         CreateRooms ( );
         CreateCorridors ( );
-        // StartCoroutine(this.placeContinuation());
     }
 
     public RoomManager getRoom (int id) {
@@ -134,6 +132,38 @@ public class GameManager : MonoBehaviour {
             //ccGen.setExitMotion (nextRoom.GetComponentInChildren<HubCheckpoint> ().transform);
             this.nextRoom.gameObject.SetActive (true);
         }
+        else // END GAME
+        {
+            nextRoom = endRoom.GetComponent<RoomManager>();
+            if (nextRoom == null)
+            {
+                Debug.LogError(string.Format("Sala final não existe." ));
+                yield break;
+            }
+            //add delta to finishing position in corridor
+            Transform exitHub = corridor.GetComponent<CorridorGenerator>().getExitTranform();
+
+            float corrEndx = (corridor.GetComponent<CorridorGenerator>().exit.x + 0.5f) * corridor.cellSize;
+            nextCorrPivot += (fwd * (corridor.pathInfo.height * corridor.cellSize) + right * corrEndx);
+
+            nextCorrPivot = exitHub.transform.position + exitHub.forward * cellSize / 2f;
+            nextCorrPivot.y -= 1.5f;
+
+            nextRoom.transform.rotation = Quaternion.Euler(0f, rot + baseRot.y, 0f);
+            //nextRoom.transform.position = nextCorrPivot + Vector3.forward * currentCorridor.pathInfo.height + Vector3.forward * nextRoom.GetComponent<RoomDescriptor>().size.y;
+            nextRoom.transform.position = nextCorrPivot + fwd * nextRoom.GetComponent<RoomDescriptor>().size.y - right * nextRoom.GetComponent<RoomDescriptor>().size.x / 2f; // - nextRoom.spawnDoor[0].transform.localPosition;
+
+            //change listener
+            currentRoom.GetComponentInChildren<HubCheckpoint>().onPlayerEnter -= onEnteredNextRoom;
+            nextRoom.GetComponentInChildren<HubCheckpoint>().onPlayerEnter += onEnteredNextRoom;
+
+            yield return new WaitForEndOfFrame();
+            CorridorGenerator ccGen = currentCorridor.GetComponent<CorridorGenerator>();
+            currentRoom.GetComponentInChildren<HubCheckpoint>().setGoal(direction, ccGen.getEntranceTranform());
+            ccGen.setEntranceMotion(currentRoom.GetComponentInChildren<HubCheckpoint>().transform);
+            //ccGen.setExitMotion (nextRoom.GetComponentInChildren<HubCheckpoint> ().transform);
+            this.nextRoom.gameObject.SetActive(true);
+        }
         yield return new WaitForSeconds (0.1f);
         this.GetComponent<NavMeshBaker> ().CreateBake ();
         this.currentRoom.GetComponentInChildren<HubCheckpoint> ().activate ();
@@ -154,6 +184,11 @@ public class GameManager : MonoBehaviour {
         yield return placeNextCorridor (nextCorrPivot + Vector3.right * roomSize.x / 2f, this.transform.rotation, Constants.DIRECTION_UP, corr);
     }
 
+
+    /// <summary>
+    /// Salva ao entrar na sala
+    /// </summary>
+    /// <param name="hub">Ponto de referência do caminho.</param>
     void onEnteredNextRoom (HubCheckpoint hub) {
         if(this.currentRoom.GetComponentInChildren<HubCheckpoint>() == hub)
             return;
@@ -166,20 +201,26 @@ public class GameManager : MonoBehaviour {
 
 		// this.currentRoom.gameObject.SetActive (true);
 		if (this.currentRoom.id  == -42) {
-			// id fixo para o endgame
-			EventPool.sendMazeEndEvent();
-			// uhuuuu!!!
-			// parabéns!!!
-		} else {
+            // id fixo para o endgame
+            EventPool.sendMazeEndEvent();
+            DataManager.manager.saveProgress(); // Salvar no arquivo local
+
+            // uhuuuu!!!
+            // parabéns!!!
+        } else {
 			EventPool.sendQuestionStartEvent();
 			DataManager.manager.saveProgress();
 		}
     }
 
+    /// <summary>
+    /// Cria todas as salas que serão utilizadas dentro do jogo.
+    /// </summary>
     public void CreateRooms () {
         this.rooms = new List<RoomManager> ();
         this.corridors = new List<CorridorManager> ();
-        this.roomsObjects = new RoomManager[mazeLD.questions.Length];
+        //this.roomsObjects = new RoomManager[mazeLD.questions.Length]; 
+        this.roomsObjects = new RoomManager[mazeLD.questions.Length+1]; // + Add End Room
         int i = 0;
 
         foreach (Question quest in mazeLD.questions) {
@@ -206,6 +247,14 @@ public class GameManager : MonoBehaviour {
             this.rooms.Add (rm);
         }
         // yield break;
+
+        //End Room
+        endRoom.SetActive(false);
+        endRoom.name = "room_-42";
+        endRoom.GetComponent<RoomManager>().SetTypeRoom(); // Criação da sala End Room
+        endRoom.GetComponent<RoomManager>().manager = this;
+        roomsObjects[mazeLD.questions.Length] = endRoom.GetComponent<RoomManager>(); 
+        this.rooms.Add(endRoom.GetComponent<RoomManager>()); 
     }
 
     public void CreateCorridors () {
