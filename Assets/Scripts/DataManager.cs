@@ -47,7 +47,7 @@ public class DataManager : MonoBehaviour {
 			}
 #else
             svgd = new SaveGameData();
-            svgd.playing = true;
+            svgd.playing = !SceneManager.GetActiveScene().name.Equals("MainMenu");
 #endif
             //reload unsent event pool
             EventPoolWrapper ew = SaveData.load<EventPoolWrapper>("event_pool");
