@@ -52,7 +52,27 @@ public class GameManager : MonoBehaviour {
 
         CreateRooms ( );
         CreateCorridors ( );
+		positionCorrectRoomAndPlayer();
     }
+
+	void positionCorrectRoomAndPlayer() {
+		int croom = mazeLD.starting_question_id;
+		if (DataManager.manager.savegame.currentRoomID >= 0) {
+			croom = DataManager.manager.savegame.currentRoomID;
+		}
+		RoomManager r = getRoom(croom);
+		if (this.currentRoom != null) {
+			if (croom != r.id) {
+				this.currentRoom.gameObject.SetActive(false);
+			}
+		}
+		this.currentRoom = r;
+		this.currentRoom.gameObject.SetActive(true);
+
+		GameObject player = GameObject.FindGameObjectWithTag("PlayerAgent");
+		player.transform.position = r.GetComponentInChildren<HubCheckpoint>().transform.position + Vector3.up;
+
+	}
 
     public RoomManager getRoom (int id) {
         return this.rooms.Find (x => (x.id == id));

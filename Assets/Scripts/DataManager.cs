@@ -129,8 +129,22 @@ public class DataManager : MonoBehaviour {
 		SaveData.save("savegame", JsonUtility.ToJson(svgd));
 	}
 
-	public void cleanPlayerProgress() {
+	public UserInfo loadUser() {
+		return SaveData.load<UserInfo>("user_data");
+	}
+
+	public void saveUser() {
+		if (LoginHandler.handler.isValidUser) {
+			string user_data = JsonUtility.ToJson(LoginHandler.handler.user);
+			SaveData.save("user_data", user_data);
+		}
+	}
+
+	public void cleanPlayerProgress(bool logout = false) {
 		SaveData.removeFile("savegame");
+		SaveData.removeFile("user_data");
+		if (logout)
+			SaveData.removeFile("current_level");
 		checkAndCreateSave();
 	}
 

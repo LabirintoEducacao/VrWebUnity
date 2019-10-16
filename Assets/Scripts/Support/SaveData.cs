@@ -71,10 +71,10 @@ namespace larcom.support {
 			}
 		}
 
-		public static dynamic load<T>(string filename) {
+		public static T load<T>(string filename) {
 			string dirpath = Path.Combine(Application.persistentDataPath, SaveData.basePath);
 			if (!Directory.Exists(dirpath)) {
-				return null;
+				return default(T);
 			}
 			string fullpath = Path.Combine(Application.persistentDataPath, SaveData.basePath, filename);
 			if (File.Exists(fullpath)) {
@@ -87,7 +87,7 @@ namespace larcom.support {
 				}
 				return JsonUtility.FromJson<T>(data);
 			} else {
-				return null;
+				return default(T);
 			}
 		}
 

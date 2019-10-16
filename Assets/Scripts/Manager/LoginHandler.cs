@@ -43,9 +43,16 @@ public class LoginHandler : MonoBehaviour {
 			//this.webAPI = Resources.FindObjectsOfTypeAll<WebServiceData>()[0];
 		}
 	}
+
+	private void Start() {
+		UserInfo u = DataManager.manager.loadUser();
+		if (u != null) {
+			this.user = u;
+		}
+	}
 #endregion
 
-#region event pool retrial
+	#region event pool retrial
 	private void loadPool() {
 		//load events from disk
 
@@ -82,7 +89,7 @@ public class LoginHandler : MonoBehaviour {
 			await uwr.SendWebRequest();
 			if (uwr.isNetworkError || uwr.isHttpError) {
 				Debug.LogWarning(string.Format("Could not login {0} - due to: {1}", new object[] { username, uwr.error }));
-				u.username = "Could not connect.";
+				u.username = "Could not connect. "+uwr.error;
 			} else {
 				string data = Encoding.UTF8.GetString(uwr.downloadHandler.data);
 				LoginReturn lr = JsonUtility.FromJson<LoginReturn>(data);
@@ -91,8 +98,9 @@ public class LoginHandler : MonoBehaviour {
 				} else {
 					u = new UserInfo(lr.name, lr.id);
 					this.user = u;
+					DataManager.manager.cleanPlayerProgress();
+					DataManager.manager.saveUser();
 				}
-
 			}
 			if (OnLoginCompleted != null) {
 				OnLoginCompleted(u);
@@ -103,6 +111,7 @@ public class LoginHandler : MonoBehaviour {
 
 	public void logout () {
 		this.user = new UserInfo("Visitante", "-1");
+		DataManager.manager.cleanPlayerProgress(true);
 	}
 
 	struct LoginReturn {
@@ -233,7 +242,8 @@ public class LoginHandler : MonoBehaviour {
 			OnLoadMazeProgressCompleted?.Invoke(false);
 			return false;
 		}
-
+		/// Clear Text Traffic not permitted on mobile
+		/// https://stackoverflow.com/questions/45940861/android-8-cleartext-http-traffic-not-permitted
 		string url = webAPI.loadURL+"?maze_id=" + maze_id+"&user_id="+uid;
 		using (UnityWebRequest uwr = UnityWebRequest.Get(url)) {
 			uwr.SetRequestHeader("Content-Type", "application/json");
@@ -249,8 +259,13 @@ public class LoginHandler : MonoBehaviour {
 				if (error) {
 					Debug.LogWarning(string.Format("Could not get load data for maze {0} and user {2} - due to: {1}", new object[] { maze_id, data, uid }));
 				} else {
-					dynamic load = JsonUtility.FromJson<dynamic>(data);
-					DataManager.manager.savegame.currentRoomID = load.stopped_question;
+					LoadResponse load = JsonUtility.FromJson<LoadResponse>(data);
+					if (load.next_question > 0) {
+						// se está null, deixa a starting_question que já está setada
+						// pq o jogador ainda não jogou esse labirinto, ou já concluiu.
+						DataManager.manager.savegame.currentRoomID = load.next_question;
+					}
+					DataManager.manager.savegame.wrongAnswers = load.wrong_count;
 					OnLoadMazeProgressCompleted?.Invoke(true);
 					return true;
 				}
@@ -260,6 +275,14 @@ public class LoginHandler : MonoBehaviour {
 
 		OnLoadMazeProgressCompleted?.Invoke(false);
 		return false;
+	}
+
+	//{"stopped_question":29,"next_question":30,"correct_count":0,"wrong_count":0}
+	public class LoadResponse {
+		public int stopped_question = -1;
+		public int next_question = -1;
+		public int correct_count = 0;
+		public int wrong_count = 0;
 	}
 	#endregion
 }

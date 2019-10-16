@@ -155,7 +155,11 @@ public class RoomGridCreator : MonoBehaviour
 			return;
 		}
 		//set level
-		this.levelHasBeenLoaded = 1; //OK
 		DataManager.manager.setNewLevel(ld);
+
+		//level set, loading progress.
+		bool progress = await LoginHandler.handler.getMazeProgress(ld.maze_id);
+
+		this.levelHasBeenLoaded = 1; //OK
 	}
 }
