@@ -24,6 +24,7 @@ public class SaveGameData {
                 if (correct)
                 {
                     rightAnswers++;
+					rooms[i].right++;
                 }
                 else
                 {
@@ -62,7 +63,7 @@ public class RoomPlayerInfo {
 	public int room_id;
 	public ROOM_STATUS status;
 	public int wrongs = 0;
-	public bool right = false;
+	public int right = 0;
 	public int answer_id = -1;
 	public float enterTime;
 	public float timeInside;

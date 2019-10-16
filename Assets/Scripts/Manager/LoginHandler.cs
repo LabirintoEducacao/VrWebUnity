@@ -266,6 +266,7 @@ public class LoginHandler : MonoBehaviour {
 						DataManager.manager.savegame.currentRoomID = load.next_question;
 					}
 					DataManager.manager.savegame.wrongAnswers = load.wrong_count;
+					DataManager.manager.savegame.rightAnswers = load.correct_count;
 					OnLoadMazeProgressCompleted?.Invoke(true);
 					return true;
 				}
