@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Animations;
+using System;
 
 public class Player : PlayerBase
 {
@@ -66,6 +67,14 @@ public class Player : PlayerBase
             {
                 hitExitGame(hit);
             }
+            else if (hit.collider.CompareTag("Lever"))
+            {
+                hitInteractObject(hit);
+            }
+            else if (hit.collider.CompareTag("LeversCheck"))
+            {
+                hitCheckLevers(hit);
+            }
             else
             {
                 GUIReticleLoad.fillAmount = 0;
@@ -119,7 +128,9 @@ public class Player : PlayerBase
     /// </summary>
     /// <param name="hit">Objeto "Item" visto pelo jogador</param>
     void hitItem(RaycastHit hit){
+
         currentTimeUnlock += Time.deltaTime;
+
         if (currentTimeUnlock >= timeToUnlock)
         {
             GUIReticleLoad.gameObject.SetActive(true);
@@ -163,6 +174,7 @@ public class Player : PlayerBase
             }
         }
     }
+
 
     /// <summary>
     /// Verifica a porta com a resposta
@@ -211,6 +223,72 @@ public class Player : PlayerBase
         }
     }
 
+    /// <summary>
+    /// Método para interagir com um determinado objeto
+    /// </summary>
+    /// <param name="hit">Objeto "InteractObject" visto pelo jogador</param>
+    void hitInteractObject(RaycastHit hit)
+    {
+        currentTimeUnlock += Time.deltaTime;
+        if (currentTimeUnlock >= timeToUnlock)
+        {
+            GUIReticleLoad.gameObject.SetActive(true);
+            currentTimeLoadFillAmount += Time.deltaTime;
+            GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
+
+            if (currentTimeLoadFillAmount >= timeToLoadFillAmount)
+            {
+
+                ItemBase obj = hit.collider.gameObject.GetComponentInParent<ItemBase>();
+                obj.ActionItem();
+
+                GUIReticleLoad.fillAmount = 0;
+                GUIReticleLoad.gameObject.SetActive(false);
+                currentTimeLoadFillAmount = 0;
+                currentTimeUnlock = 0;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Verifica se as alavancas estão ativadas corretamente
+    /// </summary>
+    /// <param name="hit">Objeto "CheckLevers" visto pelo jogador</param>
+    private void hitCheckLevers(RaycastHit hit)
+    {
+        CheckBase checkLevers = hit.collider.GetComponent<CheckBase>();
+
+        currentTimeUnlock += Time.deltaTime;
+
+        if (currentTimeUnlock >= timeToUnlock)
+        {
+            GUIReticleLoad.gameObject.SetActive(true);
+            currentTimeLoadFillAmount += Time.deltaTime;
+            GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
+
+            if (currentTimeLoadFillAmount >= timeToLoadFillAmount)
+            {
+                bool correct = checkLevers.checkAnswer(null);
+
+                if (correct)
+                {
+                    Debug.Log("Resposta Certa!");
+                }
+                else
+                {
+                    Debug.Log("Resposta errada!");
+                    //dispara evento para registrar a resposta no analytics
+                    DataManager.manager.answerStatus(this.currentRoom.id, correct);
+                }
+
+                GUIReticleLoad.fillAmount = 0;
+                GUIReticleLoad.gameObject.SetActive(false);
+
+                currentTimeLoadFillAmount = 0;
+                currentTimeUnlock = 0;
+            }
+        }
+    }
     void hitBackToMenu(RaycastHit hit)
     {
         MenuInGame menu = hit.collider.GetComponent<MenuInGame>();

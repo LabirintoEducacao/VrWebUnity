@@ -12,6 +12,9 @@ TagManager:
   - Door
   - BackToMenu
   - ExitGame
+  - ButtonExit
+  - Lever
+  - LeversCheck
   layers:
   - Default
   - TransparentFX

@@ -15,7 +15,10 @@ public class HubEndRoom : MonoBehaviour
         SaveGameData svgd = DataManager.manager.savegame;
         var sb = new System.Text.StringBuilder();
 
-        float sec = svgd.timeElapsed;
+        
+        // Formata o tempo
+        double sec = System.Math.Truncate(svgd.timeElapsed);
+
         int min = 0;
         int hour = 0;
         while(sec >= 60f)
@@ -30,7 +33,7 @@ public class HubEndRoom : MonoBehaviour
             }
         }
 
-        sb.AppendLine(System.String.Format("Tempo Total: {0}h {1}m {2}s", hour, min, System.Math.Round(svgd.timeElapsed, 0)));
+        sb.AppendLine(System.String.Format("Tempo Total: {0}h {1}m {2}s", hour, min, sec));
         sb.AppendLine(System.String.Format("Pontuação: {0}", svgd.score));
         sb.AppendLine(System.String.Format("Acertos: {0}", svgd.rightAnswers));
         sb.AppendLine(System.String.Format("Erros: {0}", svgd.wrongAnswers));

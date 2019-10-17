@@ -2330,7 +2330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8442a456b7941eb4b88acafbffa555d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelDesign: {fileID: 4900000, guid: a4777529ad307d9489f8e3cff99512ff, type: 3}
+  levelDesign: {fileID: 4900000, guid: d5bdcdac15a238d42be81266ff5d227e, type: 3}
   tagRoom: Room
   mapRoot: {fileID: 1848642511}
   startingRoom: {fileID: 285990640}

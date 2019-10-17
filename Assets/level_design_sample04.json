@@ -142,7 +142,7 @@
       "answer_type": "text",
       "question_type": "text",
       "question": "Qual � o numero de PI?",
-      "room_type": "right_key",
+      "room_type": "true_or_false",
       "paths": [
         {
           "availability": "right",
@@ -155,7 +155,8 @@
       "answers": [
         {
           "answer_id": 4,
-          "answer": "3,1415928"
+          "answer": "3,1415925",
+          "correct": true
         },
         {
           "answer_id": 5,
@@ -163,8 +164,7 @@
         },
         {
           "answer_id": 6,
-          "answer": "3,1415926",
-          "correct": true
+          "answer": "3,1415426"
         }
       ]
     }
