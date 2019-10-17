@@ -55,6 +55,8 @@ public class RoomManager : MonoBehaviour, IRoomSet
     [Header("Extras")]
     public GameObject CheckFormAnswer;
     public Transform spawnCheckForm;
+    public GameObject CheckLeverAnswer;
+    public Transform spawnCheckLevers;
 
     //Metodos
     public void generateAnswers()
@@ -111,6 +113,34 @@ public class RoomManager : MonoBehaviour, IRoomSet
                 }
             }
         }
+        else if (type == TypeRoom.true_or_false)
+        {
+            for (int i = 0; i < answers.Length; i++)
+            {
+                Vector3 newPosition = molds[i].position;
+                newPosition.y += 0.5f; 
+                GameObject go = Instantiate(answerPrefab[4], newPosition, molds[i].rotation, molds[i]);
+                ItemBase ansRef = go.GetComponent<ItemBase>();
+                ansRef.properties = answers[i];
+                answerReference.Add(ansRef);
+            }
+
+            GameObject objectTemp;
+
+            objectTemp = Instantiate(CheckLeverAnswer, spawnCheckLevers.position, spawnCheckLevers.rotation, spawnCheckLevers);
+            CheckLevers checkLevers = objectTemp.transform.GetChild(0).GetComponent<CheckLevers>();
+            foreach (ItemBase item in answerReference)
+            {
+                Lever lever = item.gameObject.GetComponent<Lever>();
+                checkLevers.listLevers.Add(lever);
+            }
+
+            checkLevers.rmanager = this;
+
+            objectTemp = null;
+
+            checkLevers.door = portDatas[1];
+        }
 
         TextQuestion.text = question.question;
     }
@@ -134,7 +164,13 @@ public class RoomManager : MonoBehaviour, IRoomSet
         {
             type = TypeRoom.multiple_forms;
             RoomTypeObjectsAndShapes();
-        }else if (question.room_type == "end_room")
+        }
+        else if (question.room_type == "true_or_false")
+        {
+            type = TypeRoom.true_or_false;
+            Room_true_or_false();
+        }
+        else if (question.room_type == "end_room")
         {
             type = TypeRoom.end_room;
             End_Room();
@@ -371,10 +407,69 @@ public class RoomManager : MonoBehaviour, IRoomSet
         }
     }
 
+
+    /// <summary>
+    /// Criação da sala verdadeiro e falso
+    /// </summary>
+    void Room_true_or_false()
+    {
+        //Variaveis;
+        GameObject objectTemp;
+
+        DoorStructure ds = new DoorStructure();
+        //Declarando o tamanho do Array
+        portDatas = new DoorStructure[2];
+
+        //Instancia da porta de entrada
+        objectTemp = Instantiate(doorPrefab, spawnDoor[2].position, spawnDoor[2].rotation, spawnDoor[2]);
+        objectTemp.name = "gateway";
+
+        //Salvando as propriedades da porta de entrada
+        ds.name = objectTemp.name;
+        ds.doorProperties = objectTemp.GetComponent<linkDoor>();
+        ds.doorPosition = 2;
+        ds.anim = objectTemp.GetComponent<Animator>();
+        portDatas[0] = ds;
+
+        objectTemp = Instantiate(doorPrefab, spawnDoor[0].position, spawnDoor[0].rotation, spawnDoor[0]);
+
+        //Caso seja a sala final
+        if (question.paths[0].end_game == true)
+        {  
+            objectTemp.name = "EndDoor";
+        }
+        else
+        {
+            objectTemp.name = "DoorAnswer";
+        }
+
+        ds.name = objectTemp.name;
+        ds.doorProperties = objectTemp.GetComponent<linkDoor>();
+        ds.doorPosition = 0;
+        ds.anim = objectTemp.GetComponent<Animator>();
+
+        portDatas[1] = ds;
+
+        //Adicionando muros no cenario
+        List<int> count = new List<int>();
+        count.Add(portDatas[0].doorPosition);
+        count.Add(portDatas[1].doorPosition);
+
+        while (count.Count < 4)
+        {
+            int num = UnityEngine.Random.Range(0, 4);
+            if (!count.Contains(num))
+            {
+                Instantiate(WallPrefab, spawnDoor[num].position, spawnDoor[num].rotation, spawnDoor[num]);
+                count.Add(num);
+            }
+        }
+    }
+
     /// <summary>
     /// Criação da End Room
     /// </summary>
-    public void End_Room()
+    void End_Room()
     {
         //TODO Items de Recompensa
         GameObject objectTemp;
@@ -511,6 +606,18 @@ public class RoomManager : MonoBehaviour, IRoomSet
                     }
                 }
             }
+            else if (question.room_type == "true_or_false")
+            {
+                foreach (RoomManager room in GameManager.Instance.roomsObjects)
+                {
+                    if (room.id == question.paths[path].connected_question)
+                    {
+                        linkDoor linked = room.portDatas[0].doorProperties;
+
+                        linked.answerLinked = question.answers[0];
+                    }
+                }
+            }
             else
             {
                 Debug.Log("Entrou no else");
@@ -527,6 +634,7 @@ public class RoomManager : MonoBehaviour, IRoomSet
                                 linked.answerLinked = ans;
                             }
                         }
+
                     }
                 }
             }
@@ -535,18 +643,30 @@ public class RoomManager : MonoBehaviour, IRoomSet
         {
             Debug.Log("Entrou no End Room");
 
-            RoomManager room = GameManager.Instance.roomsObjects[GameManager.Instance.roomsObjects.Length-1]; // End Room
-
-            linkDoor linked = room.portDatas[0].doorProperties;
-
-            foreach (Answer ans in question.answers)
+            if (question.room_type == "true_or_false")
             {
-                if (ans.correct)
-                {
-                    linked.answerLinked = ans;
-                }
-            }
+                RoomManager room = GameManager.Instance.roomsObjects[GameManager.Instance.roomsObjects.Length - 1]; // End Room
 
+                linkDoor linked = room.portDatas[0].doorProperties;
+
+                linked.answerLinked = question.answers[0];
+            }
+            else
+            {
+                RoomManager room = GameManager.Instance.roomsObjects[GameManager.Instance.roomsObjects.Length - 1]; // End Room
+
+                linkDoor linked = room.portDatas[0].doorProperties;
+
+                foreach (Answer ans in question.answers)
+                {
+                    if (ans.correct)
+                    {
+                        linked.answerLinked = ans;
+                    }
+                }
+
+            }
+           
         }
 
     }

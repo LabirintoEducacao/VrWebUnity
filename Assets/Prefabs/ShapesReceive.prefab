@@ -94,6 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d3e2b770da83c409f679a512c92d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rmanager: {fileID: 0}
   answer:
     answer_id: -1
     answer: 
@@ -101,10 +102,6 @@ MonoBehaviour:
   anim: {fileID: 6697048983688778825}
   seted: 0
   openDoor: 0
-  currentAnswer:
-    answer_id: -1
-    answer: 
-    correct: 0
 --- !u!114 &6697048983194706477
 MonoBehaviour:
   m_ObjectHideFlags: 0
