@@ -2795,6 +2795,7 @@ GameObject:
   - component: {fileID: 570013862}
   - component: {fileID: 570013859}
   - component: {fileID: 570013863}
+  - component: {fileID: 570013864}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2890,6 +2891,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e479bde2f4182744bf823d6fc33f4ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &570013864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570013858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b50ce338a78ae2e4a9d38b78430d9d97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &574309811
@@ -5554,8 +5567,6 @@ MonoBehaviour:
   loadedRoom: {fileID: 2070039520}
   privateData: 1
   loaded: 0
-  gameScene: Gabriel_Level_Test
-  levelHasBeenLoaded: 0
 --- !u!1 &1192815527
 GameObject:
   m_ObjectHideFlags: 0
@@ -7300,7 +7311,12 @@ PrefabInstance:
     - target: {fileID: 3106105526894600108, guid: 5551440d6b029f5439cfef7ac68de85a,
         type: 3}
       propertyPath: destination
-      value: 
+      value: VR_Level_Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106105526894600108, guid: 5551440d6b029f5439cfef7ac68de85a,
+        type: 3}
+      propertyPath: isDestinationVR
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3106105526894600109, guid: 5551440d6b029f5439cfef7ac68de85a,
         type: 3}
@@ -7620,6 +7636,11 @@ PrefabInstance:
       propertyPath: destination
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3106105526894600108, guid: 5551440d6b029f5439cfef7ac68de85a,
+        type: 3}
+      propertyPath: isDestinationVR
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3106105526894600109, guid: 5551440d6b029f5439cfef7ac68de85a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7916,7 +7937,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -29.999939}
+  m_AnchoredPosition: {x: 0, y: -30}
   m_SizeDelta: {x: -40, y: -100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1599174278

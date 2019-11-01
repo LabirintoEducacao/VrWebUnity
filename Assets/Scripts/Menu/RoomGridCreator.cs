@@ -14,8 +14,7 @@ public class RoomGridCreator : MonoBehaviour
 	public GameObject loadedRoom;
 	public bool privateData = true;
 	public bool loaded = false;
-	public string gameScene;
-	public int levelHasBeenLoaded = -1;
+	int levelHasBeenLoaded = -1;
 
 	private void FixedUpdate() {
 		//data load
@@ -46,7 +45,9 @@ public class RoomGridCreator : MonoBehaviour
 		//level load finished
 		if (levelHasBeenLoaded > 0) {
 			if (levelHasBeenLoaded == 1) {
-				SceneManager.LoadScene(gameScene);
+				//SceneManager.LoadScene(gameScene);
+				srcButton.afterCanvasOK();
+				levelHasBeenLoaded = -1;
 			} else {
 				levelHasBeenLoaded = -1;
 				foreach (Button btn in this.transform.GetComponentsInChildren<Button>()) {
@@ -130,12 +131,20 @@ public class RoomGridCreator : MonoBehaviour
 		srcButton.afterCanvasCancel();
 	}
 
+	/// <summary>
+	/// Sala a jogar foi selecionada e está carregando o jogo.
+	/// </summary>
+	/// <param name="room">sala a ser jogada</param>
+	/// <param name="is_loaded">dados já está na memória? (continuando ou qr code)</param>
 	public void loadGame(WebRoomInfo room, bool is_loaded = false) {
+		//desabilita os botões enquanto não resolve
 		foreach (Button btn in this.transform.GetComponentsInChildren<Button>()) {
 			btn.enabled = false;
 		}
+
 		if (is_loaded) {
-			SceneManager.LoadScene(this.gameScene);
+			//SceneManager.LoadScene(this.gameScene);
+			this.levelHasBeenLoaded = 1;
 		} else {
 
 			this.loading.SetActive(true);
