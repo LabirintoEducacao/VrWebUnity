@@ -55,9 +55,10 @@ public class CubeButton : MonoBehaviour, IGvrPointerHoverHandler {
 
     IEnumerator changeScene () {
         this.nextSceneLoad = 1; //loading
-        Camera.main.GetComponent<EnableDisableVR> ().changeState (isDestinationVR, allowChangeScene);
-        yield return new WaitForSeconds (0.1f);
-        // SceneManager.LoadScene (destination);
+        //Camera.main.GetComponent<EnableDisableVR> ().changeState (isDestinationVR, allowChangeScene);
+        yield return null;
+		this.nextSceneLoad = 2;
+		// SceneManager.LoadScene (destination);
     }
 
     void allowChangeScene(int teste) {
