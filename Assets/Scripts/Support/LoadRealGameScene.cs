@@ -26,13 +26,13 @@ public class LoadRealGameScene : MonoBehaviour
 		}
 	}
 
-	void Update() {
-		if (Input.GetKeyDown(KeyCode.Escape)) {
-			SceneManager.LoadScene("MainMenu");
-		} else if (Input.touchCount > 0) {
-			if (Input.GetTouch(0).phase == TouchPhase.Began) {
-				this.toggleVR();
-			}
-		}
-	}
+	//void Update() {
+	//	if (Input.GetKeyDown(KeyCode.Escape)) {
+	//		SceneManager.LoadScene("MainMenu");
+	//	} else if (Input.touchCount > 0) {
+	//		if (Input.GetTouch(0).phase == TouchPhase.Began) {
+	//			this.toggleVR();
+	//		}
+	//	}
+	//}
 }
