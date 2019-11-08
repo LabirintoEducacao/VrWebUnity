@@ -17,7 +17,8 @@ public class Player : PlayerBase
     public float timeToUnlock;
     public float timeToLoadFillAmount;
     public float currentTimeLoadFillAmount;
-    public bool IsSeted;
+	public float actionDistance = 4f;
+	public bool IsSeted;
     public SetTarget _SetTarget;
 
     public static Player instance;
@@ -44,10 +45,10 @@ public class Player : PlayerBase
         RaycastHit hit;
 
         //Metodos para detecção
-        if (Physics.Raycast(ray.origin, ray.direction, out hit))
+        if (Physics.Raycast(ray, out hit, this.actionDistance))
         {
-            //Debug.Log(hit.collider.tag);
-            if (hit.collider.CompareTag("Button"))
+			//Debug.Log(hit.collider.tag);
+			if (hit.collider.CompareTag("Button"))
             {
                 hitArrow(hit);
             }
