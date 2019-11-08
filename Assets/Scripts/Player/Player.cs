@@ -46,7 +46,7 @@ public class Player : PlayerBase
         //Metodos para detecção
         if (Physics.Raycast(ray.origin, ray.direction, out hit))
         {
-            Debug.Log(hit.collider.tag);
+            //Debug.Log(hit.collider.tag);
             if (hit.collider.CompareTag("Button"))
             {
                 hitArrow(hit);

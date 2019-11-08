@@ -19,7 +19,7 @@ public class CorridorManager : MonoBehaviour {
 
     generator.width = pathInfo.width;
     generator.height = pathInfo.height;
-    generator.cleanMaze = (pathInfo.type == "corridor");
+    generator.cleanMaze = ((pathInfo.type.Equals("corridor")) || (pathInfo.type.Equals("1")));
     generator.createDoors = false;
     generator.hubPrefab = hubPrefab;
     generator.tileBlock = tilePrefab;

@@ -200,7 +200,7 @@ public class EventPool {
 #region event creation
 	public static void sendMazeStartEvent() {
 		EventInfo e = baseEventInfo("maze_start");
-		EventPool.sendEvent(e);
+		_ = EventPool.sendEvent(e);
 	}
 
 	public static void sendQuestionStartEvent() {
@@ -218,7 +218,7 @@ public class EventPool {
 		e.wrong_count = svgd.wrongAnswers;
 		e.correct_count = svgd.rightAnswers;
 		DataManager.manager.savegame.setRoomStart(e.question_id);
-		EventPool.sendEvent(e);
+		_ = EventPool.sendEvent(e);
 	}
 
 	public static void sendQuestionReadEvent() {
@@ -226,7 +226,7 @@ public class EventPool {
 
 		SaveGameData svgd = DataManager.manager.savegame;
 		e.question_id = svgd.currentRoomID;
-		EventPool.sendEvent(e);
+		_ = EventPool.sendEvent(e);
 	}
 
 	public static void sendAnswerReadEvent(int answer_id) {
@@ -235,7 +235,7 @@ public class EventPool {
 		SaveGameData svgd = DataManager.manager.savegame;
 		e.question_id = svgd.currentRoomID;
 		e.answer_id = answer_id;
-		EventPool.sendEvent(e);
+		_ = EventPool.sendEvent(e);
 	}
 
     /// <summary>
@@ -251,7 +251,7 @@ public class EventPool {
 		e.answer_id = answer_id;
 		e.correct = correct;
 		//DataManager.manager.savegame.setAnswer(e.question_id, answer_id);
-		EventPool.sendEvent(e);
+		_ = EventPool.sendEvent(e);
 	}
 
 	public static void sendQuestionEndEvent(bool correct) {
@@ -263,7 +263,7 @@ public class EventPool {
 		e.correct_count = svgd.rightAnswers;
 		e.correct = correct;
 		DataManager.manager.savegame.setRoomEnd(e.question_id, correct);
-		EventPool.sendEvent(e);
+		_ = EventPool.sendEvent(e);
 	}
 
 	public static void sendMazeEndEvent() {
@@ -272,7 +272,7 @@ public class EventPool {
 		SaveGameData svgd = DataManager.manager.savegame;
 		e.wrong_count = svgd.wrongAnswers;
 		e.correct_count = svgd.rightAnswers;
-		EventPool.sendEvent(e);
+		_ = EventPool.sendEvent(e);
 	}
 
 	/// <summary>
