@@ -5,12 +5,14 @@ using BarcodeScanner.Scanner;
 using UnityEngine;
 #if PLATFORM_ANDROID
 using UnityEngine.Android;
+using UnityEngine.SceneManagement;
 #endif
 using UnityEngine.UI;
 
 public class QRCode : MonoBehaviour {
     Scanner scanner;
     public RawImage target;
+	public string sceneAfterRead;
     public CubeButton srcButton;
 	public Texture2D[] testQRCode;
 	bool noCamera = true;
@@ -144,7 +146,12 @@ public class QRCode : MonoBehaviour {
 			string levelData = MazeTools.base64ToText (data, true);
 			DataManager.manager.setNewLevel(levelData);
 
-			srcButton.afterCanvasOK();
+			if (srcButton != null) {
+				srcButton.afterCanvasOK();
+			} else {
+				//nova estrutura
+				SceneManager.LoadScene(this.sceneAfterRead);
+			}
 		}
     }
 }

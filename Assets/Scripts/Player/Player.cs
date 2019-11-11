@@ -304,7 +304,7 @@ public class Player : PlayerBase
             GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
             if (currentTimeLoadFillAmount >= timeToLoadFillAmount)
             {
-                menu.backToMenu("MainMenu");
+                menu.backToMenu("MainMenu_v2");
             }
         }
     }
