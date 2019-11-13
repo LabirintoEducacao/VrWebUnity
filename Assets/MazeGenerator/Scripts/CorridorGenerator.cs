@@ -141,7 +141,7 @@ public class CorridorGenerator : MonoBehaviour {
 			Debug.LogWarning("no hub found on exit.");
 			return;
 		}
-		hub.goals[Tools.directionToIndex(doorDirectionOut)] = transf;
+		hub.setGoal(doorDirectionOut, transf);
 	}
 
 	void openIO ( ) {
