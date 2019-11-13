@@ -14,8 +14,8 @@
       "paths": [
         {
           "availability": "right",
-          "widht": 1,
-          "heigh": 1,
+          "widht": 10,
+          "heigh": 10,
           "type": "1",
           "connected_question": 13
         }
@@ -48,7 +48,7 @@
         {
           "availability": "right",
           "widht": 1,
-          "heigh": 1,
+          "heigh": 3,
           "type": "2",
           "connected_question": 14
         }
@@ -80,8 +80,8 @@
       "paths": [
         {
           "availability": "right",
-          "widht": 1,
-          "heigh": 1,
+          "widht": 3,
+          "heigh": 3,
           "type": "2",
           "connected_question": 16
         }
@@ -114,14 +114,14 @@
         {
           "availability": "right",
           "widht": 1,
-          "heigh": 1,
+          "heigh": 3,
           "type": "2",
           "connected_question": 18
         },
         {
           "availability": "wrong",
           "widht": 1,
-          "heigh": 1,
+          "heigh": 3,
           "type": "1",
           "connected_question": 17
         }

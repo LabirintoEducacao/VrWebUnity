@@ -105,7 +105,8 @@ public class DataManager : MonoBehaviour {
 		svgd = new SaveGameData();
 		svgd.mazeID = mazeLD.maze_id;
 		svgd.currentRoomID = mazeLD.starting_question_id;
-        if (SceneManager.GetActiveScene().name != "MainMenu")
+
+		if (SceneManager.GetActiveScene().name != "MainMenu")
         {
             svgd.playing = true;
         }

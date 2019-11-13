@@ -44,8 +44,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floorPrefabs:
-  - {fileID: 2455147089375335643, guid: 79860e2244b318946a109ad07e9111fe, type: 3}
+  - {fileID: 5853694971241545773, guid: d830ff30d1e3d6d4e95cf44795c926e3, type: 3}
+  - {fileID: 420679131903745964, guid: 51b1278c5cda9564aa4b0f65ddb350f4, type: 3}
+  - {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7, type: 3}
+  - {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
   lateralWallPrefabs:
-  - {fileID: 6841341944629203928, guid: 7c621fa24313e2048854665bb6aab3cd, type: 3}
+  - {fileID: 6002512972146705864, guid: f12f9b2f02c556440967754777b6d098, type: 3}
+  - {fileID: 1764004261727811403, guid: 20a086387683f514881fcda9520e1735, type: 3}
+  - {fileID: 5012563510315877877, guid: 80c5d825fbd8bf34898f0b64946fa4b7, type: 3}
   cornerWallPrefabs:
-  - {fileID: 1417285386814721562, guid: 622ca752fa09881499893ff4a1aaecb8, type: 3}
+  - {fileID: 1240902261529511205, guid: 75122ffac10c50c4a9ad183e80d18deb, type: 3}
+  - {fileID: 3835817634867196681, guid: 375d55b8d46579e4aaf6987a2a5fb3dc, type: 3}
