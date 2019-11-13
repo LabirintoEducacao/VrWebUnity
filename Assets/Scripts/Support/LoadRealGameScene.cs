@@ -19,7 +19,7 @@ public class LoadRealGameScene : MonoBehaviour
 	}
 
 	void vrActive(int outcome) {
-		SceneManager.LoadScene("Gabriel_Level_Test", LoadSceneMode.Additive);
+		SceneManager.LoadScene("LevelGen", LoadSceneMode.Additive);
 		InputTracking.Recenter();
 		foreach (GameObject item in destroyables) {
 			Destroy(item);

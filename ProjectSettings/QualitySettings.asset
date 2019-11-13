@@ -4,7 +4,7 @@
 QualitySettings:
   m_ObjectHideFlags: 0
   serializedVersion: 5
-  m_CurrentQuality: 4
+  m_CurrentQuality: 1
   m_QualitySettings:
   - serializedVersion: 2
     name: Low
@@ -45,8 +45,8 @@ QualitySettings:
     name: Medium
     pixelLightCount: 1
     shadows: 1
-    shadowResolution: 0
-    shadowProjection: 1
+    shadowResolution: 1
+    shadowProjection: 0
     shadowCascades: 1
     shadowDistance: 20
     shadowNearPlaneOffset: 3
@@ -54,9 +54,9 @@ QualitySettings:
     shadowCascade4Split: {x: 0.06666667, y: 0.2, z: 0.46666667}
     shadowmaskMode: 0
     skinWeights: 2
-    textureQuality: 0
+    textureQuality: 1
     anisotropicTextures: 1
-    antiAliasing: 0
+    antiAliasing: 2
     softParticles: 0
     softVegetation: 0
     realtimeReflectionProbes: 0
@@ -182,6 +182,7 @@ QualitySettings:
     resolutionScalingFixedDPIFactor: 1
     excludedTargetPlatforms: []
   m_PerPlatformDefaultQuality:
-    Android: 0
-    Standalone: 0
-    Windows Store Apps: 0
+    Android: 1
+    Standalone: 4
+    Windows Store Apps: 4
+    iPhone: 1
