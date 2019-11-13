@@ -168,7 +168,7 @@ public class DataManager : MonoBehaviour {
 		e.user_id = uid <= 0 ? 0 : uid;
 		e.question_id = svgd.currentRoomID;
 		e.elapsed_time = Mathf.RoundToInt(svgd.timeElapsed);
-		EventPool.sendEvent(e);
+		_ = EventPool.sendEvent(e);
 	}
 
 	public void endMaze() {
