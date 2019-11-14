@@ -2676,7 +2676,17 @@ PrefabInstance:
     - target: {fileID: 1198517618021613792, guid: dea181868ab9b3f49a3e47f0d44cb38a,
         type: 3}
       propertyPath: reticleGrowthSpeed
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198517618021613792, guid: dea181868ab9b3f49a3e47f0d44cb38a,
+        type: 3}
+      propertyPath: drawDebugRays
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198517617243406270, guid: dea181868ab9b3f49a3e47f0d44cb38a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dea181868ab9b3f49a3e47f0d44cb38a, type: 3}
