@@ -47,7 +47,7 @@ public class DataManager : MonoBehaviour {
 			}
 #else
             svgd = new SaveGameData();
-            svgd.playing = !SceneManager.GetActiveScene().name.Equals("MainMenu");
+            svgd.playing = !SceneManager.GetActiveScene().name.Equals("MainMenu_v2");
 #endif
             //reload unsent event pool
             EventPoolWrapper ew = SaveData.load<EventPoolWrapper>("event_pool");
@@ -106,7 +106,7 @@ public class DataManager : MonoBehaviour {
 		svgd.mazeID = mazeLD.maze_id;
 		svgd.currentRoomID = mazeLD.starting_question_id;
 
-		if (SceneManager.GetActiveScene().name != "MainMenu")
+		if (SceneManager.GetActiveScene().name != "MainMenu_v2")
         {
             svgd.playing = true;
         }
@@ -189,7 +189,7 @@ public class DataManager : MonoBehaviour {
 	void SceneChanged(Scene current, Scene next) {
 		// cannot clean level data on main menu if we want the player to continue the next level while not finished
 
-		string[] nonMazeScenes = new string[] {"MainMenu"};
+		string[] nonMazeScenes = new string[] {"MainMenu_v2"};
 		if (svgd != null) {
 			bool playing = true;
 			for (int i = 0; i < nonMazeScenes.Length; i++) {
@@ -222,15 +222,15 @@ public class DataManager : MonoBehaviour {
 	/// <param name="room_id">sala atual do jogo</param>
 	/// <param name="correct">resposta certa ou errada?</param>
 	public void answerStatus(int room_id, bool correct) {
-		Parameter[] LevelUpParameters = {
-				new Parameter("MazeID", svgd.mazeID),
-				new Parameter(FirebaseAnalytics.ParameterLevel, svgd.currentRoomID),
-				new Parameter("AnswerStatus", correct.ToString()),
-				new Parameter("ElapsedTime", svgd.timeElapsed.ToString())
-			};
-		FirebaseAnalytics.LogEvent(
-			FirebaseAnalytics.EventLevelUp,
-			LevelUpParameters);
+		//Parameter[] LevelUpParameters = {
+		//		new Parameter("MazeID", svgd.mazeID),
+		//		new Parameter(FirebaseAnalytics.ParameterLevel, svgd.currentRoomID),
+		//		new Parameter("AnswerStatus", correct.ToString()),
+		//		new Parameter("ElapsedTime", svgd.timeElapsed.ToString())
+		//	};
+		//FirebaseAnalytics.LogEvent(
+		//	FirebaseAnalytics.EventLevelUp,
+		//	LevelUpParameters);
 
 		EventPool.sendQuestionEndEvent(correct);
 		//if (correct) {

@@ -2588,6 +2588,10 @@ PrefabInstance:
       propertyPath: GUIReticleLoad
       value: 
       objectReference: {fileID: 1320355185}
+    - target: {fileID: 1206096034, guid: dea181868ab9b3f49a3e47f0d44cb38a, type: 3}
+      propertyPath: actionDistance
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1198517617243406267, guid: dea181868ab9b3f49a3e47f0d44cb38a,
         type: 3}
       propertyPath: m_UiScaleMode
