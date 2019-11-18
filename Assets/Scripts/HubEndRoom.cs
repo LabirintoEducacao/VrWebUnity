@@ -28,7 +28,7 @@ public class HubEndRoom : MonoBehaviour {
 			}
 		}
 
-		int total = svgd.rightAnswers + svgd.wrongAnswers;
+		double total = svgd.rightAnswers + svgd.wrongAnswers;
 		double perScore = 0f;
 		if (total != 0) {
 
