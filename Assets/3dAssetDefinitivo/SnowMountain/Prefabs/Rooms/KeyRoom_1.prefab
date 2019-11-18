@@ -181,6 +181,8 @@ MonoBehaviour:
   answerReference: []
   answerPrefab:
   - {fileID: 9072403018518014131, guid: 59e6b0d3c8a3cd04aac38f362be0008a, type: 3}
+  textPanel: {fileID: 267621110148619225}
+  AnswerOpen: {fileID: 0}
   Doors:
   - {fileID: 1915779119222885674}
   - {fileID: 7971340143830687165}
@@ -250,6 +252,133 @@ Transform:
   m_Father: {fileID: 227748853008634259}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &816377225130823891
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5035229869468426958}
+  - component: {fileID: 6715400055051457912}
+  m_Layer: 0
+  m_Name: BlackBoard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5035229869468426958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816377225130823891}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 207191588606939735}
+  - {fileID: 2800533002032452969}
+  m_Father: {fileID: 7317602672428784474}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &6715400055051457912
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816377225130823891}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 4a541eb0faaf86940962554130969b16, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &824954368149331434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8768867643553414627}
+  - component: {fileID: 943736793676939801}
+  - component: {fileID: 8062300042211456726}
+  m_Layer: 0
+  m_Name: Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8768867643553414627
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824954368149331434}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.0010927976, y: 0.0006119666, z: 0.002855844}
+  m_Children:
+  - {fileID: 3215504676756324596}
+  m_Father: {fileID: 423122971348260602}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.0255, y: -0.0642}
+  m_SizeDelta: {x: 3115.0215, y: 1786.4138}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &943736793676939801
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824954368149331434}
+  m_CullTransparentMesh: 0
+--- !u!114 &8062300042211456726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824954368149331434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
 --- !u!1 &856233662793691465
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,8 +562,9 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e1f9f86bdf1fc994482c6ec91c2fc45a, type: 2}
+  m_sharedMaterial: {fileID: -7729005231412303108, guid: e1f9f86bdf1fc994482c6ec91c2fc45a,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -466,7 +596,7 @@ MonoBehaviour:
   m_fontSizeMin: 10
   m_fontSizeMax: 18
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -725,7 +855,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 077d4b13ecb7b314ba14ffeb7fc0c99a, type: 2}
+  - {fileID: 2100000, guid: 22c5b6be21810f44b877b5ae9dc65f9c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -776,6 +906,37 @@ Transform:
   m_Father: {fileID: 2003604396932542815}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1669677162791299557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 423122971348260602}
+  m_Layer: 0
+  m_Name: Answer
+  m_TagString: Untagged
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &423122971348260602
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669677162791299557}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 915.0826, y: 1634.0762, z: 350.15912}
+  m_Children:
+  - {fileID: 8768867643553414627}
+  m_Father: {fileID: 8027397802358986032}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &2115351066104949224
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,7 +1220,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2241483494129522381}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 4.14, y: 0.50475335, z: -1.75}
+  m_LocalPosition: {x: 4.14, y: 0.117, z: -1.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 227748853008634259}
@@ -1606,6 +1767,7 @@ Transform:
   - {fileID: 1078568330375402987}
   - {fileID: 6772302663151843338}
   - {fileID: 8971792615978589429}
+  - {fileID: 7317602672428784474}
   m_Father: {fileID: 227748853119225654}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1940,13 +2102,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4121880868022177492}
-  m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 4.14, y: 0.50475335, z: -0.22}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 4.14, y: 0.116999984, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 227748853008634259}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &4140755662018186694
 GameObject:
   m_ObjectHideFlags: 0
@@ -2415,6 +2577,80 @@ Transform:
   m_Father: {fileID: 2003604396932542815}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5040509344456904335
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6979664008621777601}
+  - component: {fileID: 4842428162296036446}
+  - component: {fileID: 7323487370161212009}
+  m_Layer: 0
+  m_Name: TMP SubMeshUI [Montserrat-Bold SDF Material + LiberationSans SDF Atlas]
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6979664008621777601
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5040509344456904335}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3215504676756324596}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4842428162296036446
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5040509344456904335}
+  m_CullTransparentMesh: 0
+--- !u!114 &7323487370161212009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5040509344456904335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_spriteAsset: {fileID: 0}
+  m_material: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
+  m_isDefaultMaterial: 0
+  m_padding: 1.25
+  m_canvasRenderer: {fileID: 4842428162296036446}
+  m_TextComponent: {fileID: 267621110148619225}
+  m_materialReferenceIndex: 1
 --- !u!1 &5091096740646611171
 GameObject:
   m_ObjectHideFlags: 0
@@ -2552,13 +2788,45 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5304135981238353874}
-  m_LocalRotation: {x: 0, y: 0.92387956, z: 0, w: 0.38268343}
-  m_LocalPosition: {x: 4.14, y: 0.50475335, z: -3.22}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 4.14, y: 0.116999984, z: -2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 227748853008634259}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 135, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &5314081653640081985
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7317602672428784474}
+  m_Layer: 0
+  m_Name: BlackBoard_Answer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7317602672428784474
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5314081653640081985}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 5.378, y: 1.21, z: -1.89}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5035229869468426958}
+  - {fileID: 8027397802358986032}
+  m_Father: {fileID: 227748853008634259}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &5540697998997637002
 GameObject:
   m_ObjectHideFlags: 0
@@ -3026,6 +3294,105 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.48100004, z: 1.5230001}
   m_TimeToStationary: 0.5
+--- !u!1 &6584715996521131262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8027397802358986032}
+  - component: {fileID: 7462381638478281219}
+  - component: {fileID: 4939079459729280365}
+  - component: {fileID: 3505638462070556334}
+  m_Layer: 0
+  m_Name: Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8027397802358986032
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6584715996521131262}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1797}
+  m_LocalScale: {x: 0.0010927978, y: 0.0006119666, z: 0.0028558448}
+  m_Children:
+  - {fileID: 423122971348260602}
+  m_Father: {fileID: 7317602672428784474}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.102, y: -0.0491}
+  m_SizeDelta: {x: 3148.565, y: 1937.5381}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &7462381638478281219
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6584715996521131262}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!114 &4939079459729280365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6584715996521131262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+--- !u!114 &3505638462070556334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6584715996521131262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &6801764023158707240
 GameObject:
   m_ObjectHideFlags: 0
@@ -3171,6 +3538,83 @@ Transform:
   m_Father: {fileID: 2003604396932542815}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6894877559291820198
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2800533002032452969}
+  - component: {fileID: 5539398335657596890}
+  - component: {fileID: 4593089335777491113}
+  m_Layer: 0
+  m_Name: SnowLevel_Wall_DashBoard_Board
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2800533002032452969
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6894877559291820198}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 2.54, y: 2.54, z: 2.54}
+  m_Children: []
+  m_Father: {fileID: 5035229869468426958}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5539398335657596890
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6894877559291820198}
+  m_Mesh: {fileID: 7201735138072416894, guid: 4a541eb0faaf86940962554130969b16, type: 3}
+--- !u!23 &4593089335777491113
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6894877559291820198}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: b10bb4c3f1a823e47844a8d96922ddee, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &7073265898565470763
 GameObject:
   m_ObjectHideFlags: 0
@@ -3241,6 +3685,165 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   playerAgent: {fileID: 0}
+--- !u!1 &7200917585621294666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3215504676756324596}
+  - component: {fileID: 1924005203042377179}
+  - component: {fileID: 267621110148619225}
+  m_Layer: 0
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3215504676756324596
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7200917585621294666}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 7.7573504, y: 16.1749, z: 6.602}
+  m_Children:
+  - {fileID: 6979664008621777601}
+  m_Father: {fileID: 8768867643553414627}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1451.3774, y: 674.0086}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1924005203042377179
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7200917585621294666}
+  m_CullTransparentMesh: 0
+--- !u!114 &267621110148619225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7200917585621294666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_text: Olhe para chave para ver a resposta aqui...
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: e1f9f86bdf1fc994482c6ec91c2fc45a, type: 2}
+  m_sharedMaterial: {fileID: -7729005231412303108, guid: e1f9f86bdf1fc994482c6ec91c2fc45a,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 18
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 10
+  m_fontSizeMax: 18
+  m_fontStyle: 0
+  m_textAlignment: 514
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_firstOverflowCharacterIndex: -1
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
+  m_isTextTruncated: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 538.1413, y: 277.91504, z: 539.74445, w: 292.92847}
+  m_textInfo:
+    textComponent: {fileID: 267621110148619225}
+    characterCount: 43
+    spriteCount: 0
+    spaceCount: 7
+    wordCount: 8
+    linkCount: 0
+    lineCount: 2
+    pageCount: 1
+    materialCount: 1
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_hasFontAssetChanged: 0
+  m_subTextObjects:
+  - {fileID: 0}
+  - {fileID: 7323487370161212009}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &7217921948818431232
 GameObject:
   m_ObjectHideFlags: 0
@@ -3464,7 +4067,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 789a3563bbccc864ba7d7cace50724f1, type: 2}
+  - {fileID: 2100000, guid: b10bb4c3f1a823e47844a8d96922ddee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4056,6 +4659,83 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.48100004, z: 1.5230001}
   m_TimeToStationary: 0.5
+--- !u!1 &8434264113594877627
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 207191588606939735}
+  - component: {fileID: 9147938443905106167}
+  - component: {fileID: 163812341912772416}
+  m_Layer: 0
+  m_Name: SnowLevel_DashBoard_Frame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &207191588606939735
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8434264113594877627}
+  m_LocalRotation: {x: -0.7071068, y: -0.000000030908623, z: -0.00000003090862, w: 0.7071067}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 2.540001, y: 2.5399992, z: 2.54}
+  m_Children: []
+  m_Father: {fileID: 5035229869468426958}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &9147938443905106167
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8434264113594877627}
+  m_Mesh: {fileID: 1964098959760472224, guid: 4a541eb0faaf86940962554130969b16, type: 3}
+--- !u!23 &163812341912772416
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8434264113594877627}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 22c5b6be21810f44b877b5ae9dc65f9c, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &8474530105609277575
 GameObject:
   m_ObjectHideFlags: 0
@@ -4241,7 +4921,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6772302663151843338}
   m_Layer: 0
-  m_Name: BlackBoard
+  m_Name: BlackBoard_Question
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4301,6 +4981,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle (18)
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4356,11 +5041,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle (18)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &7519053364863011140 stripped
@@ -4376,6 +5056,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileDown (6)
+      objectReference: {fileID: 0}
     - target: {fileID: 3726287101691311618, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4431,11 +5116,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileDown (6)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49a1ec3f6ed72c4b9967af99ebca6f7, type: 3}
 --- !u!4 &3461344152883267536 stripped
@@ -4451,6 +5131,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileDown
+      objectReference: {fileID: 0}
     - target: {fileID: 3726287101691311618, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4506,11 +5191,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileDown
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49a1ec3f6ed72c4b9967af99ebca6f7, type: 3}
 --- !u!4 &4015792770850311464 stripped
@@ -4526,6 +5206,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileDown (3)
+      objectReference: {fileID: 0}
     - target: {fileID: 3726287101691311618, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4581,11 +5266,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileDown (3)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49a1ec3f6ed72c4b9967af99ebca6f7, type: 3}
 --- !u!4 &3975045723873523815 stripped
@@ -4601,6 +5281,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle (22)
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4656,11 +5341,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle (22)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &7901673052681837781 stripped
@@ -4676,6 +5356,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileDown (18)
+      objectReference: {fileID: 0}
     - target: {fileID: 3726287101691311618, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4731,11 +5416,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileDown (18)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49a1ec3f6ed72c4b9967af99ebca6f7, type: 3}
 --- !u!4 &4119634088657959023 stripped
@@ -4751,6 +5431,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileDown (19)
+      objectReference: {fileID: 0}
     - target: {fileID: 3726287101691311618, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4806,11 +5491,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileDown (19)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49a1ec3f6ed72c4b9967af99ebca6f7, type: 3}
 --- !u!4 &4584100979882832876 stripped
@@ -4826,6 +5506,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle (25)
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4881,11 +5566,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle (25)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &7393497668769477740 stripped
@@ -4901,6 +5581,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileDown (12)
+      objectReference: {fileID: 0}
     - target: {fileID: 3726287101691311618, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4956,11 +5641,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileDown (12)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49a1ec3f6ed72c4b9967af99ebca6f7, type: 3}
 --- !u!4 &4540632933459342380 stripped
@@ -4976,6 +5656,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5031,11 +5716,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &7458565039810720147 stripped
@@ -5051,6 +5731,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileDown (13)
+      objectReference: {fileID: 0}
     - target: {fileID: 3726287101691311618, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5106,11 +5791,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileDown (13)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49a1ec3f6ed72c4b9967af99ebca6f7, type: 3}
 --- !u!4 &4457065801112849345 stripped
@@ -5126,6 +5806,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileDown (4)
+      objectReference: {fileID: 0}
     - target: {fileID: 3726287101691311618, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5181,11 +5866,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileDown (4)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49a1ec3f6ed72c4b9967af99ebca6f7, type: 3}
 --- !u!4 &2515882164693142774 stripped
@@ -5201,6 +5881,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileDown (11)
+      objectReference: {fileID: 0}
     - target: {fileID: 3726287101691311618, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5256,11 +5941,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileDown (11)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49a1ec3f6ed72c4b9967af99ebca6f7, type: 3}
 --- !u!4 &2463508152569493247 stripped
@@ -5276,6 +5956,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileDown (17)
+      objectReference: {fileID: 0}
     - target: {fileID: 3726287101691311618, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5331,11 +6016,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileDown (17)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49a1ec3f6ed72c4b9967af99ebca6f7, type: 3}
 --- !u!4 &2783296157388971612 stripped
@@ -5351,6 +6031,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle (13)
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5406,11 +6091,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle (13)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &9010365100585684838 stripped
@@ -5426,6 +6106,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5481,11 +6166,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle (2)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &8223053268000083158 stripped
@@ -5501,6 +6181,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle (10)
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5556,11 +6241,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle (10)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &8492347757356400891 stripped
@@ -5576,6 +6256,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle (7)
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5631,11 +6316,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle (7)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &5260489663873766032 stripped
@@ -5651,6 +6331,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 227748853008634259}
     m_Modifications:
+    - target: {fileID: 5373841549418097002, guid: 77882a89d3cce4c4dbbfb810b4073626,
+        type: 3}
+      propertyPath: m_Name
+      value: DoorAnswer
+      objectReference: {fileID: 0}
     - target: {fileID: 3097214184939135292, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5706,11 +6391,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5373841549418097002, guid: 77882a89d3cce4c4dbbfb810b4073626,
-        type: 3}
-      propertyPath: m_Name
-      value: DoorAnswer
-      objectReference: {fileID: 0}
     - target: {fileID: 6784067099305071111, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}
       propertyPath: name
@@ -5738,15 +6418,15 @@ PrefabInstance:
       objectReference: {fileID: 1078568330375402987}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77882a89d3cce4c4dbbfb810b4073626, type: 3}
---- !u!1 &7971340143830687165 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5373841549418097002, guid: 77882a89d3cce4c4dbbfb810b4073626,
-    type: 3}
-  m_PrefabInstance: {fileID: 2597552010921915607}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1078568330375402987 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3097214184939135292, guid: 77882a89d3cce4c4dbbfb810b4073626,
+    type: 3}
+  m_PrefabInstance: {fileID: 2597552010921915607}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &178643266953061530 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2771667398797463629, guid: 77882a89d3cce4c4dbbfb810b4073626,
     type: 3}
   m_PrefabInstance: {fileID: 2597552010921915607}
   m_PrefabAsset: {fileID: 0}
@@ -5762,9 +6442,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35f6f1cae3caf674d963f083157a8306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &178643266953061530 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 2771667398797463629, guid: 77882a89d3cce4c4dbbfb810b4073626,
+--- !u!1 &7971340143830687165 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5373841549418097002, guid: 77882a89d3cce4c4dbbfb810b4073626,
     type: 3}
   m_PrefabInstance: {fileID: 2597552010921915607}
   m_PrefabAsset: {fileID: 0}
@@ -5775,6 +6455,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileDown (8)
+      objectReference: {fileID: 0}
     - target: {fileID: 3726287101691311618, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5830,11 +6515,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileDown (8)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49a1ec3f6ed72c4b9967af99ebca6f7, type: 3}
 --- !u!4 &1461036265339015889 stripped
@@ -5850,6 +6530,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle (17)
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5905,11 +6590,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle (17)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &4829992432446229277 stripped
@@ -5925,6 +6605,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle (15)
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5980,11 +6665,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle (15)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &5063156835758752271 stripped
@@ -6000,6 +6680,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle (6)
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6055,11 +6740,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle (6)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &5142217761017159686 stripped
@@ -6075,6 +6755,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileDown (16)
+      objectReference: {fileID: 0}
     - target: {fileID: 3726287101691311618, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6130,11 +6815,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileDown (16)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49a1ec3f6ed72c4b9967af99ebca6f7, type: 3}
 --- !u!4 &2117030875548640241 stripped
@@ -6150,6 +6830,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileDown (9)
+      objectReference: {fileID: 0}
     - target: {fileID: 3726287101691311618, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6205,11 +6890,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileDown (9)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49a1ec3f6ed72c4b9967af99ebca6f7, type: 3}
 --- !u!4 &104860553281161831 stripped
@@ -6225,6 +6905,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle (4)
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6280,11 +6965,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle (4)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &6725470641314900196 stripped
@@ -6300,6 +6980,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileDown (14)
+      objectReference: {fileID: 0}
     - target: {fileID: 3726287101691311618, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6355,11 +7040,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileDown (14)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49a1ec3f6ed72c4b9967af99ebca6f7, type: 3}
 --- !u!4 &319373984986054583 stripped
@@ -6375,6 +7055,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle (20)
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6430,11 +7115,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle (20)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &6206302322988942195 stripped
@@ -6450,6 +7130,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 5853694971241545773, guid: d830ff30d1e3d6d4e95cf44795c926e3,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_ClosedCorner_Right (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 5547165296906005956, guid: d830ff30d1e3d6d4e95cf44795c926e3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6505,11 +7190,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5853694971241545773, guid: d830ff30d1e3d6d4e95cf44795c926e3,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_ClosedCorner_Right (2)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d830ff30d1e3d6d4e95cf44795c926e3, type: 3}
 --- !u!4 &8148908819866431589 stripped
@@ -6525,6 +7205,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileDown (15)
+      objectReference: {fileID: 0}
     - target: {fileID: 3726287101691311618, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6580,11 +7265,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileDown (15)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49a1ec3f6ed72c4b9967af99ebca6f7, type: 3}
 --- !u!4 &8492113014080975106 stripped
@@ -6600,6 +7280,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle (5)
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6655,11 +7340,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle (5)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &2550946136719012358 stripped
@@ -6675,6 +7355,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle (19)
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6730,11 +7415,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle (19)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &2552718333668308049 stripped
@@ -6750,6 +7430,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileDown (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 3726287101691311618, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6805,11 +7490,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileDown (1)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49a1ec3f6ed72c4b9967af99ebca6f7, type: 3}
 --- !u!4 &9144798562326651759 stripped
@@ -6825,6 +7505,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 5853694971241545773, guid: d830ff30d1e3d6d4e95cf44795c926e3,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_ClosedCorner_Right
+      objectReference: {fileID: 0}
     - target: {fileID: 5547165296906005956, guid: d830ff30d1e3d6d4e95cf44795c926e3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6880,11 +7565,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5853694971241545773, guid: d830ff30d1e3d6d4e95cf44795c926e3,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_ClosedCorner_Right
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d830ff30d1e3d6d4e95cf44795c926e3, type: 3}
 --- !u!4 &250791778745628509 stripped
@@ -6900,6 +7580,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 227748853008634259}
     m_Modifications:
+    - target: {fileID: 5373841549418097002, guid: 77882a89d3cce4c4dbbfb810b4073626,
+        type: 3}
+      propertyPath: m_Name
+      value: Gateway
+      objectReference: {fileID: 0}
     - target: {fileID: 3097214184939135292, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6955,11 +7640,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5373841549418097002, guid: 77882a89d3cce4c4dbbfb810b4073626,
-        type: 3}
-      propertyPath: m_Name
-      value: Gateway
-      objectReference: {fileID: 0}
     - target: {fileID: 6784067099305071111, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}
       propertyPath: name
@@ -6987,6 +7667,12 @@ PrefabInstance:
       objectReference: {fileID: 8862535940853319036}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77882a89d3cce4c4dbbfb810b4073626, type: 3}
+--- !u!1 &1915779119222885674 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5373841549418097002, guid: 77882a89d3cce4c4dbbfb810b4073626,
+    type: 3}
+  m_PrefabInstance: {fileID: 5766171714508088384}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6717060547111048244 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 950897672186802292, guid: 77882a89d3cce4c4dbbfb810b4073626,
@@ -7011,12 +7697,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5766171714508088384}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1915779119222885674 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5373841549418097002, guid: 77882a89d3cce4c4dbbfb810b4073626,
-    type: 3}
-  m_PrefabInstance: {fileID: 5766171714508088384}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5998910976466840901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7024,6 +7704,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle (8)
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7079,11 +7764,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle (8)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &4125507113437120620 stripped
@@ -7099,6 +7779,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle (11)
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7154,11 +7839,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle (11)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &4407239323351045011 stripped
@@ -7174,6 +7854,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle (23)
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7229,11 +7914,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle (23)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &3885571135286571220 stripped
@@ -7249,6 +7929,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 5853694971241545773, guid: d830ff30d1e3d6d4e95cf44795c926e3,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_ClosedCorner_Right (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 5547165296906005956, guid: d830ff30d1e3d6d4e95cf44795c926e3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7304,11 +7989,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5853694971241545773, guid: d830ff30d1e3d6d4e95cf44795c926e3,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_ClosedCorner_Right (1)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d830ff30d1e3d6d4e95cf44795c926e3, type: 3}
 --- !u!4 &3308488293789658871 stripped
@@ -7324,6 +8004,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7379,11 +8064,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle (1)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &1107613345972567426 stripped
@@ -7399,6 +8079,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle (24)
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7454,11 +8139,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle (24)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &981790329980040705 stripped
@@ -7474,6 +8154,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileDown (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 3726287101691311618, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7529,11 +8214,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileDown (2)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49a1ec3f6ed72c4b9967af99ebca6f7, type: 3}
 --- !u!4 &6452906614258761796 stripped
@@ -7549,6 +8229,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle (3)
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7604,11 +8289,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle (3)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &19651294719327318 stripped
@@ -7624,6 +8304,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle (12)
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7679,11 +8364,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle (12)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &100821053545705271 stripped
@@ -7699,6 +8379,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileDown (7)
+      objectReference: {fileID: 0}
     - target: {fileID: 3726287101691311618, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7754,11 +8439,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileDown (7)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49a1ec3f6ed72c4b9967af99ebca6f7, type: 3}
 --- !u!4 &6824670840642758217 stripped
@@ -7774,6 +8454,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileDown (10)
+      objectReference: {fileID: 0}
     - target: {fileID: 3726287101691311618, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7829,11 +8514,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileDown (10)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49a1ec3f6ed72c4b9967af99ebca6f7, type: 3}
 --- !u!4 &6636484118474168348 stripped
@@ -7849,6 +8529,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle (16)
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7904,11 +8589,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle (16)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &1885534229847323337 stripped
@@ -7924,6 +8604,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle (14)
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7979,11 +8664,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle (14)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &2001704480700772040 stripped
@@ -7999,6 +8679,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle (9)
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8054,11 +8739,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle (9)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &1797812338988713694 stripped
@@ -8074,6 +8754,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileMiddle (21)
+      objectReference: {fileID: 0}
     - target: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8129,11 +8814,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093577857893059492, guid: 63f386c7b7226ea4c8e89376a0910e76,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileMiddle (21)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f386c7b7226ea4c8e89376a0910e76, type: 3}
 --- !u!4 &2171895363605294900 stripped
@@ -8149,6 +8829,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_TileDown (5)
+      objectReference: {fileID: 0}
     - target: {fileID: 3726287101691311618, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8204,11 +8889,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5730601507951853410, guid: e49a1ec3f6ed72c4b9967af99ebca6f7,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_TileDown (5)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49a1ec3f6ed72c4b9967af99ebca6f7, type: 3}
 --- !u!4 &5012467467006921724 stripped
@@ -8224,6 +8904,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8971792615978589429}
     m_Modifications:
+    - target: {fileID: 5853694971241545773, guid: d830ff30d1e3d6d4e95cf44795c926e3,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Floor_ClosedCorner_Right (3)
+      objectReference: {fileID: 0}
     - target: {fileID: 5547165296906005956, guid: d830ff30d1e3d6d4e95cf44795c926e3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8278,11 +8963,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853694971241545773, guid: d830ff30d1e3d6d4e95cf44795c926e3,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Floor_ClosedCorner_Right (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d830ff30d1e3d6d4e95cf44795c926e3, type: 3}

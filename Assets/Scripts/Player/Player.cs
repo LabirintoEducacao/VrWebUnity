@@ -47,7 +47,7 @@ public class Player : PlayerBase
         //Metodos para detecção
         if (Physics.Raycast(ray, out hit, this.actionDistance))
         {
-			//Debug.Log(hit.collider.tag);
+			Debug.Log(hit.collider.tag);
 			if (hit.collider.CompareTag("Button"))
             {
                 hitArrow(hit);
@@ -153,7 +153,6 @@ public class Player : PlayerBase
                     parentActual.transform.position = pos.position;
                     parentActual.transform.rotation = pos.rotation;
                     Inventory.instance.ItemObject.SetActive(true);
-                    Inventory.instance.item.DesactivePanel();
                 }
                 //Pegando o novo objeto
                 Inventory.instance.item = null;

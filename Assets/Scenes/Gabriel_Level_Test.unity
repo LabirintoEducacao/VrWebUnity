@@ -216,7 +216,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-806972
+  m_Name: pb_Mesh-20926
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -560,6 +560,41 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8503453216206845510, guid: 8ed76235e0012c042859fc36dcb83fea,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503453216206845510, guid: 8ed76235e0012c042859fc36dcb83fea,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503453216206845510, guid: 8ed76235e0012c042859fc36dcb83fea,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503453216206845510, guid: 8ed76235e0012c042859fc36dcb83fea,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503453216206845510, guid: 8ed76235e0012c042859fc36dcb83fea,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926496088671013807, guid: 8ed76235e0012c042859fc36dcb83fea,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926496088671013807, guid: 8ed76235e0012c042859fc36dcb83fea,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ed76235e0012c042859fc36dcb83fea, type: 3}
 --- !u!4 &457431974 stripped
@@ -603,15 +638,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: d64830cfbccc9b4448386904cd7dd5e3, type: 2}
-  isGlobal: 1
-  blendDistance: 0
-  weight: 1
-  priority: 0
-  m_PreviousLayer: 0
-  m_PreviousPriority: 0
-  m_TempColliders: []
-  m_InternalProfile: {fileID: 0}
 --- !u!4 &519974502
 Transform:
   m_ObjectHideFlags: 0
@@ -1054,7 +1080,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-806970
+  m_Name: pb_Mesh-20924
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1242,7 +1268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8442a456b7941eb4b88acafbffa555d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelDesign: {fileID: 4900000, guid: d5bdcdac15a238d42be81266ff5d227e, type: 3}
+  levelDesign: {fileID: 4900000, guid: 880f770661232504ab8c2affc43d3e5c, type: 3}
   tagRoom: Room
   mapRoot: {fileID: 1848642511}
   startingRoom: {fileID: 498120541}
@@ -1522,7 +1548,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-806974
+  m_Name: pb_Mesh-20928
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1685,7 +1711,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-806968
+  m_Name: pb_Mesh-20922
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2382,77 +2408,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 2042095456}
-  volumeLayer:
-    m_Bits: 256
-  stopNaNPropagation: 1
-  finalBlitToCameraTarget: 1
-  antialiasingMode: 1
-  temporalAntialiasing:
-    jitterSpread: 0.75
-    sharpness: 0.25
-    stationaryBlending: 0.95
-    motionBlending: 0.85
-    <jitter>k__BackingField: {x: 0, y: 0}
-    m_ResetHistory: 1
-    <sampleIndex>k__BackingField: 0
-  subpixelMorphologicalAntialiasing:
-    quality: 2
-  fastApproximateAntialiasing:
-    fastMode: 0
-    keepAlpha: 0
-  fog:
-    enabled: 1
-    excludeSkybox: 1
-  dithering:
-    m_NoiseTextureIndex: 0
-  debugLayer:
-    lightMeter:
-      <output>k__BackingField: {fileID: 0}
-      requested: 0
-      width: 512
-      height: 256
-      showCurves: 1
-    histogram:
-      <output>k__BackingField: {fileID: 0}
-      requested: 0
-      width: 512
-      height: 256
-      channel: 3
-    waveform:
-      <output>k__BackingField: {fileID: 0}
-      requested: 0
-      exposure: 0.12
-      height: 256
-    vectorscope:
-      <output>k__BackingField: {fileID: 0}
-      requested: 0
-      size: 256
-      exposure: 0.12
-    frameWidth: 0
-    frameHeight: 0
-    <debugOverlayTarget>k__BackingField: {fileID: 0}
-    <debugOverlayActive>k__BackingField: 0
-    <debugOverlay>k__BackingField: 0
-    overlaySettings:
-      linearDepth: 0
-      motionColorIntensity: 4
-      motionGridSize: 64
-      colorBlindnessType: 0
-      colorBlindnessStrength: 1
-  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
-  breakBeforeColorGrading: 0
-  m_BeforeTransparentBundles: []
-  m_BeforeStackBundles: []
-  m_AfterStackBundles: []
-  <cameraDepthFlags>k__BackingField: 0
-  <haveBundlesBeenInited>k__BackingField: 0
-  m_Camera: {fileID: 0}
-  m_SettingsUpdateNeeded: 1
-  m_IsRenderingInSceneView: 0
-  m_NaNKilled: 0
 --- !u!1001 &2046154558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2552,7 +2507,7 @@ PrefabInstance:
       objectReference: {fileID: 1320355185}
     - target: {fileID: 1206096034, guid: dea181868ab9b3f49a3e47f0d44cb38a, type: 3}
       propertyPath: actionDistance
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1198517617243406267, guid: dea181868ab9b3f49a3e47f0d44cb38a,
         type: 3}

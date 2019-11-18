@@ -30,6 +30,8 @@ public class RoomManager : MonoBehaviour {
 	public List<ItemBase> answerReference;
 	[Tooltip("Prefabs das respostas que serão instanciados no mapa.\n 0 - Key\n 1 - Cube\n 2 - Prism\n 3 - Circle")]
 	public GameObject[] answerPrefab;
+	public TextMeshProUGUI textPanel;
+	public ItemBase AnswerOpen;
 
 	/// <summary>
 	/// PortDatas armazena as portas da sala, sendo assim: 0 - Gateway e as demais portas de saída.
@@ -71,6 +73,8 @@ public class RoomManager : MonoBehaviour {
 				GameObject go = Instantiate(answerPrefab[0], molds[i].position, molds[i].rotation, molds[i]);
 				ItemBase ansRef = go.GetComponent<ItemBase>();
 				ansRef.properties = answers[i];
+				ansRef.textPanel = textPanel;
+				ansRef.currentRoom = this;
 				answerReference.Add(ansRef);
 			}
 		} else if (type == TypeRoom.hope_door) {
@@ -78,6 +82,8 @@ public class RoomManager : MonoBehaviour {
 				GameObject go = Instantiate(answerPrefab[0], molds[i].position, molds[i].rotation, molds[i]);
 				ItemBase ansRef = go.GetComponent<ItemBase>();
 				ansRef.properties = answers[i];
+				ansRef.textPanel = textPanel;
+				ansRef.currentRoom = this;
 				answerReference.Add(ansRef);
 			}
 		} else if (type == TypeRoom.multiple_forms) {
@@ -92,7 +98,9 @@ public class RoomManager : MonoBehaviour {
 						GameObject go = Instantiate(answerPrefab[j], molds[i].position, molds[i].rotation, molds[i]);
 						ItemBase ansRef = go.GetComponent<ItemBase>();
 						ansRef.properties = answers[i];
-						answerReference.Add(ansRef);
+						ansRef.textPanel = textPanel;
+						ansRef.currentRoom = this;
+            answerReference.Add(ansRef);
 						count.Add(i);
 						shapes.Add(j);
 					}
@@ -105,6 +113,8 @@ public class RoomManager : MonoBehaviour {
 				GameObject go = Instantiate(answerPrefab[4], newPosition, molds[i].rotation, molds[i]);
 				ItemBase ansRef = go.GetComponent<ItemBase>();
 				ansRef.properties = answers[i];
+				ansRef.textPanel = textPanel;
+				ansRef.currentRoom = this;
 				answerReference.Add(ansRef);
 			}
 

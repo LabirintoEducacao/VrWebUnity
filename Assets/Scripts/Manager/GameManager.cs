@@ -117,8 +117,6 @@ public class GameManager : MonoBehaviour {
 		//     this.currentCorridor.gameObject.SetActive(false);
 		// }
 		this.currentCorridor = corridor;
-
-		Debug.Log(currentCorridor.pathInfo.connected_question);
 		//TODO: condicao de endgame.
 
 		if (this.currentCorridor == null) {
