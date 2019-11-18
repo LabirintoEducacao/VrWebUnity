@@ -2607,21 +2607,6 @@ PrefabInstance:
       propertyPath: field of view
       value: 100
       objectReference: {fileID: 0}
-    - target: {fileID: 1198517616309127883, guid: dea181868ab9b3f49a3e47f0d44cb38a,
-        type: 3}
-      propertyPath: m_OcclusionCulling
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1198517616309127883, guid: dea181868ab9b3f49a3e47f0d44cb38a,
-        type: 3}
-      propertyPath: m_HDR
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1198517616309127883, guid: dea181868ab9b3f49a3e47f0d44cb38a,
-        type: 3}
-      propertyPath: m_AllowMSAA
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6292152349261686803, guid: dea181868ab9b3f49a3e47f0d44cb38a,
         type: 3}
       propertyPath: m_AnchorMin.y

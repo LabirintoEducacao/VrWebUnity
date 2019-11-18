@@ -174,7 +174,7 @@ public class EventPool {
 					Debug.LogWarning(string.Format("Could not send {1} event. Due to - {0}", new object[] { uwr.error, e.event_name }));
 				} else {
 					string data = Encoding.UTF8.GetString(uwr.downloadHandler.data);
-					dynamic info = JsonUtility.FromJson<dynamic>(data);
+					LarcomEvent info = JsonUtility.FromJson<LarcomEvent>(data);
 					if (info.success == -1) {
 						Debug.LogWarning(string.Format("Could not send {1} event. Due to - {0}", new object[] { info.error, e.event_name }));
 					} else {
@@ -195,6 +195,12 @@ public class EventPool {
 			pool.Add(e);
 		}
 		return 0;
+	}
+
+	public class LarcomEvent {
+		public int success = -1;
+		public string event_name;
+		public string error = "";
 	}
 
 #region event creation

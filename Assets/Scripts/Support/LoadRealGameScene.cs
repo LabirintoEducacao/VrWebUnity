@@ -8,6 +8,7 @@ using UnityEngine.XR;
 public class LoadRealGameScene : MonoBehaviour
 {
 	public GameObject[] destroyables;
+	bool canQuit = false;
 
     void Start()
     {
@@ -21,18 +22,23 @@ public class LoadRealGameScene : MonoBehaviour
 	void vrActive(int outcome) {
 		SceneManager.LoadScene("LevelGen", LoadSceneMode.Additive);
 		InputTracking.Recenter();
+		Application.targetFrameRate = 60;
 		foreach (GameObject item in destroyables) {
 			Destroy(item);
 		}
 	}
 
-	//void Update() {
-	//	if (Input.GetKeyDown(KeyCode.Escape)) {
-	//		SceneManager.LoadScene("MainMenu");
-	//	} else if (Input.touchCount > 0) {
-	//		if (Input.GetTouch(0).phase == TouchPhase.Began) {
-	//			this.toggleVR();
-	//		}
-	//	}
-	//}
+	void Update() {
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			if (this.canQuit) {
+				CancelInvoke("resetQuitStatus");
+				SceneManager.LoadScene("MainMenu_v2");
+			} else {
+				this.canQuit = true;
+				Invoke("resetQuitStatus", 1.5f);
+			}
+		}
+	}
+
+	void resetQuitStatus() => this.canQuit = false;
 }
