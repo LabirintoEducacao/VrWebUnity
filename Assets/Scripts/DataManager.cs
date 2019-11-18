@@ -37,20 +37,16 @@ public class DataManager : MonoBehaviour {
 			SceneManager.activeSceneChanged += SceneChanged;
 			DontDestroyOnLoad(this.gameObject);
 #if !UNITY_EDITOR
-			var ld = SaveData.load("current_level");
-			if (ld != null) {
-				this.mazeLD = JsonUtility.FromJson<MazeLDWrapper>(ld);
-				var save = SaveData.load("savegame");
-				if (save != null) {
-					svgd = JsonUtility.FromJson<SaveGameData>(save);
-				}
+			if (this.mazeLD == null) {
+				this.mazeLD = SaveData.load<MazeLDWrapper>("current_level");
 			}
+			this.checkAndCreateSave();
 #else
-            svgd = new SaveGameData();
+			svgd = new SaveGameData();
             svgd.playing = !SceneManager.GetActiveScene().name.Equals("MainMenu_v2");
 #endif
-            //reload unsent event pool
-            EventPoolWrapper ew = SaveData.load<EventPoolWrapper>("event_pool");
+			//reload unsent event pool
+			EventPoolWrapper ew = SaveData.load<EventPoolWrapper>("event_pool");
 			if (ew == null) {
 				EventPool.pool = new List<EventInfo>();
 			} else {
@@ -58,20 +54,9 @@ public class DataManager : MonoBehaviour {
 			}
 		}
 	}
-#endregion
+	#endregion
 
-	void Start() {
-		if ((mazeLD != null) && (svgd != null)) {
-			FirebaseAnalytics.LogEvent("LoginWithData",
-				new Parameter("MazeID", svgd.mazeID),
-				new Parameter(FirebaseAnalytics.ParameterLevel, svgd.currentRoomID),
-				new Parameter("ElapsedTime", svgd.timeElapsed)
-				);
-		}
-		FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventLogin);
-	}
-	private MazeLDWrapper _maze = null;
-	public MazeLDWrapper mazeLD { get => _maze; set => _maze = value; }
+	public MazeLDWrapper mazeLD { get; set; } = null;
 
 	public void setNewLevel(string levelDesign) {
 		MazeLDWrapper tempLD = JsonUtility.FromJson<MazeLDWrapper>(levelDesign);
@@ -106,14 +91,12 @@ public class DataManager : MonoBehaviour {
 		svgd.mazeID = mazeLD.maze_id;
 		svgd.currentRoomID = mazeLD.starting_question_id;
 
-		if (SceneManager.GetActiveScene().name != "MainMenu_v2")
-        {
-            svgd.playing = true;
-        }
-        else
-        {
-            svgd.playing = false;
-        }
+		if (SceneManager.GetActiveScene().name != "MainMenu_v2") {
+			svgd.playing = true;
+		} else {
+			svgd.playing = false;
+		}
+
 		RoomPlayerInfo[] rooms = new RoomPlayerInfo[mazeLD.questions.Length];
 		for (int i = 0; i < rooms.Length; i++) {
 			rooms[i] = new RoomPlayerInfo(mazeLD.questions[i].question_id);
@@ -151,14 +134,14 @@ public class DataManager : MonoBehaviour {
 
 	public void startMaze() {
 		// FIREBASE ANALYTICS
-		Parameter[] StartParameters = {
-				new Parameter("MazeID", svgd.mazeID),
-				new Parameter(FirebaseAnalytics.ParameterLevel, svgd.currentRoomID),
-				new Parameter("ElapsedTime", svgd.timeElapsed)
-			};
-		FirebaseAnalytics.LogEvent(
-			FirebaseAnalytics.EventLevelStart,
-			StartParameters);
+		//Parameter[] StartParameters = {
+		//		new Parameter("MazeID", svgd.mazeID),
+		//		new Parameter(FirebaseAnalytics.ParameterLevel, svgd.currentRoomID),
+		//		new Parameter("ElapsedTime", svgd.timeElapsed)
+		//	};
+		//FirebaseAnalytics.LogEvent(
+		//	FirebaseAnalytics.EventLevelStart,
+		//	StartParameters);
 
 		//Eh nois, Analytics - evento executado ao inicializar o jogo
 		EventInfo e = new EventInfo();
@@ -172,18 +155,31 @@ public class DataManager : MonoBehaviour {
 	}
 
 	public void endMaze() {
-		Parameter[] EndParameters = {
-				new Parameter("MazeID", svgd.mazeID),
-				new Parameter(FirebaseAnalytics.ParameterScore, svgd.score),
-				new Parameter(FirebaseAnalytics.ParameterLevel, svgd.currentRoomID),
-				new Parameter(FirebaseAnalytics.ParameterSuccess, svgd.finished.ToString()),
-				new Parameter("RightAnswers", svgd.rightAnswers),
-				new Parameter("WrongAnswers", svgd.wrongAnswers),
-				new Parameter("ElapsedTime", svgd.timeElapsed)
-			};
-		FirebaseAnalytics.LogEvent(
-			FirebaseAnalytics.EventLevelEnd,
-			EndParameters);
+		//Parameter[] EndParameters = {
+		//		new Parameter("MazeID", svgd.mazeID),
+		//		new Parameter(FirebaseAnalytics.ParameterScore, svgd.score),
+		//		new Parameter(FirebaseAnalytics.ParameterLevel, svgd.currentRoomID),
+		//		new Parameter(FirebaseAnalytics.ParameterSuccess, svgd.finished.ToString()),
+		//		new Parameter("RightAnswers", svgd.rightAnswers),
+		//		new Parameter("WrongAnswers", svgd.wrongAnswers),
+		//		new Parameter("ElapsedTime", svgd.timeElapsed)
+		//	};
+		//FirebaseAnalytics.LogEvent(
+		//	FirebaseAnalytics.EventLevelEnd,
+		//	EndParameters);
+
+		//http://192.168.240.222/api/data?event_name=maze_end&user_id=2&maze_id=1&elapsed_time=5&wrong_count=1&correct_count=1&async_timestamp=4000
+		//Eh nois, Analytics - evento executado ao inicializar o jogo
+		EventInfo e = new EventInfo();
+		e.event_name = "maze_end";
+		e.maze_id = svgd.mazeID;
+		int uid = LoginHandler.handler.user == null ? -1 : int.Parse(LoginHandler.handler.user.uid);
+		e.user_id = uid <= 0 ? 0 : uid;
+		e.question_id = svgd.currentRoomID;
+		e.wrong_count = svgd.wrongAnswers;
+		e.correct_count = svgd.rightAnswers;
+		e.elapsed_time = Mathf.RoundToInt(svgd.timeElapsed);
+		_ = EventPool.sendEvent(e);
 	}
 
 	void SceneChanged(Scene current, Scene next) {

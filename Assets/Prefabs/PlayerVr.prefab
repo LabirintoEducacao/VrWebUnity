@@ -143,7 +143,7 @@ MonoBehaviour:
   timeToUnlock: 1
   timeToLoadFillAmount: 1
   currentTimeLoadFillAmount: 0
-  actionDistance: 2
+  actionDistance: 4
   IsSeted: 0
   _SetTarget: {fileID: 0}
 --- !u!114 &414338488
