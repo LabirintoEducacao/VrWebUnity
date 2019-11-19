@@ -440,8 +440,9 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e1f9f86bdf1fc994482c6ec91c2fc45a, type: 2}
+  m_sharedMaterial: {fileID: -7729005231412303108, guid: e1f9f86bdf1fc994482c6ec91c2fc45a,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -473,7 +474,7 @@ MonoBehaviour:
   m_fontSizeMin: 10
   m_fontSizeMax: 18
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -732,7 +733,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 077d4b13ecb7b314ba14ffeb7fc0c99a, type: 2}
+  - {fileID: 2100000, guid: 22c5b6be21810f44b877b5ae9dc65f9c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2913,7 +2914,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 7796153930552614800}
   m_TextComponent: {fileID: 8954645311269275029}
   m_materialReferenceIndex: 1
@@ -3882,7 +3883,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 789a3563bbccc864ba7d7cace50724f1, type: 2}
+  - {fileID: 2100000, guid: b10bb4c3f1a823e47844a8d96922ddee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7252,11 +7253,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 227748853119225654}
     m_Modifications:
-    - target: {fileID: 6697048983194706467, guid: cc882bbf384d18f419368bc176a39945,
-        type: 3}
-      propertyPath: m_Name
-      value: ShapesReceive
-      objectReference: {fileID: 0}
     - target: {fileID: 6697048983194706478, guid: cc882bbf384d18f419368bc176a39945,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7311,6 +7307,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6697048983194706467, guid: cc882bbf384d18f419368bc176a39945,
+        type: 3}
+      propertyPath: m_Name
+      value: ShapesReceive
       objectReference: {fileID: 0}
     - target: {fileID: 6697048983194706479, guid: cc882bbf384d18f419368bc176a39945,
         type: 3}
