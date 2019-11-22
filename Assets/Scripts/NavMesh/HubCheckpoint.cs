@@ -50,7 +50,7 @@ public class HubCheckpoint : MonoBehaviour {
 		if (other.gameObject.CompareTag("PlayerAgent")) {
 			if (transform.parent.name == "corridor_0_corridor") {
 				GameManager.Instance.setExitMotionInHub();
-			}
+			} 
 			playerAgent = other.gameObject;
 			canShow = true;
 			Player player = GameObject.Find("PlayerVr").GetComponentInChildren<Player>();
@@ -67,6 +67,9 @@ public class HubCheckpoint : MonoBehaviour {
 		}
 		if (anim) {
 			anim.SetTrigger("closing");
+			foreach (GameObject door in roomManager.Doors) {
+				door.transform.GetChild(2).gameObject.layer = 2; // IgnoreRaycast
+			}
 		}
 	}
 
