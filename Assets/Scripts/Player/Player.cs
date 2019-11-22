@@ -138,20 +138,12 @@ public class Player : PlayerBase
             currentTimeLoadFillAmount += Time.deltaTime;
             GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
 
-            //Salvando posição do parente do item para que possa devolve-lo no lugar desejado;
-            GameObject parentFuture, parentActual;
-            parentFuture = hit.collider.gameObject.transform.parent.gameObject;
-            Transform pos = parentFuture.transform;
-
             //Caso o inventário esteja vazio
             if (currentTimeLoadFillAmount >= timeToLoadFillAmount)
             {
                 //Caso já tenha algo no inventário, trocar
                 if (Inventory.instance.item != null)
                 {
-                    parentActual = Inventory.instance.ItemObject.transform.parent.gameObject;
-                    parentActual.transform.position = pos.position;
-                    parentActual.transform.rotation = pos.rotation;
                     Inventory.instance.ItemObject.SetActive(true);
                 }
                 //Pegando o novo objeto

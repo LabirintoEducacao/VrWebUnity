@@ -161,7 +161,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.Larcom.labirintov2
+    Android: com.Larcom.labirinto
   buildNumber: {}
   AndroidBundleVersionCode: 4
   AndroidMinSdkVersion: 23
