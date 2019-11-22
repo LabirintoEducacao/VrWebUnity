@@ -25,6 +25,8 @@ public class Door : CheckBase {
 			GameManager.Instance.setExitMotionInHub();
 
 			return true;
+		} else {
+			anim.SetTrigger("wrongAnswer");
 		}
 		return false;
 	}
