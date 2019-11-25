@@ -81,9 +81,6 @@ public class CubeButton : MonoBehaviour, IGvrPointerHoverHandler {
     [ExecuteAlways]
     void computeClick () {
         this._anim.SetBool ("click", false);
-		if (FirebaseInitializer.firebaseLoaded) {
-			Firebase.Analytics.FirebaseAnalytics.LogEvent("ui_interaction", "click", this.name);
-		}
         if (canvasPanel == null) {
             StartCoroutine (changeScene ());
         } else {

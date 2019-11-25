@@ -1,5 +1,4 @@
-﻿using Firebase.Analytics;
-using larcom.support;
+﻿using larcom.support;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
