@@ -30,7 +30,7 @@ public class RoomManager : MonoBehaviour {
 	public List<ItemBase> answerReference;
 	[Tooltip("Prefabs das respostas que serão instanciados no mapa.\n 0 - Key\n 1 - Cube\n 2 - Prism\n 3 - Circle")]
 	public GameObject[] answerPrefab;
-	public TextMeshProUGUI textPanel;
+	public BlackBoardManager textPanel;
 	public ItemBase AnswerOpen;
 
 	/// <summary>
