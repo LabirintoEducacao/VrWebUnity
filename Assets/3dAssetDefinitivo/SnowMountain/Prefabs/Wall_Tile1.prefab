@@ -10,7 +10,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.9, y: 0.65, z: 1.5640001}
+  m_Extents: {x: 0.75, y: 0.65, z: 1.5640001}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -26,7 +26,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1084524997020035256}
   m_Layer: 13
-  m_Name: Wall_Tile_Down
+  m_Name: Wall_Tile1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

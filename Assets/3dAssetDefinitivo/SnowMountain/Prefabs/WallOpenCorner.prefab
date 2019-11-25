@@ -10,7 +10,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.9, y: 0.65, z: 1.544}
+  m_Extents: {x: 0.75, y: 0.65, z: 1.544}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -54,6 +54,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4669645454629822634}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: c58e1d968bb1f0246a02f7351c19683d,
+        type: 3}
+      propertyPath: m_Name
+      value: SnowLevel_Wall_OpenCorner_Right
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c58e1d968bb1f0246a02f7351c19683d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c58e1d968bb1f0246a02f7351c19683d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -108,16 +118,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: c58e1d968bb1f0246a02f7351c19683d,
-        type: 3}
-      propertyPath: m_Name
-      value: SnowLevel_Wall_OpenCorner_Right
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: c58e1d968bb1f0246a02f7351c19683d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: c58e1d968bb1f0246a02f7351c19683d,
         type: 3}
