@@ -36,6 +36,10 @@ public class GameManager : MonoBehaviour {
 	public RoomManager nextRoom;
 	CorridorManager currentCorridor;
 
+	// Desativar a sala e corredor correta
+	private GameObject lastRoom;
+	private GameObject lastCorrridor;
+
 	private void Awake() {
 		if (Instance == null) {
 			Instance = this;
@@ -224,6 +228,9 @@ public class GameManager : MonoBehaviour {
 	void onEnteredNextRoom(HubCheckpoint hub) {
 		if (this.currentRoom.GetComponentInChildren<HubCheckpoint>() == hub)
 			return;
+		this.lastRoom = this.currentRoom.gameObject;
+		this.lastCorrridor = this.currentCorridor.gameObject;
+		this.currentRoom = this.nextRoom;
 		DataManager.manager.savegame.currentRoomID = this.currentRoom.id;
 		//limpa as setas da sala, pro caso de já ter passado aqui (volta do reforço)
 
@@ -243,9 +250,8 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void ClosedGatewayDoor() {
-		this.currentRoom.gameObject.SetActive(false);
-		this.currentCorridor.gameObject.SetActive(false);
-		this.currentRoom = this.nextRoom;
+		this.lastRoom.SetActive(false);
+		this.lastCorrridor.SetActive(false);
 	}
 
 	/// <summary>
