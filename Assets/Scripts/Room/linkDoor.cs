@@ -10,6 +10,13 @@ public class linkDoor : MonoBehaviour {
 		thisDoor.answer = answerLinked;
 	}
 	public void SetSeta() {
-		
+
+	}
+
+	/// <summary>
+	/// Quando termina animação de fechar a porta.
+	/// </summary>
+	public void ClosedDoor() {
+		GameManager.Instance.ClosedGatewayDoor();
 	}
 }

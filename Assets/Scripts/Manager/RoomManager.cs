@@ -217,66 +217,6 @@ public class RoomManager : MonoBehaviour {
 			portDatas[count] = ds;
 			count++;
 		}
-		/*
-        //Variaveis;
-        GameObject objectTemp;
-
-        DoorStructure ds = new DoorStructure();
-        //Declarando o tamanho do Array
-        portDatas = new DoorStructure[2];
-
-
-        //Instancia da porta de entrada
-        objectTemp = Instantiate(doorPrefab, spawnDoor[2].position, spawnDoor[2].rotation, spawnDoor[2]);
-        objectTemp.name = "gateway";
-
-        //Salvando as propriedades da porta de entrada
-        ds.name = objectTemp.name;
-        ds.doorProperties = objectTemp.GetComponent<linkDoor>();
-        ds.doorPosition = 2;
-        ds.anim = objectTemp.GetComponent<Animator>();
-        portDatas[0] = ds;
-
-        List<int> count = new List<int>();
-        count.Add(portDatas[0].doorPosition);
-        //Caso seja a sala final
-        if (question.paths[0].end_game == true)
-        {
-            objectTemp = Instantiate(doorPrefab, spawnDoor[0].position, spawnDoor[0].rotation, spawnDoor[0]);
-            objectTemp.name = "EndDoor";
-
-            ds.name = objectTemp.name;
-            ds.doorProperties = objectTemp.GetComponent<linkDoor>();
-            ds.doorPosition = 0;
-            ds.anim = objectTemp.GetComponent<Animator>();
-
-            portDatas[1] = ds;
-            count.Add(portDatas[1].doorPosition);
-        }
-        else {
-            while (count.Count < 4)
-            {
-                int num = UnityEngine.Random.Range(0, 4);
-                int i = 1;
-                if (!count.Contains(num))
-                {
-                    objectTemp = Instantiate(doorPrefab, spawnDoor[num].position, spawnDoor[num].rotation, spawnDoor[num]);
-                    objectTemp.name = "DoorAnswer";
-
-                    ds.name = objectTemp.name;
-                    ds.doorProperties = objectTemp.GetComponent<linkDoor>();
-                    ds.doorPosition = 0;
-                    ds.doorTransform = objectTemp.transform;
-
-                    ds.anim = objectTemp.GetComponent<Animator>();
-
-                    portDatas[i] = ds;
-                    count.Add(num);
-
-                    i++;
-                }
-            }
-        }*/
 	}
 	/// <summary>
 	/// Criação da Multiple Forms Room
@@ -302,81 +242,6 @@ public class RoomManager : MonoBehaviour {
 			if (item.correct)
 				CheckFormAnswer.answer = item;
 		}
-
-		/*
-        //Variaveis;
-        GameObject objectTemp;
-
-        objectTemp = Instantiate(CheckFormAnswer, spawnCheckForm.position, spawnCheckForm.rotation, spawnCheckForm);
-        checkShapes cs = objectTemp.GetComponent<checkShapes>();
-        cs.rmanager = this;
-
-        foreach (Answer item in question.answers)
-        {
-            if (item.correct)
-                cs.answer = item;
-        }
-
-        objectTemp = null;
-
-        DoorStructure ds = new DoorStructure();
-        //Declarando o tamanho do Array
-        portDatas = new DoorStructure[2];
-
-        //Instancia da porta de entrada
-        objectTemp = Instantiate(doorPrefab, spawnDoor[2].position, spawnDoor[2].rotation, spawnDoor[2]);
-        objectTemp.name = "gateway";
-
-
-        //Salvando as propriedades da porta de entrada
-        ds.name = objectTemp.name;
-        ds.doorProperties = objectTemp.GetComponent<linkDoor>();
-        ds.doorPosition = 2;
-        ds.anim = objectTemp.GetComponent<Animator>();
-        portDatas[0] = ds;
-
-        //Caso seja a sala final
-        if (question.paths[0].end_game == true)
-        {
-            objectTemp = Instantiate(doorPrefab, spawnDoor[0].position, spawnDoor[0].rotation, spawnDoor[0]);
-            objectTemp.name = "EndDoor";
-
-            ds.name = objectTemp.name;
-            ds.doorProperties = objectTemp.GetComponent<linkDoor>();
-            ds.doorPosition = 0;
-            ds.anim = objectTemp.GetComponent<Animator>();
-
-            portDatas[1] = ds;
-            cs.door = portDatas[1];
-        }
-        else
-        {
-            objectTemp = Instantiate(doorPrefab, spawnDoor[0].position, spawnDoor[0].rotation, spawnDoor[0]);
-            objectTemp.name = "DoorAnswer";
-
-            ds.name = objectTemp.name;
-            ds.doorProperties = objectTemp.GetComponent<linkDoor>();
-            ds.doorPosition = 0;
-            ds.anim = objectTemp.GetComponent<Animator>();
-
-            portDatas[1] = ds;
-            cs.door = portDatas[1];
-        }
-
-        //Adicionando muros no cenario
-        List<int> count = new List<int>();
-        count.Add(portDatas[0].doorPosition);
-        count.Add(portDatas[1].doorPosition);
-
-        while (count.Count < 4)
-        {
-            int num = UnityEngine.Random.Range(0, 4);
-            if (!count.Contains(num))
-            {
-                Instantiate(WallPrefab, spawnDoor[num].position, spawnDoor[num].rotation, spawnDoor[num]);
-                count.Add(num);
-            }
-        }*/
 	}
 
 
@@ -397,58 +262,6 @@ public class RoomManager : MonoBehaviour {
 			portDatas[count] = ds;
 			count++;
 		}
-		/*
-        //Variaveis;
-        GameObject objectTemp;
-
-        DoorStructure ds = new DoorStructure();
-        //Declarando o tamanho do Array
-        portDatas = new DoorStructure[2];
-
-        //Instancia da porta de entrada
-        objectTemp = Instantiate(doorPrefab, spawnDoor[2].position, spawnDoor[2].rotation, spawnDoor[2]);
-        objectTemp.name = "gateway";
-
-        //Salvando as propriedades da porta de entrada
-        ds.name = objectTemp.name;
-        ds.doorProperties = objectTemp.GetComponent<linkDoor>();
-        ds.doorPosition = 2;
-        ds.anim = objectTemp.GetComponent<Animator>();
-        portDatas[0] = ds;
-
-        objectTemp = Instantiate(doorPrefab, spawnDoor[0].position, spawnDoor[0].rotation, spawnDoor[0]);
-
-        //Caso seja a sala final
-        if (question.paths[0].end_game == true)
-        {  
-            objectTemp.name = "EndDoor";
-        }
-        else
-        {
-            objectTemp.name = "DoorAnswer";
-        }
-
-        ds.name = objectTemp.name;
-        ds.doorProperties = objectTemp.GetComponent<linkDoor>();
-        ds.doorPosition = 0;
-        ds.anim = objectTemp.GetComponent<Animator>();
-
-        portDatas[1] = ds;
-
-        //Adicionando muros no cenario
-        List<int> count = new List<int>();
-        count.Add(portDatas[0].doorPosition);
-        count.Add(portDatas[1].doorPosition);
-
-        while (count.Count < 4)
-        {
-            int num = UnityEngine.Random.Range(0, 4);
-            if (!count.Contains(num))
-            {
-                Instantiate(WallPrefab, spawnDoor[num].position, spawnDoor[num].rotation, spawnDoor[num]);
-                count.Add(num);
-            }
-        }*/
 	}
 
 	/// <summary>
@@ -468,45 +281,6 @@ public class RoomManager : MonoBehaviour {
 			portDatas[count] = ds;
 			count++;
 		}
-		/*
-        //TODO Items de Recompensa
-        GameObject objectTemp;
-
-        objectTemp = Instantiate(CheckFormAnswer, spawnCheckForm.position, spawnCheckForm.rotation, spawnCheckForm);
-        checkShapes cs = objectTemp.GetComponent<checkShapes>();
-        cs.rmanager = this;
-
-        objectTemp = null;
-
-        DoorStructure ds = new DoorStructure();
-        //Declarando o tamanho do Array
-        portDatas = new DoorStructure[2];
-
-        //Instancia da porta de entrada
-        objectTemp = Instantiate(doorPrefab, spawnDoor[2].position, spawnDoor[2].rotation, spawnDoor[2]);
-        objectTemp.name = "gateway";
-
-        //Salvando as propriedades da porta de entrada
-        ds.name = objectTemp.name;
-        ds.doorProperties = objectTemp.GetComponent<linkDoor>();
-        ds.doorPosition = 2;
-        ds.anim = objectTemp.GetComponent<Animator>();
-        portDatas[0] = ds;
-
-
-        //Adicionando muros no cenario
-        List<int> count = new List<int>();
-        count.Add(portDatas[0].doorPosition);
-
-        for (int i = 0; i < 4; i++)
-        {
-            if (!count.Contains(i))
-            {
-                Instantiate(WallPrefab, spawnDoor[i].position, spawnDoor[i].rotation, spawnDoor[i]);
-                count.Add(i);
-            }
-        }
-           */
 	}
 
 	#endregion
@@ -553,7 +327,6 @@ public class RoomManager : MonoBehaviour {
 		int dir = Constants.DIRECTIONS[door];
 		int path = 0;
 		if (pathLength > 1) {
-			Debug.Log("Entrou aqui");
 
 			while ((door == currentPositionCorridor) || (door == 2)) {
 				door = UnityEngine.Random.Range(1, 4);
