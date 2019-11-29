@@ -216,7 +216,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh215238
+  m_Name: pb_Mesh-12228
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -611,6 +611,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926496088671013807, guid: 8ed76235e0012c042859fc36dcb83fea,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6926496088671013807, guid: 8ed76235e0012c042859fc36dcb83fea,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ed76235e0012c042859fc36dcb83fea, type: 3}
@@ -1054,7 +1064,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh220676
+  m_Name: pb_Mesh-12226
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1247,11 +1257,20 @@ MonoBehaviour:
   mapRoot: {fileID: 1848642511}
   startingRoom: {fileID: 498120541}
   endRoom: {fileID: 587149155}
-  roomPrefabs:
+  roomKeyPrefabs:
   - {fileID: 701423068557836143, guid: 4dc192a6568f65143af66b81313437e6, type: 3}
+  - {fileID: 701423068557836143, guid: 5be1fdf8512f4ec449a9753cc21e0b70, type: 3}
+  - {fileID: 701423068557836143, guid: c4467b8c4de47e74291672e1ca542165, type: 3}
+  roomHopePrefabs:
   - {fileID: 701423068557836143, guid: 1e8ca7ae40673b743bf78bca70b2ca33, type: 3}
+  roomFormsPrefabs:
   - {fileID: 701423068557836143, guid: 222905211e1bba6489ff7ba5af9f2c34, type: 3}
+  - {fileID: 701423068557836143, guid: 0976d3917bcb6f047bc08b17c6f18727, type: 3}
+  - {fileID: 701423068557836143, guid: e58f03a2444e9a646a740fb4bae9f6ca, type: 3}
+  roomTFPrefabs:
   - {fileID: 701423068557836143, guid: 5881f22b5b29de344b26b0c17c88896f, type: 3}
+  - {fileID: 701423068557836143, guid: d47e26806f5c3f849836729d62ff63c7, type: 3}
+  - {fileID: 701423068557836143, guid: da52902f5462c4145be8dd922fc8ea40, type: 3}
   roomsObjects: []
   cellSize: 3
   rooms: []
@@ -1522,7 +1541,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh201152
+  m_Name: pb_Mesh-12230
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1685,7 +1704,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh201482
+  m_Name: pb_Mesh-12224
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
