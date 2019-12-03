@@ -18,11 +18,11 @@ public class GameManager : MonoBehaviour {
 	//public RoomDescriptor startingRoom;
 	public GameObject endRoom; // Finish Game
 
-	/// <summary>
-	/// Todos os Tipos da Sala 0 - right_key, 1 - hope_door, 2 - multiple_forms, 3 - true_or_false
-	/// </summary>
-	[Tooltip("Todos os Tipos da Sala 0 - right_key, 1 - hope_door, 2 - multiple_forms, 3 - true_or_false.")]
-	public GameObject[] roomPrefabs;
+	// Todos os prefabs
+	public GameObject[] roomKeyPrefabs;
+	public GameObject[] roomHopePrefabs;
+	public GameObject[] roomFormsPrefabs;
+	public GameObject[] roomTFPrefabs;
 
 	public RoomManager[] roomsObjects;
 	public int cellSize = 1;
@@ -275,14 +275,21 @@ public class GameManager : MonoBehaviour {
 		// Other rooms
 		foreach (Question quest in mazeLD.questions) {
 			GameObject go = null;
-			if (quest.room_type == "right_key")
-				go = Instantiate(roomPrefabs[0], new Vector3(0f, -100f - (this.rooms.Count * 2f), 0f), Quaternion.identity, mapRoot);
-			else if (quest.room_type == "hope_door")
-				go = Instantiate(roomPrefabs[1], new Vector3(0f, -100f - (this.rooms.Count * 2f), 0f), Quaternion.identity, mapRoot);
-			else if (quest.room_type == "multiple_forms")
-				go = Instantiate(roomPrefabs[2], new Vector3(0f, -100f - (this.rooms.Count * 2f), 0f), Quaternion.identity, mapRoot);
-			else if (quest.room_type == "true_or_false")
-				go = Instantiate(roomPrefabs[3], new Vector3(0f, -100f - (this.rooms.Count * 2f), 0f), Quaternion.identity, mapRoot);
+			int index = 0;
+
+			if (quest.room_type == "right_key") {
+				index = Random.Range(0, roomKeyPrefabs.Length);
+				go = Instantiate(roomKeyPrefabs[index], new Vector3(0f, -100f - (this.rooms.Count * 2f), 0f), Quaternion.identity, mapRoot);
+			} else if (quest.room_type == "hope_door") {
+				index = Random.Range(0, roomHopePrefabs.Length);
+				go = Instantiate(roomHopePrefabs[index], new Vector3(0f, -100f - (this.rooms.Count * 2f), 0f), Quaternion.identity, mapRoot);
+			} else if (quest.room_type == "multiple_forms") {
+				index = Random.Range(0, roomFormsPrefabs.Length);
+				go = Instantiate(roomFormsPrefabs[index], new Vector3(0f, -100f - (this.rooms.Count * 2f), 0f), Quaternion.identity, mapRoot);
+			} else if (quest.room_type == "true_or_false") {
+				index = Random.Range(0, roomTFPrefabs.Length);
+				go = Instantiate(roomTFPrefabs[index], new Vector3(0f, -100f - (this.rooms.Count * 2f), 0f), Quaternion.identity, mapRoot);
+			}
 
 			if (go != null) {
 
