@@ -177,6 +177,7 @@ Transform:
   - {fileID: 227748853008634259}
   - {fileID: 6004996638788804052}
   - {fileID: 339082059963812594}
+  - {fileID: 3127061056055398470}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -218,6 +219,8 @@ MonoBehaviour:
   - {fileID: 9072403018518014131, guid: 6e75c3a6be4e7544293d3d621251684f, type: 3}
   - {fileID: 9072403018518014131, guid: 1bfe28c885b2f704f8ca6cec2066cf91, type: 3}
   - {fileID: 3760729506829910546, guid: 3e50fe7230bceab43a0475ea5ab5be27, type: 3}
+  textPanel: {fileID: 0}
+  AnswerOpen: {fileID: 0}
   Doors:
   - {fileID: 7267845357949420196}
   - {fileID: 3692445018808522114}
@@ -225,6 +228,7 @@ MonoBehaviour:
   - {fileID: 3124845016899097696}
   currentPositionCorridor: 0
   TextQuestion: {fileID: 0}
+  mark: {fileID: 0}
   question:
     question_id: 0
     answer_type: start_room
@@ -1740,7 +1744,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Bem Vindo ao Labirinto!
+  m_text: "Bem Vindo ao Labirinto!\nOlhe para o ponto de interroga\xE7\xE3o caso esteja
+    com d\xFAvido de como o jogo funciona."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e1f9f86bdf1fc994482c6ec91c2fc45a, type: 2}
   m_sharedMaterial: {fileID: -7729005231412303108, guid: e1f9f86bdf1fc994482c6ec91c2fc45a,
@@ -1810,12 +1815,12 @@ MonoBehaviour:
   m_margin: {x: 538.1413, y: 277.91504, z: 539.74445, w: 292.92847}
   m_textInfo:
     textComponent: {fileID: 8503453216206845510}
-    characterCount: 23
+    characterCount: 105
     spriteCount: 0
-    spaceCount: 3
-    wordCount: 4
+    spaceCount: 18
+    wordCount: 19
     linkCount: 0
-    lineCount: 1
+    lineCount: 4
     pageCount: 1
     materialCount: 2
   m_isUsingLegacyAnimationComponent: 0
@@ -5992,15 +5997,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77882a89d3cce4c4dbbfb810b4073626, type: 3}
---- !u!1 &7267845357949420196 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5373841549418097002, guid: 77882a89d3cce4c4dbbfb810b4073626,
-    type: 3}
-  m_PrefabInstance: {fileID: 3336932794831006670}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &339082059963812594 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3097214184939135292, guid: 77882a89d3cce4c4dbbfb810b4073626,
+    type: 3}
+  m_PrefabInstance: {fileID: 3336932794831006670}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7267845357949420196 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5373841549418097002, guid: 77882a89d3cce4c4dbbfb810b4073626,
     type: 3}
   m_PrefabInstance: {fileID: 3336932794831006670}
   m_PrefabAsset: {fileID: 0}
@@ -6903,6 +6908,93 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7638341789324879145, guid: 63f386c7b7226ea4c8e89376a0910e76,
     type: 3}
   m_PrefabInstance: {fileID: 5998910976466840901}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6153047044218552593
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 227748853119225654}
+    m_Modifications:
+    - target: {fileID: 9079695389934342485, guid: cfde62d8aa15a2648aef10227c59dc04,
+        type: 3}
+      propertyPath: m_Name
+      value: QuestionMark
+      objectReference: {fileID: 0}
+    - target: {fileID: 9079695389934342487, guid: cfde62d8aa15a2648aef10227c59dc04,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.483904
+      objectReference: {fileID: 0}
+    - target: {fileID: 9079695389934342487, guid: cfde62d8aa15a2648aef10227c59dc04,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.801
+      objectReference: {fileID: 0}
+    - target: {fileID: 9079695389934342487, guid: cfde62d8aa15a2648aef10227c59dc04,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.2609733
+      objectReference: {fileID: 0}
+    - target: {fileID: 9079695389934342487, guid: cfde62d8aa15a2648aef10227c59dc04,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9079695389934342487, guid: cfde62d8aa15a2648aef10227c59dc04,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9079695389934342487, guid: cfde62d8aa15a2648aef10227c59dc04,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9079695389934342487, guid: cfde62d8aa15a2648aef10227c59dc04,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9079695389934342487, guid: cfde62d8aa15a2648aef10227c59dc04,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9079695389934342487, guid: cfde62d8aa15a2648aef10227c59dc04,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9079695389934342487, guid: cfde62d8aa15a2648aef10227c59dc04,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9079695389934342487, guid: cfde62d8aa15a2648aef10227c59dc04,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 621378944683008044, guid: cfde62d8aa15a2648aef10227c59dc04,
+        type: 3}
+      propertyPath: textPanel
+      value: 
+      objectReference: {fileID: 8503453216206845510}
+    - target: {fileID: 621378944683008044, guid: cfde62d8aa15a2648aef10227c59dc04,
+        type: 3}
+      propertyPath: properties.question
+      value: "Para ver a pergunta, olhe para o ponto de interroga\xE7\xE3o. Para ver
+        as respostas, olhe para os objetos existentes na salas, como chaves, formas
+        e alavancas. Bom Jogo!"
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cfde62d8aa15a2648aef10227c59dc04, type: 3}
+--- !u!4 &3127061056055398470 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9079695389934342487, guid: cfde62d8aa15a2648aef10227c59dc04,
+    type: 3}
+  m_PrefabInstance: {fileID: 6153047044218552593}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6280691562754340538
 PrefabInstance:
@@ -8108,15 +8200,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77882a89d3cce4c4dbbfb810b4073626, type: 3}
---- !u!4 &6004996638788804052 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3097214184939135292, guid: 77882a89d3cce4c4dbbfb810b4073626,
-    type: 3}
-  m_PrefabInstance: {fileID: 8767817176870747368}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3692445018808522114 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5373841549418097002, guid: 77882a89d3cce4c4dbbfb810b4073626,
+    type: 3}
+  m_PrefabInstance: {fileID: 8767817176870747368}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6004996638788804052 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3097214184939135292, guid: 77882a89d3cce4c4dbbfb810b4073626,
     type: 3}
   m_PrefabInstance: {fileID: 8767817176870747368}
   m_PrefabAsset: {fileID: 0}

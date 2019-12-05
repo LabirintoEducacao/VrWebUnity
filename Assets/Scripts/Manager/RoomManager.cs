@@ -43,8 +43,9 @@ public class RoomManager : MonoBehaviour {
 	public DoorStructure[] portDatas;
 	public int currentPositionCorridor;
 
-	[Header("UI")]
+	[Header("Question")]
 	public TextMeshProUGUI TextQuestion;
+	public QuestionMark mark;
 
 	[Header("room data")]
 	public Question question;
@@ -128,7 +129,7 @@ public class RoomManager : MonoBehaviour {
 			CheckLeverAnswer.door = portDatas[1];
 		}
 
-		TextQuestion.text = question.question;
+		mark.properties = question;
 	}
 
 	/// <summary>
