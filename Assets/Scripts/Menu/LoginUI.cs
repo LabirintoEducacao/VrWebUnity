@@ -18,16 +18,20 @@ public class LoginUI : MonoBehaviour
 		warnMessage.text = "";
 		loginBtn.interactable = false;
 		LoginHandler.OnLoginCompleted += OnLoginCompleted;
+		InvokeRepeating("fieldCompleted", 1f, 0.2f);
 	}
 
 	private void OnDisable() {
 		LoginHandler.OnLoginCompleted -= OnLoginCompleted;
+		CancelInvoke();
 	}
 
 	public void fieldCompleted() {
-		warnMessage.text = "";
+		//warnMessage.text = "";
 		if ((loginTxt.text != "") && (pwdTxt.text != "")) {
 			loginBtn.interactable = true;
+		} else {
+			loginBtn.interactable = false;
 		}
 	}
 
@@ -39,24 +43,31 @@ public class LoginUI : MonoBehaviour
 	}
 
 	public void cancel() {
-		srcButton.afterCanvasCancel();
+		if (srcButton != null)
+			srcButton.afterCanvasCancel();
 	}
 
 	public void login() {
-
-		LoginHandler.handler.loginAsync(loginTxt.text, pwdTxt.text);
+		_ = LoginHandler.handler.loginAsync(loginTxt.text, pwdTxt.text);
 		loginBtn.interactable = false;
+		CancelInvoke("fieldCompleted");
 	}
 	void OnLoginCompleted(UserInfo user) {
 		if (user.uid.Equals("-1")) {
 			warnMessage.text = user.username;
+			InvokeRepeating("fieldCompleted", 0.2f, 0.2f);
 		} else {
 			warnMessage.text = "Login OK!";
-			Invoke("closeCanvasOK", 1f);
+			Invoke("closeCanvasOK", 2f);
 		}
 	}
 
 	void closeCanvasOK() {
-		srcButton.afterCanvasOK();
+		if (srcButton != null)
+			srcButton.afterCanvasOK();
+		else {
+			//rever como fazer
+			GetComponentInParent<Animator>().SetTrigger("Back");
+		}
 	}
 }

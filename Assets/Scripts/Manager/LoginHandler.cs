@@ -64,7 +64,7 @@ public class LoginHandler : MonoBehaviour {
 			//Events works like LIFO
 			EventInfo e = EventPool.pool[EventPool.pool.Count-1];
 			EventPool.pool.RemoveAt(EventPool.pool.Count - 1);
-			EventPool.sendEvent(e);
+			_ = EventPool.sendEvent(e);
 		}
 	}
 	#endregion
@@ -151,6 +151,9 @@ public class LoginHandler : MonoBehaviour {
 		}
 		this.user.privateRooms = null;
 		this.user.privateRooms = await getRoomsAsync(uid, 1);
+		foreach (WebRoomInfo room in this.user.privateRooms) {
+			room.isPublic = false;
+		}
 		OnPrivateRoomRequestCompleted?.Invoke(this.user.privateRooms);
 		return this.user.privateRooms;
 	}
@@ -315,12 +318,44 @@ public class WebRoomInfo {
 	public string name;
 	public int Pergunta;
 	public int Reforco;
+	public int progress;
 	public string photoURL;
 	public Texture2D photo;
+	public bool isPublic = true;
+
+	public string progressName {
+		get {
+			switch (this.progress) {
+				case 1:
+					return "Iniciada";
+				case 2:
+					return "Concluída";
+				case 0:
+				default:
+					return "Nova";
+					break;
+			}
+		}
+	}
+
+	public int progressOrder {
+		get {
+			switch (this.progress) {
+				case 1:
+					return 0;
+				case 2:
+					return 2;
+				case 0:
+				default:
+					return 1;
+					break;
+			}
+		}
+	}
 
 	public void setPhoto(string photoURL) {
 		this.photoURL = photoURL;
-		loadImage();
+		_ = loadImage();
 	}
 
 	async Task<Texture2D> loadImage() {

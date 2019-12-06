@@ -6,19 +6,24 @@ using UnityEngine;
 public class UserStatus : MonoBehaviour
 {
 	public TextMeshProUGUI username;
+	public string baseText;
 	public GameObject logoutBTN;
-
+	public GameObject loginBTN;
 	public void logout() {
 		LoginHandler.handler.logout();
 	}
 
-    void Update()
+    void FixedUpdate()
     {
-		logoutBTN.SetActive(LoginHandler.handler.isValidUser);
-        if (LoginHandler.handler.isValidUser) {
-			username.text = LoginHandler.handler.user.username;
+		if (logoutBTN != null)
+			logoutBTN.SetActive(LoginHandler.handler.isValidUser);
+		if (loginBTN != null)
+			loginBTN.SetActive(!LoginHandler.handler.isValidUser);
+
+		if (LoginHandler.handler.isValidUser) {
+			username.text = baseText+LoginHandler.handler.user.username;
 		} else {
-			username.text = "Visitante";
+			username.text = baseText+"Visitante";
 		}
     }
 }
