@@ -4,6 +4,9 @@ using TMPro;
 using UnityEngine;
 
 public class QuestionMark : MonoBehaviour {
+
+	public Animator anim;
+
 	public TextMeshProUGUI textPanel;
 	public Question properties;
 	public bool LookedQuestion = false;
@@ -12,6 +15,7 @@ public class QuestionMark : MonoBehaviour {
 
 		if (!LookedQuestion) {
 			StartCoroutine(WriteSentence());
+			anim.Play("HideMark");
 			LookedQuestion = true;
 		}
 	}
