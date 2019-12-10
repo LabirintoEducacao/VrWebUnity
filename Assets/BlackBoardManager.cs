@@ -6,6 +6,15 @@ using UnityEngine;
 public class BlackBoardManager : MonoBehaviour
 {
 	public TextMeshProUGUI textPanel;
+	private string text;
+
+	private void Awake() {
+		text = textPanel.text;
+	}
+
+	public void resetText() {
+		textPanel.text = text;
+	}
 
 	public void setPanelText(char[] letters) {
 		StopAllCoroutines();

@@ -208,10 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entranceDirection: 0
-  spawnAnswer:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  spawnAnswer: []
   answerReference: []
   answerPrefab:
   - {fileID: 9072403018518014131, guid: 59e6b0d3c8a3cd04aac38f362be0008a, type: 3}
@@ -6921,6 +6918,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: QuestionMark
       objectReference: {fileID: 0}
+    - target: {fileID: 621378944683008044, guid: cfde62d8aa15a2648aef10227c59dc04,
+        type: 3}
+      propertyPath: textPanel
+      value: 
+      objectReference: {fileID: 8503453216206845510}
+    - target: {fileID: 621378944683008044, guid: cfde62d8aa15a2648aef10227c59dc04,
+        type: 3}
+      propertyPath: properties.question
+      value: "Para ver a pergunta, olhe para o ponto de interroga\xE7\xE3o. Para ver
+        as respostas, olhe para os objetos existentes na salas, como chaves, formas
+        e alavancas. Bom Jogo!"
+      objectReference: {fileID: 0}
     - target: {fileID: 9079695389934342487, guid: cfde62d8aa15a2648aef10227c59dc04,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6975,18 +6984,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 621378944683008044, guid: cfde62d8aa15a2648aef10227c59dc04,
-        type: 3}
-      propertyPath: textPanel
-      value: 
-      objectReference: {fileID: 8503453216206845510}
-    - target: {fileID: 621378944683008044, guid: cfde62d8aa15a2648aef10227c59dc04,
-        type: 3}
-      propertyPath: properties.question
-      value: "Para ver a pergunta, olhe para o ponto de interroga\xE7\xE3o. Para ver
-        as respostas, olhe para os objetos existentes na salas, como chaves, formas
-        e alavancas. Bom Jogo!"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfde62d8aa15a2648aef10227c59dc04, type: 3}

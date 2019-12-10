@@ -18,6 +18,11 @@ public class Door : CheckBase {
 			answer = ld.answerLinked;
 	}
 
+	/// <summary>
+	/// Se a resposta for igual ao da porta, a porta abre, se não, a porta permanece fechada.
+	/// </summary>
+	/// <param name="ans"></param>
+	/// <returns></returns>
 	public override bool checkAnswer(Answer ans) {
 		if (ans == answer) {
 			anim.SetTrigger("openning");

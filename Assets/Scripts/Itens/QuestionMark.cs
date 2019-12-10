@@ -29,4 +29,8 @@ public class QuestionMark : MonoBehaviour {
 		}
 		Canvas.ForceUpdateCanvases();
 	}
+
+	private void OnEnable() {
+		LookedQuestion = false;
+	}
 }

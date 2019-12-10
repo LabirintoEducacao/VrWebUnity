@@ -5573,10 +5573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entranceDirection: 0
-  spawnAnswer:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  spawnAnswer: []
   answerReference: []
   answerPrefab:
   - {fileID: 9072403018518014131, guid: 59e6b0d3c8a3cd04aac38f362be0008a, type: 3}
@@ -5591,6 +5588,7 @@ MonoBehaviour:
   PositionNextCorridor: []
   currentPositionCorridor: 0
   TextQuestion: {fileID: 6458791382939730253}
+  mark: {fileID: 0}
   question:
     question_id: -42
     answer_type: end_room

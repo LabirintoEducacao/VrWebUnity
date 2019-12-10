@@ -188,10 +188,11 @@ public class Player : PlayerBase
 
                 if (currentTimeLoadFillAmount >= timeToLoadFillAmount)
                 {
-                    bool correct = checkDoor.checkAnswer(Inventory.instance.AnswerSelected);
+										bool isCoorect = Inventory.instance.AnswerSelected.correct;
+                    checkDoor.checkAnswer(Inventory.instance.AnswerSelected); // Open Door
                     //dispara evento para registrar a resposta no analytics
-                    DataManager.manager.answerStatus(this.currentRoom.id, correct);
-                    if (correct)
+                    DataManager.manager.answerStatus(this.currentRoom.id, isCoorect);
+                    if (isCoorect)
                     {
                         Debug.Log("Resposta Certa!");
 

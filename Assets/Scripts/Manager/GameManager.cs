@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour {
 
 	// Desativar a sala e corredor correta
 	private GameObject lastRoom;
-	private GameObject lastCorrridor;
+	private GameObject lastCorridor;
 
 	private void Awake() {
 		if (Instance == null) {
@@ -112,16 +112,18 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public IEnumerator placeNextCorridor(Vector3 position, Quaternion baseRot, int direction, CorridorManager corridor) {
+
+
 		Vector3 nextCorrPivot = position;
 		int delta = (Mathf.RoundToInt(baseRot.eulerAngles.y / 90) + 4) % 4;
 		int true_dir = (Tools.directionToIndex(direction) + delta) % 4;
 
 		//se já tem corredor, desabilita
-		// if (this.currentCorridor != null) {
-		//     this.currentCorridor.gameObject.SetActive(false);
-		// }
+		if (this.currentCorridor != null && currentRoom != nextRoom) {
+			this.currentCorridor.gameObject.SetActive(false);
+			this.nextRoom.gameObject.SetActive(false);
+		}
 		this.currentCorridor = corridor;
-		//TODO: condicao de endgame.
 
 		if (this.currentCorridor == null) {
 			Debug.LogError(string.Format("Cannot allocate inexistent corridor. Room-{0}", new object[] { currentRoom.id }));
@@ -140,69 +142,50 @@ public class GameManager : MonoBehaviour {
 		this.currentCorridor.gameObject.SetActive(true);
 		yield return new WaitForEndOfFrame();
 
-		if (!currentCorridor.pathInfo.end_game) {
+		if (!currentCorridor.pathInfo.end_game)
 			nextRoom = getRoom(currentCorridor.pathInfo.connected_question);
-			if (nextRoom == null) {
-				Debug.LogError(string.Format("Room {0} does not exist on path of type {1} from room {2}.", new object[] { currentCorridor.pathInfo.connected_question, currentCorridor.pathInfo.type, currentRoom.id }));
-				yield break;
-			}
-			//add delta to finishing position in corridor
-			Transform exitHub = corridor.GetComponent<CorridorGenerator>().getExitTranform();
-
-			float corrEndx = (corridor.GetComponent<CorridorGenerator>().exit.x + 0.5f) * corridor.cellSize;
-			nextCorrPivot += (fwd * (corridor.pathInfo.height * corridor.cellSize) + right * corrEndx);
-
-			nextCorrPivot = exitHub.transform.position + exitHub.forward * cellSize / 2f;
-			nextCorrPivot.y -= 1.5f;
-
-			nextRoom.transform.rotation = Quaternion.Euler(0f, rot + baseRot.y, 0f);
-			//nextRoom.transform.position = nextCorrPivot + Vector3.forward * currentCorridor.pathInfo.height + Vector3.forward * nextRoom.GetComponent<RoomDescriptor>().size.y;
-			nextRoom.transform.position = nextCorrPivot + fwd * nextRoom.GetComponent<RoomDescriptor>().size.y - right * nextRoom.GetComponent<RoomDescriptor>().size.x / 2f; // - nextRoom.spawnDoor[0].transform.localPosition;
-
-			//change listener
-			currentRoom.GetComponentInChildren<HubCheckpoint>().onPlayerEnter -= onEnteredNextRoom;
-			nextRoom.GetComponentInChildren<HubCheckpoint>().onPlayerEnter += onEnteredNextRoom;
-
-			yield return new WaitForEndOfFrame();
-			CorridorGenerator ccGen = currentCorridor.GetComponent<CorridorGenerator>();
-			currentRoom.GetComponentInChildren<HubCheckpoint>().setGoal(direction, ccGen.getEntranceTranform());
-			ccGen.setEntranceMotion(currentRoom.GetComponentInChildren<HubCheckpoint>().transform);
-			//ccGen.setExitMotion (nextRoom.GetComponentInChildren<HubCheckpoint> ().transform);
-			this.nextRoom.gameObject.SetActive(true);
-		} else // END GAME
-			{
+		else
 			nextRoom = endRoom.GetComponent<RoomManager>();
-			if (nextRoom == null) {
-				Debug.LogError(string.Format("Sala final não existe."));
-				yield break;
-			}
-			//add delta to finishing position in corridor
-			Transform exitHub = corridor.GetComponent<CorridorGenerator>().getExitTranform();
 
-			float corrEndx = (corridor.GetComponent<CorridorGenerator>().exit.x + 0.5f) * corridor.cellSize;
-			nextCorrPivot += (fwd * (corridor.pathInfo.height * corridor.cellSize) + right * corrEndx);
-
-			nextCorrPivot = exitHub.transform.position + exitHub.forward * cellSize / 2f;
-			nextCorrPivot.y -= 1.5f;
-
-			nextRoom.transform.rotation = Quaternion.Euler(0f, rot + baseRot.y, 0f);
-			//nextRoom.transform.position = nextCorrPivot + Vector3.forward * currentCorridor.pathInfo.height + Vector3.forward * nextRoom.GetComponent<RoomDescriptor>().size.y;
-			nextRoom.transform.position = nextCorrPivot + fwd * nextRoom.GetComponent<RoomDescriptor>().size.y - right * nextRoom.GetComponent<RoomDescriptor>().size.x / 2f; // - nextRoom.spawnDoor[0].transform.localPosition;
-
-			//change listener
-			currentRoom.GetComponentInChildren<HubCheckpoint>().onPlayerEnter -= onEnteredNextRoom;
-			nextRoom.GetComponentInChildren<HubCheckpoint>().onPlayerEnter += onEnteredNextRoom;
-
-			yield return new WaitForEndOfFrame();
-			CorridorGenerator ccGen = currentCorridor.GetComponent<CorridorGenerator>();
-			currentRoom.GetComponentInChildren<HubCheckpoint>().setGoal(direction, ccGen.getEntranceTranform());
-			ccGen.setEntranceMotion(currentRoom.GetComponentInChildren<HubCheckpoint>().transform);
-			//ccGen.setExitMotion (nextRoom.GetComponentInChildren<HubCheckpoint> ().transform);
-			this.nextRoom.gameObject.SetActive(true);
+		if (nextRoom == null) {
+			Debug.LogError(string.Format("Room {0} does not exist on path of type {1} from room {2}.", new object[] { currentCorridor.pathInfo.connected_question, currentCorridor.pathInfo.type, currentRoom.id }));
+			yield break;
 		}
+
+		//add delta to finishing position in corridor
+		Transform exitHub = corridor.GetComponent<CorridorGenerator>().getExitTranform();
+
+		float corrEndx = (corridor.GetComponent<CorridorGenerator>().exit.x + 0.5f) * corridor.cellSize;
+		nextCorrPivot += (fwd * (corridor.pathInfo.height * corridor.cellSize) + right * corrEndx);
+
+		nextCorrPivot = exitHub.transform.position + exitHub.forward * cellSize / 2f;
+		nextCorrPivot.y -= 1.5f;
+
+		nextRoom.transform.rotation = Quaternion.Euler(0f, rot + baseRot.y, 0f);
+		//nextRoom.transform.position = nextCorrPivot + Vector3.forward * currentCorridor.pathInfo.height + Vector3.forward * nextRoom.GetComponent<RoomDescriptor>().size.y;
+		nextRoom.transform.position = nextCorrPivot + fwd * nextRoom.GetComponent<RoomDescriptor>().size.y - right * nextRoom.GetComponent<RoomDescriptor>().size.x / 2f; // - nextRoom.spawnDoor[0].transform.localPosition;
+
+		//change listener
+		currentRoom.GetComponentInChildren<HubCheckpoint>().onPlayerEnter -= onEnteredNextRoom;
+		nextRoom.GetComponentInChildren<HubCheckpoint>().onPlayerEnter += onEnteredNextRoom;
+
+		yield return new WaitForEndOfFrame();
+		CorridorGenerator ccGen = currentCorridor.GetComponent<CorridorGenerator>();
+		currentRoom.GetComponentInChildren<HubCheckpoint>().setGoal(direction, ccGen.getEntranceTranform());
+		ccGen.setEntranceMotion(currentRoom.GetComponentInChildren<HubCheckpoint>().transform);
+		//ccGen.setExitMotion (nextRoom.GetComponentInChildren<HubCheckpoint> ().transform);
+
+		// Reseta a próxima sala
+		this.nextRoom.GetComponentInChildren<HubCheckpoint>().clearGoals();
+		this.nextRoom.Doors[0].transform.GetChild(2).gameObject.layer = 0;
+		this.nextRoom.generateAnswers();
+
+		this.nextRoom.gameObject.SetActive(true);
+
 		yield return new WaitForSeconds(0.1f);
 		this.GetComponent<NavMeshBaker>().CreateBake();
 		this.currentRoom.GetComponentInChildren<HubCheckpoint>().activate();
+
 	}
 
 	IEnumerator placeContinuation() {
@@ -229,7 +212,7 @@ public class GameManager : MonoBehaviour {
 		if (this.currentRoom.GetComponentInChildren<HubCheckpoint>() == hub)
 			return;
 		this.lastRoom = this.currentRoom.gameObject;
-		this.lastCorrridor = this.currentCorridor.gameObject;
+		this.lastCorridor = this.currentCorridor.gameObject;
 		this.currentRoom = this.nextRoom;
 		DataManager.manager.savegame.currentRoomID = this.currentRoom.id;
 		//limpa as setas da sala, pro caso de já ter passado aqui (volta do reforço)
@@ -251,7 +234,7 @@ public class GameManager : MonoBehaviour {
 
 	public void ClosedGatewayDoor() {
 		this.lastRoom.SetActive(false);
-		this.lastCorrridor.SetActive(false);
+		this.lastCorridor.SetActive(false);
 	}
 
 	/// <summary>
