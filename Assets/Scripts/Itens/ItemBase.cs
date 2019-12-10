@@ -11,7 +11,7 @@ public class ItemBase : MonoBehaviour {
 	public AudioSource AudioSource;
 	public bool LookedAnswer = false;
 
-	
+
 
 	public void ActivePanel() {
 		if (!LookedAnswer) {
@@ -34,13 +34,6 @@ public class ItemBase : MonoBehaviour {
 		LookedAnswer = true;
 	}
 
-	//public void setPanelText(){
-	//			currentRoom.AnswerOpen = this;
-	//			StopAllCoroutines();
-	//   		StartCoroutine(WriteSentence());
-	//			LookedAnswer = true;
-	//}
-
 	/// <summary>
 	/// Onde ocorre a ação do item quando selecionado.
 	/// </summary>
@@ -54,14 +47,4 @@ public class ItemBase : MonoBehaviour {
 	public virtual void ActionItem(string NameDoor) {
 	}
 
-	//private IEnumerator WriteSentence(){
-	//	textPanel.text = string.Empty;
- //   foreach (char letter in properties.answer.ToCharArray())
- //   {
- //   	while (Time.timeScale == 0) yield return null;
- //     textPanel.text += letter;
- //     yield return null;
- //   }
-	//	Canvas.ForceUpdateCanvases();
-	//}
 }

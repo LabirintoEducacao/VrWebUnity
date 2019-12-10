@@ -19,18 +19,17 @@ public class SaveGameData {
 	public void setRoomEnd(int room_id, bool correct) {
 		for (int i = 0; i < rooms.Length; i++) {
 			if (rooms[i].room_id == room_id) {
-				rooms[i].timeInside = timeElapsed - rooms[i].enterTime;
 				rooms[i].status = correct ? ROOM_STATUS.RIGHT : ROOM_STATUS.WRONG;
-                if (correct)
-                {
-                    rightAnswers++;
+
+				if (correct && rooms[i].timeInside == 0f) {
+					rightAnswers++;
 					rooms[i].right++;
-                }
-                else
-                {
-                    wrongAnswers++;
-                    rooms[i].wrongs++;
-                }
+					rooms[i].timeInside = timeElapsed - rooms[i].enterTime;
+				} else if (!correct) {
+					wrongAnswers++;
+					rooms[i].wrongs++;
+				}
+
 				return;
 			}
 		}
@@ -48,7 +47,7 @@ public class SaveGameData {
 	}*/
 
 	public void setRoomStart(int room_id) {
-		for(int i = 0; i < rooms.Length; i++) {
+		for (int i = 0; i < rooms.Length; i++) {
 			if (rooms[i].room_id == room_id) {
 				rooms[i].enterTime = timeElapsed;
 				return;
