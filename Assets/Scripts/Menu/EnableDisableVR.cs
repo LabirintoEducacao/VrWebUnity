@@ -61,6 +61,8 @@ public class EnableDisableVR : MonoBehaviour {
 			// Now it's ok to enable VR mode.
 			XRSettings.enabled = true;
 		}
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
 		callback?.Invoke(0);
     }
 
