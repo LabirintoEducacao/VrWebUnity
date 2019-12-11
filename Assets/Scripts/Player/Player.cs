@@ -188,7 +188,7 @@ public class Player : PlayerBase
 
                 if (currentTimeLoadFillAmount >= timeToLoadFillAmount)
                 {
-										bool isCoorect = Inventory.instance.AnswerSelected.correct;
+					bool isCoorect = Inventory.instance.AnswerSelected.correct;
                     checkDoor.checkAnswer(Inventory.instance.AnswerSelected); // Open Door
                     //dispara evento para registrar a resposta no analytics
                     DataManager.manager.answerStatus(this.currentRoom.id, isCoorect);
@@ -270,11 +270,11 @@ public class Player : PlayerBase
                 else
                 {
                     Debug.Log("Resposta errada!");
-                    //dispara evento para registrar a resposta no analytics
-                    DataManager.manager.answerStatus(this.currentRoom.id, correct);
-                }
+				}
+				//dispara evento para registrar a resposta no analytics
+				DataManager.manager.answerStatus(this.currentRoom.id, correct);
 
-                GUIReticleLoad.fillAmount = 0;
+				GUIReticleLoad.fillAmount = 0;
                 GUIReticleLoad.gameObject.SetActive(false);
 
                 currentTimeLoadFillAmount = 0;

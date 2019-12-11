@@ -169,6 +169,9 @@ public class DataManager : MonoBehaviour {
 
 		//http://192.168.240.222/api/data?event_name=maze_end&user_id=2&maze_id=1&elapsed_time=5&wrong_count=1&correct_count=1&async_timestamp=4000
 		//Eh nois, Analytics - evento executado ao inicializar o jogo
+
+		if (svgd.mazeID == -1)
+			return;
 		EventInfo e = new EventInfo();
 		e.event_name = "maze_end";
 		e.maze_id = svgd.mazeID;

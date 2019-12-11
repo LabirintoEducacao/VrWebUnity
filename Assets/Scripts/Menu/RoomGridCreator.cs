@@ -85,6 +85,7 @@ public class RoomGridCreator : MonoBehaviour
 
 	void refreshPage() {
 		this.clearGridChildren();
+		int roomCount = 0;
 		if (this.salas.Count == 0) {
 			this.loading.SetActive(true);
 		} else {
@@ -122,21 +123,23 @@ public class RoomGridCreator : MonoBehaviour
 									orderby room.progressOrder ascending
 									select room);
 					break;
-				case 0:
+				case 0: //sem filtro
 				default:
 					orderedRooms = (from room in this.salas
-									orderby room.progressOrder ascending
+									orderby room.isPublic, room.progressOrder ascending
 									select room);
 					break;
 			}
-
+			roomCount = orderedRooms.Count();
 			createGrid(orderedRooms
 									.Skip(this.pageID * this.pageSize)
 									.Take(this.pageSize)
 									.ToArray());
 		}
+		this.pages = Mathf.FloorToInt((roomCount-1) / this.pageSize);
+		Debug.LogFormat("RoomGridCreator::updateRoomList - salas: {0}, páginas: {1} com {2} itens.", new object[] { roomCount, this.pages, this.pageSize });
 
-		this.pageUpBtn.interactable = (this.pageID < this.pages-1);
+		this.pageUpBtn.interactable = (this.pageID < this.pages);
 		this.pageDownBtn.interactable = !(pageID <= 0);
 	}
 
@@ -163,7 +166,6 @@ public class RoomGridCreator : MonoBehaviour
 		if (LoginHandler.handler.isValidUser && (LoginHandler.handler.user.privateRooms != null)) {
 			this.salas.AddRange(LoginHandler.handler.user.privateRooms);
 		}
-		this.pages = Mathf.FloorToInt(this.salas.Count / this.pageSize);
 	}
 
 	public void changeScope() {
@@ -176,6 +178,8 @@ public class RoomGridCreator : MonoBehaviour
 		//data will arrive next frame
 		Debug.Log("New data loaded! Room count: "+rooms.Length);
 		this.loaded = false;
+		this.updateRoomList();
+		this.refreshPage();
 	}
 
 	private void OnEnable() {
