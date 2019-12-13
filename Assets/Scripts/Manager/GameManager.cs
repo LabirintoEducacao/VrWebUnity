@@ -71,6 +71,8 @@ public class GameManager : MonoBehaviour {
 		int currentRoomID = DataManager.manager.savegame.currentRoomID;
 
 		if (currentRoomID >= 0 && currentRoomID != mazeLD.starting_question_id) {
+			startingRoom.SetActive(false);
+			currentRoom.gameObject.SetActive(false);
 			croom = DataManager.manager.savegame.currentRoomID;
 		} else { //Start Room
 			startingRoom.GetComponent<RoomManager>().PositionNextRoom("DoorAnswer", true);
