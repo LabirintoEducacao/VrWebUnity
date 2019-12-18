@@ -5927,11 +5927,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 227748853119225654}
     m_Modifications:
-    - target: {fileID: 5373841549418097002, guid: 77882a89d3cce4c4dbbfb810b4073626,
-        type: 3}
-      propertyPath: m_Name
-      value: DoorSnowEnter
-      objectReference: {fileID: 0}
     - target: {fileID: 3097214184939135292, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5945,7 +5940,7 @@ PrefabInstance:
     - target: {fileID: 3097214184939135292, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.47
+      value: -6.62
       objectReference: {fileID: 0}
     - target: {fileID: 3097214184939135292, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}
@@ -5986,6 +5981,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373841549418097002, guid: 77882a89d3cce4c4dbbfb810b4073626,
+        type: 3}
+      propertyPath: m_Name
+      value: DoorSnowEnter
       objectReference: {fileID: 0}
     - target: {fileID: 3628239375968338500, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}
@@ -6918,18 +6918,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: QuestionMark
       objectReference: {fileID: 0}
-    - target: {fileID: 621378944683008044, guid: cfde62d8aa15a2648aef10227c59dc04,
-        type: 3}
-      propertyPath: textPanel
-      value: 
-      objectReference: {fileID: 8503453216206845510}
-    - target: {fileID: 621378944683008044, guid: cfde62d8aa15a2648aef10227c59dc04,
-        type: 3}
-      propertyPath: properties.question
-      value: "Para ver a pergunta, olhe para o ponto de interroga\xE7\xE3o. Para ver
-        as respostas, olhe para os objetos existentes na salas, como chaves, formas
-        e alavancas. Bom Jogo!"
-      objectReference: {fileID: 0}
     - target: {fileID: 9079695389934342487, guid: cfde62d8aa15a2648aef10227c59dc04,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6984,6 +6972,18 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 621378944683008044, guid: cfde62d8aa15a2648aef10227c59dc04,
+        type: 3}
+      propertyPath: textPanel
+      value: 
+      objectReference: {fileID: 8503453216206845510}
+    - target: {fileID: 621378944683008044, guid: cfde62d8aa15a2648aef10227c59dc04,
+        type: 3}
+      propertyPath: properties.question
+      value: "Para ver a pergunta, olhe para o ponto de interroga\xE7\xE3o. Para ver
+        as respostas, olhe para os objetos existentes na salas, como chaves, formas
+        e alavancas. Bom Jogo!"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfde62d8aa15a2648aef10227c59dc04, type: 3}
@@ -8125,15 +8125,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 227748853119225654}
     m_Modifications:
-    - target: {fileID: 5373841549418097002, guid: 77882a89d3cce4c4dbbfb810b4073626,
-        type: 3}
-      propertyPath: m_Name
-      value: DoorSnowExit
-      objectReference: {fileID: 0}
     - target: {fileID: 3097214184939135292, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.38
+      value: 0.331
       objectReference: {fileID: 0}
     - target: {fileID: 3097214184939135292, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}
@@ -8184,6 +8179,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373841549418097002, guid: 77882a89d3cce4c4dbbfb810b4073626,
+        type: 3}
+      propertyPath: m_Name
+      value: DoorSnowExit
       objectReference: {fileID: 0}
     - target: {fileID: 6784067099305071111, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}

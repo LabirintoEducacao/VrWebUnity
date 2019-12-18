@@ -82269,11 +82269,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 682322563240074962}
     m_Modifications:
-    - target: {fileID: 5373841549418097002, guid: 77882a89d3cce4c4dbbfb810b4073626,
-        type: 3}
-      propertyPath: m_Name
-      value: DoorSnow
-      objectReference: {fileID: 0}
     - target: {fileID: 3097214184939135292, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -82287,7 +82282,7 @@ PrefabInstance:
     - target: {fileID: 3097214184939135292, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.28
+      value: -6.6
       objectReference: {fileID: 0}
     - target: {fileID: 3097214184939135292, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}
@@ -82328,6 +82323,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373841549418097002, guid: 77882a89d3cce4c4dbbfb810b4073626,
+        type: 3}
+      propertyPath: m_Name
+      value: DoorSnow
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77882a89d3cce4c4dbbfb810b4073626, type: 3}

@@ -6769,11 +6769,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 227748853008634259}
     m_Modifications:
-    - target: {fileID: 5373841549418097002, guid: 77882a89d3cce4c4dbbfb810b4073626,
-        type: 3}
-      propertyPath: m_Name
-      value: DoorSnowEnter
-      objectReference: {fileID: 0}
     - target: {fileID: 3097214184939135292, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6787,7 +6782,7 @@ PrefabInstance:
     - target: {fileID: 3097214184939135292, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.75
+      value: -4.855
       objectReference: {fileID: 0}
     - target: {fileID: 3097214184939135292, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}
@@ -6828,6 +6823,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373841549418097002, guid: 77882a89d3cce4c4dbbfb810b4073626,
+        type: 3}
+      propertyPath: m_Name
+      value: DoorSnowEnter
       objectReference: {fileID: 0}
     - target: {fileID: 3628239375968338500, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}
@@ -8955,15 +8955,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 227748853008634259}
     m_Modifications:
-    - target: {fileID: 5373841549418097002, guid: 77882a89d3cce4c4dbbfb810b4073626,
-        type: 3}
-      propertyPath: m_Name
-      value: DoorSnowExit
-      objectReference: {fileID: 0}
     - target: {fileID: 3097214184939135292, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.22
+      value: 5.474
       objectReference: {fileID: 0}
     - target: {fileID: 3097214184939135292, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}
@@ -9014,6 +9009,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373841549418097002, guid: 77882a89d3cce4c4dbbfb810b4073626,
+        type: 3}
+      propertyPath: m_Name
+      value: DoorSnowExit
       objectReference: {fileID: 0}
     - target: {fileID: 6784067099305071111, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}

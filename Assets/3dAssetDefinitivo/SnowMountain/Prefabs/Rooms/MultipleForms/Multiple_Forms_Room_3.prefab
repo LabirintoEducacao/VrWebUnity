@@ -6500,15 +6500,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 227748853008634259}
     m_Modifications:
-    - target: {fileID: 5373841549418097002, guid: 77882a89d3cce4c4dbbfb810b4073626,
-        type: 3}
-      propertyPath: m_Name
-      value: DoorSnowExit
-      objectReference: {fileID: 0}
     - target: {fileID: 3097214184939135292, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.65
+      value: -0.8
       objectReference: {fileID: 0}
     - target: {fileID: 3097214184939135292, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}
@@ -6559,6 +6554,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373841549418097002, guid: 77882a89d3cce4c4dbbfb810b4073626,
+        type: 3}
+      propertyPath: m_Name
+      value: DoorSnowExit
       objectReference: {fileID: 0}
     - target: {fileID: 6784067099305071111, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}
@@ -6886,11 +6886,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 227748853008634259}
     m_Modifications:
-    - target: {fileID: 5373841549418097002, guid: 77882a89d3cce4c4dbbfb810b4073626,
-        type: 3}
-      propertyPath: m_Name
-      value: DoorSnowEnter
-      objectReference: {fileID: 0}
     - target: {fileID: 3097214184939135292, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6904,7 +6899,7 @@ PrefabInstance:
     - target: {fileID: 3097214184939135292, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.75
+      value: -4.84
       objectReference: {fileID: 0}
     - target: {fileID: 3097214184939135292, guid: 77882a89d3cce4c4dbbfb810b4073626,
         type: 3}
@@ -6945,6 +6940,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373841549418097002, guid: 77882a89d3cce4c4dbbfb810b4073626,
+        type: 3}
+      propertyPath: m_Name
+      value: DoorSnowEnter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77882a89d3cce4c4dbbfb810b4073626, type: 3}
@@ -7267,11 +7267,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 227748853119225654}
     m_Modifications:
-    - target: {fileID: 6697048983194706467, guid: cc882bbf384d18f419368bc176a39945,
-        type: 3}
-      propertyPath: m_Name
-      value: ShapesReceive
-      objectReference: {fileID: 0}
     - target: {fileID: 6697048983194706478, guid: cc882bbf384d18f419368bc176a39945,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7326,6 +7321,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6697048983194706467, guid: cc882bbf384d18f419368bc176a39945,
+        type: 3}
+      propertyPath: m_Name
+      value: ShapesReceive
       objectReference: {fileID: 0}
     - target: {fileID: 6697048983194706479, guid: cc882bbf384d18f419368bc176a39945,
         type: 3}
