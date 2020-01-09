@@ -5,8 +5,8 @@ using BarcodeScanner.Scanner;
 using UnityEngine;
 #if PLATFORM_ANDROID
 using UnityEngine.Android;
-using UnityEngine.SceneManagement;
 #endif
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class QRCode : MonoBehaviour {
