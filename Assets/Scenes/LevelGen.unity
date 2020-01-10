@@ -901,7 +901,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-12246
+  m_Name: pb_Mesh-23750
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1100,6 +1100,7 @@ MonoBehaviour:
   - {fileID: 701423068557836143, guid: c4467b8c4de47e74291672e1ca542165, type: 3}
   roomHopePrefabs:
   - {fileID: 701423068557836143, guid: 1e8ca7ae40673b743bf78bca70b2ca33, type: 3}
+  - {fileID: 701423068557836143, guid: d146f5c631ccd304191b5ef3856f04f0, type: 3}
   roomFormsPrefabs:
   - {fileID: 701423068557836143, guid: 222905211e1bba6489ff7ba5af9f2c34, type: 3}
   - {fileID: 701423068557836143, guid: 0976d3917bcb6f047bc08b17c6f18727, type: 3}
@@ -1378,7 +1379,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-12250
+  m_Name: pb_Mesh-23754
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1541,7 +1542,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-12244
+  m_Name: pb_Mesh-23748
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2503,7 +2504,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-12248
+  m_Name: pb_Mesh-23752
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
