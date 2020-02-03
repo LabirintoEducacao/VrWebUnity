@@ -160,9 +160,11 @@ public class Tile3x3Asset : MonoBehaviour, ITileCreator {
 					go.transform.localPosition = cornerPos[i];
 
 				} else if ((tile.passages & corners[i]) == corners[i]) { // Quina aberta
-					GameObject go = Instantiate(cornerWallPrefabs[1], this.transform.position, Quaternion.identity, this.transform);
-					go.transform.Rotate(0f, 90f * i, 0f);
-					go.transform.localPosition = cornerPos[i];
+					if (cornerWallPrefabs[1]) {
+						GameObject go = Instantiate(cornerWallPrefabs[1], this.transform.position, Quaternion.identity, this.transform);
+						go.transform.Rotate(0f, 90f * i, 0f);
+						go.transform.localPosition = cornerPos[i];
+					}
 				}
 			}
 		}
