@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &931433737004913551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4462635005826573604}
+  - component: {fileID: 2917593439114515245}
+  m_Layer: 0
+  m_Name: Forest_Base3x3Tile
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4462635005826573604
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931433737004913551}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2917593439114515245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931433737004913551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 721acd668c447b04d99c22704efe8b4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorPrefabs:
+  - {fileID: 1705627753670329535, guid: 5173a12d0fa4bb741ba2a5628fd65541, type: 3}
+  - {fileID: 8205825399061224068, guid: 96d18a27319276549b5c6052144a299c, type: 3}
+  - {fileID: 2660168258155680215, guid: e830417264c01354397d00f4a3a338dc, type: 3}
+  - {fileID: 2165062114346138903, guid: d83364d2412734244ae7aff2c58692df, type: 3}
+  lateralWallPrefabs:
+  - {fileID: 7691352874112765037, guid: 42fd36b747e235f4dbf27e911c5346d1, type: 3}
+  - {fileID: 2657314624057733523, guid: a8d2280c940f1ce41b3e3b1facaf07f8, type: 3}
+  - {fileID: 2302591024319812325, guid: 9dfbdc0507d1fdd4eae97e37dedc4e6f, type: 3}
+  cornerWallPrefabs:
+  - {fileID: 6017984119267690321, guid: 6fd0695df8820764b990f3609d02b361, type: 3}
+  - {fileID: 3192857384250115529, guid: 210d740b4ba246a4084e29d9702da0d7, type: 3}

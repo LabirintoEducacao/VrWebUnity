@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &931433737004913551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4462635005826573604}
+  - component: {fileID: 2917593439114515245}
+  m_Layer: 0
+  m_Name: Urban_Base3x3Tile
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4462635005826573604
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931433737004913551}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2917593439114515245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931433737004913551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 721acd668c447b04d99c22704efe8b4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorPrefabs:
+  - {fileID: 4498682434322630460, guid: 88c6789b1d7b77e45a451743d3f46039, type: 3}
+  - {fileID: 8592048593594719267, guid: ff06fc4fab68d2444ad04b36bfafb59c, type: 3}
+  - {fileID: 2126166276321653785, guid: c0fba6135ef754842af14f067bf6d11a, type: 3}
+  - {fileID: 4241550625152493548, guid: 03a67da924c04154c80e983b0a6009e0, type: 3}
+  lateralWallPrefabs:
+  - {fileID: 9036308447913434191, guid: e030c1b2b701d7e4caeacea016724842, type: 3}
+  - {fileID: 2146044445415298863, guid: 709bf99b278811b47b3024eac340dfe9, type: 3}
+  - {fileID: 4194903826501369381, guid: 3abbb0d44025b67448e3ee6e1db3ba19, type: 3}
+  - {fileID: 7695021595031578542, guid: 5350b2f8b35b778449d1dd2d67522d3f, type: 3}
+  - {fileID: 3458183240478419054, guid: 1d162eb0233fcfa4f9db5c108e85514b, type: 3}
+  - {fileID: 1265865316200058496, guid: 1188078cdedbeab48aa84462d52a883c, type: 3}
+  - {fileID: 3823580538574972580, guid: 7bcad778cf98c244eb32ed5e86e17592, type: 3}
+  - {fileID: 2538786011739331513, guid: 355d5a8b528516c419db1b29ca6edf56, type: 3}
+  - {fileID: 4370146913677619621, guid: 19dddeefeb8571948b7bcaa7405df28f, type: 3}
+  cornerWallPrefabs:
+  - {fileID: 5121829575011648068, guid: acb54354bd70bbd4d834510026cc1ba2, type: 3}
+  - {fileID: 1417285386814721562, guid: d8518b4883d96354eb90862bf20b66c9, type: 3}

@@ -46,6 +46,7 @@ public class CorridorGenerator : MonoBehaviour {
 	public void generateCorridor ( ) {
 		if (randomizeSeed) {
 			seed = Random.Range (int.MinValue, int.MaxValue);
+			print(seed);
 		}
 		Random.InitState (seed);
 
