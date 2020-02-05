@@ -17,10 +17,11 @@ public class EnableDisableVR : MonoBehaviour {
 
     public void changeState (bool active, Action<int> callback) {
         Debug.Log ("Trying to activate VR mode? " + active);
+
         if (active) {
-            StartCoroutine ( changeDevice("cardboard", callback));
+            StartCoroutine ( changeDevice("cardboard",callback));
         } else {
-            StartCoroutine ( changeDevice("", callback));
+						StartCoroutine ( changeDevice("", callback));
         }
     }
 

@@ -23,7 +23,10 @@ public class Player : PlayerBase
 
     public static Player instance;
 
-    private void Awake()
+	private const float DRAG_RATE = .2f;
+	float dragYawDegrees;
+
+	private void Awake()
     {
         if (instance == null)
         {
@@ -36,11 +39,12 @@ public class Player : PlayerBase
     }
     private void Start()
     {
-        GUIReticleLoad.gameObject.SetActive(false);
+		GUIReticleLoad.gameObject.SetActive(false);
     }
 
     private void Update()
     {
+
         Ray ray = new Ray(this.transform.position, transform.forward);
         RaycastHit hit;
 
@@ -96,8 +100,8 @@ public class Player : PlayerBase
         Debug.DrawRay(ray.origin, ray.direction, Color.red);
     }
 
-    #region Hit Detection
-    void hitArrow(RaycastHit hit)
+	#region Hit Detection
+	void hitArrow(RaycastHit hit)
     {
         currentTimeUnlock += Time.deltaTime;
         if (currentTimeUnlock >= timeToUnlock)

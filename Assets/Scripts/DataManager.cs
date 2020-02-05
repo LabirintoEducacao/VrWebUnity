@@ -55,6 +55,8 @@ public class DataManager : MonoBehaviour {
 	}
 	#endregion
 
+	public bool vrMode { get; private set; } = true;
+
 	public MazeLDWrapper mazeLD { get; set; } = null;
 
 	public void setNewLevel(string levelDesign) {
@@ -121,6 +123,11 @@ public class DataManager : MonoBehaviour {
 			string user_data = JsonUtility.ToJson(LoginHandler.handler.user);
 			SaveData.save("user_data", user_data);
 		}
+	}
+
+	// Enable and Disable VrMode
+	public void switchVrMode(bool isEnabled) {
+		this.vrMode = isEnabled;
 	}
 
 	public void cleanPlayerProgress(bool logout = false) {
