@@ -16,7 +16,8 @@ public class LoadRealGameScene : MonoBehaviour
 	}
 
 	void toggleVR() {
-		this.GetComponent<EnableDisableVR>().changeState(true, this.vrActive);
+		bool isEnabledVR = DataManager.manager.vrMode;
+		this.GetComponent<EnableDisableVR>().changeState(isEnabledVR, this.vrActive);
 	}
 
 	void vrActive(int outcome) {

@@ -9,12 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu_v2.unity
     guid: e5a234b6bc546f84f8a211cce07b12ed
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: c7524b32ec88ea94baa81096aec3f377
-  - enabled: 1
-    path: Assets/Scenes/Gabriel_Level_Test.unity
-    guid: 213debc8850c0b349ad6f8d1236e1460
-  - enabled: 1
     path: Assets/Scenes/VR_Level_Base.unity
     guid: 75d483cd13fd931408cb67b392f38c3a
   - enabled: 1
