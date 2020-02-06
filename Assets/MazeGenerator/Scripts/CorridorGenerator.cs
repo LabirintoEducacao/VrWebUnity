@@ -46,9 +46,10 @@ public class CorridorGenerator : MonoBehaviour {
 	public void generateCorridor ( ) {
 		if (randomizeSeed) {
 			seed = Random.Range (int.MinValue, int.MaxValue);
-			print(seed);
+			print("Corredor Seed: " + seed);
 		}
 		Random.InitState (seed);
+		//Random.InitState (-328346482);
 
 		_map = new Map (width, height);
 		redefineCenter ( );
