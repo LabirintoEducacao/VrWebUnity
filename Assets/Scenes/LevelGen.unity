@@ -991,7 +991,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2726372
+  m_Name: pb_Mesh-602630
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1462,7 +1462,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2726376
+  m_Name: pb_Mesh-602626
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1625,7 +1625,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2726370
+  m_Name: pb_Mesh-602632
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2059,12 +2059,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4371143025232129060, guid: 3bfb582b2385c13478620cca19271820,
         type: 3}
-      propertyPath: m_Radius
+      propertyPath: m_WalkableMask
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4371143025232129060, guid: 3bfb582b2385c13478620cca19271820,
         type: 3}
-      propertyPath: m_WalkableMask
+      propertyPath: m_Radius
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4371143025232129083, guid: 3bfb582b2385c13478620cca19271820,
@@ -2587,7 +2587,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2726374
+  m_Name: pb_Mesh-602628
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
