@@ -14,4 +14,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelGen.unity
     guid: 53fc884918a8d84479a195b2a5de0bf6
+  - enabled: 1
+    path: Assets/Scenes/Levels/CaveLevel.unity
+    guid: fe972d6447873014ba7b85fd9334d360
+  - enabled: 1
+    path: Assets/Scenes/Levels/DesertLevel.unity
+    guid: 7105241aabc74014892e76edde842a5c
+  - enabled: 1
+    path: Assets/Scenes/Levels/ForestLevel.unity
+    guid: 18c4a99181ab2d84d8b692866bd8e770
+  - enabled: 1
+    path: Assets/Scenes/Levels/HouseLevel.unity
+    guid: f806845978f37f447999f67b794625b5
+  - enabled: 1
+    path: Assets/Scenes/Levels/UrbanLevel.unity
+    guid: e0caf17666c94e0448c77b63a05cd81d
   m_configObjects: {}
