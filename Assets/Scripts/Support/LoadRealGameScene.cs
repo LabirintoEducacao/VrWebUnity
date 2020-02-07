@@ -19,9 +19,38 @@ public class LoadRealGameScene : MonoBehaviour
 		bool isEnabledVR = DataManager.manager.vrMode;
 		this.GetComponent<EnableDisableVR>().changeState(isEnabledVR, this.vrActive);
 	}
-
+	
 	void vrActive(int outcome) {
-		SceneManager.LoadScene("LevelGen", LoadSceneMode.Additive);
+
+		//Receber o inteiro da fase escolhida atraves do json
+		int level_id = DataManager.manager.mazeLD.theme;
+
+		switch (level_id)
+		{
+			case 0:
+				SceneManager.LoadScene("LevelGen", LoadSceneMode.Additive);
+				break;
+			case 1:
+				SceneManager.LoadScene("CaveLevel", LoadSceneMode.Additive);
+				break;
+			case 2:
+				SceneManager.LoadScene("DesertLevel", LoadSceneMode.Additive);
+				break;
+			case 3:
+				SceneManager.LoadScene("ForestLevel", LoadSceneMode.Additive);
+				break;
+			case 4:
+				SceneManager.LoadScene("HouseLevel", LoadSceneMode.Additive);
+				break;
+			case 5:
+				SceneManager.LoadScene("UrbanLevel", LoadSceneMode.Additive);
+				break;
+			default:
+				Debug.Log("Codigo do tema não existe");
+				break;
+		}
+
+		//SceneManager.LoadScene("LevelGen", LoadSceneMode.Additive);
 		InputTracking.Recenter();
 		Application.targetFrameRate = 60;
 		foreach (GameObject item in destroyables) {
