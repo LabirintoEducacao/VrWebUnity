@@ -28,6 +28,7 @@ public class SaveGameData {
 				} else if (!correct) {
 					wrongAnswers++;
 					rooms[i].wrongs++;
+					Debug.Log("Errou a resposta");
 				}
 
 				return;

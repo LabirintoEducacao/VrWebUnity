@@ -28,11 +28,11 @@ public class HubEndRoom : MonoBehaviour {
 			}
 		}
 
-		double total = svgd.rightAnswers + svgd.wrongAnswers;
+		double total = countScore();
 		double perScore = 0f;
 		if (total != 0) {
-
-			perScore = (svgd.rightAnswers / total) * 100;
+			Debug.Log("Erros Totais: "+svgd.rightAnswers+" Acertos Totais: "+svgd.wrongAnswers);
+			perScore = total;
 			perScore = System.Math.Truncate(perScore);
 		}
 
@@ -42,5 +42,19 @@ public class HubEndRoom : MonoBehaviour {
 		sb.AppendLine(System.String.Format("Erros: {0}", svgd.wrongAnswers));
 
 		FinalText.text = sb.ToString();
+	}
+
+	public double countScore(){
+		SaveGameData svgd = DataManager.manager.savegame;
+		double total = svgd.rightAnswers;
+		double totalScore = 0;
+		double [] perScoreRoom = new double[svgd.rightAnswers];
+		for (int i = 0; i < perScoreRoom.Length; i++){
+			perScoreRoom[i] = (100 / total) / (svgd.rooms[i].wrongs + svgd.rooms[i].right);
+			totalScore = totalScore + perScoreRoom[i];
+			Debug.Log("Sala "+i+" Pontuação: "+perScoreRoom[i]);
+		}
+		Debug.Log("Pontuação Total: "+totalScore);
+		return totalScore;
 	}
 }
