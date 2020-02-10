@@ -48,8 +48,8 @@ public class CorridorGenerator : MonoBehaviour {
 			seed = Random.Range (int.MinValue, int.MaxValue);
 			print("Corredor Seed: " + seed);
 		}
-		Random.InitState (seed);
-		//Random.InitState (-328346482);
+		// Random.InitState (seed);
+		Random.InitState (1657567639);
 
 		_map = new Map (width, height);
 		redefineCenter ( );
