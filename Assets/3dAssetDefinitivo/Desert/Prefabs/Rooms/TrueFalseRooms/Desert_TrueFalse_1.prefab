@@ -861,7 +861,7 @@ MonoBehaviour:
   - {fileID: 9072403018518014131, guid: 11e2bdae3c9f87e409b0bf7b5e1d1b59, type: 3}
   - {fileID: 9072403018518014131, guid: 6e75c3a6be4e7544293d3d621251684f, type: 3}
   - {fileID: 9072403018518014131, guid: 1bfe28c885b2f704f8ca6cec2066cf91, type: 3}
-  - {fileID: 7742349390912070394, guid: b036da8faacc12f41b4f922676e93d1e, type: 3}
+  - {fileID: 3302014422031634388, guid: 3e7f6d869bd631944956d40e64c6f622, type: 3}
   textPanel: {fileID: 34972840}
   AnswerOpen: {fileID: 0}
   Doors:
@@ -2890,6 +2890,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gateway
       objectReference: {fileID: 0}
+    - target: {fileID: 2520292433995602298, guid: 376729cacb533c7418c45433f40055a7,
+        type: 3}
+      propertyPath: doorPosition
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8903932395841252263, guid: 376729cacb533c7418c45433f40055a7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2944,11 +2949,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2520292433995602298, guid: 376729cacb533c7418c45433f40055a7,
-        type: 3}
-      propertyPath: doorPosition
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 376729cacb533c7418c45433f40055a7, type: 3}
@@ -4701,6 +4701,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorAnswer
       objectReference: {fileID: 0}
+    - target: {fileID: 2520292433995602298, guid: 376729cacb533c7418c45433f40055a7,
+        type: 3}
+      propertyPath: doorPosition
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8903932395841252263, guid: 376729cacb533c7418c45433f40055a7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4755,11 +4760,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2520292433995602298, guid: 376729cacb533c7418c45433f40055a7,
-        type: 3}
-      propertyPath: doorPosition
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 376729cacb533c7418c45433f40055a7, type: 3}
