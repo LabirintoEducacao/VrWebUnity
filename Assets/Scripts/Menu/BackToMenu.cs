@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(EnableDisableVR))]
 public class BackToMenu : MonoBehaviour {
 	void Start() {
+		Cursor.visible = true;
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
 		Invoke("toggleNonVR", 0.2f);
 	}
 

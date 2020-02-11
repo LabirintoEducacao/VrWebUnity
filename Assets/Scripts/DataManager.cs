@@ -199,6 +199,7 @@ public class DataManager : MonoBehaviour {
 			bool playing = true;
 			for (int i = 0; i < nonMazeScenes.Length; i++) {
 				if (next.name.Equals(nonMazeScenes[i])) {
+					//Cursor.visible = true;
 					playing = false;
 					break;
 				}
