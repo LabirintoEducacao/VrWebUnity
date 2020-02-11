@@ -802,7 +802,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3751231343519813270}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.906, y: 0.65, z: -1.48}
+  m_LocalPosition: {x: -0.906, y: 0.5, z: -1.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2383308977143205094}
@@ -1418,7 +1418,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8980613409869233557}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.75, y: 0.8299999, z: 5.89}
+  m_LocalPosition: {x: 0.75, y: 0.5, z: 5.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 926473147800631869}
@@ -4369,6 +4369,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: AnswerDoor2
       objectReference: {fileID: 0}
+    - target: {fileID: 6386632003326852823, guid: 8ab3171d6cf127544b3716efce3e67e2,
+        type: 3}
+      propertyPath: name
+      value: answer2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6386632003326852823, guid: 8ab3171d6cf127544b3716efce3e67e2,
+        type: 3}
+      propertyPath: doorPosition
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2655326562208930563, guid: 8ab3171d6cf127544b3716efce3e67e2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4423,16 +4433,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6386632003326852823, guid: 8ab3171d6cf127544b3716efce3e67e2,
-        type: 3}
-      propertyPath: name
-      value: answer2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6386632003326852823, guid: 8ab3171d6cf127544b3716efce3e67e2,
-        type: 3}
-      propertyPath: doorPosition
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ab3171d6cf127544b3716efce3e67e2, type: 3}
@@ -7633,6 +7633,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: AnswerDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 6386632003326852823, guid: 8ab3171d6cf127544b3716efce3e67e2,
+        type: 3}
+      propertyPath: name
+      value: answer1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6386632003326852823, guid: 8ab3171d6cf127544b3716efce3e67e2,
+        type: 3}
+      propertyPath: doorPosition
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2655326562208930563, guid: 8ab3171d6cf127544b3716efce3e67e2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7687,16 +7697,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6386632003326852823, guid: 8ab3171d6cf127544b3716efce3e67e2,
-        type: 3}
-      propertyPath: name
-      value: answer1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6386632003326852823, guid: 8ab3171d6cf127544b3716efce3e67e2,
-        type: 3}
-      propertyPath: doorPosition
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 690552596776047758, guid: 8ab3171d6cf127544b3716efce3e67e2,
         type: 3}
@@ -8035,6 +8035,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: AnswerDoor3
       objectReference: {fileID: 0}
+    - target: {fileID: 6386632003326852823, guid: 8ab3171d6cf127544b3716efce3e67e2,
+        type: 3}
+      propertyPath: name
+      value: answer3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6386632003326852823, guid: 8ab3171d6cf127544b3716efce3e67e2,
+        type: 3}
+      propertyPath: doorPosition
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2655326562208930563, guid: 8ab3171d6cf127544b3716efce3e67e2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8089,16 +8099,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6386632003326852823, guid: 8ab3171d6cf127544b3716efce3e67e2,
-        type: 3}
-      propertyPath: name
-      value: answer3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6386632003326852823, guid: 8ab3171d6cf127544b3716efce3e67e2,
-        type: 3}
-      propertyPath: doorPosition
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ab3171d6cf127544b3716efce3e67e2, type: 3}
