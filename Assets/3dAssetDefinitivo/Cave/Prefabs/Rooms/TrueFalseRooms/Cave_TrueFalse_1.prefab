@@ -861,7 +861,7 @@ MonoBehaviour:
   - {fileID: 9072403018518014131, guid: 11e2bdae3c9f87e409b0bf7b5e1d1b59, type: 3}
   - {fileID: 9072403018518014131, guid: 6e75c3a6be4e7544293d3d621251684f, type: 3}
   - {fileID: 9072403018518014131, guid: 1bfe28c885b2f704f8ca6cec2066cf91, type: 3}
-  - {fileID: 7742349390912070394, guid: b036da8faacc12f41b4f922676e93d1e, type: 3}
+  - {fileID: 1938688223096084308, guid: 2f7a506ceca6d2b429a0b976feab9204, type: 3}
   textPanel: {fileID: 34972840}
   AnswerOpen: {fileID: 0}
   Doors:
