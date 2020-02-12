@@ -300,7 +300,12 @@ public class Player : PlayerBase
             GUIReticleLoad.fillAmount = (currentTimeLoadFillAmount / timeToLoadFillAmount);
             if (currentTimeLoadFillAmount >= timeToLoadFillAmount)
             {
-                menu.backToMenu("MainMenu_v2");
+				#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBGL
+					Cursor.lockState = CursorLockMode.None;
+					Cursor.visible = true;
+				#endif
+
+				menu.backToMenu("MainMenu_v2");
             }
         }
     }
@@ -322,7 +327,7 @@ public class Player : PlayerBase
             }
         }
     }
-    #endregion
+#endregion
     internal override void SetTarget(Vector3 target)
     {
         IsSeted = true;
