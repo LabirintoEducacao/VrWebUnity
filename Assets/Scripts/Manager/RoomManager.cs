@@ -71,7 +71,7 @@ public class RoomManager : MonoBehaviour {
 		// GameObject[] answerTemp = new GameObject[answers.Length];
 		answerReference = new List<ItemBase>();
 
-		foreach(Transform answerTransform in spawnAnswer) {
+		foreach (Transform answerTransform in spawnAnswer) {
 			if (answerTransform.childCount > 0)
 				Destroy(answerTransform.GetChild(0).gameObject);
 		}
@@ -304,6 +304,7 @@ public class RoomManager : MonoBehaviour {
 	/// <param name="nameDoor"></param>
 	/// <param name="checkAnswer"></param>
 	public void PositionNextRoom(string nameDoor, bool checkAnswer) {
+
 		if (portDatas[1].anim.GetBool("open")) {
 			portDatas[1].anim.SetTrigger("closing");
 		}
@@ -313,6 +314,7 @@ public class RoomManager : MonoBehaviour {
 		CorridorManager[] corridors = GameManager.Instance.getCorridorsByRoom(this.id);
 		StartCoroutine(GameManager.Instance.placeNextCorridor(this.PositionNextCorridor[0].position, this.transform.rotation, dir, corridors[0]));
 		portDatas[1].anim.SetTrigger("openning");
+
 		if (this.gameObject.name != "room_0")
 			SetDoorAnswer(0);
 	}
@@ -324,9 +326,13 @@ public class RoomManager : MonoBehaviour {
 	/// <param name="checkAnswer"></param>
 	public void PositionNextRoomOfHopeDoor(string nameAnswer, bool checkAnswer) {
 
-		if (portDatas[currentPositionCorridor].anim.GetBool("open")) {
-			portDatas[currentPositionCorridor].anim.SetTrigger("closing");
+		if (!portDatas[currentPositionCorridor].anim.GetBool("open")) {
+			portDatas[currentPositionCorridor].anim.Rebind();
+			portDatas[currentPositionCorridor].anim.SetBool("open", true);
 		}
+
+		portDatas[currentPositionCorridor].anim.SetTrigger("closing");
+
 		this.GetComponentInChildren<HubCheckpoint>().clearGoals();
 
 		int indexPositionCorridor = -1;
@@ -341,27 +347,18 @@ public class RoomManager : MonoBehaviour {
 			indexPositionCorridor++;
 		}
 
-		//int pathLength = question.paths.Length;
-
 		int dir = Constants.DIRECTIONS[doorDir];
 		int path = setNextRoom(checkAnswer); ;
 
-		//while ((door == currentPositionCorridor) || (door == 2)) {
-		//	door = UnityEngine.Random.Range(1, 4);
-		//}
-
 		currentPositionCorridor = door;
-		//dir = Constants.DIRECTIONS[door];
-
-		//path = setNextRoom(checkAnswer);
 
 		Debug.Log("Avaibility chamado é: " + question.paths[path].availability);
 		CorridorManager[] corridors = GameManager.Instance.getCorridorsByRoom(this.id);
-		//StartCoroutine(GameManager.Instance.placeNextCorridor(this.PositionNextCorridor[door].position, this.transform.rotation, dir, corridors[path]));
+
 		StartCoroutine(GameManager.Instance.placeNextCorridor(this.PositionNextCorridor[indexPositionCorridor].position, this.transform.rotation, dir, corridors[path]));
 
+		portDatas[door].anim.Rebind();
 		portDatas[door].anim.SetTrigger("openning");
-		//PositionNextCorridor[door].gameObject.GetComponentInChildren<Animator>().SetTrigger("openning");
 
 		SetDoorAnswer(path);
 	}
