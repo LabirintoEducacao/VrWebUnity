@@ -9,6 +9,10 @@ public class Keys : ItemBase {
 	}
 
 	public override void ActionItem() {
+		
+		// Assegura que a sala atual é a correta.
+		GameManager.Instance.ChangeCurrentRoom(currentRoom.GetComponentInChildren<HubCheckpoint>());
+
 		if (currentRoom.type == TypeRoom.hope_door)
 			currentRoom.PositionNextRoomOfHopeDoor(transform.parent.name, properties.correct);
 		else
