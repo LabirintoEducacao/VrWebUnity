@@ -59,7 +59,7 @@ public class RoomGridCreator : MonoBehaviour
 				} else {
 					if (DataManager.manager.savegame.timeElapsed > 0) {
 						// perguntar se carrega o progresso
-						this.GetComponentInChildren<Animator>().SetTrigger("LoadProgress");
+						this.GetComponentInParent<Animator>().SetTrigger("LoadProgress");
 					} else {
 						SceneManager.LoadScene(gameScene);
 					}
@@ -242,7 +242,7 @@ public class RoomGridCreator : MonoBehaviour
 		if (srcButton != null) {
 			srcButton.afterCanvasCancel();
 		} else {
-			this.GetComponentInChildren<Animator>().SetTrigger("Back");
+			this.GetComponentInParent<Animator>().SetTrigger("Back");
 		}
 	}
 

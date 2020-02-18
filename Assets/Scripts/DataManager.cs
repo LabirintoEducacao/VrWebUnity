@@ -41,8 +41,8 @@ public class DataManager : MonoBehaviour {
 			}
 			this.checkAndCreateSave();
 #else
-			svgd = new SaveGameData();
-            svgd.playing = !SceneManager.GetActiveScene().name.Equals("MainMenu_v2");
+			//svgd = new SaveGameData();
+            //svgd.playing = !SceneManager.GetActiveScene().name.Equals("MainMenu_v2");
 #endif
 			//reload unsent event pool
 			EventPoolWrapper ew = SaveData.load<EventPoolWrapper>("event_pool");
@@ -67,10 +67,9 @@ public class DataManager : MonoBehaviour {
 		}
 		this.setNewLevel(tempLD);
 	}
-	public void setNewLevel(MazeLDWrapper maze) {
+ 	public void setNewLevel(MazeLDWrapper maze) {
 		mazeLD = maze;
 		SaveData.save("current_level", JsonUtility.ToJson(mazeLD));
-
 		checkAndCreateSave();
 	}
 
@@ -78,7 +77,8 @@ public class DataManager : MonoBehaviour {
 		if (mazeLD != null) {
 			// se não tem save, ou é outro labirinto, reseta os dados, caso contrário continua com o que tem.
 			if (svgd != null) {
-				createNewSave();
+				/*TODO: 
+				*/
 			} else if ((svgd == null) || (svgd.mazeID != mazeLD.maze_id)) {
 				createNewSave();
 			}
@@ -87,10 +87,15 @@ public class DataManager : MonoBehaviour {
 		}
 	}
 
+	int wAnswers = 0;//hcs
+	int rAnswers = 0;//hcs
+
 	void createNewSave() {
 		svgd = new SaveGameData();
 		svgd.mazeID = mazeLD.maze_id;
 		svgd.currentRoomID = mazeLD.starting_question_id;
+		//svgd.wrongAnswers = wAnswers;//hcs
+		//svgd.rightAnswers = rAnswers;//hcs
 
 		if (SceneManager.GetActiveScene().name != "MainMenu_v2") {
 			svgd.playing = true;
@@ -114,6 +119,10 @@ public class DataManager : MonoBehaviour {
 		SaveData.save("savegame", JsonUtility.ToJson(svgd));
 	}
 
+	public string loadProgress(){
+		return SaveData.load("savegame");
+	}
+
 	public UserInfo loadUser() {
 		return SaveData.load<UserInfo>("user_data");
 	}
@@ -135,6 +144,8 @@ public class DataManager : MonoBehaviour {
 		SaveData.removeFile("user_data");
 		if (logout)
 			SaveData.removeFile("current_level");
+		
+		svgd = null;
 		checkAndCreateSave();
 	}
 
@@ -156,6 +167,10 @@ public class DataManager : MonoBehaviour {
 		int uid = LoginHandler.handler.user == null ? -1 : int.Parse(LoginHandler.handler.user.uid);
 		e.user_id = uid <= 0 ? 0 : uid;
 		e.question_id = svgd.currentRoomID;
+		//e.wrong_count = svgd.wrongAnswers;//hcs
+		//e.correct_count = svgd.rightAnswers;//hcs
+		//rAnswers = e.correct_count;//hcs
+		//wAnswers = e.wrong_count;//hcs
 		e.elapsed_time = Mathf.RoundToInt(svgd.timeElapsed);
 		_ = EventPool.sendEvent(e);
 	}
@@ -187,6 +202,8 @@ public class DataManager : MonoBehaviour {
 		e.question_id = svgd.currentRoomID;
 		e.wrong_count = svgd.wrongAnswers;
 		e.correct_count = svgd.rightAnswers;
+		//rAnswers = e.correct_count;//hcs
+		//wAnswers = e.wrong_count;//hcs
 		e.elapsed_time = Mathf.RoundToInt(svgd.timeElapsed);
 		_ = EventPool.sendEvent(e);
 	}
@@ -199,7 +216,6 @@ public class DataManager : MonoBehaviour {
 			bool playing = true;
 			for (int i = 0; i < nonMazeScenes.Length; i++) {
 				if (next.name.Equals(nonMazeScenes[i])) {
-					//Cursor.visible = true;
 					playing = false;
 					break;
 				}
@@ -207,7 +223,7 @@ public class DataManager : MonoBehaviour {
 			SaveData.save("savegame", JsonUtility.ToJson(svgd));
 			// TODO: implementar também save na nuvem aqui
 
-			if (svgd.playing) {
+			if (!svgd.playing) {
 				//acabou de entrar na sala, cria um save ou não
 				//manda evento de LevelStart
 				checkAndCreateSave();
