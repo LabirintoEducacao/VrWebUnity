@@ -131,7 +131,6 @@ public class GameManager : MonoBehaviour {
 			Debug.LogError(string.Format("Cannot allocate inexistent corridor. Room-{0}", new object[] { currentRoom.id }));
 			yield break;
 		}
-		// Debug.Log("generating corridor in direction: "+direction+" index: "+Tools.directionToIndex(direction));
 		// coloca o novo corredor em posição e rotação e espera até o final do frame pra continuar devido a problemas de render/update
 		float rot = Constants.ROTATIONS[true_dir];
 		MapCoord d = Constants.DELTA[true_dir];
@@ -139,7 +138,6 @@ public class GameManager : MonoBehaviour {
 		d = Constants.DELTA[(true_dir + 1) % 4];
 		Vector3 right = new Vector3(d.x, 0f, d.y);
 		float corrEntx = (corridor.GetComponent<CorridorGenerator>().entrance.x + 0.5f) * corridor.cellSize;
-		//this.currentCorridor.transform.rotation = Quaternion.Euler(0f, rot + baseRot.y, 0f);
 		this.currentCorridor.transform.rotation = Quaternion.Euler(0f, rot, 0f);
 		this.currentCorridor.transform.position = nextCorrPivot - right * corrEntx;
 		this.currentCorridor.gameObject.SetActive(true);
@@ -164,9 +162,7 @@ public class GameManager : MonoBehaviour {
 		nextCorrPivot = exitHub.transform.position + exitHub.forward * cellSize / 2f;
 		nextCorrPivot.y -= 1.5f;
 
-		//nextRoom.transform.rotation = Quaternion.Euler(0f, rot + baseRot.y, 0f);
 		nextRoom.transform.rotation = Quaternion.Euler(0f, rot, 0f);
-		//nextRoom.transform.position = nextCorrPivot + Vector3.forward * currentCorridor.pathInfo.height + Vector3.forward * nextRoom.GetComponent<RoomDescriptor>().size.y;
 		nextRoom.transform.position = nextCorrPivot + fwd * nextRoom.GetComponent<RoomDescriptor>().size.y - right * nextRoom.GetComponent<RoomDescriptor>().size.x / 2f; // - nextRoom.spawnDoor[0].transform.localPosition;
 
 		//change listener
@@ -177,7 +173,6 @@ public class GameManager : MonoBehaviour {
 		CorridorGenerator ccGen = currentCorridor.GetComponent<CorridorGenerator>();
 		currentRoom.GetComponentInChildren<HubCheckpoint>().setGoal(direction, ccGen.getEntranceTranform());
 		ccGen.setEntranceMotion(currentRoom.GetComponentInChildren<HubCheckpoint>().transform);
-		//ccGen.setExitMotion (nextRoom.GetComponentInChildren<HubCheckpoint> ().transform);
 
 		// Reseta a próxima sala
 		this.nextRoom.GetComponentInChildren<HubCheckpoint>().clearGoals();
@@ -188,7 +183,6 @@ public class GameManager : MonoBehaviour {
 
 		yield return new WaitForSeconds(0.1f);
 		this.GetComponent<NavMeshBaker>().CreateBake();
-		this.currentRoom.GetComponentInChildren<HubCheckpoint>().activate();
 
 	}
 
@@ -213,8 +207,13 @@ public class GameManager : MonoBehaviour {
 	/// </summary>
 	/// <param name="hub">Ponto de referência do caminho.</param>
 	void onEnteredNextRoom(HubCheckpoint hub) {
+		ChangeCurrentRoom(hub);
+	}
+
+	public void ChangeCurrentRoom(HubCheckpoint hub) {
 		if (this.currentRoom.GetComponentInChildren<HubCheckpoint>() == hub)
 			return;
+
 		this.lastRoom = this.currentRoom.gameObject;
 		this.lastCorridor = this.currentCorridor.gameObject;
 		this.currentRoom = this.nextRoom;

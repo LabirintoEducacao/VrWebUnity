@@ -22,7 +22,7 @@ public class GyroController : MonoBehaviour {
 			// "Magic Window" 
 			// renders a single (often full screen) monoscopic view of your 3D scene that is updated
 			// based on the device's orientation sensor.
-#if !UNITY_EDITOR
+#if !UNITY_EDITOR && UNITY_ANDROID
 			rotationCamera();
 #endif
 		}

@@ -1927,6 +1927,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorAnswer
       objectReference: {fileID: 0}
+    - target: {fileID: 2520292433995602298, guid: 376729cacb533c7418c45433f40055a7,
+        type: 3}
+      propertyPath: doorPosition
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8903932395841252263, guid: 376729cacb533c7418c45433f40055a7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1981,11 +1986,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2520292433995602298, guid: 376729cacb533c7418c45433f40055a7,
-        type: 3}
-      propertyPath: doorPosition
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 376729cacb533c7418c45433f40055a7, type: 3}
@@ -2319,6 +2319,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gateway
       objectReference: {fileID: 0}
+    - target: {fileID: 2520292433995602298, guid: 376729cacb533c7418c45433f40055a7,
+        type: 3}
+      propertyPath: doorPosition
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8903932395841252263, guid: 376729cacb533c7418c45433f40055a7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2373,11 +2378,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2520292433995602298, guid: 376729cacb533c7418c45433f40055a7,
-        type: 3}
-      propertyPath: doorPosition
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 376729cacb533c7418c45433f40055a7, type: 3}
