@@ -42,7 +42,8 @@ public class DataManager : MonoBehaviour {
 			this.checkAndCreateSave();
 #else
 			//svgd = new SaveGameData();
-            //svgd.playing = !SceneManager.GetActiveScene().name.Equals("MainMenu_v2");
+			//svgd.playing = !SceneManager.GetActiveScene().name.Equals("MainMenu_v2");
+
 #endif
 			//reload unsent event pool
 			EventPoolWrapper ew = SaveData.load<EventPoolWrapper>("event_pool");
@@ -77,8 +78,7 @@ public class DataManager : MonoBehaviour {
 		if (mazeLD != null) {
 			// se não tem save, ou é outro labirinto, reseta os dados, caso contrário continua com o que tem.
 			if (svgd != null) {
-				/*TODO: 
-				*/
+
 			} else if ((svgd == null) || (svgd.mazeID != mazeLD.maze_id)) {
 				createNewSave();
 			}
@@ -87,15 +87,10 @@ public class DataManager : MonoBehaviour {
 		}
 	}
 
-	int wAnswers = 0;//hcs
-	int rAnswers = 0;//hcs
-
 	void createNewSave() {
 		svgd = new SaveGameData();
 		svgd.mazeID = mazeLD.maze_id;
 		svgd.currentRoomID = mazeLD.starting_question_id;
-		//svgd.wrongAnswers = wAnswers;//hcs
-		//svgd.rightAnswers = rAnswers;//hcs
 
 		if (SceneManager.GetActiveScene().name != "MainMenu_v2") {
 			svgd.playing = true;
@@ -140,12 +135,18 @@ public class DataManager : MonoBehaviour {
 	}
 
 	public void cleanPlayerProgress(bool logout = false) {
-		SaveData.removeFile("savegame");
+		SaveData.removeFile("savegame");//informações de respostas
 		SaveData.removeFile("user_data");
-		if (logout)
+		if (logout){
 			SaveData.removeFile("current_level");
-		
+		}
 		svgd = null;
+		//svgd.rightAnswers = 0;
+		//svgd.wrongAnswers = 0;
+		/*TODO: Apagar save apenas ao identificar que está logando em um novo jogo
+		* TODO: Apagar o save ao mudar de sala, ou criar save separado para essa condição
+		* TODO: Mantém save da sala caso não deslogue
+		*/
 		checkAndCreateSave();
 	}
 
@@ -167,10 +168,6 @@ public class DataManager : MonoBehaviour {
 		int uid = LoginHandler.handler.user == null ? -1 : int.Parse(LoginHandler.handler.user.uid);
 		e.user_id = uid <= 0 ? 0 : uid;
 		e.question_id = svgd.currentRoomID;
-		//e.wrong_count = svgd.wrongAnswers;//hcs
-		//e.correct_count = svgd.rightAnswers;//hcs
-		//rAnswers = e.correct_count;//hcs
-		//wAnswers = e.wrong_count;//hcs
 		e.elapsed_time = Mathf.RoundToInt(svgd.timeElapsed);
 		_ = EventPool.sendEvent(e);
 	}
@@ -202,8 +199,6 @@ public class DataManager : MonoBehaviour {
 		e.question_id = svgd.currentRoomID;
 		e.wrong_count = svgd.wrongAnswers;
 		e.correct_count = svgd.rightAnswers;
-		//rAnswers = e.correct_count;//hcs
-		//wAnswers = e.wrong_count;//hcs
 		e.elapsed_time = Mathf.RoundToInt(svgd.timeElapsed);
 		_ = EventPool.sendEvent(e);
 	}

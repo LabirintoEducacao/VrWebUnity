@@ -12,7 +12,6 @@ public class SaveGameData {
 	public bool playing = false;
 	public bool finished = false;
 	public RoomPlayerInfo[] rooms;
-
 	public int rightAnswers = 0;
 	public int wrongAnswers = 0;
 
