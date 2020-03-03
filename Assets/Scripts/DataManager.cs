@@ -76,12 +76,14 @@ public class DataManager : MonoBehaviour {
 
 	void checkAndCreateSave() {
 		if (mazeLD != null) {
+			
 			// se não tem save, ou é outro labirinto, reseta os dados, caso contrário continua com o que tem.
-			if (svgd != null) {
+			if (svgd != null){
 
 			} else if ((svgd == null) || (svgd.mazeID != mazeLD.maze_id)) {
 				createNewSave();
 			}
+			
 		} else {
 			svgd = null;
 		}

@@ -267,9 +267,11 @@ public class LoginHandler : MonoBehaviour {
 						// se está null, deixa a starting_question que já está setada
 						// pq o jogador ainda não jogou esse labirinto, ou já concluiu.
 						DataManager.manager.savegame.currentRoomID = load.next_question;
+						DataManager.manager.savegame.wrongAnswers = load.wrong_count;
+						DataManager.manager.savegame.rightAnswers = load.correct_count;
+						
 					}
-					DataManager.manager.savegame.wrongAnswers = load.wrong_count;
-					DataManager.manager.savegame.rightAnswers = load.correct_count;
+					
 					OnLoadMazeProgressCompleted?.Invoke(true);
 					return true;
 				}
