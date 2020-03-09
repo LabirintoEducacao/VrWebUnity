@@ -10,6 +10,7 @@ public class SwitchButtonVR : MonoBehaviour
 	public Toggle toggle;
 
 	public void Start() {
+		
 		toggle.isOn = DataManager.manager.vrMode;
 	}
 	public void actionClick() {
