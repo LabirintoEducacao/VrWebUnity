@@ -41,8 +41,9 @@ public class DataManager : MonoBehaviour {
 			}
 			this.checkAndCreateSave();
 #else
-			svgd = new SaveGameData();
-            svgd.playing = !SceneManager.GetActiveScene().name.Equals("MainMenu_v2");
+			//svgd = new SaveGameData();
+			//svgd.playing = !SceneManager.GetActiveScene().name.Equals("MainMenu_v2");
+
 #endif
 			//reload unsent event pool
 			EventPoolWrapper ew = SaveData.load<EventPoolWrapper>("event_pool");
@@ -67,21 +68,22 @@ public class DataManager : MonoBehaviour {
 		}
 		this.setNewLevel(tempLD);
 	}
-	public void setNewLevel(MazeLDWrapper maze) {
+ 	public void setNewLevel(MazeLDWrapper maze) {
 		mazeLD = maze;
 		SaveData.save("current_level", JsonUtility.ToJson(mazeLD));
-
 		checkAndCreateSave();
 	}
 
 	void checkAndCreateSave() {
 		if (mazeLD != null) {
+			
 			// se não tem save, ou é outro labirinto, reseta os dados, caso contrário continua com o que tem.
-			if (svgd != null) {
-				createNewSave();
+			if (svgd != null){
+
 			} else if ((svgd == null) || (svgd.mazeID != mazeLD.maze_id)) {
 				createNewSave();
 			}
+			
 		} else {
 			svgd = null;
 		}
@@ -114,6 +116,10 @@ public class DataManager : MonoBehaviour {
 		SaveData.save("savegame", JsonUtility.ToJson(svgd));
 	}
 
+	public string loadProgress(){
+		return SaveData.load("savegame");
+	}
+
 	public UserInfo loadUser() {
 		return SaveData.load<UserInfo>("user_data");
 	}
@@ -131,10 +137,18 @@ public class DataManager : MonoBehaviour {
 	}
 
 	public void cleanPlayerProgress(bool logout = false) {
-		SaveData.removeFile("savegame");
+		SaveData.removeFile("savegame");//informações de respostas
 		SaveData.removeFile("user_data");
-		if (logout)
+		if (logout){
 			SaveData.removeFile("current_level");
+		}
+		svgd = null;
+		//svgd.rightAnswers = 0;
+		//svgd.wrongAnswers = 0;
+		/*TODO: Apagar save apenas ao identificar que está logando em um novo jogo
+		* TODO: Apagar o save ao mudar de sala, ou criar save separado para essa condição
+		* TODO: Mantém save da sala caso não deslogue
+		*/
 		checkAndCreateSave();
 	}
 
@@ -206,7 +220,7 @@ public class DataManager : MonoBehaviour {
 			SaveData.save("savegame", JsonUtility.ToJson(svgd));
 			// TODO: implementar também save na nuvem aqui
 
-			if (svgd.playing) {
+			if (!svgd.playing) {
 				//acabou de entrar na sala, cria um save ou não
 				//manda evento de LevelStart
 				checkAndCreateSave();

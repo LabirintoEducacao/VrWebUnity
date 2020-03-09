@@ -9,6 +9,9 @@ public class EnableDisableVR : MonoBehaviour {
 
     void Start () {
         //changeState (vrMode, null);
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+		Cursor.visible = true;
     }
 
 	public void updateState(bool active) {
