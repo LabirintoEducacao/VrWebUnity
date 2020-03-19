@@ -114,7 +114,17 @@ public class QRCode : MonoBehaviour
         }
 		noCamera = false;
 #else
-        yield return null;
+		// Aask for the authorization to use the webcam
+		yield return Application.RequestUserAuthorization(UserAuthorization.WebCam);
+
+		if (Application.HasUserAuthorization(UserAuthorization.WebCam)) {
+
+			foreach (var device in WebCamTexture.devices) {
+				Debug.Log("Device Camera: " + device.name);
+				noCamera = false;
+			}
+		} 
+		yield return null;
 #endif
         // Create a basic scanner
         scanner = new Scanner();
