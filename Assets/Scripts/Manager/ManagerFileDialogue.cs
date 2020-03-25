@@ -16,13 +16,14 @@ public class ManagerFileDialogue : MonoBehaviour {
 		public string[] urls;
 	}
 
-
+#if UNITY_WEBGL
 	[DllImport("__Internal")]
 	private static extern void RequestOpenDialogWeb();
+#endif
 
 	private QRCode.LoadedQRCodes methodLoaded;
 
-#if  UNITY_STANDALONE_WIN
+#if UNITY_STANDALONE_WIN
     OpenFileDialog openFileDialog1;
 
     // Start is called before the first frame update
@@ -89,8 +90,10 @@ public class ManagerFileDialogue : MonoBehaviour {
 #endif
 
 	public void OpenDialogWeb(QRCode.LoadedQRCodes loadedQRCodes) {
+#if UNITY_WEBGL
 		this.methodLoaded = loadedQRCodes;
 		RequestOpenDialogWeb();
+#endif
 	}
 
 	IEnumerator GetTexture(Data data) {

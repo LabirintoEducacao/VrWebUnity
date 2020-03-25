@@ -113,7 +113,7 @@ MonoBehaviour:
   PositionNextCorridor:
   - {fileID: 4698218890402754928}
   currentPositionCorridor: 0
-  TextQuestion: {fileID: 0}
+  TextQuestion: {fileID: 8503453216206845510}
   mark: {fileID: 0}
   question:
     question_id: 0
