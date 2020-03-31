@@ -116,11 +116,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.25, y: 0.2, z: 0.61600006}
+  m_Extents: {x: 0.5, y: 0.25, z: 1.5}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: -0.2, y: 0.2, z: 0.6}
+  m_Center: {x: -0.5, y: 0.2, z: 1.5}
   m_TimeToStationary: 0.5
 --- !u!64 &5943306179051444270
 MeshCollider:
@@ -157,7 +157,7 @@ MonoBehaviour:
   seted: 0
   openDoor: 0
   ld: {fileID: 8931625700932120604}
---- !u!208 &5793711815150751898
+--- !u!208 &1227235361908858379
 NavMeshObstacle:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,11 +167,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.25, y: 0.2, z: 0.61600006}
+  m_Extents: {x: 0.5, y: 0.25, z: 1.5000001}
   m_MoveThreshold: 0.1
-  m_Carve: 1
+  m_Carve: 0
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0.3, y: 1, z: 0.6}
+  m_Center: {x: 0.5, y: 2.7, z: 1.5000001}
   m_TimeToStationary: 0.5
 --- !u!1 &6479298739982946314
 GameObject:
@@ -300,6 +300,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShaderDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 4545428832946030226, guid: f061430409e02c34ea56d1a18da94da6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1641978904869457413, guid: f061430409e02c34ea56d1a18da94da6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -355,6 +360,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1641978904869457413, guid: f061430409e02c34ea56d1a18da94da6,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641978904869457413, guid: f061430409e02c34ea56d1a18da94da6,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641978904869457413, guid: f061430409e02c34ea56d1a18da94da6,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f061430409e02c34ea56d1a18da94da6, type: 3}
 --- !u!4 &3026880946452412835 stripped
@@ -383,7 +403,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: aed5d3de2a4b4ea41a0ddcbd43a67d7f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.2
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: aed5d3de2a4b4ea41a0ddcbd43a67d7f,
         type: 3}
@@ -474,7 +494,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: aed5d3de2a4b4ea41a0ddcbd43a67d7f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.268
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: aed5d3de2a4b4ea41a0ddcbd43a67d7f,
         type: 3}
@@ -529,7 +549,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: aed5d3de2a4b4ea41a0ddcbd43a67d7f,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: -2.54
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: aed5d3de2a4b4ea41a0ddcbd43a67d7f,
         type: 3}
@@ -566,6 +586,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 9138517746f619e418b580af13948527,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 9138517746f619e418b580af13948527,
         type: 3}
