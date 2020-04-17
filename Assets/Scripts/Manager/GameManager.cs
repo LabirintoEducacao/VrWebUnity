@@ -84,6 +84,8 @@ public class GameManager : MonoBehaviour {
 			}
 		}
 
+		Debug.Log("Position Player at Room: " + croom);
+
 		RoomManager r = getRoom(croom);
 		if (this.currentRoom != null) {
 			if (croom != r.id) {

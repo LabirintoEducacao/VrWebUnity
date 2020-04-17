@@ -285,7 +285,7 @@ public class RoomGridCreator : MonoBehaviour
 
 		//level set, loading progress.
 		bool progress = await LoginHandler.handler.getMazeProgress(ld.maze_id);
-
+		Debug.Log("Labirinto: " + ld.ToString());
 		this.levelHasBeenLoaded = 1; //OK
 	}
 }
