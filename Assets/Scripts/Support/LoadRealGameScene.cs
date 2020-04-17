@@ -52,7 +52,9 @@ public class LoadRealGameScene : MonoBehaviour
 
 		//SceneManager.LoadScene("LevelGen", LoadSceneMode.Additive);
 		InputTracking.Recenter();
+#if UNITY_ANDROID
 		Application.targetFrameRate = 60;
+#endif
 		foreach (GameObject item in destroyables) {
 			Destroy(item);
 		}
