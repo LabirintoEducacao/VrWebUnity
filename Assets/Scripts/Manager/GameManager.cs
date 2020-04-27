@@ -220,6 +220,7 @@ public class GameManager : MonoBehaviour {
 		this.lastRoom = this.currentRoom.gameObject;
 		this.lastCorridor = this.currentCorridor.gameObject;
 		this.currentRoom = this.nextRoom;
+		Player.instance.currentRoom = this.nextRoom;
 		DataManager.manager.savegame.currentRoomID = this.currentRoom.id;
 		//limpa as setas da sala, pro caso de já ter passado aqui (volta do reforço)
 
@@ -240,6 +241,13 @@ public class GameManager : MonoBehaviour {
 
 	public void ClosedGatewayDoor() {
 		this.lastRoom.SetActive(false);
+
+		// Assegura que vai resetar a sala
+		if (lastRoom.Equals(nextRoom.gameObject)) {
+			this.lastRoom.SetActive(true);
+		}
+
+
 		this.lastCorridor.SetActive(false);
 	}
 

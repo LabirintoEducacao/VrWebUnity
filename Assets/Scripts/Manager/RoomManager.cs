@@ -299,7 +299,7 @@ public class RoomManager : MonoBehaviour {
 	#endregion
 
 	/// <summary>
-	/// Posiciona a próxima sala junto com o corredor, onde a sala possui apenas uma porta de saída.
+	/// Caso a sala atual tiver apenas uma porta de saída, posiciona a próxima sala junto com o corredor.
 	/// </summary>
 	/// <param name="nameDoor"></param>
 	/// <param name="checkAnswer"></param>
@@ -320,7 +320,7 @@ public class RoomManager : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Posiciona a próxima sala Hope door junto com o corredor, onde a sala possui 3 portas de saída.
+	/// Caso a sala atual tiver mais de uma porta de saída, verifica as portas e posiciona a próxima sala junto com o corredor.
 	/// </summary>
 	/// <param name="nameDoor"></param>
 	/// <param name="checkAnswer"></param>
