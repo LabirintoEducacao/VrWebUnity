@@ -41,26 +41,24 @@ public class HubEndRoom : MonoBehaviour {
 		sb.AppendLine(System.String.Format("Acertos: {0}", svgd.rightAnswers));
 		sb.AppendLine(System.String.Format("Erros: {0}", svgd.wrongAnswers));
 
-
-		//svgd.rightAnswers = 0;
-		//svgd.wrongAnswers = 0;
-
 		FinalText.text = sb.ToString();
 	}
 
 	public double countScore(){
 		SaveGameData svgd = DataManager.manager.savegame;
-		//svgd.rightAnswers = svgd.rooms.Length;
-		//svgd.wrongAnswers = 0;
-		//for(int b = 0; b < svgd.rooms.Length; b++) svgd.wrongAnswers = svgd.wrongAnswers + svgd.rooms[b].wrongs;
-		//double total = svgd.rooms.Length;
 		double total = svgd.rightAnswers;
 		double totalScore = 0;
 		double [] perScoreRoom = new double[svgd.rightAnswers];
-		for (int i = 0; i < perScoreRoom.Length; i++){
-			perScoreRoom[i] = (100 / total) / (svgd.rooms[i].wrongs + svgd.rooms[i].right);
-			totalScore = totalScore + perScoreRoom[i];
-			Debug.Log("Sala "+i+" Pontuação: "+perScoreRoom[i]);
+		int j = 0;
+		for (int i = 0; i < svgd.rooms.Length; i++)
+		{
+			if(svgd.rooms[i].right == 1)
+			{
+				perScoreRoom[j] = (100 / total) / (svgd.rooms[i].wrongs + svgd.rooms[i].right);
+				totalScore = totalScore + perScoreRoom[j];
+				Debug.Log("Sala "+j+" Pontuação: "+perScoreRoom[j]);
+				j++;
+			}
 		}
 		return totalScore;
 	}
