@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Lever : ItemBase
 {
-    public Animator anim;
-         
-    public bool isActivate = false;
+	public Animator anim;
+
+	public bool isActivate = false;
 
 
-    public override void ActionItem()
-    {
-        // TODO Ativa a alavanca
-        isActivate = !isActivate;
-        anim.SetBool("isActivate", isActivate);
-    }
+	public override void ActionItem() {
+		// Assegura que a sala atual é a correta.
+		GameManager.Instance.ChangeCurrentRoom(currentRoom.GetComponentInChildren<HubCheckpoint>());
+
+		// TODO Ativa a alavanca
+		isActivate = !isActivate;
+		anim.SetBool("isActivate", isActivate);
+	}
 }

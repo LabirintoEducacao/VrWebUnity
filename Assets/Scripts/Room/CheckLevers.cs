@@ -4,42 +4,41 @@ using UnityEngine;
 
 public class CheckLevers : CheckBase
 {
-    public List<Lever> listLevers;
+	public List<Lever> listLevers;
 
-    public override bool checkAnswer(Answer ans)
-    {
+	public override bool checkAnswer(Answer ans) {
 
-        bool isCorrect = true;
+		bool isCorrect = true;
 
-        // Verifica as alavancas
-        foreach (Lever lever in listLevers)
-        {
-            if (lever.isActivate != lever.properties.correct)
-            {
-                isCorrect = false;
-            }
-        }
+		// Verifica as alavancas
+		foreach (Lever lever in listLevers) {
+			if (lever.isActivate != lever.properties.correct) {
+				isCorrect = false;
+			}
+		}
 
-        // Se tudo estiver certo
-        if (isCorrect)
-        {
-            // Esconde as alavancas
-            foreach (ItemBase item in rmanager.answerReference)
-            {
-                item.gameObject.SetActive(false);
-            }
+		// Se tudo estiver certo
+		if (isCorrect) {
+			// Esconde as alavancas
+			foreach (ItemBase item in rmanager.answerReference) {
+				item.gameObject.SetActive(false);
+			}
 
-            // Coloca o mesmo item para ser verificado na porta da próxima sala
-            Inventory.instance.item = listLevers[0];
+			// Coloca o mesmo item para ser verificado na porta da próxima sala
+			Inventory.instance.item = listLevers[0];
 
-            door.anim.SetTrigger("openning");
-            Player.instance.currentRoom.PositionNextRoom("DoorAnswer", true);
-        }
+			// Assegura que a sala atual é a correta.
+			GameManager.Instance.ChangeCurrentRoom(rmanager.GetComponentInChildren<HubCheckpoint>());
 
-        anim.SetBool("isRight", isCorrect);
-        anim.SetBool("isWait", false);
 
-        return isCorrect;
+			door.anim.SetTrigger("openning");
+			Player.instance.currentRoom.PositionNextRoom("DoorAnswer", true);
+		}
 
-    }
+		anim.SetBool("isRight", isCorrect);
+		anim.SetBool("isWait", false);
+
+		return isCorrect;
+
+	}
 }

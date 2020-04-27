@@ -26,6 +26,12 @@ public class Door : CheckBase {
 	public override bool checkAnswer(Answer ans) {
 		if (ans == answer) {
 			anim.SetTrigger("openning");
+
+			// Limpar respostas ao acertar a pergunta
+			foreach (ItemBase item in GameManager.Instance.currentRoom.answerReference) {
+				item.gameObject.SetActive(false);
+			}
+
 			Inventory.instance.item = null;
 			GameManager.Instance.setExitMotionInHub();
 
