@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 6697048983194706478}
   m_Layer: 0
   m_Name: UrbanShapesReceive
-  m_TagString: Door
+  m_TagString: CheckShapes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +112,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: fb49d12a44b377246a2c5465ed7293ea,
         type: 3}
       propertyPath: m_TagString
-      value: Door
+      value: CheckShapes
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: fb49d12a44b377246a2c5465ed7293ea,
         type: 3}

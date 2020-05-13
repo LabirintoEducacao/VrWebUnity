@@ -66,6 +66,8 @@ public class Player : PlayerBase {
 				hitItem(hit);
 			} else if (hit.collider.CompareTag("Door")) {
 				hitCheckAnswer(hit);
+			} else if (hit.collider.CompareTag("CheckShapes")) {
+				hitCheckShapes(hit);
 			} else if (hit.collider.CompareTag("BackToMenu")) {
 				hitBackToMenu(hit);
 			} else if (hit.collider.CompareTag("ExitGame")) {
@@ -168,13 +170,17 @@ public class Player : PlayerBase {
 
 					bool isCoorect = Inventory.instance.AnswerSelected.correct;
 					checkDoor.checkAnswer(Inventory.instance.AnswerSelected); // Open Door
-																																		//dispara evento para registrar a resposta no analytics
-					DataManager.manager.answerStatus(this.currentRoom.id, isCoorect);
-					if (isCoorect) {
-						Debug.Log("Resposta Certa!");
+																																		
 
-					} else {
-						Debug.Log("Resposta errada!");
+					if (currentRoom.type == TypeRoom.hope_door || currentRoom.type == TypeRoom.right_key) {
+						DataManager.manager.answerStatus(this.currentRoom.id, isCoorect); //dispara evento para registrar a resposta no analytics
+
+						if (isCoorect) {
+							Debug.Log("Resposta Certa!");
+
+						} else {
+							Debug.Log("Resposta errada!");
+						}
 					}
 
 					ResetGUIReticleLoad();
@@ -182,6 +188,39 @@ public class Player : PlayerBase {
 			}
 		}
 	}
+
+	/// <summary>
+	/// Verifica a porta com a resposta
+	/// </summary>
+	/// <param name="hit"></param>
+	void hitCheckShapes(RaycastHit hit) {
+		if (ProcessReticleLoad() || clicked) {
+			CheckBase checkShapes = hit.collider.GetComponent<CheckBase>();
+
+			if (checkShapes != null) {
+
+				if (Inventory.instance.item != null && checkShapes.answer.answer != null) {
+
+					bool isCoorect = Inventory.instance.AnswerSelected.correct;
+					checkShapes.checkAnswer(Inventory.instance.AnswerSelected); 
+																																		
+
+					DataManager.manager.answerStatus(this.currentRoom.id, isCoorect);
+
+					if (isCoorect) {
+						Debug.Log("Resposta Certa!");
+
+					} else {
+						Debug.Log("Resposta errada!");
+					}
+					
+
+					ResetGUIReticleLoad();
+				}
+			}
+		}
+	}
+
 
 	/// <summary>
 	/// Método para interagir com um determinado objeto
