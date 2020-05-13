@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 6697048983194706478}
   m_Layer: 0
   m_Name: DesertShapesReceive
-  m_TagString: Door
+  m_TagString: CheckShapes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -183,6 +183,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DesertLevel_Button (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 72ce71daccee8234fa2b7db757bc1bae,
+        type: 3}
+      propertyPath: m_TagString
+      value: CheckShapes
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 72ce71daccee8234fa2b7db757bc1bae,
         type: 3}

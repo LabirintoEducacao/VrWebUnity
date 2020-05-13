@@ -6401,11 +6401,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DesertShapesReceive
       objectReference: {fileID: 0}
-    - target: {fileID: 5112729157899294079, guid: f43ff309c0579ef4f93c19531c982b6d,
-        type: 3}
-      propertyPath: m_TagString
-      value: Door
-      objectReference: {fileID: 0}
     - target: {fileID: 6697048983194706478, guid: f43ff309c0579ef4f93c19531c982b6d,
         type: 3}
       propertyPath: m_LocalPosition.x

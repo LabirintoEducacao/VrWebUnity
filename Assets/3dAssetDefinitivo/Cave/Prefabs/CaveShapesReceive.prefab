@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3383085866935647641}
   m_Layer: 0
   m_Name: CaveShapesReceive
-  m_TagString: Door
+  m_TagString: CheckShapes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 1842388068087287901}
   m_Layer: 0
   m_Name: CaveLevel_Button (1)
-  m_TagString: Door
+  m_TagString: CheckShapes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

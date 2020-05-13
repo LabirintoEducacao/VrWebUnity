@@ -15,6 +15,7 @@ TagManager:
   - ButtonExit
   - Lever
   - LeversCheck
+  - CheckShapes
   layers:
   - Default
   - TransparentFX

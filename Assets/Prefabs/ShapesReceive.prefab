@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 6697048983194706478}
   m_Layer: 0
   m_Name: ShapesReceive
-  m_TagString: Door
+  m_TagString: CheckShapes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,7 +126,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 3148cdfeeca0cdc4382121692a7bc7e2,
         type: 3}
       propertyPath: m_TagString
-      value: Door
+      value: CheckShapes
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3148cdfeeca0cdc4382121692a7bc7e2,
         type: 3}
@@ -226,7 +226,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: d4e4c3fd0e7c98d44a204a629bc35f06,
         type: 3}
       propertyPath: m_TagString
-      value: Door
+      value: CheckShapes
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d4e4c3fd0e7c98d44a204a629bc35f06,
         type: 3}
