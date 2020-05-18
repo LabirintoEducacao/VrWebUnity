@@ -26,7 +26,7 @@ public class Door : CheckBase {
 	public override bool checkAnswer(Answer ans) {
 		if (ans == answer) {
 			anim.SetTrigger("openning");
-
+			
 			// Limpar respostas ao acertar a pergunta
 			foreach (ItemBase item in GameManager.Instance.currentRoom.answerReference) {
 				item.gameObject.SetActive(false);
@@ -38,6 +38,7 @@ public class Door : CheckBase {
 			return true;
 		} else {
 			anim.SetTrigger("wrongAnswer");
+			AudioList.instance.PlayErro();
 		}
 		return false;
 	}

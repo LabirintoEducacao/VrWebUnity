@@ -14,6 +14,7 @@ public class SwitchButtonVR : MonoBehaviour
 		toggle.isOn = DataManager.manager.vrMode;
 	}
 	public void actionClick() {
+		AudioList.instance.PlayButtonVR();
 		DataManager.manager.switchVrMode(toggle.isOn);
 	}
 }
