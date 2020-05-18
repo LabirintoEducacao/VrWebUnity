@@ -20,6 +20,9 @@ public class QRCode : MonoBehaviour
     bool finished = false;
     public List<string> base64bits;
 
+	[Header("WEBGL")]
+	public GameObject obsObject;
+
     public delegate void LoadedQRCodes(Texture2D[] testQRCode);
     public LoadedQRCodes loadedQRCodes;
 
@@ -29,7 +32,11 @@ public class QRCode : MonoBehaviour
 
 #if PLATFORM_ANDROID
 		buttonDialogQRCode.SetActive(false);
-#elif UNITY_STANDALONE || UNITY_WEBGL
+    Destroy(obsObject);
+#elif UNITY_STANDALONE
+		buttonDialogQRCode.SetActive(true);
+	  Destroy(obsObject);
+#elif UNITY_WEBGL
 		buttonDialogQRCode.SetActive(true);
 #endif
 	}
