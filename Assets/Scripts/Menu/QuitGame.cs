@@ -5,6 +5,7 @@ using UnityEngine;
 public class QuitGame : MonoBehaviour
 {
 	public void quitClick() {
+		AudioList.instance.PlayButtonClick();
 #if UNITY_EDITOR
 		UnityEditor.EditorApplication.isPlaying = false;
 #else

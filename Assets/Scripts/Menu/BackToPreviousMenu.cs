@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BackToPreviousMenu : MonoBehaviour {
 	public void OnClick() {
+		AudioList.instance.PlayButtonClick();
 		this.GetComponentInParent<Animator>().SetTrigger("Back");
 	}
 }

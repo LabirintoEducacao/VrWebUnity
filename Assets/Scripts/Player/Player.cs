@@ -150,7 +150,7 @@ public class Player : PlayerBase {
 			EventPool.sendAnswerInteractionEvent(item.properties.answer_id, item.properties.correct);
 			Inventory.instance.ItemObject = Inventory.instance.item.gameObject;
 			Inventory.instance.ItemObject.gameObject.SetActive(false);
-
+			AudioList.instance.PlayPlayerChave();//É possivel detectar a diferença entre chave, objetos, alavanca etc?? Para usar sons diferentes
 			ResetGUIReticleLoad();
 		}
 	}

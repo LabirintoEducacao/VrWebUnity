@@ -7,11 +7,13 @@ public class MenuInGame : MonoBehaviour
 {
     public void backToMenu(string scene)
     {
+        AudioList.instance.PlayButtonClick();
         SceneManager.LoadScene(scene);
     }
 
     public void quitGame()
     {
+        AudioList.instance.PlayButtonClick();
         Application.Quit();
     }
 }
