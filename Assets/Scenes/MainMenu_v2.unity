@@ -14935,22 +14935,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5d9d4d8a2cce794f90fddd4d6dabb6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuBGM: {fileID: 0}
+  menuBGM: {fileID: 8300000, guid: 76b53e46ff6ef6745931798de86f2bd4, type: 3}
   gameGeloBGM: {fileID: 0}
   gameFlorestaBGM: {fileID: 0}
   gameCasaBGM: {fileID: 0}
   gameUrbanoBGM: {fileID: 0}
   gameCavernaBGM: {fileID: 0}
   gameDesertoBGM: {fileID: 0}
-  buttonClick: {fileID: 0}
-  buttonVR: {fileID: 0}
+  buttonClick: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
+  buttonVR: {fileID: 8300000, guid: 130a177e727814a2ea78a886ab72213d, type: 3}
   playerPassos: {fileID: 0}
-  playerAlavanca: {fileID: 0}
-  playerChave: {fileID: 0}
-  playerObjeto: {fileID: 0}
-  playerBotao: {fileID: 0}
+  playerAlavanca: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
+  playerChave: {fileID: 8300000, guid: 81652031b64c342cc8dbc59c138d77c5, type: 3}
+  playerObjeto: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
+  playerBotao: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
   portaAbrindo: {fileID: 0}
-  erro: {fileID: 0}
+  erro: {fileID: 8300000, guid: 80e397195ea2940b69ee7bdbded856a5, type: 3}
 --- !u!1 &1520918926
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public class BackToMenu : MonoBehaviour {
 	}
 
 	void toggleNonVR() {
+		//AudioList.instance.PlayButtonClick();
 		this.GetComponent<EnableDisableVR>().changeState(false, this.vrInactive);
 	}
 
