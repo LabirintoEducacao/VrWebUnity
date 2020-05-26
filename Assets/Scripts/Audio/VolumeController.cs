@@ -70,7 +70,10 @@ public class VolumeController : MonoBehaviour
 
     public void imageButtonMuteController()
     {
-        if ((sfxValueVolume == -80) && (bgmValueVolume == -80)) buttonMuteImage.GetComponent<Image>().sprite = audioMute;
-        if ((sfxValueVolume > -80) || (bgmValueVolume > -80)) buttonMuteImage.GetComponent<Image>().sprite = audioPlay;
+			// Se tiver sprite
+			if (audioMute && audioPlay) {
+				if ((sfxValueVolume == -80) && (bgmValueVolume == -80)) buttonMuteImage.GetComponent<Image>().sprite = audioMute;
+				if ((sfxValueVolume > -80) || (bgmValueVolume > -80)) buttonMuteImage.GetComponent<Image>().sprite = audioPlay;
+			}
     }
 }
