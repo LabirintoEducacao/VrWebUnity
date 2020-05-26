@@ -14,6 +14,8 @@ public class QuestionMark : MonoBehaviour {
 	public void setPanelText() {
 
 		if (!LookedQuestion) {
+			// EventPool.sendQuestionReadEvent();
+
 			StartCoroutine(WriteSentence());
 			anim.Play("HideMark");
 			LookedQuestion = true;

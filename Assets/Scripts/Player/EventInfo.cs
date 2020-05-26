@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Xml.Serialization;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,8 @@ public class EventInfo {
 	// momento do evento localmente, só não será nulo quando o evento não 
 	// conseguiu ser enviado na hora.
 	public long async_timestamp;
+	public RoomPlayerInfo[] rooms = null;
+	//public RoomPlayerInfo[] rooms = new RoomPlayerInfo[mazeLD.questions.Length]; //Aqui
 }
 
 public class EventPool {
@@ -53,7 +56,52 @@ public class EventPool {
 
 	public static string createQuestionStartURL(EventInfo e) {
 		WebServiceData webAPI = Resources.FindObjectsOfTypeAll<WebServiceData>()[0];
-		string url = string.Format("{0}?event_name={1}&maze_id={2}&question_id={3}&elapsed_time={4}&wrong_count={5}&correct_count={6}", new object[] { webAPI.eventURL, e.event_name, e.maze_id, e.question_id, e.elapsed_time, e.wrong_count, e.correct_count });
+		string url = string.Format("{0}?event_name={1}&maze_id={2}&question_id={3}&elapsed_time={4}&wrong_count={5}&correct_count={6}", new object[] { webAPI.eventURL, e.event_name, e.maze_id, e.question_id, e.elapsed_time, e.wrong_count, e.correct_count});
+		if (e.user_id > 0) {
+			url += "&user_id=" + e.user_id.ToString();
+		} else {
+			url += "&user_id=0";
+		}
+
+		if (e.async_timestamp > 0) {
+			url += "&async_timestamp=" + e.async_timestamp;
+		}
+		return url;
+	}
+
+	public static string createMazeContinueURL(EventInfo e) {
+		WebServiceData webAPI = Resources.FindObjectsOfTypeAll<WebServiceData>()[0];
+		string url = string.Format("{0}?event_name={1}&maze_id={2}&question_id={3}&elapsed_time={4}", new object[] { webAPI.eventURL, e.event_name, e.maze_id, e.question_id, e.elapsed_time });
+		if (e.user_id > 0) {
+			url += "&user_id=" + e.user_id.ToString();
+		} else {
+			url += "&user_id=0";
+		}
+
+		if (e.async_timestamp > 0) {
+			url += "&async_timestamp=" + e.async_timestamp;
+		}
+		return url;
+	}
+
+	public static string createMazePauseURL(EventInfo e) {
+		WebServiceData webAPI = Resources.FindObjectsOfTypeAll<WebServiceData>()[0];
+		string url = string.Format("{0}?event_name={1}&maze_id={2}&question_id={3}&elapsed_time={4}&correct_count={5}&wrong_count={6}", new object[] { webAPI.eventURL, e.event_name, e.maze_id, e.question_id, e.elapsed_time, e.correct_count, e.wrong_count });
+		if (e.user_id > 0) {
+			url += "&user_id=" + e.user_id.ToString();
+		} else {
+			url += "&user_id=0";
+		}
+
+		if (e.async_timestamp > 0) {
+			url += "&async_timestamp=" + e.async_timestamp;
+		}
+		return url;
+	}
+
+	public static string createQuestionAnswerURL(EventInfo e) {
+		WebServiceData webAPI = Resources.FindObjectsOfTypeAll<WebServiceData>()[0];
+		string url = string.Format("{0}?event_name={1}&maze_id={2}&question_id={3}&elapsed_time={4}&correct={5}&correct_count={6}&wrong_count={7}", new object[] { webAPI.eventURL, e.event_name, e.maze_id, e.question_id, e.elapsed_time, e.correct ? "1" : "-1", e.correct_count, e.wrong_count });
 		if (e.user_id > 0) {
 			url += "&user_id=" + e.user_id.ToString();
 		} else {
@@ -113,7 +161,7 @@ public class EventPool {
 
 	public static string createQuestionEndURL(EventInfo e) {
 		WebServiceData webAPI = Resources.FindObjectsOfTypeAll<WebServiceData>()[0];
-		string url = string.Format("{0}?event_name={1}&maze_id={2}&question_id={3}&elapsed_time={4}&correct={5}&correct_count={6}&wrong_count={7}", new object[] { webAPI.eventURL, e.event_name, e.maze_id, e.question_id, e.elapsed_time, e.correct ? "1" : "-1", e.correct_count, e.wrong_count });
+		string url = string.Format("{0}?event_name={1}&maze_id={2}&question_id={3}&elapsed_time={4}&correct={5}&correct_count={6}&wrong_count={7}", new object[] { webAPI.eventURL, e.event_name, e.maze_id, e.question_id, e.elapsed_time, e.correct ? "1" : "-1", e.correct_count, e.wrong_count});
 		if (e.user_id > 0) {
 			url += "&user_id=" + e.user_id.ToString();
 		} else {
@@ -127,7 +175,7 @@ public class EventPool {
 	}
 	public static string createMazeEndURL(EventInfo e) {
 		WebServiceData webAPI = Resources.FindObjectsOfTypeAll<WebServiceData>()[0];
-		string url = string.Format("{0}?event_name={1}&maze_id={2}&question_id={3}&elapsed_time={4}&correct_count={5}&wrong_count={6}", new object[] { webAPI.eventURL, e.event_name, e.maze_id, e.question_id, e.elapsed_time, e.correct_count, e.wrong_count });
+		string url = string.Format("{0}?event_name={1}&maze_id={2}&question_id={3}&elapsed_time={4}&correct_count={5}&wrong_count={6}", new object[] { webAPI.eventURL, e.event_name, e.maze_id, e.question_id, e.elapsed_time, e.correct_count, e.wrong_count});
 		if (e.user_id > 0) {
 			url += "&user_id=" + e.user_id.ToString();
 		} else {
@@ -145,6 +193,15 @@ public class EventPool {
 		switch (e.event_name) {
 			case "maze_start":
 				url = createMazeStartURL(e);
+				break;
+			case "maze_continue":
+				url = createMazeContinueURL(e);
+				break;
+			case "maze_pause":
+				url = createMazePauseURL(e);
+				break;
+			case "question_answer":
+				url = createQuestionAnswerURL(e);
 				break;
 			case "question_start":
 				url = createQuestionStartURL(e);
@@ -187,7 +244,7 @@ public class EventPool {
 			Debug.LogWarning(string.Format("Could not send {0} event. Due to - No WIFI/LAN connection.", new object[] { e.event_name }));
 		}
 
-		List<string> importants = new List<string>(new string[] {"maze_start", "question_start", "question_end", "maze_end"});
+		List<string> importants = new List<string>(new string[] {"maze_start", "question_start", "question_end", "maze_end", "maze_continue", "maze_pause", "question_answer" });
 		if (importants.IndexOf(e.event_name) != -1) {
 			if (e.async_timestamp < 0) {
 				e.async_timestamp = System.DateTime.Now.ToBinary();
@@ -206,6 +263,10 @@ public class EventPool {
 #region event creation
 	public static void sendMazeStartEvent() {
 		EventInfo e = baseEventInfo("maze_start");
+
+		SaveGameData svgd = DataManager.manager.savegame;
+
+		e.question_id = svgd.currentRoomID;
 		_ = EventPool.sendEvent(e);
 	}
 
@@ -223,10 +284,58 @@ public class EventPool {
 		e.elapsed_time = Mathf.RoundToInt( svgd.timeElapsed );
 		e.wrong_count = svgd.wrongAnswers;
 		e.correct_count = svgd.rightAnswers;
+		e.rooms = svgd.rooms; 
 		DataManager.manager.savegame.setRoomStart(e.question_id);
 		_ = EventPool.sendEvent(e);
 	}
 
+	/// <summary>
+	/// Envia evento quando entra no jogo e já possui um save
+	/// </summary>
+	public static void sendMazeContinueEvent() {
+		EventInfo e = baseEventInfo("maze_continue");
+
+		SaveGameData svgd = DataManager.manager.savegame;
+		e.question_id = svgd.currentRoomID;
+
+		_ = EventPool.sendEvent(e);
+	}
+
+	/// <summary>
+	/// Envia evento quando sai do jogo e não terminou o labirinto
+	/// </summary>
+	public static void sendMazePauseEvent() {
+		EventInfo e = baseEventInfo("maze_pause");
+
+		SaveGameData svgd = DataManager.manager.savegame;
+		e.question_id = svgd.currentRoomID;
+		e.wrong_count = svgd.wrongAnswers;
+		e.correct_count = svgd.rightAnswers;
+		e.rooms = svgd.rooms;
+
+		_ = EventPool.sendEvent(e);
+	}
+
+	/// <summary>
+	/// Envia evento quando responde a pergunta.
+	/// </summary>
+	public static void sendQuestionAnswerEvent(bool correct) {
+		EventInfo e = baseEventInfo("question_answer");
+
+		SaveGameData svgd = DataManager.manager.savegame;
+		svgd.setRoomEnd(svgd.currentRoomID, correct);
+
+		e.question_id = svgd.currentRoomID;
+		e.wrong_count = svgd.wrongAnswers;
+		e.correct_count = svgd.rightAnswers;
+		e.rooms = svgd.rooms;
+		e.correct = correct;
+		_ = EventPool.sendEvent(e);
+	}
+
+	/// <summary>
+	/// Envia evento quando tenta ler a pergunta
+	/// </summary>
 	public static void sendQuestionReadEvent() {
 		EventInfo e = baseEventInfo("question_read");
 
@@ -235,6 +344,10 @@ public class EventPool {
 		_ = EventPool.sendEvent(e);
 	}
 
+	/// <summary>
+	/// Envia evento quando tenta ler uma resposta
+	/// </summary>
+	/// <param name="answer_id"></param>
 	public static void sendAnswerReadEvent(int answer_id) {
 		EventInfo e = baseEventInfo("answer_read");
 
@@ -260,24 +373,35 @@ public class EventPool {
 		_ = EventPool.sendEvent(e);
 	}
 
+	/// <summary>
+	/// Envia evento quando consegue passar para a próxima sala
+	/// </summary>
+	/// <param name="correct"></param>
 	public static void sendQuestionEndEvent(bool correct) {
 		EventInfo e = baseEventInfo("question_end");
+
+		SaveGameData svgd = DataManager.manager.savegame;
+		// svgd.setRoomEnd(svgd.currentRoomID, correct);
+
+		e.question_id = svgd.currentRoomID;
+		e.wrong_count = svgd.wrongAnswers;
+		e.correct_count = svgd.rightAnswers;
+		e.rooms = svgd.rooms;
+		e.correct = correct;
+		_ = EventPool.sendEvent(e);
+	}
+
+	/// <summary>
+	/// Envia evento quando termina de responder todas as perguntas corretamente
+	/// </summary>
+	public static void sendMazeEndEvent() {
+		EventInfo e = baseEventInfo("maze_end");
 
 		SaveGameData svgd = DataManager.manager.savegame;
 		e.question_id = svgd.currentRoomID;
 		e.wrong_count = svgd.wrongAnswers;
 		e.correct_count = svgd.rightAnswers;
-		e.correct = correct;
-		DataManager.manager.savegame.setRoomEnd(e.question_id, correct);
-		_ = EventPool.sendEvent(e);
-	}
-
-	public static void sendMazeEndEvent() {
-		EventInfo e = baseEventInfo("maze_end");
-
-		SaveGameData svgd = DataManager.manager.savegame;
-		e.wrong_count = svgd.wrongAnswers;
-		e.correct_count = svgd.rightAnswers;
+		e.rooms = svgd.rooms;
 		_ = EventPool.sendEvent(e);
 	}
 

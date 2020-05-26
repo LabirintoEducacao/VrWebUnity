@@ -168,19 +168,22 @@ public class Player : PlayerBase {
 
 				if (Inventory.instance.item != null && checkDoor.answer.answer != null) {
 
-					bool isCoorect = Inventory.instance.AnswerSelected.correct;
-					checkDoor.checkAnswer(Inventory.instance.AnswerSelected); // Open Door
-																																		
+					bool isCorect = Inventory.instance.AnswerSelected.correct;
+					bool isOpened = checkDoor.checkAnswer(Inventory.instance.AnswerSelected); // Open Door																			
 
 					if (currentRoom.type == TypeRoom.hope_door || currentRoom.type == TypeRoom.right_key) {
-						DataManager.manager.answerStatus(this.currentRoom.id, isCoorect); //dispara evento para registrar a resposta no analytics
+						DataManager.manager.answerStatus(this.currentRoom.id, isCorect); //dispara evento para registrar a resposta no analytics
 
-						if (isCoorect) {
+						if (isCorect) {
 							Debug.Log("Resposta Certa!");
 
 						} else {
 							Debug.Log("Resposta errada!");
 						}
+					}
+
+          if (isOpened) {
+						DataManager.manager.questionEnd(this.currentRoom.id, isCorect);
 					}
 
 					ResetGUIReticleLoad();
@@ -201,13 +204,13 @@ public class Player : PlayerBase {
 
 				if (Inventory.instance.item != null && checkShapes.answer.answer != null) {
 
-					bool isCoorect = Inventory.instance.AnswerSelected.correct;
+					bool isCorect = Inventory.instance.AnswerSelected.correct;
 					checkShapes.checkAnswer(Inventory.instance.AnswerSelected); 
 																																		
 
-					DataManager.manager.answerStatus(this.currentRoom.id, isCoorect);
+					DataManager.manager.answerStatus(this.currentRoom.id, isCorect);
 
-					if (isCoorect) {
+					if (isCorect) {
 						Debug.Log("Resposta Certa!");
 
 					} else {
@@ -247,13 +250,13 @@ public class Player : PlayerBase {
 
 			bool correct = checkLevers.checkAnswer(null);
 
+			DataManager.manager.answerStatus(this.currentRoom.id, correct);
+
 			if (correct) {
 				Debug.Log("Resposta Certa!");
 			} else {
 				Debug.Log("Resposta errada!");
 			}
-			//dispara evento para registrar a resposta no analytics
-			DataManager.manager.answerStatus(this.currentRoom.id, correct);
 
 			ResetGUIReticleLoad();
 		}
