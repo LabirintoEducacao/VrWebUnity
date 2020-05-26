@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class DataManager : MonoBehaviour {
+public class DataManager : MonoBehaviour
+{
 	#region singleton
 	static DataManager instance;
 	public static DataManager manager {
 		get {
 			if (instance == null) {
-				GameObject go = new GameObject ();
+				GameObject go = new GameObject();
 				go.name = "DataManager";
 				return go.AddComponent<DataManager>();
 			} else {
@@ -68,20 +69,24 @@ public class DataManager : MonoBehaviour {
 		}
 		this.setNewLevel(tempLD);
 	}
- 	public void setNewLevel(MazeLDWrapper maze) {
+	public void setNewLevel(MazeLDWrapper maze) {
 		mazeLD = maze;
 		SaveData.save("current_level", JsonUtility.ToJson(mazeLD));
 		checkAndCreateSave();
 	}
 
+	/// <summary>
+	/// Método para criar ou carregar um save local
+	/// </summary>
 	void checkAndCreateSave() {
 		if (mazeLD != null) {
 
 			// se não tem save, ou é outro labirinto, reseta os dados, caso contrário continua com o que tem.
-			if ((svgd == null) || (svgd.mazeID != mazeLD.maze_id)) {
+			if ((svgd == null) || (svgd.mazeID != mazeLD.maze_id) || (svgd.currentRoomID == -42)) {
+				// Cria um save local
 				createNewSave();
-			} else if (svgd != null){
-				// Do nothing
+			} else if (svgd != null) {
+				// Continua com o save
 			}
 
 		} else {
@@ -105,9 +110,9 @@ public class DataManager : MonoBehaviour {
 			rooms[i] = new RoomPlayerInfo(mazeLD.questions[i].question_id);
 		}
 
-        svgd.rooms = rooms; // Salvar as salas de questões
+		svgd.rooms = rooms; // Salvar as salas de questões
 
-    }
+	}
 
 	/// <summary>
 	/// Apenas save local.
@@ -116,7 +121,7 @@ public class DataManager : MonoBehaviour {
 		SaveData.save("savegame", JsonUtility.ToJson(svgd));
 	}
 
-	public string loadProgress(){
+	public string loadProgress() {
 		return SaveData.load("savegame");
 	}
 
@@ -139,7 +144,7 @@ public class DataManager : MonoBehaviour {
 	public void cleanPlayerProgress(bool logout = false) {
 		SaveData.removeFile("savegame");//informações de respostas
 		SaveData.removeFile("user_data");
-		if (logout){
+		if (logout) {
 			SaveData.removeFile("current_level");
 		}
 		svgd = null;
@@ -201,6 +206,7 @@ public class DataManager : MonoBehaviour {
 		e.question_id = svgd.currentRoomID;
 		e.wrong_count = svgd.wrongAnswers;
 		e.correct_count = svgd.rightAnswers;
+		e.rooms = svgd.rooms; //Aqui
 		e.elapsed_time = Mathf.RoundToInt(svgd.timeElapsed);
 		_ = EventPool.sendEvent(e);
 	}
@@ -208,7 +214,7 @@ public class DataManager : MonoBehaviour {
 	void SceneChanged(Scene current, Scene next) {
 		// cannot clean level data on main menu if we want the player to continue the next level while not finished
 
-		string[] nonMazeScenes = new string[] {"MainMenu_v2"};
+		string[] nonMazeScenes = new string[] { "MainMenu_v2" };
 		if (svgd != null) {
 			bool playing = true;
 			for (int i = 0; i < nonMazeScenes.Length; i++) {
@@ -224,15 +230,41 @@ public class DataManager : MonoBehaviour {
 				//acabou de entrar na sala, cria um save ou não
 				//manda evento de LevelStart
 				checkAndCreateSave();
-				startMaze();
-			} else {
-				//saiu da fase
-				//manda evento de level end
-				endMaze();
+
+				// Se não existe save, começa novo maze
+				if (svgd.rooms[0].status == ROOM_STATUS.NONE) {
+					startMaze();
+				} else {
+					EventPool.sendMazeContinueEvent();
+				}
+
 			}
+
+			QuitGame();
+
+			Debug.Log("svgd.playing = " + playing);
 			svgd.playing = playing;
 		}
 
+	}
+
+	/// <summary>
+	/// Chama ao sair da fase
+	/// </summary>
+	public void QuitGame() {
+
+		// Se não estiver jogando
+		if (svgd == null || !svgd.playing)
+			return;
+
+		// Chegou no final do maze
+		if (svgd.currentRoomID == -42) {
+			Debug.Log("Event maze_end");
+			endMaze();
+		} else {
+			Debug.Log("Event maze_pause");
+			EventPool.sendMazePauseEvent();
+		}
 	}
 
 	/// <summary>
@@ -250,14 +282,17 @@ public class DataManager : MonoBehaviour {
 		//FirebaseAnalytics.LogEvent(
 		//	FirebaseAnalytics.EventLevelUp,
 		//	LevelUpParameters);
-
-		EventPool.sendQuestionEndEvent(correct);
+		EventPool.sendQuestionAnswerEvent(correct);
 		//if (correct) {
 		//	svgd.timeElapsed = 0;
 		//}
 	}
 
-	public void setActiveRoom(int room_id, bool end = false) {
+	public void questionEnd(int room_id, bool correct) {
+		EventPool.sendQuestionEndEvent(correct);
+	}
+
+		public void setActiveRoom(int room_id, bool end = false) {
 		svgd.currentRoomID = room_id;
 	}
 
@@ -268,6 +303,8 @@ public class DataManager : MonoBehaviour {
 	}
 
 	private void OnDestroy() {
+		QuitGame();
+
 		EventPoolWrapper ew = new EventPoolWrapper();
 		ew.pool = EventPool.pool.ToArray();
 		SaveData.save("event_pool", JsonUtility.ToJson(ew));

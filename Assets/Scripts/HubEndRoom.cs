@@ -31,7 +31,7 @@ public class HubEndRoom : MonoBehaviour {
 		double total = countScore();
 		double perScore = 0f;
 		if (total != 0) {
-			Debug.Log("Erros Totais: "+svgd.wrongAnswers+" Acertos Totais: "+svgd.rightAnswers+ "Erros e acertos da sala 2:"+svgd.rooms[1].wrongs+", "+svgd.rooms[1].right);
+			Debug.Log("Erros Totais: " + svgd.wrongAnswers + " Acertos Totais: " + svgd.rightAnswers);// "Erros e acertos da sala 2:"+svgd.rooms[1].wrongs+", "+svgd.rooms[1].right);
 			perScore = total;
 			perScore = System.Math.Truncate(perScore);
 		}

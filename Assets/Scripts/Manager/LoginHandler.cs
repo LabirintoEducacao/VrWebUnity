@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿using System.Runtime.CompilerServices;
+using System;
+using System.Data;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -263,15 +266,22 @@ public class LoginHandler : MonoBehaviour {
 					Debug.LogWarning(string.Format("Could not get load data for maze {0} and user {2} - due to: {1}", new object[] { maze_id, data, uid }));
 				} else {
 					LoadResponse load = JsonUtility.FromJson<LoadResponse>(data);
-					if (load.next_question > 0) {
+					if (load.next_question > 0 && load.timeElapsed > 0f) {
 						// se está null, deixa a starting_question que já está setada
 						// pq o jogador ainda não jogou esse labirinto, ou já concluiu.
 						DataManager.manager.savegame.currentRoomID = load.next_question;
 						DataManager.manager.savegame.wrongAnswers = load.wrong_count;
 						DataManager.manager.savegame.rightAnswers = load.correct_count;
+						DataManager.manager.savegame.rooms = load.rooms;
+						DataManager.manager.savegame.timeElapsed = load.timeElapsed;
+						//DataManager.manager.savegame.pRooms = load.pRooms;
+
+						// JSON por sala com os dados de acertos e erros e o TimeElapsed
 						
+					} else { // Assegura q o save vai estar limpo
+						DataManager.manager.cleanPlayerProgress();
 					}
-					
+
 					OnLoadMazeProgressCompleted?.Invoke(true);
 					return true;
 				}
@@ -289,6 +299,9 @@ public class LoginHandler : MonoBehaviour {
 		public int next_question = -1;
 		public int correct_count = 0;
 		public int wrong_count = 0;
+		//public RoomPlayerInfo[] rooms = new RoomPlayerInfo[rooms.Length];//Aqui (ld or currentLevel.questions.Length ?)
+		public RoomPlayerInfo[] rooms = null; //Aqui
+		public float timeElapsed = 0f;
 	}
 	#endregion
 }
@@ -302,7 +315,9 @@ public class UserInfo {
 			return int.Parse(uid);
 		}
 	}
-	public WebRoomInfo[] privateRooms = null;
+	//public RoomPlayerInfo[] rooms = null; //Aqui
+	public WebRoomInfo[] privateRooms = null; //Aqui
+	//public RoomPlayerInfo[] rooms = new RoomPlayerInfo[mazeLD.questions.Length];//Aqui
 
 	public UserInfo(string username, string uid) {
 		this.username = username;
@@ -320,38 +335,55 @@ public class WebRoomInfo {
 	public string name;
 	public int Pergunta;
 	public int Reforco;
-	public int progress;
+	public int Progress;
 	public string photoURL;
 	public Texture2D photo;
 	public bool isPublic = true;
+	public int wrongs; //Aqui
+	public int right; //Aqui
 
 	public string progressName {
 		get {
-			switch (this.progress) {
-				case 1:
-					return "Iniciada";
-				case 2:
-					return "Concluída";
-				case 0:
-				default:
-					return "Nova";
-					break;
-			}
+			if (this.Progress == 0) {
+				return "Nova";
+			} else if (this.Progress > 0 && this.Progress < 100) {
+				return "Iniciada";
+			} 
+
+			return "Concluída";
+			//switch (this.progress) {
+			//	case 1:
+			//		return "Iniciada";
+			//	case 2:
+			//		return "Concluída";
+			//	case 0:
+			//	default:
+			//		return "Nova";
+			//		break;
+			//}
 		}
 	}
 
 	public int progressOrder {
 		get {
-			switch (this.progress) {
-				case 1:
-					return 0;
-				case 2:
-					return 2;
-				case 0:
-				default:
-					return 1;
-					break;
+			if (this.Progress == 0) {
+				return 1;
+			} else if (this.Progress > 0 && this.Progress < 100) {
+				return 0;
 			}
+
+			return 2;
+
+			//switch (this.progress) {
+			//	case 1:
+			//		return 0;
+			//	case 2:
+			//		return 2;
+			//	case 0:
+			//	default:
+			//		return 1;
+			//		break;
+			//}
 		}
 	}
 

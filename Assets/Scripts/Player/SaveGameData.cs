@@ -20,7 +20,7 @@ public class SaveGameData {
 			if (rooms[i].room_id == room_id) {
 				rooms[i].status = correct ? ROOM_STATUS.RIGHT : ROOM_STATUS.WRONG;
 
-				if (correct && rooms[i].timeInside == 0f) {
+				if (correct && rooms[i].right == 0) {
 					rightAnswers++;
 					rooms[i].right++;
 					rooms[i].timeInside = timeElapsed - rooms[i].enterTime;

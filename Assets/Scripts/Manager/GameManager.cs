@@ -240,15 +240,15 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void ClosedGatewayDoor() {
-		this.lastRoom.SetActive(false);
 
 		// Assegura que vai resetar a sala
-		if (lastRoom.Equals(nextRoom.gameObject)) {
-			this.lastRoom.SetActive(true);
+		if (lastRoom && lastRoom.Equals(nextRoom.gameObject)) {
+				this.lastRoom.SetActive(false);
+				this.lastRoom.SetActive(true);
+				this.lastCorridor.SetActive(false);
 		}
 
 
-		this.lastCorridor.SetActive(false);
 	}
 
 	/// <summary>

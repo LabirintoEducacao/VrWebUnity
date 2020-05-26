@@ -107,19 +107,19 @@ public class RoomGridCreator : MonoBehaviour
 					break;
 				case 3: //salas novas 
 					orderedRooms = (from room in this.salas
-									where room.progress == 0
+									where room.Progress == 0
 									orderby room.progressOrder ascending
 									select room);
 					break;
 				case 4: //salas iniciadas
 					orderedRooms = (from room in this.salas
-									where room.progress == 1
+									where (room.Progress > 0) && (room.Progress < 100)
 									orderby room.progressOrder ascending
 									select room);
 					break;
 				case 5: //salas concluídas 
 					orderedRooms = (from room in this.salas
-									where room.progress == 2
+									where room.Progress == 100
 									orderby room.progressOrder ascending
 									select room);
 					break;
