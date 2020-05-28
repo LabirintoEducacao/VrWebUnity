@@ -266,7 +266,9 @@ public class LoginHandler : MonoBehaviour {
 					Debug.LogWarning(string.Format("Could not get load data for maze {0} and user {2} - due to: {1}", new object[] { maze_id, data, uid }));
 				} else {
 					LoadResponse load = JsonUtility.FromJson<LoadResponse>(data);
-					if (load.next_question > 0 && load.timeElapsed > 0f) {
+
+					// Se jogador não estiver na primeira sala e tiver tempo salvo, carrega save
+					if (load.next_question > 0 && load.next_question != load.rooms[0].room_id  && load.timeElapsed > 0f) {
 						// se está null, deixa a starting_question que já está setada
 						// pq o jogador ainda não jogou esse labirinto, ou já concluiu.
 						DataManager.manager.savegame.currentRoomID = load.next_question;
