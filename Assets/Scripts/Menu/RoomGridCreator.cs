@@ -156,6 +156,8 @@ public class RoomGridCreator : MonoBehaviour
 			rgd.roomInfo = r;
 		}
 		this.grid.SetActive(true);
+		pageUpBtn.GetComponent<Button>().enabled = true;
+		pageDownBtn.GetComponent<Button>().enabled = true;
 	}
 
 	void updateRoomList() {
