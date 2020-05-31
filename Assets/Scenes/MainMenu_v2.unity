@@ -1811,7 +1811,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "Iv\xE1n Jos\xE9 Meste Fern\xE1ndez"
+  m_text: "Iv\xE1n Jos\xE9 Mestre Fern\xE1ndez"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5d64926fbaf88b14cb0431d5cdfc5e49, type: 2}
   m_sharedMaterial: {fileID: -5515176405003551661, guid: 5d64926fbaf88b14cb0431d5cdfc5e49,
@@ -1881,7 +1881,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 193763887}
-    characterCount: 25
+    characterCount: 26
     spriteCount: 0
     spaceCount: 3
     wordCount: 4
@@ -19445,7 +19445,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 502789331}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.4243629
+  m_Size: 0.42436287
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
